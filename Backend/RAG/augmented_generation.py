@@ -161,7 +161,7 @@ def q2a_workflow(article, user_prompt, num_articles, verbose = True):
     if verbose:
         i += 1
         print(f"At stage {i}")
-    relevant_articles = [fetch_article_contents(fetch_article_id(url)) for url in set(relevant_article_urls[:3])]
+    relevant_articles = [fetch_article_contents(fetch_article_id(url)) for url in set(relevant_article_urls[:num_articles])]
     
     out = generate_article(user_prompt, relevant_articles)
     if verbose:
