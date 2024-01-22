@@ -37,7 +37,7 @@ def populate_database_by_topic(topic, num_articles_to_store):
     db = client["news"]
     collection = db["articles"]
     num_articles_stored = 0
-    offset = 10000
+    offset = 0
     while num_articles_stored < num_articles_to_store:
         articles = find_articles_by_topic(topic, offset)
         articles = filter_msn_articles(articles)
@@ -55,7 +55,7 @@ def populate_database_by_topic(topic, num_articles_to_store):
                 print(f"An error occurred: {e}")
                 continue
 
-        offset += 10000
+        offset += 100
         
 
 
