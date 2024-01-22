@@ -21,6 +21,8 @@ def gather_article_metadata(article, query_used_for_article_search):
         author                  :   The individual or group that wrote the article
 
         publisher               :   The organization that published the article
+
+        word_count              :   The word count of the article.
         
         category                :   A categorization of the type of article
                                     Examples include "politics", "finance", "sports"
@@ -55,6 +57,7 @@ def gather_article_metadata(article, query_used_for_article_search):
     sentiment = sentiment_analysis.get_sentiment_score(article_text)
     semantic_embedding = embedding_model.get_embedding(article_text)
 
+    metadata['word_count'] = len(article_text.replace("\n\n", " ").split(" "))
     metadata['id'] = article_id
     metadata['author'] = author
     #metadata['tone'] = tone

@@ -2,11 +2,11 @@ from pymongo import MongoClient
 from article_preprocess import fetch_article_id
 from dotenv import load_dotenv
 import os
+from copy import deepcopy
 load_dotenv("../../vars.env")
 
 
-
-def remove_duplicate_db_entries():
+def load_mongodb():
     uri = os.environ.get("MONGODB_URI")
     client = MongoClient(uri)
     try:
@@ -16,6 +16,14 @@ def remove_duplicate_db_entries():
         print(e)
     db = client["news"]
     collection = db["articles"]
+
+    return client, db, collection
+
+
+
+
+def remove_duplicate_db_entries():
+    client, db, collection = load_mongodb()
 
     ids = set()
     for doc in collection.find({}):
@@ -29,5 +37,17 @@ def remove_duplicate_db_entries():
 
 
 
+def add_ids_to_entries():
+    client, db, collection = load_mongodb()
+    for doc in collection.find({}):
+        if 'id' not in doc:
+            new_doc = deepcopy(doc)
+            id = fetch_article_id(new_doc)
+            new_doc['id'] = id
+            collection.update_one(doc, new_doc)
+            print(f'{doc} -> {new_doc} (UPDATE)')
+    
+
+
 if __name__=='__main__':
-    remove_duplicate_db_entries()
+    add_ids_to_entries()

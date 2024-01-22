@@ -1,9 +1,11 @@
 from pymongo import MongoClient
-from sklearn.neighbors import KDTree
+#from sklearn.neighbors import KDTree
 import numpy as np
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
+import faiss 
+import numpy as np
 load_dotenv("../../vars.env")
 openai_api = os.environ.get("OPENAI_API")
 
@@ -33,12 +35,8 @@ def fetch_embeddings_from_mongo():
 
 
 
-def build_kd_tree(embeddings):
-    return KDTree(embeddings, leaf_size=40, metric='')
 
-
-
-def find_closest_article(embedding, article_embeddings):
+def find_closest_article_using_simple_search(embedding, article_embeddings):
     closest_dist = -1.1
     closest_url = False
     for other_embed in article_embeddings:
@@ -47,6 +45,25 @@ def find_closest_article(embedding, article_embeddings):
             closest_url = other_embed[1]
 
     return closest_url
+
+
+
+def find_closest_article_using_FAISS(embedding, article_embeddings, num_articles):
+    # Example dataset: 10000 vectors of dimension 512
+    d = len(embedding) # Dimension
+    db_vectors = [np.array(article_embedding[0]).astype('float32') for article_embedding in article_embeddings]
+    query_vector = np.array(embedding).astype('float32')
+
+    # Create the index
+    index = faiss.IndexFlatIP(d)
+
+    # Add vectors to the index
+    index.add(db_vectors)
+
+    # Perform the search
+    k = num_articles  # Number of nearest neighbors to retrieve
+    D, I = index.search(query_vector, k)  # D is the distance (dot product here), I is the indices of neighbors
+    return D, I
 
 
 
@@ -83,7 +100,7 @@ if __name__ == '__main__':
     query = "Will Gaza surrender to Israel soon"
     query_embedding = get_embedding(query)
 
-    u = find_closest_article(query_embedding, embeddings)
+    u = find_closest_article_using_simple_search(query_embedding, embeddings)
     print(u)
 
 
@@ -104,6 +121,10 @@ print(u)
 
 # KD Tree optimization for later
 '''print(KDTree.valid_metrics)
+
+
+def build_kd_tree(embeddings):
+    return KDTree(embeddings, leaf_size=40, metric='')
 
 # Fetch embeddings
 embeddings = fetch_embeddings_from_mongo()
