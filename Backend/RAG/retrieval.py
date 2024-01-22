@@ -3,8 +3,11 @@ from sklearn.neighbors import KDTree
 import numpy as np
 from dotenv import load_dotenv
 import os
+from openai import OpenAI
+load_dotenv("../../vars.env")
+openai_api = os.environ.get("OPENAI_API")
 
-load_dotenv("../vars.env")
+
 
 def fetch_embeddings_from_mongo():
     uri = os.environ.get("MONGODB_URI")
@@ -46,8 +49,6 @@ def find_closest_article(embedding, article_embeddings):
     return closest_url
 
 
-from openai import OpenAI
-openai_api = os.environ.get("OPENAI_API")
 
 def get_embedding(text, engine = 'text-embedding-ada-002'):
     """
@@ -66,6 +67,7 @@ def get_embedding(text, engine = 'text-embedding-ada-002'):
     return client.embeddings.create(input = [text], model=engine).data[0].embedding
 
 
+
 def similarity_score(x, y, verbose = True):
     x = np.array(x)
     y = np.array(y)
@@ -75,12 +77,14 @@ def similarity_score(x, y, verbose = True):
     return sim_score
 
 
-embeddings = fetch_embeddings_from_mongo()
-query = "Will Gaza surrender to Israel soon"
-query_embedding = get_embedding(query)
 
-u = find_closest_article(query_embedding, embeddings)
-print(u)
+if __name__ == '__main__':
+    embeddings = fetch_embeddings_from_mongo()
+    query = "Will Gaza surrender to Israel soon"
+    query_embedding = get_embedding(query)
+
+    u = find_closest_article(query_embedding, embeddings)
+    print(u)
 
 
 # comparing articles to each other

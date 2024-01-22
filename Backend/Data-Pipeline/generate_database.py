@@ -6,8 +6,9 @@ from pymongo.server_api import ServerApi
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+load_dotenv("../../vars.env")
 
-load_dotenv("../vars.env")
+
 
 def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 10):
     url = "https://api.bing.microsoft.com/v7.0/news"  # Changed to general news endpoint

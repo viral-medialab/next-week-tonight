@@ -7,17 +7,15 @@ import numpy as np
 from scipy.special import softmax
 from dotenv import load_dotenv
 import os
-
-load_dotenv("../vars.env")
-openai_api = os.environ.get("OPENAI_API")
-
+load_dotenv("../../vars.env")
 
 
 
 class SemanticEmbeddings:
     def __init__(self):
         self.engine = 'text-embedding-ada-002'
-        self.api = openai_api
+        self.api = os.environ.get("OPENAI_API")
+
 
     def get_embedding(self, text, engine = 'text-embedding-ada-002'):
         """
@@ -29,7 +27,7 @@ class SemanticEmbeddings:
         """
         client = OpenAI(
             #  This is the default and can be omitted
-            api_key=openai_api,
+            api_key=self.api,
         )
 
 
@@ -60,14 +58,13 @@ class SentimentAnalysis:
 
         self.labels=['negative', 'neutral', 'positive']
     
+
     def get_sentiment_score(self, text):
         paragraphs = text.split("\n\n")
         out = 0
         for paragraph in paragraphs:
             try:
                 encoded_input = self.tokenizer(paragraph, return_tensors='tf')
-
-                
                 output = self.model(encoded_input)
                 scores = output[0][0].numpy()
                 scores = softmax(scores)
@@ -90,9 +87,11 @@ class SentimentAnalysis:
 
 
 
-class ToneAnalysis:
+class ToneAnalysis: 
+    ''' We will take care of the tone analysis model later'''
     def __init__(self):
         pass
+
 
     def categorize(self, text):
         categories = ['informative','objective','serious','']

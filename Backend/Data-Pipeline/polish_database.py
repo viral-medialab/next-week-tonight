@@ -2,8 +2,9 @@ from pymongo import MongoClient
 from article_preprocess import fetch_article_id
 from dotenv import load_dotenv
 import os
+load_dotenv("../../vars.env")
 
-load_dotenv("../vars.env")
+
 
 def remove_duplicate_db_entries():
     uri = os.environ.get("MONGODB_URI")
