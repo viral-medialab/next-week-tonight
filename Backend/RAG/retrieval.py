@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
 #from sklearn.neighbors import KDTree
 import numpy as np
 from dotenv import load_dotenv
@@ -7,12 +7,14 @@ from openai import OpenAI
 import faiss 
 import numpy as np
 load_dotenv("../../vars.env")
+load_dotenv("vars.env")
 openai_api = os.environ.get("OPENAI_API")
 
 
 
 def fetch_embeddings_from_mongo():
     uri = os.environ.get("MONGODB_URI")
+    print(uri)
     client = MongoClient(uri)
     try:
         client.admin.command('ping')
@@ -21,6 +23,7 @@ def fetch_embeddings_from_mongo():
         print(e)
     db = client["news"]
     collection = db["articles"]
+
 
     embeddings = []
     urls = set()

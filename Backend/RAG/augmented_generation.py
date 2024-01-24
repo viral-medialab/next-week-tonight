@@ -2,6 +2,7 @@ import sys
 sys.path.append("../DataPipeline")
 from dotenv import load_dotenv
 import os
+load_dotenv("vars.env")
 load_dotenv("../../vars.env")
 from openai import OpenAI
 openai_api = os.environ.get("OPENAI_API")
@@ -57,19 +58,23 @@ def generate_relevant_questions(article_context, user_prompt):
 
 
 
-def generate_article(user_prompt, relevant_info):
+def generate_article(user_prompt, relevant_info, relevant_articles):
     #Relevant info is a list of strings where each string is an article body
 
     overall_context = generate_article_prompt
 
-    relevant_context = "Here is some relevant information to write your articles. Use the information here to extract facts for your articles (each piece of information is separated by a semicolon): ".replace("\n", "")
-    for info in relevant_info:
+    relevant_context = "Here is some relevant information to write your articles. Use the information here to extract facts for your articles (each piece of information is separated by a semicolon): "
+    for info in relevant_articles:
         relevant_context += info + ";"
     relevant_context = relevant_context[:-1]
 
+    preds_context = "Here are some pre-generated predictions. As a creative writing exercise, riff off of these possibilities, imagining one or more as what concretely happens:\n"
+    for pred in relevant_info:
+        preds_context += pred
+
     user_query = 'Please write an article using the context to answer the following question: ' + user_prompt
 
-    return updated_query_chatgpt([overall_context, relevant_context], user_query)
+    return updated_query_chatgpt([overall_context, preds_context, relevant_context], user_query)
 
 
 
@@ -153,26 +158,34 @@ def q2a_workflow(article, user_prompt, num_articles, verbose = True):
         5)  Input:  User input, AI-generated predictions
             Output: AI-generated article 
     '''
-
+    print("1")
     AI_generated_questions = generate_relevant_questions(article, user_prompt)
+    print("2")
     embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions]
+    print("3")
     relevant_article_urls = [find_closest_article_using_simple_search(embedding, all_doc_embeddings) for embedding in embeddings]
-    relevant_articles = [fetch_article_contents(fetch_article_id(url)) for url in set(relevant_article_urls[:num_articles])]
-    preds = generate_predictions(relevant_articles, query=user_prompt)
-    out = generate_article(user_prompt, preds)
+    print("4")
+    relevant_articles = [fetch_article_contents(fetch_article_id(url)) for url in set(relevant_article_urls[:2*num_articles])]
+    print("5")
+    preds = generate_predictions(relevant_articles, user_query=user_prompt)
+    print(preds)
+    print("6")
+    out = generate_article(user_prompt, [], relevant_articles)
     if verbose:
         print("AI generated questions: ", AI_generated_questions)
         print("Relevant articles: ", relevant_articles)
         print("\n\n\n\n\n\n")
         print("Created article:", out)
+        print("\n\n\n\n\n\n")
+        print("Created predictions:", preds)
     return AI_generated_questions, relevant_articles, preds, out
 
 
 
 
-
+'''
 def q2p_workflow(article, num_articles, verbose = True):
-    '''
+    #
     Takes an article and corresponding user query, and works it into an article that answers the user's prompt.
 
     The workflow is as follows:
@@ -191,9 +204,9 @@ def q2p_workflow(article, num_articles, verbose = True):
             
         5)  Input:  User input, AI-generated predictions
             Output: AI-generated article 
-    '''
+    #
 
-    AI_generated_questions = generate_relevant_questions(article, "What is the context of this article and how does it tie into current events?")
+    AI_generated_questions = generate_relevant_questions(article, "What is the context of this article and how does it tie into current events?")[:num_articles]
     embeddings = [get_embedding(question) for question in AI_generated_questions]
     relevant_article_urls = [find_closest_article_using_simple_search(embedding, all_doc_embeddings) for embedding in embeddings]
     relevant_articles = [fetch_article_contents(fetch_article_id(url)) for url in set(relevant_article_urls[:num_articles])]
@@ -204,7 +217,7 @@ def q2p_workflow(article, num_articles, verbose = True):
         print("\n\n\n\n\n\n")
         print("Created predictions:", preds)
     return AI_generated_questions, relevant_articles, preds
-
+'''
 
 
 
@@ -225,8 +238,8 @@ def save_to_file(data, filename="out_article.txt"):
 if __name__ == '__main__':
     query = "What if the Houthis in Yemen retaliate against the American for their strikes?"
     article = sample_article
-    AI_generated_questions, relevant_articles, out = q2a_workflow(article, query, 10, just_preds=True)
-    save_to_file([query, article, AI_generated_questions, relevant_articles, out], 'out_preds.txt')
+    AI_generated_questions, relevant_articles, preds, out = q2a_workflow(article, query, 3)
+    save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'out_preds.txt')
                                                                   
 
     

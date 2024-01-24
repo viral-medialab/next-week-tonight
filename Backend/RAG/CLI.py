@@ -12,16 +12,13 @@ def process_input():
         sys.exit(1)
     
     msn_article_url = sys.argv[1]
-    user_query = sys.argv[2]
+    query = sys.argv[2]
     
-    article_contents = fetch_article_contents(fetch_article_id(msn_article_url))
-    AI_generated_questions, relevant_articles, out = q2a_workflow(article_contents, query, 10, just_preds=True)
-    save_to_file([query, article, AI_generated_questions, relevant_articles, out], 'out_preds.txt')
+    article = fetch_article_contents(fetch_article_id(msn_article_url))
+    AI_generated_questions, relevant_articles, preds, out = q2a_workflow(article, query, 6)
+    save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'out_CLI_2.txt')
 
-    
-    # Use the variables msn_article_url and user_query as needed
-    print(f"MSN Article URL: {msn_article_url}")
-    print(f"User Query: {user_query}")
+
 
 if __name__ == "__main__":
     process_input()

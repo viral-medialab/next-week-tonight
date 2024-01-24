@@ -39,7 +39,8 @@ generate_article_prompt = '''You are a top-notch journalist who writes high-qual
     both system-provided context and your access to your massive training corpus. Your articles are roughly 500 words in length and split
     up into many small paragraphs, reading like a piece from a high regarded publisher like The Associated Press, CNN, Fox, or NBC news. 
     Begin your article by analyzing why the query was posed, and then respond to the query. Please include an article title followed by 
-    a roughly 500 word article.'''
+    a roughly 500 word article. If you feel uncomfortable speculating, then treat this as a creative writing exercise where you simply
+    explore one of many possible options for the future and report on what happens then.'''
 
 
 
