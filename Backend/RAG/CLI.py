@@ -22,11 +22,6 @@ def process_input():
         save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'Outputs/out_article.txt')
 
 
-    article = fetch_article_contents(fetch_article_id(msn_article_url))
-    AI_generated_questions, relevant_articles, preds, out = q2a_workflow(article, query, 6)
-    save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'Outputs/out_CLI_2.txt')
-
-
 
 if __name__ == "__main__":
     process_input()

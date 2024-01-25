@@ -221,5 +221,20 @@ sample_article = convert_to_proper_format(sample_article)
 
 
 
+
+trending_topics_prompt = '''Return a comprensive list of unique topics covered by these news headlines and descriptions. These topics will be 
+                            used by a news API to get even more articles on the particular topic. Please provide specific topics. It is essential 
+                            the topics do not overlap with each other and are unique, that is, do not be repetitive. Format the response as an array 
+                            of topics. For example, [\"Pakistani's defeat in war against Iraq\", \"New York Marathon\", \"US Senate elections\"]. 
+                            Use enough descriptive words (up to 7 words) to make the topic specific enough and captilize the first letter. Do not 
+                            miscategorize topics, for example: if the topic is \"Convicted Felon arrested for illegal weapons in Washington\", do 
+                            not miscategorize it as \"Washington Senator convicted for illegal weapons\". Remain true to the topic at hand. Do not 
+                            use commas in the topics to avoid ambiguity with the array commas. Do not return anything else except the array.'''
+trending_topics_prompt = convert_to_proper_format(trending_topics_prompt)
+
+
+
+
+
 if __name__ == '__main__':
     print(sample_article)

@@ -5,6 +5,7 @@ from openai_utils import *
 from database_utils import *
 from article_utils import *
 from env import *
+from prompts import *
 
 sentiment_model = SentimentModel()
 
@@ -18,7 +19,7 @@ def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 1
     response.raise_for_status()
     results = response.json()['value']
 
-    context = "Return a comprensive list of unique topics covered by these news headlines and descriptions. These topics will be used by a news API to get even more articles on the particular topic. Please provide specific topics. It is essential the topics do not overlap with each other and are unique, that is, do not be repetitive. Format the response as an array of topics. For example, [\"Pakistani's defeat in war against Iraq\", \"New York Marathon\", \"US Senate elections\"]. Use enough descriptive words (up to 7 words) to make the topic specific enough and captilize the first letter. Do not miscategorize topics, for example: if the topic is \"Convicted Felon arrested for illegal weapons in Washington\", do not miscategorize it as \"Washington Senator convicted for illegal weapons\". Remain true to the topic at hand. Do not use commas in the topics to avoid ambiguity with the array commas. Do not return anything else except the array."
+    context = trending_topics_prompt
     query =  "News headlines and descriptions (separated by semicolons): "
     for article in results:
         query = query + article['name'] + article['description'] + '; '
@@ -98,7 +99,8 @@ def main(args):
     Now adding 100 articles on 10 trending topics into the database
     '''
     if len(args) != 3:
-        raise Exception("Usage: \npython generate_dataset.py <amount_of_articles> <topic> , or\n python generate_dataset.py <amount_of_articles> <num_topics>")
+        print("Usage: \npython generate_dataset.py <amount_of_articles> <topic> , or\n python generate_dataset.py <amount_of_articles> <num_topics>")
+        sys.exit(1)
         
     try:
         amount_of_articles = int(args[1])
