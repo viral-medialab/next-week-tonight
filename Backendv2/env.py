@@ -5,6 +5,7 @@ Pulls all API Keys and loads them into environment variables using the python OS
 from dotenv import load_dotenv
 import os
 load_dotenv("../../vars.env")
+load_dotenv("../vars.env")
 load_dotenv("vars.env")
 
 
