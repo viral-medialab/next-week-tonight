@@ -4,7 +4,7 @@ import numpy as np
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
-import faiss 
+# import faiss
 import numpy as np
 load_dotenv("../../vars.env")
 load_dotenv("vars.env")

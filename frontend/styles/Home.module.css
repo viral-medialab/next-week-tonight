@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "SometimesTimesTRIAL";
+    src: url("/fonts/SometimesTimesTRIAL-Light.otf") format("opentype");
+    font-weight: 300;
+  }
+  
+  @font-face {
+    font-family: "SometimesTimesTRIAL";
+    src: url("/fonts/SometimesTimesTRIAL-Bold.otf") format("opentype");
+    font-weight: 700;
+  }
+  
+  @font-face {
+    font-family: "SometimesTimesTRIAL";
+    src: url("/fonts/SometimesTimesTRIAL-Medium.otf") format("opentype");
+    font-weight: 500;
+  }
+  
+  @font-face {
+    font-family: "SometimesTimesTRIAL";
+    src: url("/fonts/SometimesTimesTRIAL-Regular.otf") format("opentype");
+    font-weight: 400;
+  }
+
+  .title {
+    font-family: "SometimesTimesTRIAL";
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1.15;
+    margin: 0;
+    text-align: center;
+  }

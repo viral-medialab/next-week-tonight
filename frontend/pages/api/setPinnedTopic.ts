@@ -1,0 +1,30 @@
+import clientPromise from "@/lib/mongodb";
+import { NextApiRequest, NextApiResponse } from "next";
+import fetch from "node-fetch";
+import { ObjectId } from "mongodb";
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    try {
+        const { pinnedTopicId } = req.body;
+        if (!pinnedTopicId) throw new Error("No valid pinned topic provided");
+        console.log("Setting pinned topic in database");
+        console.log("pinnedTopicId", pinnedTopicId);
+
+        const client = await clientPromise;
+        const db = client.db("NewsDive");
+        const collection = db.collection("topics");
+
+        const query = { _id: new ObjectId(pinnedTopicId) };
+        await collection.updateOne(query, {
+            $set: { isPinnedTopic: true },
+        });
+
+        console.log("Topics saved to database");
+        res.setHeader("Content-Type", "application/json");
+        res.setHeader("Cache-Control", "public, max-age=0");
+        // res.end(JSON.stringify(topicsToSave));
+        res.status(200).end(JSON.stringify([]));
+    } catch (error) {
+        console.error(error);
+        res.status(500).end();
+    }
+};

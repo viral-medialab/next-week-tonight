@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Prune';
+    src: url('/fonts/Prune-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Office Times Round';
+    src: url('/fonts/OfficeTimesRound-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
