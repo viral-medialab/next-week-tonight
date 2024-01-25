@@ -7,16 +7,24 @@ from augmented_generation import *
 
 
 def process_input():
-    if len(sys.argv) != 3:
-        print("Usage: <script_name> <MSN_article_URL> <user_query>")
+    if len(sys.argv) not in [3,4]:
+        print("Usage: <script_name> <MSN_article_URL> <user_query> or <script_name> <MSN_article_URL> <user_query> <out_file>")
         sys.exit(1)
     
     msn_article_url = sys.argv[1]
     query = sys.argv[2]
-    
     article = fetch_article_contents(fetch_article_id(msn_article_url))
     AI_generated_questions, relevant_articles, preds, out = q2a_workflow(article, query, 6)
-    save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'out_CLI_2.txt')
+    if len(sys.argv) == 4:
+        out_file = sys.argv[3]
+        save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'Outputs/'+out_file)
+    else:
+        save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'Outputs/out_article.txt')
+
+
+    article = fetch_article_contents(fetch_article_id(msn_article_url))
+    AI_generated_questions, relevant_articles, preds, out = q2a_workflow(article, query, 6)
+    save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'Outputs/out_CLI_2.txt')
 
 
 
