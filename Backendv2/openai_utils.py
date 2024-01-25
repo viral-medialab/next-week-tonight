@@ -29,7 +29,10 @@ def query_chatgpt(contexts, queries):
         model="gpt-4",
     )
 
-    return response.choices[0].message.content.split(";")
+    out = response.choices[0].message.content.split(";")
+    if len(out) > 1:
+         return out
+    return out[0]
 
 
 

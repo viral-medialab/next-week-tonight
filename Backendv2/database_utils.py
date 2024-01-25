@@ -61,3 +61,11 @@ def get_embeddings_from_mongo():
             urls.add(doc['url'])
             embeddings.append([doc['semantic_embedding'], doc['url']])
     return embeddings
+
+
+
+
+def remove_topic(topic):
+    client, db, collection = connect_to_mongodb()
+    collection.delete_many( { 'topic': topic } )
+    print('Removed all instances of topic:', topic)

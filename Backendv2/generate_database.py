@@ -14,7 +14,7 @@ sentiment_model = SentimentModel()
 def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 10):
     url = "https://api.bing.microsoft.com/v7.0/news"  # Changed to general news endpoint
     headers = {'Ocp-Apim-Subscription-Key': BING_API_KEY}
-    query_params = {"count": 10, "q": "Breaking Global US News", "mkt": "en-US"}
+    query_params = {"count": num_topics, "q": "Breaking Global US News", "mkt": "en-US"}
     response = requests.get(url, headers=headers, params = query_params)
     response.raise_for_status()
     results = response.json()['value']
@@ -23,7 +23,7 @@ def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 1
     query =  "News headlines and descriptions (separated by semicolons): "
     for article in results:
         query = query + article['name'] + article['description'] + '; '
-    topics = query_chatgpt(context, query[:-2])[1:-1].replace(' "','').replace('"','').split(",")
+    topics = query_chatgpt([context], [query[:-2]])[1:-1].replace(' "','').replace('"','').split(",")
 
     for topic in topics:
         print("NOW EXAMINING HEADLINES IN ", topic.upper())
@@ -39,7 +39,7 @@ def populate_database_by_topic(topic, num_articles_to_store):
     num_articles_stored = 0
     offset = 0
     while num_articles_stored < num_articles_to_store:
-        articles = find_articles_by_topic(topic, offset)
+        articles = find_articles_by_topic(topic, offset, count=min(5*num_articles_to_store,100))
         articles = filter_msn_articles(articles)
         for article in articles:
             try:
@@ -60,13 +60,13 @@ def populate_database_by_topic(topic, num_articles_to_store):
 
 
 
-def find_articles_by_topic(topic, offset = 0):
+def find_articles_by_topic(topic, offset = 0, count=100):
     #api_endpoint = "https://api.bing.microsoft.com/"
     api_endpoint = "https://api.bing.microsoft.com/v7.0/news/search"
 
     query_params = {
         "q": topic + ' site:msn.com',
-        "count": 100, 
+        "count": count, 
         "mkt": "en-US", 
         "offset": offset,
     }
@@ -101,13 +101,13 @@ def main(args):
     if len(args) != 3:
         print("Usage: \npython generate_dataset.py <amount_of_articles> <topic> , or\n python generate_dataset.py <amount_of_articles> <num_topics>")
         sys.exit(1)
-        
-    try:
+
+    if args[2].isdigit():
         amount_of_articles = int(args[1])
         num_topics = int(args[2])
         print(f"Now adding {amount_of_articles} articles on {num_topics} trending topics into the database.")
         populate_database_by_recent_news(amount_of_articles, num_topics)
-    except:
+    else:
         amount_of_articles = int(args[1])
         topic = args[2]
         print(f"Now adding {amount_of_articles} articles on {topic} into the database.")
