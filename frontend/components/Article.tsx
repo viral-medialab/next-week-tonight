@@ -6,6 +6,7 @@ interface ArticleProps {
   articleTitle: string;
   articleContent: string;
   articleImage?: string;
+  articleUrl: string; // Add the article URL
   onClose: () => void;
 }
 
@@ -18,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ history, setHistory }) => (
   <div className="w-1/5 bg-gray-200 p-4 m-4 h-full">
     <h2 className="text-lg font-semibold mb-4">History</h2>
     <ul>
-      {history.map(({ title, url }, index) => (
+      {history.slice(0, 5).map(({ title, url }, index) => (
         <li key={index} className="mb-2">
           <a href={url} target="_self" rel="noopener noreferrer">
             {title}
@@ -33,9 +34,11 @@ export default function Article({
   articleTitle,
   articleContent,
   articleImage,
+  articleUrl,
   onClose,
 }: ArticleProps) {
   const [visitedArticles, setVisitedArticles] = useState<{ title: string; url: string }[]>([]);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Load history from localStorage on component mount
   useEffect(() => {
@@ -51,21 +54,16 @@ export default function Article({
   }, [visitedArticles]);
 
   useEffect(() => {
-    const currentPath = window.location.pathname;
-    const isAlreadyVisited = visitedArticles.some((entry) => entry.title === articleTitle);
+    const currentUrl = window.location.href;
+    setVisitedArticles((prevVisitedArticles) => [
+      { title: articleTitle, url: articleUrl || currentUrl },
+      ...prevVisitedArticles,
+    ]);
+  }, [articleTitle, articleUrl]);
 
-    if (!isAlreadyVisited) {
-      const newUrl = `${currentPath}/${articleTitle}`;
-
-      // Change the URL using history.pushState
-      window.history.pushState({}, articleTitle, newUrl);
-
-      setVisitedArticles((prevVisitedArticles) => [
-          { title: articleTitle, url: newUrl },
-          ...prevVisitedArticles.slice(0, 9), // Keep up to 10 existing entries
-        ]);
-    }
-  }, [articleTitle]);
+  const handleToggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   return (
     <div className="flex">
@@ -73,7 +71,7 @@ export default function Article({
       <div className="pr-4 sm:pr-6 lg:pr-8 py-12 flex-1">
         <div className="w-full">
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
-            <a href={window.location.href} target="_self" rel="noopener noreferrer">
+            <a href={articleUrl || window.location.href} target="_self" rel="noopener noreferrer">
               {articleTitle}
             </a>
           </h1>
@@ -91,11 +89,19 @@ export default function Article({
             >
               <span className="text-blue-700">Close article</span>
             </button>
+            <button
+              onClick={handleToggleCollapse}
+              className="ml-4 text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
+            >
+              <span className="text-blue-700">{isCollapsed ? 'Expand' : 'Collapse'} article</span>
+            </button>
           </div>
-          <div
-            className="prose max-w-none"
-            dangerouslySetInnerHTML={{ __html: articleContent }}
-          />
+          {!isCollapsed && (
+            <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: articleContent }}
+            />
+          )}
         </div>
       </div>
     </div>
