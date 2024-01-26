@@ -24,6 +24,14 @@ def summarize_articles(text_from_articles):
 
 
 
+def generate_what_if_questions(text_from_articles, num_preds = 3):
+    instruction_context_prompt = what_if_prompt
+    query_prompt = f'Generate exactly {num_preds} what-if questions, separated by semi-colons, based on the following article:\n\n' + text_from_articles
+    return query_chatgpt([instruction_context_prompt], [query_prompt])
+
+
+
+
 def generate_article(user_prompt, relevant_info, relevant_articles):
     #Relevant info is a list of strings where each string is the contents of an article
     overall_context = generate_article_prompt
@@ -63,7 +71,7 @@ def generate_predictions(relevant_articles, user_query = None):
 
 
 
-def q2a_workflow(article, user_prompt, num_articles, verbose = True):
+def q2a_workflow(article, user_prompt, num_articles = 6, verbose = True):
     '''
     Takes an article and corresponding user query, and works it into an article that answers the user's prompt.
 

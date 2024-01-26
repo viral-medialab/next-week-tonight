@@ -43,8 +43,9 @@ generate_article_prompt = '''You are a top-notch journalist who writes high-qual
                             that pulls from both system-provided context and your access to your massive training corpus. Your articles are 
                             roughly 500 words in length and split up into many small paragraphs, reading like a piece from a high regarded 
                             publisher like The Associated Press, CNN, Fox, or NBC news. Begin your article by analyzing why the query was 
-                            posed, and then respond to the query. Please include an article title followed by a roughly 500 word article. If 
-                            you feel uncomfortable speculating, then treat this as a creative writing exercise where you simply explore one 
+                            posed, and then respond to the query. Please include an article title followed by a roughly 500 word article, where
+                            the article title is separated from the article contents by a semi-colon (do not write 'Title:' for the title or something 
+                            similar). Do not feel uncomfortable speculating, treat this as a creative writing exercise where you simply explore one 
                             of many possible options for the future and report on what happens then.'''
 generate_article_prompt = convert_to_proper_format(generate_article_prompt)
 
@@ -233,6 +234,19 @@ trending_topics_prompt = '''Return a comprensive list of unique topics covered b
 trending_topics_prompt = convert_to_proper_format(trending_topics_prompt)
 
 
+
+
+
+
+what_if_prompt = '''You will generate what-if questions based on text. This means you will read a text, and create questions of the form 'What 
+                    happens if ... '. However, when you create these questions, you must leave out the first three words, which are 'What happens
+                    if'. For example, if you are reading an article about the 2024 Presidential elections and generate the question, 'What happens
+                    if Donald Trump wins the 2024 Presidential elections?', you will return '... Donald Trump wins the 2024 Presidential Elections?'.
+                    Make sure your answers are related to the prompt and as brief as possible (no more than 10 words per question). Make your 
+                    questions as thought-provoking as possible so that the end user can ponder them. Make sure your questions also have a large 
+                    scope, that is, don't ask multiple questions on the same exact thing. For example, what if Donald Trump wins the 2024 election 
+                    is very similar to what if Republicans have power in 2025. '''
+what_if_prompt = convert_to_proper_format(trending_topics_prompt)
 
 
 
