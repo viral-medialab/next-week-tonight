@@ -7,6 +7,23 @@ export default function Chat({ topic, currentArticle, allArticles }: any) {
     const [newMessage, setNewMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    /*
+    FETCH QUERIES FROM api/questions
+    useEffect(() => {
+      if (currentArticle) {
+        fetch("/api/questions", {
+          method: "POST",
+          body: JSON.stringify({
+            currentArticle,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => setQueries(data))
+          .catch((error) => console.error("Error fetching queries:", error));
+      }
+    }, [currentArticle]);
+    */
+
     const handleNewMessageChange = (
         event: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
@@ -55,73 +72,53 @@ export default function Chat({ topic, currentArticle, allArticles }: any) {
                     <div className="flex flex-col items-start w-full ">
                         <span className="text-gray-500">Try asking:</span>
                         {currentArticle ? (
+                            /*
+                            CODE TO ADD LINKED TEXT BUTTONS WITH GENERATED QUERIES FROM api/questions
+                            <>
+                              {queries.map((query, index) => (
+                                <button
+                                  key={index}
+                                  className="text-blue-900 mb-1 text-left"
+                                  onClick={() => handleAskQuestion(query)}
+                                >
+                                  {query}
+                                </button>
+                              ))}
+                            </>
+                            */
                             <>
                                 <button
                                     className="text-blue-900 mb-1 text-left "
                                     onClick={() =>
                                         handleAskQuestion(
-                                            "Summarize the article I am currently reading."
+                                            "Question 1" // Summarize the article I am currently reading.
                                         )
                                     }
                                 >
-                                    Summarize the article I am currently reading.
+                                    Question 1
                                 </button>
                                 <button
                                     className="text-blue-900 mb-1 text-left"
                                     onClick={() =>
                                         handleAskQuestion(
-                                            "What is unique about the article I am reading?"
+                                            "Question 2" // What is unique about the article I am reading?
                                         )
                                     }
                                 >
-                                    What is unique about the article I am reading?
+                                    Question 2
                                 </button>
                                 <button
                                     className="text-blue-900 mb-1 text-left"
                                     onClick={() =>
                                         handleAskQuestion(
-                                            "Translate the first sentence of the article I am reading into spanish"
+                                            "Question 3" // Translate the first sentence of the article I am reading into spanish
                                         )
                                     }
                                 >
-                                    Translate the first sentence of the article I am
-                                    reading into spanish.
+                                    Question 3
                                 </button>
                             </>
-                        ) : (
-                            <>
-                                <button
-                                    className="text-blue-900 mb-1 text-left"
-                                    onClick={() =>
-                                        handleAskQuestion(
-                                            "What is this topic about?"
-                                        )
-                                    }
-                                >
-                                    What is this topic about?
-                                </button>
-                                <button
-                                    className="text-blue-900 mb-1 text-left"
-                                    onClick={() =>
-                                        handleAskQuestion(
-                                            "Which article do you recommend I start with?"
-                                        )
-                                    }
-                                >
-                                    Which article do you recommend I start with?
-                                </button>
-                                <button
-                                    className="text-blue-900 mb-1 text-left"
-                                    onClick={() =>
-                                        handleAskQuestion(
-                                            "Compare the first and the second articles."
-                                        )
-                                    }
-                                >
-                                    Compare the first and the second articles.
-                                </button>
-                            </>
-                        )}
+                        ) : null}
                     </div>
 
                     <div className="flex items-center mt-4 w-full">
@@ -177,23 +174,84 @@ export default function Chat({ topic, currentArticle, allArticles }: any) {
         )
     );
 }
+
+// Define an interface for the data structure you expect to receive as a response
+interface ApiResponse {
+  // Assuming the structure of your response; adjust according to your actual API response
+  success: boolean;
+  message?: string;
+  [key: string]: any; // For additional properties that might be dynamic
+}
+
+async function callQ2AWorkflow(): Promise<ApiResponse | undefined> {
+  const dataToSend = {
+    article_id: "BB1hgzNq",
+    user_prompt: "What happens if immigration becomes a key issue in the election?",
+  };
+
+  try {
+    const response = await fetch('http://localhost:5000/api/call_q2a_workflow', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataToSend),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: ApiResponse = await response.json(); // Explicitly typing the response data
+    console.log("Function result:", data);
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    return undefined; // Handle error cases or throw an error as needed
+  }
+}
+
 async function submitMessages(
     topic: string,
     currentArticle: any,
     allArticles: any[],
     messages: { id: number; text: string }[]
 ) {
-    const res = await fetch("/api/chat", {
+//         const res = await fetch('http://localhost:5000/api/call_q2a_workflow', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({ article_id: "BB1hgzNq", user_prompt: "What happens if immigration becomes a key issue in the election?" }),
+//         })
+//         .then(response => response.json())
+//         .then(data => console.log("Function result:", data))
+//         .catch(error => console.error('Error:', error));
+        // To call the function and handle the result
+//         const res = callQ2AWorkflow().then(data => {
+//                       if (data) {
+//                         // Do something with the data here
+//                         console.log("Received data:", data);
+//                       }
+//                       else {
+//                         console.log("No Data");
+//                       }
+//                     });
+//     const res = await fetch("/api/chat", {
+//         method: "POST",
+//         body: JSON.stringify({
+//             messages: convertMessagesToAPIFormat(messages),
+//             allArticles: allArticles,
+//             currentArticle: currentArticle,
+//             topicName: topic,
+//         }),
+//     });
+    const res = await fetch("http://localhost:5000/api/call_q2a_workflow", {
         method: "POST",
-        body: JSON.stringify({
-            messages: convertMessagesToAPIFormat(messages),
-            allArticles: allArticles,
-            currentArticle: currentArticle,
-            topicName: topic,
-        }),
+        body: JSON.stringify({ article_id: "BB1hgzNq", user_prompt: "What happens if immigration becomes a key issue in the election?" }),
     });
-
-    return res.text();
+    return res;
+    // return res.text();
 }
 function convertMessagesToAPIFormat(messages: { id: number; text: string }[]) {
     return messages.map((message) => ({
