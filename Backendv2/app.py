@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from query_utils import q2a_workflow, generate_what_if_questions  # Import the functions
 from article_utils import get_article_contents_from_id
 
 app = Flask(__name__)
+CORS(app)
 '''
 This script serves as the API by which the front-end and back-end interact.
 The current ports are:
@@ -14,8 +16,7 @@ handle_generate_what_if_questions()
 
 
 
-
-@app.route('/api/q2a_workflow', methods=['GET', 'POST'])
+@app.route('/api/call_q2a_workflow', methods=['GET', 'POST'])
 def call_q2a_workflow():
     '''
     Generates an article based on a 'what if...' question
@@ -24,7 +25,7 @@ def call_q2a_workflow():
 
         article_id (str)    :   The id of the article that is currently being viewed
         user_prompt (str)   :   The "what happens if..." question that is selected
-        num_articles (int)  :   [OPTIONAL, default = 6] The number of relevant articles 
+        num_articles (str)  :   [OPTIONAL, default = 6] The number of relevant articles 
                                 we will use as context for the LLM generating the article
         verbose (bool)      :   [OPTIONAL, default = False] Prints debug statements 
                                 into the terminal
@@ -34,7 +35,7 @@ def call_q2a_workflow():
     data = request.get_json()  
     article_id = data.get('article_id')  
     user_prompt = data.get('user_prompt')
-    num_articles = data.get('num_articles', 6)
+    num_articles = int(data.get('num_articles', '6'))
     verbose = data.get('verbose', False)
     article = get_article_contents_from_id(article_id)
 
@@ -54,14 +55,14 @@ def handle_generate_what_if_questions():
     Inputs:
 
         article_id (str)        :   The id of the article that is currently being viewed
-        num_predictions (int)   :   [OPTIONAL, default = 3] The number of 'what if...'
+        num_predictions (str)   :   [OPTIONAL, default = 3] The number of 'what if...'
                                     predictions to make.
 
     Outputs predictions in the format {'prediction_1': prediction, 'prediction_2': prediction, etc.}
     '''
     data = request.get_json()  
     article_id = data.get('article_id')  
-    amount_of_predictions = data.get('amount_of_predictions', 3)
+    amount_of_predictions = int(data.get('amount_of_predictions', '3'))
     article = get_article_contents_from_id(article_id)
 
     result = generate_what_if_questions(article, amount_of_predictions)
@@ -69,6 +70,15 @@ def handle_generate_what_if_questions():
     for i, pred in enumerate(result):
         out[f'prediction_{i}'] = pred
     return jsonify(out)
+
+
+
+
+@app.route('/api/test', methods=['GET', 'POST'])
+def handle_test():
+    data = request.get_json()  
+    article_id = data.get('article_id')
+    return jsonify({"id": article_id})
 
 
 

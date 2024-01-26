@@ -5,7 +5,7 @@ from copy import deepcopy
 
 
 
-def connect_to_mongodb(return_db_collection = False):
+def connect_to_mongodb():
     client = MongoClient(MONGODB_URI_KEY)
     try:
         client.admin.command('ping')
