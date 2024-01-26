@@ -39,7 +39,9 @@ def call_q2a_workflow():
     verbose = data.get('verbose', False)
     article = get_article_contents_from_id(article_id)
 
+    print(article, user_prompt, num_articles, verbose)
     result = q2a_workflow(article, user_prompt, num_articles, verbose)
+    print({"title": result[-1][0], "body": result[-1][1]})
     return jsonify({"title": result[-1][0], "body": result[-1][1]})
 
 
@@ -76,9 +78,12 @@ def handle_generate_what_if_questions():
 
 @app.route('/api/test', methods=['GET', 'POST'])
 def handle_test():
-    data = request.get_json()  
+    print("handling test")
+    data = request.json #request.get_json()
+    print("retrieved data")
     article_id = data.get('article_id')
-    return jsonify({"id": article_id})
+    print(f"got article id: {article_id}")
+    return {"id": article_id}
 
 
 

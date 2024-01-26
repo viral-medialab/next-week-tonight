@@ -51,7 +51,7 @@ def gather_article_metadata(article, query_used_for_article_search, sentiment_mo
 
     # we need the article contents to compute the rest of the metadata
     article_id = get_article_id(article)
-    author, article_text = get_article_contents_from_id(article_id)
+    author, article_text = get_article_contents_from_id(article_id, return_author=True)
 
     # now we can load our pretrained tone, sentiment, and embedding models
     # tone = tone_analysis.categorize(article_text)
@@ -83,7 +83,7 @@ def get_article_id(article):
 
 
 
-def get_article_contents_from_id(article_id):
+def get_article_contents_from_id(article_id, return_author = False):
     # Returns author and article contents
     asset_url = "https://assets.msn.com/content/view/v2/Detail/en-us/" + article_id
 
@@ -104,8 +104,9 @@ def get_article_contents_from_id(article_id):
     
     soup = BeautifulSoup(html_content, 'lxml')
     paragraphs = [p.get_text(separator=' ', strip=True) for p in soup.find_all('p')]
-    return author, '\n\n'.join(paragraphs)
-
+    if return_author:
+        return author, '\n\n'.join(paragraphs)
+    return '\n\n'.join(paragraphs)
 
 
 

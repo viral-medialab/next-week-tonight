@@ -26,7 +26,7 @@ def query_chatgpt(contexts, queries):
     messages.append({"role": "user", "content": final_query[:-1]})
     response = client.chat.completions.create(
         messages=messages,
-        model="gpt-4",
+        model="gpt-4-1106-preview",
     )
 
     out = response.choices[0].message.content.split(";")

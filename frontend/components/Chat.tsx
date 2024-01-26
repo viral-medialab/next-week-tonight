@@ -248,8 +248,9 @@ async function submitMessages(
 //     });
     const res = await fetch("http://localhost:5000/api/call_q2a_workflow", {
         method: "POST",
-        body: JSON.stringify({ article_id: "BB1hgzNq", user_prompt: "What happens if immigration becomes a key issue in the election?" }),
-    });
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ article_id: "BB1hgzNq", user_prompt: "What happens if immigration becomes a key issue in the election?" , verbose: true}),
+    }).then((response) => response.json()).then(response => console.log("Function result:", response));
     return res;
     // return res.text();
 }
