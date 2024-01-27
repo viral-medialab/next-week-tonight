@@ -32,8 +32,8 @@ def call_q2a_workflow():
 
     Outputs a new article in the format {'title': title, 'body': body}
     '''
-    data = request.get_json()  
-    article_id = data.get('article_id')  
+    data = request.get_json()
+    article_id = data.get('article_id')
     user_prompt = data.get('user_prompt')
     num_articles = int(data.get('num_articles', '6'))
     verbose = data.get('verbose', False)

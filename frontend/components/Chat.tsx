@@ -246,7 +246,7 @@ async function submitMessages(
 //             topicName: topic,
 //         }),
 //     });
-    const res = await fetch("http://localhost:5000/api/call_q2a_workflow", {
+    const res = await fetch("http://127.0.0.1:5000/api/call_q2a_workflow", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ article_id: "BB1hgzNq", user_prompt: "What happens if immigration becomes a key issue in the election?" , verbose: true}),
