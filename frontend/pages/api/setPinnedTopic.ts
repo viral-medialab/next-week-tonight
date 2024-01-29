@@ -10,8 +10,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log("pinnedTopicId", pinnedTopicId);
 
         const client = await clientPromise;
-        const db = client.db("NewsDive");
-        const collection = db.collection("topics");
+        const db = client.db("news"); //client.db("NewsDive");
+        const trendingTopics = db.collection("trendingTopics");
+        const topicList = trendingTopics.find({}, { topic: 1, _id: 0 });
 
         const query = { _id: new ObjectId(pinnedTopicId) };
         await collection.updateOne(query, {

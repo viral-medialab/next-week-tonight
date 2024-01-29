@@ -10,25 +10,38 @@ interface ArticleProps {
   onClose: () => void;
 }
 
+interface ArticleInfo {
+  title: string;
+  author: string;
+  content: string;
+}
+
 interface SidebarProps {
   history: { title: string; url: string }[];
   setHistory: React.Dispatch<React.SetStateAction<{ title: string; url: string }[]>>;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ history, setHistory }) => (
-  <div className="w-1/5 bg-gray-200 p-4 m-4 h-full">
-    <h2 className="text-lg font-semibold mb-4">History</h2>
-    <ul>
-      {history.slice(0, 5).map(({ title, url }, index) => (
-        <li key={index} className="mb-2">
-          <a href={url} target="_self" rel="noopener noreferrer">
-            {title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+const Sidebar: React.FC<SidebarProps> = ({ history, setHistory }) => {
+  const currentArticle = history.length > 0 ? history[0] : null;
+
+  return (
+    <div className="w-1/5 bg-gray-200 p-4 m-4 h-full">
+      <h2 className="text-lg font-semibold mb-4">History</h2>
+      <ul>
+        {currentArticle && (
+          <li className="mb-2">
+            <a href={currentArticle.url} target="_self" rel="noopener noreferrer">
+              {currentArticle.title}
+            </a>
+          </li>
+        )}
+      </ul>
+      <li className="mb-2">Prediction 1</li>
+      <li className="mb-2">Prediction 2</li>
+      <li className="mb-2">Prediction 3</li>
+    </div>
+  );
+};
 
 export default function Article({
   articleTitle,
@@ -39,6 +52,7 @@ export default function Article({
 }: ArticleProps) {
   const [visitedArticles, setVisitedArticles] = useState<{ title: string; url: string }[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [articleInfo, setArticleInfo] = useState<ArticleInfo | null>(null);
 
   // Load history from localStorage on component mount
   useEffect(() => {
@@ -59,6 +73,33 @@ export default function Article({
       { title: articleTitle, url: articleUrl || currentUrl },
       ...prevVisitedArticles,
     ]);
+
+    // Fetch article information
+    const fetchArticleInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/gather_article_info", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            articleUrl: articleUrl,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data: ArticleInfo = await response.json();
+        setArticleInfo(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching article info:", error);
+      }
+    };
+
+    fetchArticleInfo();
   }, [articleTitle, articleUrl]);
 
   const handleToggleCollapse = () => {
@@ -72,13 +113,13 @@ export default function Article({
         <div className="w-full">
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
             <a href={articleUrl || window.location.href} target="_self" rel="noopener noreferrer">
-              {articleTitle}
+              {articleInfo?.title || articleTitle}
             </a>
           </h1>
           {articleImage && (
             <img
               src={articleImage}
-              alt={articleTitle}
+              alt={articleInfo?.title || articleTitle}
               className="rounded-lg shadow-lg mb-8 w-3/4"
             />
           )}
@@ -99,7 +140,7 @@ export default function Article({
           {!isCollapsed && (
             <div
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: articleContent }}
+              dangerouslySetInnerHTML={{ __html: articleInfo?.content || articleContent }}
             />
           )}
         </div>

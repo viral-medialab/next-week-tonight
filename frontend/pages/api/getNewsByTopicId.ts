@@ -20,8 +20,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const { topicsAndArticles: topicAndArticles } = req.body;
         const { id: string } = req.body;
         const client = await clientPromise;
-        const db = client.db("NewsDive"); //client.db("NewsDive");
-        const articlesCollection = db.collection("articles");
+        const db = client.db("news"); //client.db("NewsDive");
+        const articlesCollection = db.collection("trendingTopics");
         // get topic with id
 
         const query = { _id: new ObjectId(id) };

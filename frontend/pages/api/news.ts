@@ -15,8 +15,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         // if topics exist, return topics
         // if topics do not exist, get topics from bing news api
         const client = await clientPromise;
-        const db = client.db("NewsDive"); //client.db("NewsDive");
-        const collection = db.collection("topics");
+        const db = client.db("news"); //client.db("NewsDive");
+        const trendingTopics = db.collection("trendingTopics");
+        const topicList = trendingTopics.find({}, { topic: 1, _id: 0 });
         const host = "http://" + req.headers.host;
         const isDebug = true; //-- true 
         // get topics for today
@@ -32,7 +33,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         // const date = "2023-10-15"; // frozen date for debugging
         
         const query = { date: date };
-        const topics = await collection.find(query).toArray();
+        const topics = await topicList.toArray();
         if (isDebug){
             topics.splice(8);
         }
@@ -43,7 +44,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const trackedTopicsQuery = {
             $or: [{ isTrackedTopic: true }, { isPinnedTopic: true }],
         };
-        let trackedTopics = await collection.find(trackedTopicsQuery).toArray();
+        let trackedTopics = await topicList.toArray();
 
         if (topics.length > 0) {
             //print current host name
