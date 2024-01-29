@@ -52,7 +52,7 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
 
     const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
 
-    const uniqueProviders = Array.from(new Set(newsTopic.articles?.map(article => article.provider[0].name)));
+    const uniqueProviders = Array.from(new Set(newsTopic.articles?.map(article => article.publisher)));
 
     console.log("Unique Providers:", uniqueProviders);
 
@@ -60,7 +60,7 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
         setSelectedProvider(provider);
     };
 
-    const filteredArticles = newsTopic.articles?.filter(article => selectedProvider === null || selectedProvider === "" || article.provider[0].name === selectedProvider);
+    const filteredArticles = newsTopic.articles?.filter(article => selectedProvider === null || selectedProvider === "" || article.publisher === selectedProvider);
 
     return (
         <div className="w-full">
@@ -85,7 +85,7 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
                         className="bg-white rounded-lg shadow-lg overflow-hidden"
                         onClick={() => handleArticleClick(article)}
                     >
-                        {article.image && (
+                        {article.image.thumbnail && (
                             <img
                                 src={article.image.thumbnail.contentUrl.replace(
                                     /&pid=.*$/,
@@ -97,18 +97,18 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
                         )}
                         <div className="p-6">
                             <div className="flex items-center mt-4 mb-2">
-                                {article.provider[0].image && (
+                                {article.image.thumbnail && (
                                     <img
                                         src={
-                                            article.provider[0].image.thumbnail
+                                            article.image.thumbnail
                                                 .contentUrl
                                         }
-                                        alt={article.provider[0].name}
+                                        alt={article.publisher}
                                         className="w-8 h-8 mr-2"
                                     />
                                 )}
                                 <p className="text-gray-700 text-sm">
-                                    {article.provider[0].name.replace(
+                                    {article.publisher.replace(
                                         "on MSN.com",
                                         ""
                                     )}

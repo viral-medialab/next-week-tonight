@@ -13,7 +13,7 @@ interface ArticleProps {
 interface ArticleInfo {
   title: string;
   author: string;
-  content: string;
+  contents: string;
 }
 
 interface SidebarProps {
@@ -77,7 +77,7 @@ export default function Article({
     // Fetch article information
     const fetchArticleInfo = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/gather_article_info", {
+        const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -140,7 +140,7 @@ export default function Article({
           {!isCollapsed && (
             <div
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: articleInfo?.content || articleContent }}
+              dangerouslySetInnerHTML={{ __html: articleInfo?.contents}}
             />
           )}
         </div>
