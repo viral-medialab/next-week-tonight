@@ -243,10 +243,13 @@ async function submitMessages(
 //         }),
 //     });
 //     return res.text();
+    console.log("The topic is:", topic)
+    console.log("Current article id is:", currentArticle._id)
+    console.log("User query is:", messages[0].text)
     const res = await fetch("http://127.0.0.1:5000/api/call_q2a_workflow", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ article_id: "BB1hgzNq", user_prompt: "What happens if immigration becomes a key issue in the election?" , verbose: true}),
+        body: JSON.stringify({ article_id: currentArticle._id, user_prompt: messages[0].text , verbose: true}),
     });
     console.log("Raw Response:", res);
     const data = await res.json();

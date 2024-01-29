@@ -14,7 +14,10 @@ sentiment_model = SentimentModel()
 def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 10):
     url = "https://api.bing.microsoft.com/v7.0/news"  # Changed to general news endpoint
     headers = {'Ocp-Apim-Subscription-Key': BING_API_KEY}
-    query_params = {"count": num_topics, "q": "Breaking Global US News", "mkt": "en-US"}
+    query_params = {"count": num_topics*2, 
+                    "q": "Breaking Global US News",
+                    "mkt": "en-US", 
+                    "offset": 24}
     response = requests.get(url, headers=headers, params = query_params)
     response.raise_for_status()
     results = response.json()['value']
@@ -25,20 +28,28 @@ def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 1
         query = query + article['name'] + article['description'] + '; '
     topics = query_chatgpt([context], [query[:-2]])[1:-1].replace(' "','').replace('"','').split(",")
 
+    successful_topics = 0
     for topic in topics:
-        print("NOW EXAMINING HEADLINES IN ", topic.upper())
-        populate_database_by_topic(topic, num_articles_to_store // num_topics)
+        if successful_topics < num_topics:
+            print("NOW EXAMINING HEADLINES IN ", topic.upper())
+            if populate_database_by_topic(topic, num_articles_to_store // num_topics, trending_topic=True):
+                successful_topics += 1
 
 
 
 
-
-def populate_database_by_topic(topic, num_articles_to_store):
+next_offset = 0
+def populate_database_by_topic(topic, num_articles_to_store, trending_topic=False, max_attempts = 30):
     client, db, collection = connect_to_mongodb()
 
     num_articles_stored = 0
+    global next_offset
+    next_offset = 0
     offset = 0
-    while num_articles_stored < num_articles_to_store:
+    if trending_topic:
+        entry = {'topic': topic, 'articles': []}
+    attempts = 0
+    while num_articles_stored < num_articles_to_store and attempts < max_attempts:
         articles = find_articles_by_topic(topic, offset, count=min(5*num_articles_to_store,100))
         articles = filter_msn_articles(articles)
         for article in articles:
@@ -48,6 +59,8 @@ def populate_database_by_topic(topic, num_articles_to_store):
                 if collection.count_documents({'id': cur_article_id}) == 0 and collection.count_documents({'url': cur_article_url}) == 0:
                     metadata = gather_article_metadata(article, topic, sentiment_model)
                     result = collection.insert_one(metadata)
+                    if trending_topic:
+                        entry['articles'].append(metadata)
                     num_articles_stored += 1
                     print(f"Document added. The document ID is: {result.inserted_id}")
             
@@ -55,7 +68,18 @@ def populate_database_by_topic(topic, num_articles_to_store):
                 print(f"An error occurred: {e}")
                 continue
 
-        offset += 100
+        offset += min(5*num_articles_to_store,100)
+        attempts += 1
+
+    if trending_topic:
+        article_count = len(entry['articles'])
+        if article_count >= 6:
+            result = db['trendingTopics'].insert_one(entry)
+            article_count = len(entry['articles'])
+            print(f"Trending topic with {article_count} articles added to DB, the document id is {result.inserted_id}")
+            return True
+        else:
+            return False
 
 
 
@@ -82,6 +106,8 @@ def find_articles_by_topic(topic, offset = 0, count=100):
         print(f"Error: {e}")
 
     articles = results['value']
+
+    print(f"Found {len(articles)} articles on {topic} with offset {offset}")
 
     return articles
 
@@ -111,7 +137,7 @@ def main(args):
         amount_of_articles = int(args[1])
         topic = args[2]
         print(f"Now adding {amount_of_articles} articles on {topic} into the database.")
-        populate_database_by_topic(topic, amount_of_articles)
+        populate_database_by_topic(topic, amount_of_articles, True)
 
 
 

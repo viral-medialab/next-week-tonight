@@ -53,18 +53,18 @@ def generate_article(user_prompt, relevant_info, relevant_articles):
 
 
 
-def generate_predictions(relevant_articles, user_query = None):
+def generate_scenarios(relevant_articles, user_query = None):
     #Relevant info is a list of strings where each string is an article body
     overall_context = prediction_prompt
-    relevant_context = "Here is some relevant information to formulate your predictions: ".replace("\n", "")
+    relevant_context = "Here is some relevant information to formulate your scenarios: ".replace("\n", "")
     for article in relevant_articles:
         relevant_context += article + ";"
     relevant_context = relevant_context[:-1]
 
     if user_query:
-        query = 'Generate detailed predictions from the following query based on what you think might happen: ' + user_query
+        query = user_query
     else:
-        query = 'Generate detailed predictions based on the context provided. Make sure the predictions span a lot of possibilities.'
+        query = 'Generate detailed scenarios based on the context provided. Make sure the predictions span a lot of possibilities.'
 
     return query_chatgpt([overall_context, relevant_context], query)
 
@@ -96,14 +96,14 @@ def q2a_workflow(article, user_prompt, num_articles = 6, verbose = True):
     embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions]
     relevant_article_urls = [find_closest_article_using_simple_search(embedding, all_doc_embeddings) for embedding in embeddings]
     relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in set(relevant_article_urls[:2*num_articles])]
-    preds = generate_predictions(relevant_articles, user_query=user_prompt)
+    scenarios = generate_scenarios(relevant_articles, user_query=user_prompt)
     out = generate_article(user_prompt, [], relevant_articles)
     if verbose:
         print("AI generated questions: ", AI_generated_questions, "\n\n\n\n")
         print("Relevant articles: ", relevant_articles, "\n\n\n\n")
         print("Created article:", out, "\n\n\n\n")
-        print("Created predictions:", preds, "\n\n\n\n")
-    return AI_generated_questions, relevant_articles, preds, out
+        print("Created predictions:", scenarios, "\n\n\n\n")
+    return AI_generated_questions, relevant_articles, scenarios, out
 
 
 

@@ -39,6 +39,9 @@ def gather_article_metadata(article, query_used_for_article_search, sentiment_mo
         subjectivity            :   Format- Float in [0,1] where 0 is objective and 1 is subjective
 
         semantic_embedding      :   Format- (1536,1) vector average of all word embeddings
+
+        image                   :   Refer to https://learn.microsoft.com/en-us/rest/api/cognitiveservices-bingsearch/bing-news-api-v7-reference#thumbnail
+                                    for information on format
     '''
 
     # we can gather the following simply from the Bing News Search API
@@ -48,6 +51,7 @@ def gather_article_metadata(article, query_used_for_article_search, sentiment_mo
     metadata['category'] = article['category'] if 'category' in article else "Not found"
     metadata['keywords'] = [d['name'] for d in article['about']] if 'about' in article else [d['name'] for d in article['mentions']] if 'mentions' in article else "Not found"
     metadata['topic'] = query_used_for_article_search
+    metadata['image'] = article['image'] if 'image' in article else "Not found"
 
     # we need the article contents to compute the rest of the metadata
     article_id = get_article_id(article)
@@ -83,7 +87,7 @@ def get_article_id(article):
 
 
 
-def get_article_contents_from_id(article_id, return_author = False):
+def get_article_contents_from_id(article_id, return_author = False, return_title = False):
     # Returns author and article contents
     asset_url = "https://assets.msn.com/content/view/v2/Detail/en-us/" + article_id
 
@@ -102,11 +106,19 @@ def get_article_contents_from_id(article_id, return_author = False):
     else:
         author = 'Not found'
     
+    if data.get('title', False):
+        title = data.get('title', 'None')
+    else:
+        title = 'No Title'
+
     soup = BeautifulSoup(html_content, 'lxml')
     paragraphs = [p.get_text(separator=' ', strip=True) for p in soup.find_all('p')]
     if return_author:
         return author, '\n\n'.join(paragraphs)
-    return '\n\n'.join(paragraphs)
+    elif return_author and return_title:
+        return title, author, '\n\n'.join(paragraphs)
+    else:
+        return '\n\n'.join(paragraphs)
 
 
 

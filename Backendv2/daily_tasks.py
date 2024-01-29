@@ -1,3 +1,4 @@
+import generate_database
 '''
 This script will serve to:
 

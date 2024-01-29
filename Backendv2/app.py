@@ -76,6 +76,27 @@ def handle_generate_what_if_questions():
 
 
 
+@app.route('/api/gather_article_info')
+def handle_gather_article_info():
+    '''
+    Fetches relevant information about an article that is not stored
+    in the metadata. This includes author, title, and contents.
+
+    Inputs:
+
+        article_id (str)        :   The id of the article that is currently being viewed
+
+    Outputs information in the format {'author': author, 'title': title, 'contents': article_contents}
+    '''
+    data = request.get_json()  
+    article_id = data.get('article_id')  
+    title, author, article_contents = get_article_contents_from_id(article_id, return_author=True, return_title=True)
+    out = {'author': author, 'title': title, 'contents': article_contents}
+    return jsonify(out)
+
+
+
+
 @app.route('/api/test', methods=['GET', 'POST'])
 def handle_test():
     print("handling test")
