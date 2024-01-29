@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from query_utils import q2a_workflow, generate_what_if_questions  # Import the functions
-from article_utils import get_article_contents_from_id
+from article_utils import get_article_contents_from_id, get_article_id
 
 app = Flask(__name__)
 CORS(app)
@@ -56,14 +56,15 @@ def handle_generate_what_if_questions():
 
     Inputs:
 
-        article_id (str)        :   The id of the article that is currently being viewed
+        articleUrl (str)        :   The url of the article that is currently being viewed
         num_predictions (str)   :   [OPTIONAL, default = 3] The number of 'what if...'
                                     predictions to make.
 
     Outputs predictions in the format {'prediction_1': prediction, 'prediction_2': prediction, etc.}
     '''
     data = request.get_json()  
-    article_id = data.get('article_id')  
+    article_url = data.get('articleUrl')  
+    article_id = get_article_id(article_url)
     amount_of_predictions = int(data.get('amount_of_predictions', '3'))
     article = get_article_contents_from_id(article_id)
 
@@ -84,12 +85,13 @@ def handle_gather_article_info():
 
     Inputs:
 
-        article_id (str)        :   The id of the article that is currently being viewed
+        articleUrl (str)        :   The url of the article that is currently being viewed
 
     Outputs information in the format {'author': author, 'title': title, 'contents': article_contents}
     '''
     data = request.get_json()  
-    article_id = data.get('article_id')  
+    article_url = data.get('articleUrl')  
+    article_id = get_article_id(article_url)
     title, author, article_contents = get_article_contents_from_id(article_id, return_author=True, return_title=True)
     out = {'author': author, 'title': title, 'contents': article_contents}
     return jsonify(out)
