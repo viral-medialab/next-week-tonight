@@ -38,13 +38,10 @@ def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 1
 
 
 
-next_offset = 0
 def populate_database_by_topic(topic, num_articles_to_store, trending_topic=False, max_attempts = 30):
     client, db, collection = connect_to_mongodb()
 
     num_articles_stored = 0
-    global next_offset
-    next_offset = 0
     offset = 0
     if trending_topic:
         entry = {'topic': topic, 'articles': []}
