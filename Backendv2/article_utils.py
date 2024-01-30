@@ -87,7 +87,35 @@ def get_article_id(article):
 
 
 
-def get_article_contents_from_id(article_id, return_author = False, return_title = False):
+def get_article_contents_from_id(article_id, return_author = False):
+    # Returns author and article contents
+    asset_url = "https://assets.msn.com/content/view/v2/Detail/en-us/" + article_id
+
+    try:
+        response = requests.get(asset_url)
+        response.raise_for_status()
+        data = response.json()
+        html_content = data.get('body', 'No content found')
+
+    except requests.RequestException as e:
+        print(f"Error fetching article: {e}")
+        return None
+    
+    if data.get('authors', False):
+        author = data.get('authors', 'None')[0]['name']
+    else:
+        author = 'Not found'
+
+    soup = BeautifulSoup(html_content, 'lxml')
+    paragraphs = [p.get_text(separator=' ', strip=True) for p in soup.find_all('p')]
+    if return_author:
+        return author, '\n\n'.join(paragraphs)
+    else:
+        return '\n\n'.join(paragraphs)
+    
+
+
+def get_article_contents_for_website(article_id):
     # Returns author and article contents
     asset_url = "https://assets.msn.com/content/view/v2/Detail/en-us/" + article_id
 
@@ -111,14 +139,9 @@ def get_article_contents_from_id(article_id, return_author = False, return_title
     else:
         title = 'No Title'
 
-    soup = BeautifulSoup(html_content, 'lxml')
-    paragraphs = [p.get_text(separator=' ', strip=True) for p in soup.find_all('p')]
-    if return_author:
-        return author, '\n\n'.join(paragraphs)
-    elif return_author and return_title:
-        return title, author, '\n\n'.join(paragraphs)
-    else:
-        return '\n\n'.join(paragraphs)
+    return title, author, html_content
+
+
 
 
 

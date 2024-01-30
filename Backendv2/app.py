@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from query_utils import q2a_workflow, generate_what_if_questions  # Import the functions
-from article_utils import get_article_contents_from_id, get_article_id
+from article_utils import *
 
 app = Flask(__name__)
 CORS(app)
@@ -77,7 +77,7 @@ def handle_generate_what_if_questions():
 
 
 
-@app.route('/api/gather_article_info')
+@app.route('/api/gather_article_info', methods=['GET', 'POST'])
 def handle_gather_article_info():
     '''
     Fetches relevant information about an article that is not stored
@@ -92,7 +92,7 @@ def handle_gather_article_info():
     data = request.get_json()  
     article_url = data.get('articleUrl')  
     article_id = get_article_id(article_url)
-    title, author, article_contents = get_article_contents_from_id(article_id, return_author=True, return_title=True)
+    title, author, article_contents = get_article_contents_for_website(article_id)
     out = {'author': author, 'title': title, 'contents': article_contents}
     return jsonify(out)
 

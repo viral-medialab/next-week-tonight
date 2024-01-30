@@ -53,6 +53,10 @@ export default function Article({
           }),
         });
 
+        console.log("test here");
+        console.log(articleUrl)
+        console.log(response)
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

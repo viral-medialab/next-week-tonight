@@ -34,6 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         
         const query = { date: date };
         const topics = await topicList.toArray();
+        console.log(topics)
         if (isDebug){
             topics.splice(8);
         }
@@ -53,9 +54,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             res.setHeader("Content-Type", "application/json");
             //cache for one day
             res.setHeader("Cache-Control", "public, max-age=0");
-            trackedTopics = trackedTopics.filter(
-                (t) => topics.findIndex((t2) => t2._id.equals(t._id)) === -1
-            );
+            // trackedTopics = trackedTopics.filter(
+            //     (t) => topics.findIndex((t2) => t2._id.equals(t._id)) === -1
+            // );
             let topicsToReturn = topics.concat(trackedTopics);
             console.log("Topics to return: " + topicsToReturn.length); 
 
@@ -85,7 +86,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             //     // get only first 3 topics
             //     topicsToSave.splice(9);
             // }
-            await collection.insertMany(topicsToSave);
+            // await collection.insertMany(topicsToSave);
             console.log("Topics saved to database");
             // remove topics duplicated in trackedTopics
             trackedTopics = trackedTopics.filter(
