@@ -4,7 +4,7 @@ def convert_to_proper_format(text):
 
 
 
-summarize_prompt = '''As a professional summarizer, create a concise and comprehensive summary of the provided text, be it an article, post, 
+summarize_prompt = convert_to_proper_format('''As a professional summarizer, create a concise and comprehensive summary of the provided text, be it an article, post, 
                     conversation, or passage, while adhering to these guidelines: \n\nCraft a summary that is detailed, thorough, in-depth, and 
                     complex, while maintaining clarity and conciseness. \n\nIncorporate main ideas and essential information, eliminating 
                     extraneous language and focusing on critical aspects. \n\nRely strictly on the provided text, without including external 
@@ -12,13 +12,12 @@ summarize_prompt = '''As a professional summarizer, create a concise and compreh
                     Message #X] to indicate completion, where 'X' represents the total number of messages that I have sent. In other words, 
                     include a message counter where you start with #1 and add 1 to the message counter every time I send a message. \n\nBy 
                     following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text 
-                    in a clear, concise, and reader-friendly manner.'''
-summarize_prompt = convert_to_proper_format(summarize_prompt)
+                    in a clear, concise, and reader-friendly manner.''')
 
 
 
 
-relevant_question_prompt = '''You are a fusion of two great minds, drawing from the great predictive power of Nostradamus and the excellent 
+relevant_question_prompt = convert_to_proper_format('''You are a fusion of two great minds, drawing from the great predictive power of Nostradamus and the excellent 
                             detective work of Sherlock Holmes. I am going to ask you a hypothetical question about things you were not trained 
                             on and you will perform detective work based on your vast knowledge base. When I give you the question, you must 
                             provide any amount of Google search prompts that will best help you answer the original question. Do not elaborate 
@@ -32,13 +31,12 @@ relevant_question_prompt = '''You are a fusion of two great minds, drawing from 
     
                             For example, on an article about the Houthi's retaliation against America during the 2023 Gaza war, do not ask 
                             questions only about the Houthis, but make sure you ask a question that will help you understand the context of 
-                            what the Gaza war is and why the Houthis are involved.'''
-relevant_question_prompt = convert_to_proper_format(relevant_question_prompt)
+                            what the Gaza war is and why the Houthis are involved.''')
 
 
 
 
-generate_article_prompt = '''You are a top-notch journalist who writes high-quality opinion pieces that speculate about the future given 
+generate_article_prompt = convert_to_proper_format('''You are a top-notch journalist who writes high-quality opinion pieces that speculate about the future given 
                             present-day information. Your articles use formal language and use only factual information. You have a great mind 
                             that pulls from both system-provided context and your access to your massive training corpus. Your articles are 
                             roughly 500 words in length and split up into many small paragraphs, reading like a piece from a high regarded 
@@ -46,23 +44,21 @@ generate_article_prompt = '''You are a top-notch journalist who writes high-qual
                             posed, and then respond to the query. Please include an article title followed by a roughly 500 word article, where
                             the article title is separated from the article contents by a semi-colon (do not write 'Title:' for the title or something 
                             similar). Do not feel uncomfortable speculating, treat this as a creative writing exercise where you simply explore one 
-                            of many possible options for the future and report on what happens then.'''
-generate_article_prompt = convert_to_proper_format(generate_article_prompt)
+                            of many possible options for the future and report on what happens then.''')
 
 
 
 
-prediction_prompt = '''You are the modern-day equivalent of Nostradamus, the great oracle who prophesized the future. Using your wisdom, you will 
+prediction_prompt = convert_to_proper_format('''You are the modern-day equivalent of Nostradamus, the great oracle who prophesized the future. Using your wisdom, you will 
                         make predictions based on your vast array of training data and additional context which we will review together. Your 
                         predictions are as out-of-the-world as you can imagine but you should be able to explain the process behind coming to 
                         your conclusions. You are also widely known for being more specific than anyone, and you use specific proper nouns as 
-                        much as possible.'''
-prediction_prompt = convert_to_proper_format(prediction_prompt)
+                        much as possible.''')
 
 
 
 
-sample_article = '''This live coverage has ended. For the latest updates, please go here.\n\nThe United States fired its second round of strikes 
+sample_article = convert_to_proper_format('''This live coverage has ended. For the latest updates, please go here.\n\nThe United States fired its second round of strikes 
                     in less than 24 hours against Houthi militants in Yemen on Thursday morning, targeting “a couple of anti-ship missiles that we 
                     had reason to believe were being prepared for imminent fire into the southern Red Sea,” National Security Council spokesman John 
                     Kirby said. Israel stepped up raids in the occupied West Bank on Thursday, saying security forces had been operating in the 
@@ -217,37 +213,42 @@ sample_article = '''This live coverage has ended. For the latest updates, please
                     Biden administration’s decision, announced Wednesday, to put the militants on its list of specially designated terrorists .
                     \n\nThe strikes were carried out with Tomahawk missiles, two defense officials said, speaking on condition of anonymity 
                     because of the sensitivity of the issue. At least one warship and one submarine were involved, the officials said.\n\n
-                    Read the full story\n\nBy: Dan Lamothe)'''
-sample_article = convert_to_proper_format(sample_article)
+                    Read the full story\n\nBy: Dan Lamothe)''')
 
 
 
 
-trending_topics_prompt = '''Return a comprensive list of unique topics covered by these news headlines and descriptions. These topics will be 
+trending_topics_prompt = convert_to_proper_format('''Return a comprensive list of unique topics covered by these news headlines and descriptions. These topics will be 
                             used by a news API to get even more articles on the particular topic. Please provide specific topics. It is essential 
                             the topics do not overlap with each other and are unique, that is, do not be repetitive. Format the response as an array 
                             of topics. For example, [\"Pakistani's defeat in war against Iraq\", \"New York Marathon\", \"US Senate elections\"]. 
                             Use enough descriptive words (up to 7 words) to make the topic specific enough and captilize the first letter. Do not 
                             miscategorize topics, for example: if the topic is \"Convicted Felon arrested for illegal weapons in Washington\", do 
                             not miscategorize it as \"Washington Senator convicted for illegal weapons\". Remain true to the topic at hand. Do not 
-                            use commas in the topics to avoid ambiguity with the array commas. Do not return anything else except the array.'''
-trending_topics_prompt = convert_to_proper_format(trending_topics_prompt)
+                            use commas in the topics to avoid ambiguity with the array commas. Do not return anything else except the array.''')
 
 
 
 
 
-
-what_if_prompt = '''You will generate what-if questions based on text. This means you will read a text, and create questions of the form 'What 
+what_if_prompt = convert_to_proper_format('''You will generate what-if questions based on text. This means you will read a text, and create questions of the form 'What 
                     happens if ... '. However, when you create these questions, you must leave out the first three words, which are 'What happens
                     if'. For example, if you are reading an article about the 2024 Presidential elections and generate the question, 'What happens
                     if Donald Trump wins the 2024 Presidential elections?', you will return '... Donald Trump wins the 2024 Presidential Elections?'.
                     Make sure your answers are related to the prompt and as brief as possible (no more than 10 words per question). Make your 
                     questions as thought-provoking as possible so that the end user can ponder them. Make sure your questions also have a large 
                     scope, that is, don't ask multiple questions on the same exact thing. For example, what if Donald Trump wins the 2024 election 
-                    is very similar to what if Republicans have power in 2025. '''
-what_if_prompt = convert_to_proper_format(trending_topics_prompt)
+                    is very similar to what if Republicans have power in 2025. ''')
 
+
+
+
+scenario_generation_prompt = convert_to_proper_format('''Let's play a game where you are a real-life world builder. Given a question and some relevant context, you build
+                                scenarios that are possible in real life and also answer the question. For example, if I were to ask 'What happens
+                                if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
+                                scenario that you can output is 'Iran declares war on Israel'. Keep the predictions interesting and use specific
+                                nouns as much as possible. The scenarios you generate must be somewhat distant from each other, such that exploring
+                                multiple scenarios contains at most a tiny amount of overlap.''')
 
 
 if __name__ == '__main__':

@@ -41,10 +41,13 @@ def call_q2a_workflow():
     article = get_article_contents_from_id(article_id)
 
     print(article, user_prompt, num_articles, verbose)
-    result = q2a_workflow(article, user_prompt, num_articles, verbose)
-    print({"title": result[-1][0], "body": result[-1][1]})
-    save_generated_article_to_DB(title = result[-1][0], body = result[-1][1], parent = article_id)
-    return jsonify({"title": result[-1][0], "body": result[-1][1]})
+    results = q2a_workflow(article, user_prompt, num_articles, verbose)
+    out = {}
+    for i, result in enumerate(results[-1]):
+        save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id)
+        out[f'article_{i}'] = {"title": result[0], "body": result[1]}
+        print(out[f'article_{i}'])
+    return jsonify(out)
 
 
 

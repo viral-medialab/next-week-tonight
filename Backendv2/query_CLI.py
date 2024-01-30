@@ -12,12 +12,12 @@ def process_input():
     msn_article_url = sys.argv[1]
     query = sys.argv[2]
     article = get_article_contents_from_id(get_article_id(msn_article_url))
-    AI_generated_questions, relevant_articles, preds, out = q2a_workflow(article, query, 6)
+    AI_generated_questions, relevant_articles, scenarios, out = q2a_workflow(article, query, 6)
     if len(sys.argv) == 4:
         out_file = sys.argv[3]
-        save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'Outputs/'+out_file)
+        save_to_file([query, article, AI_generated_questions, relevant_articles, scenarios, out], 'Outputs/'+out_file)
     else:
-        save_to_file([query, article, AI_generated_questions, relevant_articles, preds, out], 'Outputs/out_article.txt')
+        save_to_file([query, article, AI_generated_questions, relevant_articles, scenarios, out], 'Outputs/out_article.txt')
 
 
 
