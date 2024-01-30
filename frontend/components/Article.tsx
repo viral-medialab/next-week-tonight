@@ -1,82 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 interface ArticleProps {
-    articleTitle: string;
-    articleImage?:string;
-    articleUrl:string;
-    articlePublisher:string;
-    articleCategory:string;
-    articleID:string;
+  articleTitle: string;
+  articleImage?: string;
+  articleUrl: string;
+  articlePublisher: string;
+  articleCategory: string;
+  articleID: string;
   onClose: () => void;
 }
 
-interface SidebarProps {
-  history: { title: string; url: string }[];
-  setHistory: React.Dispatch<React.SetStateAction<{ title: string; url: string }[]>>;
-}
-const Sidebar: React.FC<SidebarProps> = ({ history, setHistory }) => {
-  const currentArticle = history.length > 0 ? history[0] : null;
+const Sidebar: React.FC<{ currentArticleTitle: string }> = ({ currentArticleTitle }) => (
+  <div className="w-1/5 bg-gray-200 p-4 m-4 h-full">
+    <h2 className="text-lg font-semibold mb-4">Navigation</h2>
+    <ul>
+      <li className="mb-2">
+        <a href="#" target="_self" rel="noopener noreferrer">
+          {currentArticleTitle}Title Placeholder
+        </a>
+      </li>
+    </ul>
+    <p> ↳ Prediction 1</p>
+    <p> ↳ Prediction 2</p>
+    <p> ↳ Prediction 3</p>
+  </div>
+);
 
-  return (
-    <div className="w-1/5 bg-gray-200 p-4 m-4 h-full">
-      <h2 className="text-lg font-semibold mb-4">History</h2>
-      <ul>
-        {currentArticle && (
-          <li className="mb-2">
-            <a href={currentArticle.url} target="_self" rel="noopener noreferrer">
-              {currentArticle.title}
-            </a>
-          </li>
-        )}
-      </ul>
-      <li className="mb-2">Prediction 1</li>
-      <li className="mb-2">Prediction 2</li>
-      <li className="mb-2">Prediction 3</li>
-    </div>
-  );
-};
 export default function Article({
-    articleTitle,
-    articleImage,
-    articleUrl,
-    articlePublisher,
-    articleCategory,
-    articleID,
+  articleTitle,
+  articleImage,
+  articleUrl,
+  articlePublisher,
+  articleCategory,
+  articleID,
   onClose,
 }: ArticleProps) {
-  const [visitedArticles, setVisitedArticles] = useState<{ title: string; url: string }[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [articleContents, setArticleContents] = useState<string | null>(null);
 
-  // Load history from localStorage on component mount
   useEffect(() => {
-    console.log("articleTitle:", articleTitle);
-    console.log("articleImage:", articleImage);
-    console.log("articleUrl:", articleUrl);
-    console.log("articlePublisher:", articlePublisher);
-    console.log("articleCategory:", articleCategory);
-    console.log("articleID:", articleID);
-    const storedHistory = localStorage.getItem("visitedArticlesHistory");
-    if (storedHistory) {
-      setVisitedArticles(JSON.parse(storedHistory));
-    }
-  }, []);
-  // Save history to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("visitedArticlesHistory", JSON.stringify(visitedArticles));
-  }, [visitedArticles]);
-
-  useEffect(() => {
-    const currentUrl = window.location.href;
-    setVisitedArticles((prevVisitedArticles) => [
-      { title: articleTitle, url: articleUrl || currentUrl },
-      ...prevVisitedArticles,
-    ]);
-
-    // Fetch article information
     const fetchArticleInfo = async () => {
-      console.log(articleUrl);
       try {
         const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
           method: "POST",
@@ -93,8 +58,7 @@ export default function Article({
         }
 
         const data = await response.json();
-        setArticleContents(data.contents);
-        console.log(data);
+        setArticleContents(data["contents"]);
       } catch (error) {
         console.error("Error fetching article info:", error);
       }
@@ -109,12 +73,12 @@ export default function Article({
 
   return (
     <div className="flex">
-      <Sidebar history={visitedArticles} setHistory={setVisitedArticles} />
+      <Sidebar currentArticleTitle={articleTitle} />
       <div className="pr-4 sm:pr-6 lg:pr-8 py-12 flex-1">
         <div className="w-full">
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
             <a href={articleUrl || window.location.href} target="_self" rel="noopener noreferrer">
-              {articleTitle}
+              {articleTitle}Title Placeholder
             </a>
           </h1>
           {articleImage && (

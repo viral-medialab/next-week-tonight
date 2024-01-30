@@ -233,20 +233,10 @@ async function submitMessages(
     allArticles: any[],
     messages: { id: number; text: string }[]
 ) {
-//     const res = await fetch("/api/chat", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             messages: convertMessagesToAPIFormat(messages),
-//             allArticles: allArticles,
-//             currentArticle: currentArticle,
-//             topicName: topic,
-//         }),
-//     });
-//     return res.text();
     console.log("The topic is:", topic)
     console.log("Current article id is:", currentArticle.id)
     console.log("User query is:", messages[messages.length - 1].text)
-    console.log(messages);
+    console.log(currentArticle);
     const res = await fetch("http://127.0.0.1:5000/api/call_q2a_workflow", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
