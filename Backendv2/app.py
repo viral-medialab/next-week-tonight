@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from query_utils import *
 from article_utils import *
-from database_utils import *
+from database_utils import save_generated_article_to_DB
 
 app = Flask(__name__)
 CORS(app)

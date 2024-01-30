@@ -144,6 +144,5 @@ def get_article_contents_for_website(article_id):
 
 
 
-
 def filter_msn_articles(articles):
     return [article for article in articles if 'msn.com' in article['url']]
