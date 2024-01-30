@@ -91,3 +91,10 @@ def save_generated_article_to_DB(title, body, parent):
 
     # then, save the article itself in the database with the parent as its parent
     collection.insert_one(doc)
+
+
+
+
+def clear_cache():
+    client, db, collection = connect_to_mongodb()
+    collection.delete_many({'is_generated': True})
