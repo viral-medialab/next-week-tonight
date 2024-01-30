@@ -57,7 +57,7 @@ def generate_scenarios(relevant_articles, user_query = None):
     relevant_context = relevant_context[:-1]
 
     if user_query:
-        query = user_query
+        query = "Generate five scenarios, separated by semicolons: ", user_query
     else:
         query = 'For now, there is no question. Generate the scenarios using only the relevant articles.'
 
@@ -90,7 +90,7 @@ def q2a_workflow(article, user_prompt, num_articles = 6, verbose = True):
     AI_generated_questions = generate_relevant_questions(article, user_prompt)
     embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions]
     relevant_article_urls = [find_closest_article_using_simple_search(embedding, all_doc_embeddings) for embedding in embeddings]
-    relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in set(relevant_article_urls[:2*num_articles])]
+    relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in set(relevant_article_urls[:1])]
     scenarios = generate_scenarios(relevant_articles, user_query=user_prompt)
     
     out = []
@@ -119,27 +119,3 @@ def save_to_file(data, filename="out_article.txt"):
             else:
                 file.write(entry + "\n")
             file.write("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-
-
-
-
-def similarity_score(x, y, verbose = True):
-    x = np.array(x)
-    y = np.array(y)
-    sim_score = x.T@y / (np.linalg.norm(x) * np.linalg.norm(y))
-    if verbose:
-        print(f"Similarity between the two embeddings is: {sim_score:.4f}")
-    return sim_score
-
-
-
-
-def find_closest_article_using_simple_search(embedding, article_embeddings):
-    closest_dist = -1.1
-    closest_url = False
-    for other_embed in article_embeddings:
-        if not closest_url or similarity_score(embedding, other_embed[0], verbose=False) > closest_dist:
-            closest_dist = similarity_score(embedding, other_embed[0], verbose=False)
-            closest_url = other_embed[1]
-
-    return closest_url

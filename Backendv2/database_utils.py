@@ -129,7 +129,7 @@ def save_generated_article_to_DB(title, body, parent):
 
     # we will make a two-way dependency in the DB
     # first, pull the article with the parent id and save the current article id as a child
-    parent_doc = collection.find({'id': parent})
+    parent_doc = collection.find_one({'id': parent})
     new_doc = deepcopy(parent_doc)
     if 'children' in parent_doc:
         new_doc['children'].append(new_id)
