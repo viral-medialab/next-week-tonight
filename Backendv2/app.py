@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from query_utils import q2a_workflow, generate_what_if_questions  # Import the functions
+from query_utils import *
 from article_utils import *
+from database_utils import *
 
 app = Flask(__name__)
 CORS(app)
@@ -42,6 +43,7 @@ def call_q2a_workflow():
     print(article, user_prompt, num_articles, verbose)
     result = q2a_workflow(article, user_prompt, num_articles, verbose)
     print({"title": result[-1][0], "body": result[-1][1]})
+    save_generated_article_to_DB(title = result[-1][0], body = result[-1][1], parent = article_id)
     return jsonify({"title": result[-1][0], "body": result[-1][1]})
 
 
@@ -109,6 +111,19 @@ def handle_test():
     return {"id": article_id}
 
 
+
+
+'''
+@app.route('/api/test', methods=['GET', 'POST'])
+def handle_test():
+    print("handling test")
+    data = request.json #request.get_json()
+    print("retrieved data")
+    article_id = data.get('article_id')
+    print(f"got article id: {article_id}")
+    return {"id": article_id}
+
+'''
 
 
 if __name__ == '__main__':
