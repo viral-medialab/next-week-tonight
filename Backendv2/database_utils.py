@@ -123,10 +123,10 @@ def remove_topic(topic):
 
 
 
-def save_generated_article_to_DB(title, body, parent):
+def save_generated_article_to_DB(title, body, parent, query):
     client, db, collection = connect_to_mongodb()
     new_id = parent + str(random.randint(10**(len(parent)-1),10**(len(parent))))
-    doc = {'title': title, 'body': body, 'parent': parent, 'id': new_id, 'is_generated': True}
+    doc = {'title': title, 'body': body, 'parent': parent, 'id': new_id, 'query': query, 'is_generated': True}
 
     # we will make a two-way dependency in the DB
     # first, pull the article with the parent id and save the current article id as a child
