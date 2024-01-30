@@ -57,9 +57,10 @@ def polish_trending_topic_entries():
         for other_topic_name, other_e in topic_embeddings:
             s = similarity_score(e, other_e, verbose=False)
             if s > 0.9:
-                print(s)
-                #print(topic_name, other_topic_name)
-        topic_embeddings.append((topic_name, e))
+                collection.delete_one({'topic': topic_name})
+                break
+            else:
+                topic_embeddings.append((topic_name, e))
 
         '''
         print(f"Removing unnecessary characters in topic names")
@@ -102,7 +103,7 @@ def get_embeddings_from_mongo():
     client, db, collection = connect_to_mongodb()
     embeddings = []
     urls = set()
-    for doc in collection.find({}):
+    for doc in collection.find({ 'is_generated': { '$exists': False} }):
         # Assuming each document has an 'embedding' field
         if len(doc['semantic_embedding']) != 1536:
             raise Exception(f'Article at ID={doc["id"]} has incorret embedding vector')

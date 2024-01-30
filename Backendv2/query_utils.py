@@ -66,7 +66,7 @@ def generate_scenarios(relevant_articles, user_query = None):
 
 
 
-def q2a_workflow(article, user_prompt, num_articles = 6, verbose = True):
+def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     '''
     Takes an article and corresponding user query, and works it into an article that answers the user's prompt.
 

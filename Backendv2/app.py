@@ -36,7 +36,7 @@ def call_q2a_workflow():
     data = request.get_json()
     article_id = data.get('article_id')
     user_prompt = data.get('user_prompt')
-    num_articles = int(data.get('num_articles', '6'))
+    num_articles = int(data.get('num_articles', '1'))
     verbose = data.get('verbose', False)
     article = get_article_contents_from_id(article_id)
 
