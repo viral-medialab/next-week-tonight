@@ -88,11 +88,15 @@ const Topic = () => {
                       <>
                         <Article
                           articleTitle={selectedArticle.name}
-                          articleContent={selectedArticle.content}
+                          // articleContent={selectedArticle.content}
                           articleImage={selectedArticle.image?.thumbnail.contentUrl.replace(
                             /&pid=.*$/,
                             ""
                           )}
+                          articleUrl={selectedArticle.url}
+                          articlePublisher={selectedArticle.publisher}
+                          articleCategory={selectedArticle.category}
+                          articleID={selectedArticle.id}
                           onClose={handleArticleClose}
                         />
                         <hr className="my-4 border-t-4 border-gray-300" />

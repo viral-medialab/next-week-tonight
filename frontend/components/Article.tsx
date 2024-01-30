@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
 interface ArticleProps {
-  articleTitle: string;
-  articleContent: string;
-  articleImage?: string;
-  articleUrl: string; // Add the article URL
+    articleTitle: string;
+    articleImage?:string;
+    articleUrl:string;
+    articlePublisher:string;
+    articleCategory:string;
+    articleID:string;
   onClose: () => void;
-}
-
-interface ArticleInfo {
-  title: string;
-  author: string;
-  contents: string;
 }
 
 interface SidebarProps {
   history: { title: string; url: string }[];
   setHistory: React.Dispatch<React.SetStateAction<{ title: string; url: string }[]>>;
 }
-
 const Sidebar: React.FC<SidebarProps> = ({ history, setHistory }) => {
   const currentArticle = history.length > 0 ? history[0] : null;
 
@@ -42,26 +36,31 @@ const Sidebar: React.FC<SidebarProps> = ({ history, setHistory }) => {
     </div>
   );
 };
-
 export default function Article({
-  articleTitle,
-  articleContent,
-  articleImage,
-  articleUrl,
+    articleTitle,
+    articleImage,
+    articleUrl,
+    articlePublisher,
+    articleCategory,
+    articleID,
   onClose,
 }: ArticleProps) {
   const [visitedArticles, setVisitedArticles] = useState<{ title: string; url: string }[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [articleInfo, setArticleInfo] = useState<ArticleInfo | null>(null);
 
   // Load history from localStorage on component mount
   useEffect(() => {
+    console.log("articleTitle:", articleTitle);
+    console.log("articleImage:", articleImage);
+    console.log("articleUrl:", articleUrl);
+    console.log("articlePublisher:", articlePublisher);
+    console.log("articleCategory:", articleCategory);
+    console.log("articleID:", articleID);
     const storedHistory = localStorage.getItem("visitedArticlesHistory");
     if (storedHistory) {
       setVisitedArticles(JSON.parse(storedHistory));
     }
   }, []);
-
   // Save history to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("visitedArticlesHistory", JSON.stringify(visitedArticles));
@@ -76,6 +75,7 @@ export default function Article({
 
     // Fetch article information
     const fetchArticleInfo = async () => {
+      console.log(articleUrl);
       try {
         const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
           method: "POST",
@@ -113,13 +113,13 @@ export default function Article({
         <div className="w-full">
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
             <a href={articleUrl || window.location.href} target="_self" rel="noopener noreferrer">
-              {articleInfo?.title || articleTitle}
+              {articleTitle}
             </a>
           </h1>
           {articleImage && (
             <img
               src={articleImage}
-              alt={articleInfo?.title || articleTitle}
+              alt={articleTitle}
               className="rounded-lg shadow-lg mb-8 w-3/4"
             />
           )}
@@ -140,7 +140,7 @@ export default function Article({
           {!isCollapsed && (
             <div
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: articleInfo?.contents}}
+              dangerouslySetInnerHTML={{ __html: articleTitle }}
             />
           )}
         </div>
