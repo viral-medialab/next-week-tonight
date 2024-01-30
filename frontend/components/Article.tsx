@@ -47,6 +47,7 @@ export default function Article({
 }: ArticleProps) {
   const [visitedArticles, setVisitedArticles] = useState<{ title: string; url: string }[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [articleContents, setArticleContents] = useState<string | null>(null);
 
   // Load history from localStorage on component mount
   useEffect(() => {
@@ -91,8 +92,8 @@ export default function Article({
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data: ArticleInfo = await response.json();
-        setArticleInfo(data);
+        const data = await response.json();
+        setArticleContents(data.contents);
         console.log(data);
       } catch (error) {
         console.error("Error fetching article info:", error);
@@ -140,7 +141,7 @@ export default function Article({
           {!isCollapsed && (
             <div
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: articleTitle }}
+              dangerouslySetInnerHTML={{ __html: articleContents }}
             />
           )}
         </div>
