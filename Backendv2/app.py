@@ -67,7 +67,7 @@ def handle_generate_what_if_questions():
 
     Outputs predictions in the format {'prediction_1': prediction, 'prediction_2': prediction, etc.}
     '''
-    data = request.get_json()  
+    data = request.get_json()
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', get_article_id(article_url))
     amount_of_predictions = int(data.get('amount_of_predictions', '3'))

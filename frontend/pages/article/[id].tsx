@@ -45,6 +45,7 @@ export default function Article({
 
   useEffect(() => {
     const fetchArticleInfo = async () => {
+      console.log(urlID);
       try {
         const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
           method: "POST",
@@ -52,7 +53,7 @@ export default function Article({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            articleUrl: articleUrl,
+            articleUrl: urlID,
           }),
         });
 
