@@ -102,14 +102,10 @@ def add_ids_to_entries():
 def get_embeddings_from_mongo():
     client, db, collection = connect_to_mongodb()
     embeddings = []
-    urls = set()
     for doc in collection.find({ 'is_generated': { '$exists': False} }):
-        # Assuming each document has an 'embedding' field
         if len(doc['semantic_embedding']) != 1536:
             raise Exception(f'Article at ID={doc["id"]} has incorret embedding vector')
-        if doc['url'] not in urls:
-            urls.add(doc['url'])
-            embeddings.append([doc['semantic_embedding'], doc['url']])
+        embeddings.append([doc['semantic_embedding'], doc['url']])
     return embeddings
 
 
@@ -162,12 +158,12 @@ def similarity_score(x, y, verbose = True):
 
 
 
-def find_closest_article_using_simple_search(embedding, article_embeddings):
+def find_closest_article_using_simple_search(question_embedding, article_embeddings):
     closest_dist = -1.1
     closest_url = False
     for other_embed in article_embeddings:
-        if not closest_url or similarity_score(embedding, other_embed[0], verbose=False) > closest_dist:
-            closest_dist = similarity_score(embedding, other_embed[0], verbose=False)
+        if not closest_url or similarity_score(question_embedding, other_embed[0], verbose=False) > closest_dist:
+            closest_dist = similarity_score(question_embedding, other_embed[0], verbose=False)
             closest_url = other_embed[1]
 
     return closest_url

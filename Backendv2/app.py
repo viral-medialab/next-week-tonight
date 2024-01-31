@@ -8,17 +8,17 @@ app = Flask(__name__)
 CORS(app)
 '''
 This script serves as the API by which the front-end and back-end interact.
-The current ports are:
+The current API functions are:
 
-call_q2a_workflow()
+handle_q2a_workflow()
 handle_generate_what_if_questions()
-
+handle_gather_article_info()
 '''
 
 
 
 @app.route('/api/call_q2a_workflow', methods=['GET', 'POST'])
-def call_q2a_workflow():
+def handle_q2a_workflow():
     '''
     Generates an article based on a 'what if...' question
 
@@ -68,8 +68,8 @@ def handle_generate_what_if_questions():
     Outputs predictions in the format {'prediction_1': prediction, 'prediction_2': prediction, etc.}
     '''
     data = request.get_json()  
-    article_url = data.get('articleUrl')  
-    article_id = get_article_id(article_url)
+    article_url = data.get('articleUrl', None)
+    article_id = data.get('article_id', get_article_id(article_url))
     amount_of_predictions = int(data.get('amount_of_predictions', '3'))
     article = get_article_contents_from_id(article_id)
 
@@ -95,11 +95,12 @@ def handle_gather_article_info():
     Outputs information in the format {'author': author, 'title': title, 'contents': article_contents}
     '''
     data = request.get_json()  
-    article_url = data.get('articleUrl')  
-    article_id = get_article_id(article_url)
+    article_url = data.get('articleUrl', None)
+    article_id = data.get('article_id', get_article_id(article_url))
     title, author, article_contents = get_article_contents_for_website(article_id)
     out = {'author': author, 'title': title, 'contents': article_contents}
     return jsonify(out)
+
 
 
 
