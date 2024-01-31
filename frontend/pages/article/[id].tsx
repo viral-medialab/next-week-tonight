@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -39,6 +40,9 @@ export default function Article({
   const [articleContents, setArticleContents] = useState<string | null>(null);
   const [articleTitle, setArticleTitle] = useState<string | null>(null);
 
+  const router = useRouter();
+  const { id: urlID } = router.query; // Retrieve urlID from the current address
+
   useEffect(() => {
     const fetchArticleInfo = async () => {
       try {
@@ -75,6 +79,10 @@ export default function Article({
     setIsCollapsed(!isCollapsed);
   };
 
+  const handleBackButtonClick = () => {
+    router.back();
+  };
+
   return (
     <div className="flex">
       <Sidebar currentArticleTitle={articleTitle} />
@@ -83,6 +91,7 @@ export default function Article({
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
               {articleTitle}
           </h1>
+          <p>urlID: {urlID}</p>
           {articleImage && (
             <img
               src={articleImage}
@@ -92,7 +101,7 @@ export default function Article({
           )}
           <div className="flex justify-start mb-2">
             <button
-              onClick={onClose}
+              onClick={handleBackButtonClick}
               className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
             >
               <span className="text-blue-700">Close article</span>

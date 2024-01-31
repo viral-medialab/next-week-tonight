@@ -198,7 +198,7 @@ const Index = () => {
                                         className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out relative"
                                     >
                                         <a
-                                            href={`/chat/${newsTopic._id}`}
+                                            href={`/topic/${newsTopic._id}`}
                                             className="block p-4 pt-6"
                                         >
                                             <h3 className="text-lg font-medium text-gray-900">
