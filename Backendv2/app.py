@@ -34,7 +34,10 @@ def handle_q2a_workflow():
     Outputs a new article in the format {'title': title, 'body': body}
     '''
     data = request.get_json()
-    article_id = data.get('article_id')
+    article_url = data.get('articleUrl', None)
+    article_id = data.get('article_id', None)
+    if article_url:
+        article_id = get_article_id(article_url)
     user_prompt = data.get('user_prompt')
     num_articles = int(data.get('num_articles', '1'))
     verbose = data.get('verbose', False)
@@ -69,7 +72,9 @@ def handle_generate_what_if_questions():
     '''
     data = request.get_json()
     article_url = data.get('articleUrl', None)
-    article_id = data.get('article_id', get_article_id(article_url))
+    article_id = data.get('article_id', None)
+    if article_url:
+        article_id = get_article_id(article_url)
     amount_of_predictions = int(data.get('amount_of_predictions', '3'))
     article = get_article_contents_from_id(article_id)
 
@@ -96,7 +101,9 @@ def handle_gather_article_info():
     '''
     data = request.get_json()  
     article_url = data.get('articleUrl', None)
-    article_id = data.get('article_id', get_article_id(article_url))
+    article_id = data.get('article_id', None)
+    if article_url:
+        article_id = get_article_id(article_url)
     title, author, article_contents = get_article_contents_for_website(article_id)
     out = {'author': author, 'title': title, 'contents': article_contents}
     return jsonify(out)
