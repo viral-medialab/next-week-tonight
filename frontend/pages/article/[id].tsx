@@ -43,38 +43,40 @@ export default function Article({
   const router = useRouter();
   const { id: urlID } = router.query; // Retrieve urlID from the current address
 
-  useEffect(() => {
+useEffect(() => {
     const fetchArticleInfo = async () => {
-      console.log(urlID);
-      try {
-        const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            articleUrl: urlID,
-          }),
-        });
+      if (urlID) {
+        console.log(urlID);
+        try {
+          const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              article_id: urlID,
+            }),
+          });
 
-        console.log("test here");
-        console.log(articleUrl)
-        console.log(response)
+          console.log("test here");
+          console.log(articleUrl);
+          console.log(response);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          setArticleTitle(data["title"]);
+          setArticleContents(data["contents"]);
+        } catch (error) {
+          console.error("Error fetching article info:", error);
         }
-
-        const data = await response.json();
-        setArticleTitle(data["title"]);
-        setArticleContents(data["contents"]);
-      } catch (error) {
-        console.error("Error fetching article info:", error);
       }
     };
 
     fetchArticleInfo();
-  }, [articleTitle, articleUrl]);
+  }, [urlID]);
 
   const handleToggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -92,7 +94,6 @@ export default function Article({
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
               {articleTitle}
           </h1>
-          <p>urlID: {urlID}</p>
           {articleImage && (
             <img
               src={articleImage}
