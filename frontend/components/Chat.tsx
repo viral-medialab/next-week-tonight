@@ -168,17 +168,39 @@ export default function Chat({ topic, currentArticle, allArticles }: any) {
                                     {message.id % 2 !== 0 ? (
                                         <p className="text-white">{message.text}</p>
                                     ) : (
-                                        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 w-full">
-                                            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                                <div className="p-6">
-                                                    <h2 className="text-2xl font-bold mb-2">
-                                                        {message.text["title"]}
-                                                    </h2>
-                                                    <p className="text-gray-700 text-base">
-                                                        {message.text["body"]}
-                                                    </p>
-                                                </div>
+                                        <div className="grid grid-cols-3 gap-8 w-full">
+                                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                                            <div className="p-6">
+                                              <h2 className="text-2xl font-bold mb-2">
+                                                {message.text["article_0"]["title"]}
+                                              </h2>
+                                              <p className="text-gray-700 text-base">
+                                                {message.text["article_0"]["body"]}
+                                              </p>
                                             </div>
+                                          </div>
+
+                                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                                            <div className="p-6">
+                                              <h2 className="text-2xl font-bold mb-2">
+                                                {message.text["article_1"]["title"]}
+                                              </h2>
+                                              <p className="text-gray-700 text-base">
+                                                {message.text["article_1"]["body"]}
+                                              </p>
+                                            </div>
+                                          </div>
+
+                                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                                            <div className="p-6">
+                                              <h2 className="text-2xl font-bold mb-2">
+                                                {message.text["article_2"]["title"]}
+                                              </h2>
+                                              <p className="text-gray-700 text-base">
+                                                {message.text["article_2"]["body"]}
+                                              </p>
+                                            </div>
+                                          </div>
                                         </div>
                                     )}
                                 </div>

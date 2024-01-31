@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 interface ArticleProps {
-  articleTitle: string;
   articleImage?: string;
   articleUrl: string;
   articlePublisher: string;
@@ -18,7 +17,7 @@ const Sidebar: React.FC<{ currentArticleTitle: string }> = ({ currentArticleTitl
     <ul>
       <li className="mb-2">
         <a href="#" target="_self" rel="noopener noreferrer">
-          {currentArticleTitle}Title Placeholder
+          {currentArticleTitle}
         </a>
       </li>
     </ul>
@@ -29,7 +28,6 @@ const Sidebar: React.FC<{ currentArticleTitle: string }> = ({ currentArticleTitl
 );
 
 export default function Article({
-  articleTitle,
   articleImage,
   articleUrl,
   articlePublisher,
@@ -39,6 +37,7 @@ export default function Article({
 }: ArticleProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [articleContents, setArticleContents] = useState<string | null>(null);
+  const [articleTitle, setArticleTitle] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchArticleInfo = async () => {
@@ -62,6 +61,7 @@ export default function Article({
         }
 
         const data = await response.json();
+        setArticleTitle(data["title"]);
         setArticleContents(data["contents"]);
       } catch (error) {
         console.error("Error fetching article info:", error);
@@ -82,7 +82,7 @@ export default function Article({
         <div className="w-full">
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
             <a href={articleUrl || window.location.href} target="_self" rel="noopener noreferrer">
-              {articleTitle}Title Placeholder
+              {articleTitle}
             </a>
           </h1>
           {articleImage && (

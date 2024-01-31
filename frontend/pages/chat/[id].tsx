@@ -87,7 +87,7 @@ const Topic = () => {
                     {selectedArticle && (
                       <>
                         <Article
-                          articleTitle={selectedArticle.name}
+                          // articleTitle={selectedArticle.name}
                           // articleContent={selectedArticle.content}
                           articleImage={selectedArticle.image?.thumbnail.contentUrl.replace(
                             /&pid=.*$/,
