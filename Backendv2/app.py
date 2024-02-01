@@ -115,7 +115,6 @@ def handle_gather_article_info():
         article_contents = article['body']
     else:
         title, author, article_contents = get_article_contents_for_website(article_id)
-    title, author, article_contents = get_article_contents_for_website(article_id)
     out = {'author': author, 'title': title, 'contents': article_contents}
     return jsonify(out)
 

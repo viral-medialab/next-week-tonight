@@ -157,8 +157,13 @@ export default function Chat({ currentArticle }: any) {
                                                 {message.text["article_0"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
-                                                {message.text["article_0"]["body"]}
+                                                {message.text["article_0"]["body"].split('.')[0] + "."}
                                               </p>
+                                              <button
+                                                  className="text-blue-500 font-bold hover:text-blue-700 mt-4"
+                                              >
+                                                  Read more
+                                              </button>
                                               </a>
                                             </div>
                                           </div>
@@ -170,8 +175,13 @@ export default function Chat({ currentArticle }: any) {
                                                 {message.text["article_1"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
-                                                {message.text["article_1"]["body"]}
+                                                {message.text["article_1"]["body"].split('.')[0] + "."}
                                               </p>
+                                              <button
+                                                    className="text-blue-500 font-bold hover:text-blue-700 mt-4"
+                                                >
+                                                    Read more
+                                                </button>
                                               </a>
                                             </div>
                                           </div>
@@ -183,8 +193,13 @@ export default function Chat({ currentArticle }: any) {
                                                 {message.text["article_2"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
-                                                {message.text["article_2"]["body"]}
+                                                {message.text["article_2"]["body"].split('.')[0] + "."}
                                               </p>
+                                              <button
+                                                    className="text-blue-500 font-bold hover:text-blue-700 mt-4"
+                                                >
+                                                    Read more
+                                                </button>
                                               </a>
                                             </div>
                                           </div>
