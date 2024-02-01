@@ -96,6 +96,8 @@ def handle_gather_article_info():
     Inputs:
 
         articleUrl (str)        :   The url of the article that is currently being viewed
+        article_id (str)        :   An alternative to URL (only one of URL and ID is needed)s
+
 
     Outputs information in the format {'author': author, 'title': title, 'contents': article_contents}
     '''
@@ -105,6 +107,14 @@ def handle_gather_article_info():
     article_id = data.get('article_id', None)
     if article_url:
         article_id = get_article_id(article_url)
+    client, db, collection = connect_to_mongodb()
+    article = collection.find_one({'id': article_id})
+    if article.get('is_generated', False):
+        title = article['title']
+        author = 'AI Generated'
+        article_contents = article['body']
+    else:
+        title, author, article_contents = get_article_contents_for_website(article_id)
     title, author, article_contents = get_article_contents_for_website(article_id)
     out = {'author': author, 'title': title, 'contents': article_contents}
     return jsonify(out)
