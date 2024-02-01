@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from openai_utils import *
+from database_utils import connect_to_mongodb
 '''
 Provides all utility functions for analyzing articles
 '''
@@ -116,6 +117,11 @@ def get_article_contents_from_id(article_id, return_author = False):
 
 
 def get_article_contents_for_website(article_id):
+    _, _, collection = connect_to_mongodb()
+    article = collection.find_one({'id': article_id})
+    if article.get('is_generated', False):
+        return article['title'], 'AI Generated', article['body']
+    
     # Returns author and article contents
     asset_url = "https://assets.msn.com/content/view/v2/Detail/en-us/" + article_id
 
