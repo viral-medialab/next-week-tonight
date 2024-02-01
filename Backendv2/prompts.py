@@ -41,9 +41,7 @@ generate_article_prompt = convert_to_proper_format('''You are a top-notch journa
                             that pulls from both system-provided context and your access to your massive training corpus. Your articles are 
                             roughly 500 words in length and split up into many small paragraphs, reading like a piece from a high regarded 
                             publisher like The Associated Press, CNN, Fox, or NBC news. Begin your article by analyzing why the query was 
-                            posed, and then respond to the query. Please include an article title followed by a roughly 500 word article, where
-                            the article title is separated from the article contents by a semi-colon (do not write 'Title:' for the title or something 
-                            similar). Do not feel uncomfortable speculating, treat this as a creative writing exercise where you simply explore one 
+                            posed, and then respond to the query. Do not feel uncomfortable speculating, treat this as a creative writing exercise where you simply explore one 
                             of many possible options for the future and report on what happens then.''')
 
 
@@ -248,7 +246,8 @@ scenario_generation_prompt = convert_to_proper_format('''Let's play a game where
                                 if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
                                 scenario that you can output is 'Iran declares war on Israel'. Keep the predictions interesting and use specific
                                 nouns as much as possible. The scenarios you generate must be somewhat distant from each other, such that exploring
-                                multiple scenarios contains at most a tiny amount of overlap.''')
+                                multiple scenarios contains at most a tiny amount of overlap. Make sure the predictions are at most 10 words long and
+                                are not already happening, that is, they have to be future predictions not present predictions.''')
 
 
 if __name__ == '__main__':

@@ -40,9 +40,9 @@ def generate_article(user_prompt, scenario, relevant_articles, max_context_lengt
     relevant_context = "Here is some relevant information to write your articles. Use the information here to extract facts for your articles (each piece of information is separated by a semicolon): "
     for info in relevant_articles:
         relevant_context += info + "- NEXT ARTICLE -"
-    relevant_context = relevant_context[:-1]
+    relevant_context = relevant_context[:-16]
 
-    user_query = 'Please write an article using the context to answer the following question: ' + user_prompt + '\n\n\n Here is the pre-generated scenario: ' + scenario
+    user_query = 'Please write an article title followed by a roughly 500 word article, where the article title is separated from the article contents by a semi-colon (do not write "Title:" for the title or something similar). Answer the following question: ' + user_prompt + ', assuming that ' + scenario
 
     return query_chatgpt([overall_context, relevant_context], user_query[:max_context_length])
 
@@ -120,9 +120,10 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     print(f"Generating scenarios based on articles and query took {time2-time1} seconds")
     
 
-    time1 = time.time()
     #########################################################################################################################################################
     # this can become asynchronous, will decrease speed BUT will increase API cost (have to refeed context every time =  a lot ofextra input tokens)
+    time1 = time.time()
+    print("Beginning to generate articles")
     out = []
     if verbose:
         print('generated scenarios: ', scenarios)

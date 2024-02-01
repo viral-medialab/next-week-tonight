@@ -26,9 +26,10 @@ def query_chatgpt(contexts, queries):
     messages.append({"role": "user", "content": final_query[:-1]})
     response = client.chat.completions.create(
         messages=messages,
-        model="gpt-3.5-turbo-16k-0613",
+        model="gpt-4-0125-preview",
     )
 
+    print(response.choices[0].message.content)
     out = response.choices[0].message.content.split(";")
     if len(out) > 1:
          return out
