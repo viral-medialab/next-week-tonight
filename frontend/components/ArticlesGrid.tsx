@@ -71,7 +71,6 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
         const fetchArticleNames = async () => {
           const namesPromises = newsTopic.articles?.map(async (article) => {
             try {
-              console.log(article.url);
               const response = await fetch(
                 "http://127.0.0.1:5000/api/gather_article_info",
                 {
@@ -125,7 +124,10 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
                     <div
                         key={article._id}
                         className="bg-white rounded-lg shadow-lg overflow-hidden"
-                        onClick={() => handleArticleClick(article)}
+                        // onClick={() => handleArticleClick(article)}
+                    >
+                    <a
+                        href={`/article/${article.id}`}
                     >
                         {article.image.thumbnail && (
                             <img
@@ -149,17 +151,14 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
                             {/*<p className="text-gray-700 text-base">
                                 {article.description}
                             </p>*/}
-                            <a
-                                href={`/article/${article.id}`}
-                            >
                             <button
                                 onClick={() => handleArticleClick(article)}
                                 className="text-blue-500 font-bold hover:text-blue-700 mt-4"
                             >
                                 Read more
                             </button>
-                            </a>
                         </div>
+                      </a>
                     </div>
                 ))}
             </div>

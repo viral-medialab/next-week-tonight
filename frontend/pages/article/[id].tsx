@@ -2,22 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
-interface ArticleProps {
-  articleImage?: string;
-  articleUrl: string;
-  articlePublisher: string;
-  articleCategory: string;
-  articleID: string;
-  onClose: () => void;
-}
+import Chat from "@/components/Chat";
 
 const Sidebar: React.FC<{ currentArticleTitle: string }> = ({ currentArticleTitle }) => (
-  <div className="w-1/5 bg-gray-200 p-4 m-4 h-full">
+  <div className="w-1/5 bg-gray-200 p-4 m-4 max-h-full overflow-y-auto">
     <h2 className="text-lg font-semibold mb-4">Navigation</h2>
     <ul>
       <li className="mb-2">
-        <a href="#" target="_self" rel="noopener noreferrer">
+        <a href="" target="_self" rel="noopener noreferrer">
           {currentArticleTitle}
         </a>
       </li>
@@ -28,14 +20,7 @@ const Sidebar: React.FC<{ currentArticleTitle: string }> = ({ currentArticleTitl
   </div>
 );
 
-export default function Article({
-  articleImage,
-  articleUrl,
-  articlePublisher,
-  articleCategory,
-  articleID,
-  onClose,
-}: ArticleProps) {
+export default function Article({}: {}) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [articleContents, setArticleContents] = useState<string | null>(null);
   const [articleTitle, setArticleTitle] = useState<string | null>(null);
@@ -43,7 +28,7 @@ export default function Article({
   const router = useRouter();
   const { id: urlID } = router.query; // Retrieve urlID from the current address
 
-useEffect(() => {
+  useEffect(() => {
     const fetchArticleInfo = async () => {
       if (urlID) {
         console.log(urlID);
@@ -57,10 +42,6 @@ useEffect(() => {
               article_id: urlID,
             }),
           });
-
-          console.log("test here");
-          console.log(articleUrl);
-          console.log(response);
 
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -86,21 +67,15 @@ useEffect(() => {
     router.back();
   };
 
-  return (
+return (
+  <div className="container mx-auto px-4 py-8 flex-col">
     <div className="flex">
-      <Sidebar currentArticleTitle={articleTitle} />
+      <Sidebar currentArticleTitle={articleTitle || ""} />
       <div className="pr-4 sm:pr-6 lg:pr-8 py-12 flex-1">
         <div className="w-full">
-          <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
-              {articleTitle}
+          <h1 id={articleTitle || ""} className="text-2xl font-bold text-gray-800 mb-4">
+            {articleTitle}
           </h1>
-          {articleImage && (
-            <img
-              src={articleImage}
-              alt={articleTitle}
-              className="rounded-lg shadow-lg mb-8 w-3/4"
-            />
-          )}
           <div className="flex justify-start mb-2">
             <button
               onClick={handleBackButtonClick}
@@ -112,17 +87,22 @@ useEffect(() => {
               onClick={handleToggleCollapse}
               className="ml-4 text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
             >
-              <span className="text-blue-700">{isCollapsed ? 'Expand' : 'Collapse'} article</span>
+              <span className="text-blue-700">{isCollapsed ? "Expand" : "Collapse"} article</span>
             </button>
           </div>
           {!isCollapsed && (
             <div
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: articleContents }}
+              dangerouslySetInnerHTML={{ __html: articleContents || "" }}
             />
           )}
         </div>
       </div>
     </div>
-  );
+    <hr className="my-4 border-t-4 border-gray-300" />
+    <div className="w-full">
+      <Chat currentArticle={urlID} />
+    </div>
+  </div>
+);
 }

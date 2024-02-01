@@ -81,7 +81,7 @@ export default function Article({
       <div className="pr-4 sm:pr-6 lg:pr-8 py-12 flex-1">
         <div className="w-full">
           <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
-              {articleTitle}
+            {articleTitle}
           </h1>
           {articleImage && (
             <img

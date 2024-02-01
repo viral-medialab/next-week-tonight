@@ -2,27 +2,10 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-export default function Chat({ topic, currentArticle, allArticles }: any) {
+export default function Chat({ currentArticle }: any) {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    /*
-    FETCH QUERIES FROM api/questions
-    useEffect(() => {
-      if (currentArticle) {
-        fetch("/api/questions", {
-          method: "POST",
-          body: JSON.stringify({
-            currentArticle,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => setQueries(data))
-          .catch((error) => console.error("Error fetching queries:", error));
-      }
-    }, [currentArticle]);
-    */
 
     const handleNewMessageChange = (
         event: React.ChangeEvent<HTMLTextAreaElement>
@@ -38,9 +21,7 @@ export default function Chat({ topic, currentArticle, allArticles }: any) {
         setNewMessage("");
         console.log("submitting message");
         const response = await submitMessages(
-            topic,
             currentArticle,
-            allArticles,
             [...messages, { id: messages.length + 1, text: newMessage.trim() }]
         );
         setMessages([
@@ -250,19 +231,15 @@ async function callQ2AWorkflow(): Promise<ApiResponse | undefined> {
 }
 
 async function submitMessages(
-    topic: string,
     currentArticle: any,
-    allArticles: any[],
     messages: { id: number; text: string }[]
 ) {
-    console.log("The topic is:", topic)
-    console.log("Current article id is:", currentArticle.id)
+    console.log("Current article id is:", currentArticle)
     console.log("User query is:", messages[messages.length - 1].text)
-    console.log(currentArticle);
     const res = await fetch("http://127.0.0.1:5000/api/call_q2a_workflow", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ article_id: currentArticle.id, user_prompt: messages[messages.length - 1].text , verbose: true}),
+        body: JSON.stringify({ article_id: currentArticle, user_prompt: messages[messages.length - 1].text , verbose: true}),
     });
     console.log("Raw Response:", res);
     const data = await res.json();
