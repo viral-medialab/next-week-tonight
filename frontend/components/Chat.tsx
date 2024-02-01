@@ -152,34 +152,40 @@ export default function Chat({ currentArticle }: any) {
                                         <div className="grid grid-cols-3 gap-8 w-full">
                                           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                                             <div className="p-6">
+                                              <a href={`/article/${message.text["article_0"]["id"]}`}>
                                               <h2 className="text-2xl font-bold mb-2">
                                                 {message.text["article_0"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
                                                 {message.text["article_0"]["body"]}
                                               </p>
+                                              </a>
                                             </div>
                                           </div>
 
                                           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                                             <div className="p-6">
+                                              <a href={`/article/${message.text["article_1"]["id"]}`}>
                                               <h2 className="text-2xl font-bold mb-2">
                                                 {message.text["article_1"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
                                                 {message.text["article_1"]["body"]}
                                               </p>
+                                              </a>
                                             </div>
                                           </div>
 
                                           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                                             <div className="p-6">
+                                              <a href={`/article/${message.text["article_2"]["id"]}`}>
                                               <h2 className="text-2xl font-bold mb-2">
                                                 {message.text["article_2"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
                                                 {message.text["article_2"]["body"]}
                                               </p>
+                                              </a>
                                             </div>
                                           </div>
                                         </div>

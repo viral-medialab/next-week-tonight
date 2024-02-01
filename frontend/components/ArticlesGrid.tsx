@@ -126,9 +126,7 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
                         className="bg-white rounded-lg shadow-lg overflow-hidden"
                         // onClick={() => handleArticleClick(article)}
                     >
-                    <a
-                        href={`/article/${article.id}`}
-                    >
+                    <a href={`/article/${article.id}`}>
                         {article.image.thumbnail && (
                             <img
                                 src={article.image.thumbnail.contentUrl.replace(
@@ -152,7 +150,7 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
                                 {article.description}
                             </p>*/}
                             <button
-                                onClick={() => handleArticleClick(article)}
+                                // onClick={() => handleArticleClick(article)}
                                 className="text-blue-500 font-bold hover:text-blue-700 mt-4"
                             >
                                 Read more

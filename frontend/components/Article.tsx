@@ -48,7 +48,7 @@ export default function Article({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            articleUrl: articleUrl,
+            article_url: articleUrl,
           }),
         });
 

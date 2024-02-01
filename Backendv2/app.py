@@ -99,7 +99,8 @@ def handle_gather_article_info():
 
     Outputs information in the format {'author': author, 'title': title, 'contents': article_contents}
     '''
-    data = request.get_json()  
+    data = request.get_json()
+    print(data)
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', None)
     if article_url:
