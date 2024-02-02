@@ -2,7 +2,12 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-export default function Chat({ currentArticle }: any) {
+interface ChatProps {
+  currentArticle: string;
+  updateSidebarPredictions: () => void;
+}
+
+export default function Chat({ currentArticle, updateSidebarPredictions }: ChatProps) {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,6 +35,7 @@ export default function Chat({ currentArticle }: any) {
             { id: messages.length + 2, text: response },
         ]);
         console.log("got response", response);
+        updateSidebarPredictions();
         setIsSubmitting(false);
     };
 
@@ -157,7 +163,7 @@ export default function Chat({ currentArticle }: any) {
                                                 {message.text["article_0"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
-                                                {message.text["article_0"]["body"].split('.')[0] + "."}
+                                                {message.text["article_0"]["body"].split('.')[0] + "..."}
                                               </p>
                                               <button
                                                   className="text-blue-500 font-bold hover:text-blue-700 mt-4"
@@ -175,7 +181,7 @@ export default function Chat({ currentArticle }: any) {
                                                 {message.text["article_1"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
-                                                {message.text["article_1"]["body"].split('.')[0] + "."}
+                                                {message.text["article_1"]["body"].split('.')[0] + "..."}
                                               </p>
                                               <button
                                                     className="text-blue-500 font-bold hover:text-blue-700 mt-4"
@@ -193,7 +199,7 @@ export default function Chat({ currentArticle }: any) {
                                                 {message.text["article_2"]["title"]}
                                               </h2>
                                               <p className="text-gray-700 text-base">
-                                                {message.text["article_2"]["body"].split('.')[0] + "."}
+                                                {message.text["article_2"]["body"].split('.')[0] + "..."}
                                               </p>
                                               <button
                                                     className="text-blue-500 font-bold hover:text-blue-700 mt-4"
@@ -213,42 +219,6 @@ export default function Chat({ currentArticle }: any) {
             </div>
         )
     );
-}
-
-// Define an interface for the data structure you expect to receive as a response
-interface ApiResponse {
-  // Assuming the structure of your response; adjust according to your actual API response
-  success: boolean;
-  message?: string;
-  [key: string]: any; // For additional properties that might be dynamic
-}
-
-async function callQ2AWorkflow(): Promise<ApiResponse | undefined> {
-  const dataToSend = {
-    article_id: "BB1hgzNq",
-    user_prompt: "What happens if immigration becomes a key issue in the election?",
-  };
-
-  try {
-    const response = await fetch('http://localhost:5000/api/call_q2a_workflow', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(dataToSend),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: ApiResponse = await response.json(); // Explicitly typing the response data
-    console.log("Function result:", data);
-    return data;
-  } catch (error) {
-    console.error('Error:', error);
-    return undefined; // Handle error cases or throw an error as needed
-  }
 }
 
 async function submitMessages(
