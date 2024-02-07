@@ -173,18 +173,26 @@ def find_closest_article_using_simple_search(question_embedding, article_embeddi
 
 def add_children_to_all_entries():
     client, db, collection = connect_to_mongodb()
+    collection = db['trendingTopics']
     # we will make a two-way dependency in the DB
     # first, pull the article with the parent id and save the current article id as a child
-    docs = collection.find({"children": {"$exists": False} })
-    for doc in docs:
-        new_doc = deepcopy(doc)
-        print(f"Adding children field to document with id {doc['id']}")
-        new_doc['children'] = []
-        collection.replace_one(doc, new_doc)
+
+
+    topics = collection.find({})
+    for topic in topics:
+        new_entry = deepcopy(topic)
+        new_entry['articles'] = []
+        for article in topic['articles']:
+            if 'children' not in article:
+                new_article = deepcopy(article)
+                new_article['children'] = []
+                new_entry['articles'].append(new_article)
+                print(f"Adding children field to document with id {article['id']}")
+        collection.replace_one(topic, new_entry)
+
 
 
 
 
 if __name__ == '__main__':
-    add_ids_to_entries()
     add_children_to_all_entries()
