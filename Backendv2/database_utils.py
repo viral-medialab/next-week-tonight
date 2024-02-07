@@ -88,13 +88,12 @@ def polish_trending_topic_entries():
 
 def add_ids_to_entries():
     client, db, collection = connect_to_mongodb()
-    for doc in collection.find({}):
-        if 'id' not in doc:
-            new_doc = deepcopy(doc)
-            id = get_article_id(new_doc)
-            new_doc['id'] = id
-            collection.replace_one(doc, new_doc)
-            print(f'{doc} -> {new_doc} (UPDATE)')
+    for doc in collection.find({"id": {"$exists": False}}):
+        new_doc = deepcopy(doc)
+        id = get_article_id(new_doc)
+        new_doc['id'] = id
+        collection.replace_one(doc, new_doc)
+        print(f'{doc["_id"]} -> {new_doc["_id"]} (UPDATE)')
 
 
 
@@ -172,5 +171,20 @@ def find_closest_article_using_simple_search(question_embedding, article_embeddi
 
 
 
+def add_children_to_all_entries():
+    client, db, collection = connect_to_mongodb()
+    # we will make a two-way dependency in the DB
+    # first, pull the article with the parent id and save the current article id as a child
+    docs = collection.find({"children": {"$exists": False} })
+    for doc in docs:
+        new_doc = deepcopy(doc)
+        print(f"Adding children field to document with id {doc['id']}")
+        new_doc['children'] = []
+        collection.replace_one(doc, new_doc)
+
+
+
+
 if __name__ == '__main__':
-    polish_trending_topic_entries()
+    add_ids_to_entries()
+    add_children_to_all_entries()
