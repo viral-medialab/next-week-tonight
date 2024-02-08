@@ -14,7 +14,7 @@ print("done loading embeddings")
 def generate_relevant_questions(article_context, user_prompt):
     context_prompt = relevant_question_prompt
     article_context = "Here is an article that you will use to aid your question making: " + article_context
-    return query_chatgpt([context_prompt, article_context], [user_prompt])
+    return query_chatgpt([context_prompt, article_context], [user_prompt], model="gpt-3.5-turbo-0125")
 
 
 
@@ -59,11 +59,16 @@ def generate_scenarios(relevant_articles, user_query = None, max_context_length 
     relevant_context = relevant_context[:-1]
 
     if user_query:
-        query = "Generate five scenarios, separated by semicolons: " + user_query
+        query = "Generate five scenarios, separated by semicolons. Do not list the scenarios one-by-one: " + user_query
     else:
         query = 'For now, there is no question. Generate the scenarios using only the relevant articles.'
 
-    return query_chatgpt([overall_context, relevant_context], query[:max_context_length])
+    out = []
+    for scenario in query_chatgpt([overall_context, relevant_context], query[:max_context_length]):
+        scenario_title= query_chatgpt([], ["Make a title for this scenario: " + scenario], model="gpt-3.5-turbo-0125")
+        out.append([scenario_title, scenario])
+
+    return out
 
 
 
@@ -109,7 +114,7 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     
 
     time1 = time.time()
-    relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in set(relevant_article_urls[:1])]
+    relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in set(relevant_article_urls[:2])]
     time2 = time.time()
     print(f"Loading relevant article contents took {time2-time1} seconds")
     
@@ -118,6 +123,8 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     scenarios = generate_scenarios(relevant_articles, user_query=user_prompt, max_context_length = 10000)
     time2 = time.time()
     print(f"Generating scenarios based on articles and query took {time2-time1} seconds")
+
+    '''
     
 
     #########################################################################################################################################################
@@ -133,6 +140,9 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     print(f"Generating output articles took {time2-time1} seconds")
     #########################################################################################################################################################
     
+    '''
+
+    out = scenarios
 
     if verbose:
         print("AI generated questions: ", AI_generated_questions, "\n\n\n\n")

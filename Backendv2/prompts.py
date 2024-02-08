@@ -246,8 +246,14 @@ scenario_generation_prompt = convert_to_proper_format('''Let's play a game where
                                 if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
                                 scenario that you can output is 'Iran declares war on Israel'. Keep the predictions interesting and use specific
                                 nouns as much as possible. The scenarios you generate must be somewhat distant from each other, such that exploring
-                                multiple scenarios contains at most a tiny amount of overlap. Make sure the predictions are at most 10 words long and
+                                multiple scenarios contains at most a tiny amount of overlap. Make sure the predictions are around 5 sentences long and
                                 are not already happening, that is, they have to be future predictions not present predictions.''')
+
+
+short_scenario_generation_prompt = convert_to_proper_format('''Let's play a game where you are a real-life world builder. Given a question and some relevant context, you build SEPARATE and DISTINCT
+                                scenarios that are possible in real life and also answer the question. Keep the predictions interesting and use specific
+                                nouns as much as possible. The scenarios you generate must be distant from each other. Make sure the predictions are around 5 sentences
+                                long, and all predictions have to be future predictions not present predictions. Lastly, do not tell a story thoughout the scenarios. They are SEPARATE and DISTINCT scenarios.''')
 
 
 if __name__ == '__main__':

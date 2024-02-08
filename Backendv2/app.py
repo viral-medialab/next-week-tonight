@@ -99,7 +99,9 @@ def handle_gather_article_info():
         article_id (str)        :   An alternative to URL (only one of URL and ID is needed)s
 
 
-    Outputs information in the format {'author': author, 'title': title, 'contents': article_contents}
+    Outputs information in the format {'author': author, 'title': title, 'contents': article_contents
+    
+    UPDATE: Now returns a children field for the children of the current article
     '''
     data = request.get_json()
     print(data)
@@ -109,13 +111,14 @@ def handle_gather_article_info():
         article_id = get_article_id(article_url)
     client, db, collection = connect_to_mongodb()
     article = collection.find_one({'id': article_id})
+    children = article['children'] if 'children' in article else []
     if article.get('is_generated', False):
         title = article['title']
         author = 'AI Generated'
         article_contents = article['body']
     else:
         title, author, article_contents = get_article_contents_for_website(article_id)
-    out = {'author': author, 'title': title, 'contents': article_contents}
+    out = {'author': author, 'title': title, 'contents': article_contents, 'children': children}
     return jsonify(out)
 
 

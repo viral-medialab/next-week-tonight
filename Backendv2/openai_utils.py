@@ -14,7 +14,7 @@ client = OpenAI(
 
 
 
-def query_chatgpt(contexts, queries):
+def query_chatgpt(contexts, queries, model="gpt-4-1106-preview"):
     if len(queries) > 1:
         contexts += ["Note: The input will be split by semicolons. Answer each prompt separately and return your answer also split by semicolons. For example, if I asked you to solve arithmetic problems and my input was '2+2;4+5', your answer should be '4;9'."]
     messages = []
@@ -26,7 +26,7 @@ def query_chatgpt(contexts, queries):
     messages.append({"role": "user", "content": final_query[:-1]})
     response = client.chat.completions.create(
         messages=messages,
-        model="gpt-4-0125-preview",
+        model=model,
     )
 
     print(response.choices[0].message.content)
