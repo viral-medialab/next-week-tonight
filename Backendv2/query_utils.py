@@ -63,8 +63,12 @@ def generate_scenarios(relevant_articles, user_query = None, max_context_length 
     else:
         query = 'For now, there is no question. Generate the scenarios using only the relevant articles.'
 
+    scenarios = query_chatgpt([overall_context, relevant_context], query[:max_context_length])
+    if type(scenarios) == type("string"):
+        raise Exception("Scenario Generation Failed")
+
     out = []
-    for scenario in query_chatgpt([overall_context, relevant_context], query[:max_context_length]):
+    for scenario in scenarios:
         scenario_title= query_chatgpt([], ["Make a title for this scenario: " + scenario], model="gpt-3.5-turbo-0125")
         out.append([scenario_title, scenario])
 
