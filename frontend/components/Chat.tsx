@@ -88,7 +88,7 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
             <div className="flex flex-col p-4 border-t">
                 
                 <div className="flex flex-col items-start w-full ">
-                    <span className="text-gray-500">Try asking:</span>
+                    <span className="text-gray-500">What happens if:</span>
                     {questions && questions.map((question, index) => (
                         <button key={index} className="text-blue-900 mb-1 text-left" onClick={() => handleAskQuestion(question)}>
                             {question}
