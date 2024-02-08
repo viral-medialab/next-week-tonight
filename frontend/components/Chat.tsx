@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,6 +11,7 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [questions, setQuestions] = useState<string[]>([]);
 
     const handleNewMessageChange = (
         event: React.ChangeEvent<HTMLTextAreaElement>
@@ -53,59 +54,46 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
         }
     };
 
+    useEffect(() => {
+        const fetchWhatIfQuestions = async () => {
+          if(currentArticle){
+            try{
+              const response = await fetch("http://127.0.0.1:5000/api/generate_what_if_questions", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ article_id: currentArticle}),
+              });
+              if (!response.ok) {
+                throw new Error(`Network response was not ok`);
+              }
+              const data = await response.json();
+              const fetchedQuestions = Object.keys(data).map((key) => data[key]);
+              setQuestions(fetchedQuestions);
+            } catch
+            (error) {
+              console.error("Failed to fetch what-if questions:", error);
+            }
+          }
+        };
+        fetchWhatIfQuestions();
+    }, [currentArticle]);
+
+      
+            
+
     return (
         currentArticle && (
             <div className="flex flex-col p-4 border-t">
+                
                 <div className="flex flex-col items-start w-full ">
                     <span className="text-gray-500">Try asking:</span>
-                    {currentArticle ? (
-                        /*
-                        CODE TO ADD LINKED TEXT BUTTONS WITH GENERATED QUERIES FROM api/questions
-                        <>
-                          {queries.map((query, index) => (
-                            <button
-                              key={index}
-                              className="text-blue-900 mb-1 text-left"
-                              onClick={() => handleAskQuestion(query)}
-                            >
-                              {query}
-                            </button>
-                          ))}
-                        </>
-                        */
-                        <>
-                        <button
-                            className="text-blue-900 mb-1 text-left "
-                            onClick={() =>
-                                handleAskQuestion(
-                                    "Question 1" // Summarize the article I am currently reading.
-                                )
-                            }
-                        >
-                            Question 1
+                    {questions && questions.map((question, index) => (
+                        <button key={index} className="text-blue-900 mb-1 text-left" onClick={() => handleAskQuestion(question)}>
+                            {question}
                         </button>
-                        <button
-                            className="text-blue-900 mb-1 text-left"
-                            onClick={() =>
-                                handleAskQuestion(
-                                    "Question 2" // What is unique about the article I am reading?
-                                )
-                            }
-                        >
-                            Question 2
-                        </button>
-                        <button
-                            className="text-blue-900 mb-1 text-left"
-                            onClick={() =>
-                                handleAskQuestion(
-                                    "Question 3" // Translate the first sentence of the article I am reading into spanish
-                                )
-                            }
-                        >
-                            Question 3
-                        </button>
-                    </>
-                    ) : null}
+                    ))}
                 </div>
 
                 <div className="flex items-center mt-4 w-full">
