@@ -7,21 +7,61 @@ import Chat from "@/components/Chat";
 const Sidebar: React.FC<{ currentArticleTitle: string; predictions: string[] }> = ({
   currentArticleTitle,
   predictions,
-}) => (
-  <div className="w-1/5 bg-gray-200 p-4 m-4 max-h-full overflow-y-auto">
-    <h2 className="text-lg font-semibold mb-4">Navigation</h2>
-    <ul>
-      <li className="mb-2">
-        <a href="" target="_self" rel="noopener noreferrer">
-          {currentArticleTitle}
+}) => {
+  const [predictionNames, setPredictionNames] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchPredictionNames = async () => {
+      try {
+        const promises = predictions.map(async (prediction) => {
+          const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              article_id: prediction,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          return data["title"];
+        });
+
+        const names = await Promise.all(promises);
+        setPredictionNames(names);
+      } catch (error) {
+        console.error("Error fetching prediction names:", error);
+      }
+    };
+
+    if (predictions && predictions.length > 0) {
+      fetchPredictionNames();
+    }
+  }, [predictions]);
+
+  return (
+    <div className="w-1/5 bg-gray-200 p-4 m-4 max-h-full overflow-y-auto">
+      <h2 className="text-lg font-semibold mb-4">Navigation</h2>
+      <ul>
+        <li className="mb-2">
+          <a href="" target="_self" rel="noopener noreferrer">
+            {currentArticleTitle}
+          </a>
+        </li>
+      </ul>
+      {predictionNames && predictionNames.map((name, index) => (
+        <a href={`/article/${predictions[index]}`} key={index}>
+          <p> ↳ {name}</p>
         </a>
-      </li>
-    </ul>
-    {predictions && predictions.map((prediction, index) => (
-      <p key={index}> ↳ {prediction}</p>
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
+};
 
 export default function Article({}: {}) {
   const [isCollapsed, setIsCollapsed] = useState(false);
