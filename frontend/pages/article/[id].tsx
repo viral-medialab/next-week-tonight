@@ -55,9 +55,12 @@ const Sidebar: React.FC<{ currentArticleTitle: string; predictions: string[] }> 
         </li>
       </ul>
       {predictionNames && predictionNames.map((name, index) => (
+        <div key={index}>
         <a href={`/article/${predictions[index]}`} key={index}>
           <p> ↳ {name}</p>
         </a>
+        {index < predictionNames.length - 1 && <div style={{ height: "8px" }} />}
+        </div>
       ))}
     </div>
   );
