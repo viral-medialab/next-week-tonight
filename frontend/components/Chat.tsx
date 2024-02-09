@@ -41,7 +41,11 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
     };
 
     const handleAskQuestion = (question: string) => {
-        setNewMessage(question);
+        question = question.substring(4);
+        if (question[0] !== " ") {
+            question = " " + question;
+        }
+        setNewMessage("What happens if" + question);
         const textarea = document.getElementById("message-box");
         if (textarea) {
             textarea.focus();
