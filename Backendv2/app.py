@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from query_utils import *
 from article_utils import *
-from database_utils import save_generated_article_to_DB
+from database_utils import clear_cache, save_generated_article_to_DB
 
 app = Flask(__name__)
 CORS(app)
@@ -132,8 +132,29 @@ def handle_test():
     print("retrieved data")
     article_id = data.get('article_id')
     print(f"got article id: {article_id}")
-    return {"id": article_id}
+    return jsonify({"id": article_id})
 
+
+
+
+
+@app.route('/api/clear_cache', methods=['GET','POST'])
+def handle_clear_cache():
+    '''
+    Clears all AI generated articles that are children of the currently viewed article
+
+    Inputs:
+
+        article_id (str)        :   The id of the article whose children we are deleting
+
+    To add: option for recursively deleting children of children
+    '''
+    data = request.get_json()
+    article_id = data['article_id']
+    clear_cache(article_id)
+
+
+    
 
 
 

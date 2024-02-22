@@ -139,10 +139,17 @@ def save_generated_article_to_DB(title, body, parent, query):
 
 
 
-
-def clear_cache():
+def clear_cache(parent_id = None):
     client, db, collection = connect_to_mongodb()
-    collection.delete_many({'is_generated': True})
+    if parent_id:
+        for doc in collection.find({"id" : {"$regex" : parent_id}}):
+            if doc['id'] != parent_id:
+                collection.delete_one(doc)
+    else:
+        collection.delete_many({'is_generated': True})
+
+
+
 
 
 

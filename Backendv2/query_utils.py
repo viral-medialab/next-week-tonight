@@ -100,33 +100,38 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     '''
 
     time1 = time.time()
+    yield "Generating Questions"
     AI_generated_questions = generate_relevant_questions(article, user_prompt)
     time2 = time.time()
-    print(f"Generating questions took {time2-time1} seconds")
+    yield f"Generating questions took {time2-time1} seconds"
 
 
     time1 = time.time()
+    yield "Generating text embeddings for questions"
     embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions[:3]]
     time2 = time.time()
-    print(f"Fetching embeddings took {time2-time1} seconds")
+    yield f"Fetching embeddings took {time2-time1} seconds"
     
 
     time1 = time.time()
+    yield "Finding relevant articles based on questions"
     relevant_article_urls = [find_closest_article_using_simple_search(embedding, all_doc_embeddings) for embedding in embeddings]
     time2 = time.time()
-    print(f"Finding relevant articles took {time2-time1} seconds")
+    yield f"Finding relevant articles took {time2-time1} seconds"
     
 
     time1 = time.time()
+    yield "Loading relevant article contents"
     relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in set(relevant_article_urls[:2])]
     time2 = time.time()
-    print(f"Loading relevant article contents took {time2-time1} seconds")
+    yield f"Loading relevant article contents took {time2-time1} seconds"
     
 
     time1 = time.time()
+    yield "Generating possible scenarios"
     scenarios = generate_scenarios(relevant_articles, user_query=user_prompt, max_context_length = 10000)
     time2 = time.time()
-    print(f"Generating scenarios based on articles and query took {time2-time1} seconds")
+    yield f"Generating scenarios based on articles and query took {time2-time1} seconds"
 
     '''
     
@@ -145,7 +150,6 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     #########################################################################################################################################################
     
     '''
-
     out = scenarios
 
     if verbose:
