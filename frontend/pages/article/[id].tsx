@@ -9,6 +9,34 @@ const Sidebar: React.FC<{ currentArticleTitle: string; predictions: string[] }> 
   predictions,
 }) => {
   const [predictionNames, setPredictionNames] = useState<string[]>([]);
+  const router = useRouter();
+  const { id: urlID } = router.query;
+
+  const handleClearCache = async () => {
+    try {
+      console.log(urlID);
+      if (urlID) {
+        const response = await fetch("http://127.0.0.1:5000/api/handle_clear_cache", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            article_id: urlID,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        notifyArticleUpdate();
+      } else {
+        console.error("urlID is not defined.");
+      }
+    } catch (error) {
+      console.error("Error clearing cache:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchPredictionNames = async () => {
@@ -47,6 +75,9 @@ const Sidebar: React.FC<{ currentArticleTitle: string; predictions: string[] }> 
   return (
     <div className="w-1/5 bg-gray-200 p-4 m-4 max-h-full overflow-y-auto">
       <h2 className="text-lg font-semibold mb-4">Navigation</h2>
+      <button onClick={handleClearCache} className="text-blue-700 hover:underline">
+              Clear Cache
+      </button>
       <ul>
         <li className="mb-2">
           <a href="" target="_self" rel="noopener noreferrer">
