@@ -158,8 +158,23 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
         print("Created article:", out, "\n\n\n\n")
         print("Created scenarios:", scenarios, "\n\n\n\n")
 
-    return AI_generated_questions, relevant_articles, scenarios, out
+    return [AI_generated_questions, relevant_articles, scenarios, out]
 
+
+
+
+def q2a_workflow_wrapper(article, user_prompt, num_articles = 1, verbose = True):
+    '''
+    Placeholder function such that we receive all yields from q2a_workflow
+    but we only return the desired output
+    '''
+    for out in q2a_workflow(article, user_prompt, num_articles, verbose):
+        if type(out) == str:
+            print(out)
+        elif type(out) == list:
+            for info in out:
+                print(info)
+            return out
 
 
 

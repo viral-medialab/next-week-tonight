@@ -144,9 +144,11 @@ def clear_cache(parent_id = None):
     if parent_id:
         for doc in collection.find({"id" : {"$regex" : parent_id}}):
             if doc['id'] != parent_id:
+                yield f"Now deleting document with id {doc['id']}"
                 collection.delete_one(doc)
     else:
         collection.delete_many({'is_generated': True})
+    return
 
 
 

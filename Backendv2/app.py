@@ -44,7 +44,7 @@ def handle_q2a_workflow():
     article = get_article_contents_from_id(article_id)
 
     print(article, user_prompt, num_articles, verbose)
-    results = q2a_workflow(article, user_prompt, num_articles, verbose)
+    results = q2a_workflow_wrapper(article, user_prompt, num_articles, verbose)
     out = {}
     for i, result in enumerate(results[-1]):
         id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
@@ -138,7 +138,7 @@ def handle_test():
 
 
 
-@app.route('/api/clear_cache', methods=['GET','POST'])
+@app.route('/api/handle_clear_cache', methods=['GET','POST'])
 def handle_clear_cache():
     '''
     Clears all AI generated articles that are children of the currently viewed article
@@ -146,12 +146,15 @@ def handle_clear_cache():
     Inputs:
 
         article_id (str)        :   The id of the article whose children we are deleting
+        
 
     To add: option for recursively deleting children of children
     '''
     data = request.get_json()
     article_id = data['article_id']
-    clear_cache(article_id)
+    for statement in clear_cache(article_id):
+        print(statement)
+    return jsonify({'message': 'Cache cleared successfully'})
 
 
     
