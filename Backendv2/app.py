@@ -48,7 +48,7 @@ def handle_q2a_workflow():
     out = {}
     for i, result in enumerate(results[-1]):
         id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
-        out[f'article_{i}'] = {"title": result[0], "body": result[1], "id": id, "parent": parent}
+        out[f'article_{i}'] = {"title": result[0], "body": result[1], "id": id, "parent": parent, "sources": {"test title 1": "test url 1", "test title 2": "test url 2"}}
         print(out[f'article_{i}'])
     return jsonify(out)
 
