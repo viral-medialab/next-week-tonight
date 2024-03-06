@@ -163,6 +163,14 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
                                                   Read more
                                               </button>
                                               </a>
+                                              <p className="text-gray-700 text-base">
+                                                Sources:
+                                                {Object.entries(message.text["article_0"]["source"]).map(([key, value], index) => (
+                                                  <a key={index} href={value} target="_blank" rel="noopener noreferrer">
+                                                    {key}
+                                                  </a>
+                                                ))}
+                                              </p>
                                             </div>
                                           </div>
 
@@ -181,6 +189,14 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
                                                     Read more
                                                 </button>
                                               </a>
+                                              <p className="text-gray-700 text-base">
+                                                Sources:
+                                                {Object.entries(message.text["article_1"]["source"]).map(([key, value], index) => (
+                                                  <a key={index} href={value} target="_blank" rel="noopener noreferrer">
+                                                    {key}
+                                                  </a>
+                                                ))}
+                                              </p>
                                             </div>
                                           </div>
 
@@ -199,6 +215,14 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
                                                     Read more
                                                 </button>
                                               </a>
+                                              <p className="text-gray-700 text-base">
+                                                Sources:
+                                                {Object.entries(message.text["article_2"]["source"]).map(([key, value], index) => (
+                                                  <a key={index} href={value} target="_blank" rel="noopener noreferrer">
+                                                    {key}
+                                                  </a>
+                                                ))}
+                                              </p>
                                             </div>
                                           </div>
                                         </div>
