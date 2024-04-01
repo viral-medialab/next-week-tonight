@@ -4,6 +4,16 @@ from query_utils import *
 from article_utils import *
 from database_utils import clear_cache, save_generated_article_to_DB
 
+import streamlit as st
+import pandas as pd
+import io
+import openai
+from env import *
+
+client = openai.OpenAI(
+    api_key=OPENAI_API_KEY,
+)
+
 app = Flask(__name__)
 CORS(app)
 '''
@@ -156,6 +166,81 @@ def handle_clear_cache():
         print(statement)
     return jsonify({'message': 'Cache cleared successfully'})
 
+
+'''
+DATA VISUALIZATION
+'''
+
+@app.route('/api/generate_visualization', methods=['GET','POST'])
+def generate_visualization():
+    '''
+    Returns visualization of data
+    Inputs: data: csv file
+    '''
+    print(request.data)
+    data = io.StringIO(request.data.decode('utf-8'))
+    df = pd.read_csv(data)
+    print(df)
+
+    # Define the messages for the OpenAI model
+    messages = [
+        {
+            "role": "system",
+            "content": "You are a helpful Data Visualization assistant who gives a single block without explaining or commenting the code to plot. IF ANYTHING NOT ABOUT THE DATA, JUST politely respond that you don't know.",
+        },
+        {"role": "user", "content": "generate a visualization for this data"},
+    ]
+
+    # Call OpenAI and display the response
+    response = client.chat.completions.create(
+        messages=messages,
+        model="gpt-4-1106-preview",
+    )
+    execute_openai_code(response, df)
+
+def execute_openai_code(response_text: str, df: pd.DataFrame):
+    """
+    Execute the code provided by OpenAI in the app.
+
+    Parameters:
+    - response_text: The response text from OpenAI
+    - df: DataFrame containing the data
+    - query: The user's query
+    """
+
+    # Extract code from the response text
+    code = extract_code_from_markdown(response_text)
+
+    # If there's code in the response, try to execute it
+    if code:
+        try:
+            exec(code)
+            st.pyplot()
+        except Exception as e:
+            error_message = str(e)
+            st.error(
+                f"📟 Apologies, failed to execute the code due to the error: {error_message}"
+            )
+    else:
+        st.write(response_text)
+
+def extract_code_from_markdown(md_text):
+    """
+    Extract Python code from markdown text.
+
+    Parameters:
+    - md_text: Markdown text containing the code
+
+    Returns:
+    - The extracted Python code
+    """
+    # Extract code between the delimiters
+    code_blocks = re.findall(r"```(python)?(.*?)```", md_text, re.DOTALL)
+
+    # Strip leading and trailing whitespace and join the code blocks
+    code = "\n".join([block[1].strip() for block in code_blocks])
+
+    return code
 
     
 
