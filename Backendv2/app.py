@@ -182,21 +182,56 @@ def generate_visualization():
     df = pd.read_csv(data)
     print(df)
 
+    column_names = ", ".join(df.columns)
+    query = "draw a bar graph"
+
+    prompt_content = f"""
+            The dataset is ALREADY loaded into a DataFrame named 'df'. DO NOT load the data again.
+            
+            The DataFrame has the following columns: {column_names}
+            
+            Before plotting, ensure the data is ready:
+            1. Check if columns that are supposed to be numeric are recognized as such. If not, attempt to convert them.
+            2. Handle NaN values by filling with mean or median.
+            
+            Use package Pandas and Matplotlib ONLY.
+            Provide SINGLE CODE BLOCK with a solution using Pandas and Matplotlib plots in a single figure to address the following query:
+            
+            {query}
+
+            - USE SINGLE CODE BLOCK with a solution. 
+            - Do NOT EXPLAIN the code 
+            - DO NOT COMMENT the code. 
+            - ALWAYS WRAP UP THE CODE IN A SINGLE CODE BLOCK.
+            - The code block must start and end with ```
+            
+            - Example code format ```code```
+        
+            - Colors to use for background and axes of the figure : #F0F0F6
+            - Try to use the following color palette for coloring the plots : #8f63ee #ced5ce #a27bf6 #3d3b41
+            
+            """
+
     # Define the messages for the OpenAI model
     messages = [
         {
             "role": "system",
             "content": "You are a helpful Data Visualization assistant who gives a single block without explaining or commenting the code to plot. IF ANYTHING NOT ABOUT THE DATA, JUST politely respond that you don't know.",
         },
-        {"role": "user", "content": "generate a visualization for this data"},
+        {"role": "user", "content": prompt_content},
     ]
 
-    # Call OpenAI and display the response
-    response = client.chat.completions.create(
-        messages=messages,
-        model="gpt-4-1106-preview",
-    )
-    execute_openai_code(response, df)
+    response = []
+    result = ""
+    for chunk in client.chat.completions.create(
+            model="gpt-4-1106-preview", messages=messages, stream=True
+    ):
+        text = chunk.choices[0].delta.content
+        if text:
+            response.append(text)
+            result = "".join(response).strip()
+    print(result)
+    execute_openai_code(result, df)
 
 def execute_openai_code(response_text: str, df: pd.DataFrame):
     """
