@@ -4,9 +4,12 @@ from query_utils import *
 from article_utils import *
 from database_utils import clear_cache, save_generated_article_to_DB
 
-import streamlit as st
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 import io
+import base64
 import openai
 from env import *
 
@@ -179,7 +182,7 @@ def generate_visualization():
     '''
     print(request.data)
     data = io.StringIO(request.data.decode('utf-8'))
-    df = pd.read_csv(data)
+    df = pd.read_csv(data, sep=';', skipinitialspace=True)
     print(df)
 
     column_names = ", ".join(df.columns)
@@ -231,7 +234,7 @@ def generate_visualization():
             response.append(text)
             result = "".join(response).strip()
     print(result)
-    execute_openai_code(result, df)
+    return execute_openai_code(result, df)
 
 def execute_openai_code(response_text: str, df: pd.DataFrame):
     """
@@ -246,18 +249,23 @@ def execute_openai_code(response_text: str, df: pd.DataFrame):
     # Extract code from the response text
     code = extract_code_from_markdown(response_text)
 
-    # If there's code in the response, try to execute it
     if code:
         try:
             exec(code)
-            st.pyplot()
+            # Save the plot to a bytes buffer
+            buffer = io.BytesIO()
+            plt.savefig(buffer, format='png')
+            buffer.seek(0)
+            # Encode the image data as base64
+            encoded_image = base64.b64encode(buffer.getvalue()).decode('utf-8')
+            # Return the base64 encoded image data
+            return encoded_image
+
         except Exception as e:
             error_message = str(e)
-            st.error(
-                f"📟 Apologies, failed to execute the code due to the error: {error_message}"
-            )
+            return f"📟 Apologies, failed to execute the code due to the error: {error_message}"
     else:
-        st.write(response_text)
+        return response_text
 
 def extract_code_from_markdown(md_text):
     """

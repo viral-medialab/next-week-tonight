@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Data: React.FC = () => {
     const [fileUploaded, setFileUploaded] = useState<boolean>(false);
+    const [imageSrc, setImageSrc] = useState<string | null>(null);
 
     // Function to handle file upload
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +22,12 @@ const Data: React.FC = () => {
                     });
                     console.log(response);
                     // Handle response here
+                    if (response.ok) {
+                        const imageData = await response.text();
+                        setImageSrc(`data:image/png;base64,${imageData}`);
+                    } else {
+                        alert('Failed to generate visualization. Please try again.');
+                    }
                 } catch (error) {
                     console.error('Error uploading file:', error);
                 }
@@ -42,6 +49,7 @@ const Data: React.FC = () => {
                 />
                 {fileUploaded && <p className="text-green-500">File uploaded successfully!</p>}
             </div>
+            {imageSrc && <img src={imageSrc} alt="Visualization" className="mt-4" />}
         </div>
     );
 };
