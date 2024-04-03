@@ -140,4 +140,6 @@ def main(args):
 
 
 if __name__=='__main__':
-    main(sys.argv)
+    #main(sys.argv)
+    #populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 8)
+    populate_database_by_topic("Truth Social Stock Price Surges", 20, trending_topic=True, max_attempts = 2)

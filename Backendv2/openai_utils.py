@@ -14,7 +14,7 @@ client = OpenAI(
 
 
 
-def query_chatgpt(contexts, queries, model="gpt-4-1106-preview"):
+def query_chatgpt(contexts, queries, model="gpt-4-turbo-preview"):
     if len(queries) > 1:
         contexts += ["Note: The input will be split by semicolons. Answer each prompt separately and return your answer also split by semicolons. For example, if I asked you to solve arithmetic problems and my input was '2+2;4+5', your answer should be '4;9'."]
     messages = []
@@ -38,7 +38,7 @@ def query_chatgpt(contexts, queries, model="gpt-4-1106-preview"):
 
 
 
-def get_embedding(text, engine = 'text-embedding-ada-002'):
+def get_embedding(text, engine = 'text-embedding-3-small'):
         """
         Get the embedding for the given text using OpenAI's Embedding API.
 

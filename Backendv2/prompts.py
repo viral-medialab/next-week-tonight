@@ -247,7 +247,9 @@ scenario_generation_prompt = convert_to_proper_format('''Let's play a game where
                                 scenario that you can output is 'Iran declares war on Israel'. Keep the predictions interesting and use specific
                                 nouns as much as possible. The scenarios you generate must be somewhat distant from each other, such that exploring
                                 multiple scenarios contains at most a tiny amount of overlap. Make sure the predictions are around 5 sentences long and
-                                are not already happening, that is, they have to be future predictions not present predictions.''')
+                                are not already happening, that is, they have to be future predictions not present predictions. Lastly, for each scenario, at the 
+                                end of the scenario, type the articles you used. For example, if you used articles 0 and 3 to generate a scenario, at the end of that 
+                                scenario, type [[[0,3 before the semicolon.''')
 
 
 short_scenario_generation_prompt = convert_to_proper_format('''Let's play a game where you are a real-life world builder. Given a question and some relevant context, you build SEPARATE and DISTINCT

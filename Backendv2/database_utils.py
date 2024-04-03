@@ -5,10 +5,12 @@ from openai_utils import get_embedding
 from copy import deepcopy
 from numpy import random
 import numpy as np
+import requests
+import fitz
 
 
 
-def connect_to_mongodb():
+def connect_to_mongodb(collection = 'articles'):
     client = MongoClient(MONGODB_URI_KEY)
     try:
         client.admin.command('ping')
@@ -17,9 +19,9 @@ def connect_to_mongodb():
         print(e)
     
     db = client["news"]
-    collection = db["articles"]
+    db_collection = db[collection]
 
-    return client, db, collection
+    return client, db, db_collection
 
 
 
@@ -104,7 +106,11 @@ def get_embeddings_from_mongo():
     for doc in collection.find({ 'is_generated': { '$exists': False} }):
         if len(doc['semantic_embedding']) != 1536:
             raise Exception(f'Article at ID={doc["id"]} has incorret embedding vector')
-        embeddings.append([doc['semantic_embedding'], doc['url']])
+        # if 'url' in doc:
+        #     embeddings.append([doc['semantic_embedding'], doc['url']])
+        # else:
+        #     embeddings.append([doc['semantic_embedding'], doc['id']])
+        embeddings.append([doc['semantic_embedding'], doc['id']])
     return embeddings
 
 
@@ -152,10 +158,6 @@ def clear_cache(parent_id = None):
 
 
 
-
-
-
-
 def similarity_score(x, y, verbose = True):
     x = np.array(x)
     y = np.array(y)
@@ -169,14 +171,13 @@ def similarity_score(x, y, verbose = True):
 
 def find_closest_article_using_simple_search(question_embedding, article_embeddings):
     closest_dist = -1.1
-    closest_url = False
+    closest_id = False
     for other_embed in article_embeddings:
-        if not closest_url or similarity_score(question_embedding, other_embed[0], verbose=False) > closest_dist:
+        if not closest_id or similarity_score(question_embedding, other_embed[0], verbose=False) > closest_dist:
             closest_dist = similarity_score(question_embedding, other_embed[0], verbose=False)
-            closest_url = other_embed[1]
+            closest_id = other_embed[1]
 
-    return closest_url
-
+    return closest_id
 
 
 
@@ -185,7 +186,6 @@ def add_children_to_all_entries():
     collection = db['trendingTopics']
     # we will make a two-way dependency in the DB
     # first, pull the article with the parent id and save the current article id as a child
-
 
     topics = collection.find({})
     for topic in topics:
@@ -201,7 +201,104 @@ def add_children_to_all_entries():
 
 
 
+def get_contents_from_id(id):
+    '''
+    Get contents from the id, where the id can point to various
+    file types, including pdf, png, and previously gathered MSN articles
+    '''
+    client, db, collection = connect_to_mongodb()
+    doc = collection.find_one({"id" : id})
+    if "filetype" in doc:
+        return read_pdf(id)
+    else:
+        return get_article_contents_from_id(id)
+    
+
+
+def read_pdf(file_id):
+    URL = "https://drive.google.com/uc?export=download"
+    session = requests.Session()
+    response = session.get(URL, params={'id': file_id}, stream=True)
+    token = get_confirm_token(response)
+    if token:
+        params = {'id': file_id, 'confirm': token}
+        response = session.get(URL, params=params, stream=True)
+
+    # Directly use the response content with fitz.open
+    pdf_bytes = response.content
+    text = read_pdf_text(pdf_bytes)
+    return text
+
+
+
+def get_confirm_token(response):
+    for key, value in response.cookies.items():
+        if key.startswith('download_warning'):
+            return value
+    return None
+
+
+
+def read_pdf_text(pdf_bytes):
+    text = ''
+    # Directly pass the bytes to fitz.open
+    with fitz.open(stream=pdf_bytes, filetype="pdf") as doc:
+        for page in doc:
+            text += page.get_text()
+    return text
+
+
+
+def clear_all_expired_articles():
+    client, db, collection = connect_to_mongodb() # article database
+    for doc in collection.find({ 'url': { '$exists': True} }):
+        contents = get_article_contents_from_id(doc['id'])
+        if contents:
+            print(f"Success with doc['id'] = {doc['id']}")
+        else:
+            print(f"Deleting doc with doc['id'] = {doc['id']}")
+            collection.delete_one(doc)
+
+    
+    '''
+    collection = db["trendingTopics"]
+    topics = collection.find({})
+    for topic in topics:
+        topic_name = topic['topic']
+        topic_articles = topic["articles"]
+        new_topic_articles = []
+        for article in topic_articles:
+            id = get_article_id(article)
+            title, author, content = get_article_contents_for_website(id)
+            if hash(title + author) in seen_articles:
+                print('Deleted duplicate of title:', title)
+            else:
+                print("Kept article in DB with title:", title)
+                seen_articles.add(hash(title + author))
+                new_topic_articles.append(article)
+        new_entry['articles'] = new_topic_articles
+        '''
+
+
+def clear_all_pdf_articles():
+    client, db, collection = connect_to_mongodb() # article database
+    for doc in collection.find({ 'filetype' : { '$exists': True} }):
+        collection.delete_one(doc)
+        print(f"Deleting doc with doc['id'] = {doc['id']}")
+
+    
+
+def clear_trending_topics():
+    client, db, collection = connect_to_mongodb(collection = 'trendingTopics') # article database
+    for doc in collection.find({ 'articles': { '$exists': True} }):
+        print(f"Deleting doc with doc['topic'] = {doc['topic']}")
+        collection.delete_one(doc)
+
 
 
 if __name__ == '__main__':
-    add_children_to_all_entries()
+    #add_children_to_all_entries()
+    #print(get_contents_from_id("1PZLdGojG8zeJGfh3WYGDJtaPSBK7dj3p"))
+    #clear_all_expired_articles()
+    #clear_all_pdf_articles()
+    clear_trending_topics()

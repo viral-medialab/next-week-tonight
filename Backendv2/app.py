@@ -44,7 +44,8 @@ def handle_q2a_workflow():
     article = get_article_contents_from_id(article_id)
 
     print(article, user_prompt, num_articles, verbose)
-    results = q2a_workflow_wrapper(article, user_prompt, num_articles, verbose)
+    results = q2a_workflow_wrapper_debug(article, user_prompt, num_articles, verbose) # no yields for now
+    print(results)
     out = {}
     for i, result in enumerate(results[-1]):
         id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
