@@ -12,7 +12,7 @@ We are passionate about bringing interactivity to news story telling and providi
 Currently how we run this is:
 
 Open up one terminal and run 
-> python Backend/app.py
+> python Backendv2/app.py
 
 Open up a second terminal and run 
 > cd frontend 
