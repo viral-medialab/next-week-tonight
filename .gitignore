@@ -3,3 +3,6 @@ Backend
 cardiffnlp
 Outputs
 Backendv2/__pycache__/
+env/
+node_modules/
+Dockerfile
