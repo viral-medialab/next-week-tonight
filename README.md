@@ -15,6 +15,7 @@ Open up one terminal and run
 > python Backendv2/app.py
 
 Open up a second terminal and run 
+> npm install (if running for the first time)
 > cd frontend 
 
 > npm run dev
