@@ -2,4 +2,4 @@ vars.env
 Backend
 cardiffnlp
 Outputs
-Backendv2/__pycache__/
+Backendv2/__pycache__/*
