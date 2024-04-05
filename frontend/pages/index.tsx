@@ -20,7 +20,7 @@ type Topic = {
     isPinnedTopic: boolean;
 };
 
-const Index = () => {
+const oldIndex = () => {
     const [newsTopics, setNewsTopics] = useState<Topic[]>([]);
     const [isLoadingHeadlines, setIsLoadingHeadlines] = useState(true);
     const [isLoadingTrackedTopics, setIsLoadingTrackedTopics] = useState(true);
@@ -233,4 +233,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default oldIndex;
