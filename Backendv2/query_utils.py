@@ -6,6 +6,7 @@ from database_utils import *
 from article_utils import *
 
 print("loading doc embeddings")
+
 all_doc_embeddings = get_embeddings_from_mongo()
 print("done loading embeddings")
 
@@ -34,50 +35,30 @@ def generate_what_if_questions(text_from_articles, num_preds = 3):
 
 
 
-def generate_article(user_prompt, scenario, relevant_articles, max_context_length = 10000):
-    overall_context = generate_article_prompt
 
-    relevant_context = "Here is some relevant information to write your articles. Use the information here to extract facts for your articles (each piece of information is separated by a semicolon): "
-    for info in relevant_articles:
-        relevant_context += info + "- NEXT ARTICLE -"
-    relevant_context = relevant_context[:-16]
-
-    user_query = 'Please write an article title followed by a roughly 500 word article, where the article title is separated from the article contents by a semi-colon (do not write "Title:" for the title or something similar). Answer the following question: ' + user_prompt + ', assuming that ' + scenario
-
-    return query_chatgpt([overall_context, relevant_context], user_query[:max_context_length])
-
-
-
-
-
-def generate_scenarios(relevant_articles, user_query = None, max_context_length = 10000):
+def generate_scenario(relevant_articles, polarity, probability, extreme_scenarios, user_query, max_context_length = 10000):
     #Relevant info is a list of strings where each string is an article body
-    overall_context = scenario_generation_prompt
-    relevant_context = "Here is some relevant information to formulate your scenarios: ".replace("\n", "")
+    relevant_context = "Here is some relevant information that will aid in your answers: ".replace("\n", "")
     for article in relevant_articles:
-        relevant_context += article + "- NEXT ARTICLE -"
+        if type(article) == str:
+            relevant_context += article + "   --- NEXT ARTICLE ---   "
     relevant_context = relevant_context[:-1]
 
-    if user_query:
-        query = "Generate five scenarios, separated by semicolons. Do not list the scenarios one-by-one: " + user_query
-    else:
-        query = 'For now, there is no question. Generate the scenarios using only the relevant articles.'
+    extremes_context = f'Here are some examples of extremes for the query:\n\nPOLARIZATION EXTREMES-{extreme_scenarios["polarity"]}\nPROBABILITY EXTREMES-{extreme_scenarios["probability"]}'
 
-    scenarios = query_chatgpt([overall_context, relevant_context], query[:max_context_length])
-    if type(scenarios) == type("string"):
-        raise Exception("Scenario Generation Failed")
+    query = single_scenario_using_pol_prob_prompt + "\n\n Here is the query: " + user_query + "\n" + extremes_context + f"\nThe polarization is {polarity} and the probability is {probability}"
 
-    out = []
-    for scenario in scenarios:
-        scenario_title= query_chatgpt([], ["Make a title for this scenario: " + scenario], model="gpt-3.5-turbo-0125")
-        out.append([scenario_title, scenario])
+    scenario = query_chatgpt([relevant_context], [query[:max_context_length]])
+
+    scenario_title= query_chatgpt([], ["Make a title for this scenario (write the title, but do not specify that it is the title by saying 'title:' or 'scenario header:' anything similar, and do not put quotes around it): " + scenario], model="gpt-3.5-turbo-0125")
+    out = [scenario_title, scenario]
 
     return out
 
 
 
 
-def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
+def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbose = True):
     '''
     Takes an article and corresponding user query, and works it into an article that answers the user's prompt.
 
@@ -100,82 +81,72 @@ def q2a_workflow(article, user_prompt, num_articles = 1, verbose = True):
     '''
 
     time1 = time.time()
-    yield "Generating Questions"
     AI_generated_questions = generate_relevant_questions(article, user_prompt)
     time2 = time.time()
-    yield f"Generating questions took {time2-time1} seconds"
+    if verbose: print(f"Generating questions took {time2-time1} seconds")
 
 
     time1 = time.time()
-    yield "Generating text embeddings for questions"
-    embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions[:3]]
+    embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions[:5]]
     time2 = time.time()
-    yield f"Fetching embeddings took {time2-time1} seconds"
+    if verbose: print(f"Fetching embeddings took {time2-time1} seconds")
     
 
     time1 = time.time()
-    yield "Finding relevant articles based on questions"
     relevant_article_urls = [find_closest_article_using_simple_search(embedding, all_doc_embeddings) for embedding in embeddings]
     time2 = time.time()
-    yield f"Finding relevant articles took {time2-time1} seconds"
+    if verbose: print(f"Finding relevant articles took {time2-time1} seconds")
     
 
     time1 = time.time()
-    yield "Loading relevant article contents"
-    relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in set(relevant_article_urls[:2])]
+    relevant_article_urls = list(set(relevant_article_urls))
+    relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in relevant_article_urls]
+    if None in relevant_articles:
+        relevant_articles.remove(None)
+    relevant_articles = relevant_articles[:3]
     time2 = time.time()
-    yield f"Loading relevant article contents took {time2-time1} seconds"
+    if verbose: print(f"Loading relevant article contents took {time2-time1} seconds")
     
 
     time1 = time.time()
-    yield "Generating possible scenarios"
-    scenarios = generate_scenarios(relevant_articles, user_query=user_prompt, max_context_length = 10000)
+    extreme_scenarios = retrieve_extreme_scenarios(user_prompt, article_id)
+    scenario_title, scenario = generate_scenario(relevant_articles, polarity, probability, extreme_scenarios, user_query=user_prompt, max_context_length = 10000) #pass in polarity, probability, extreme statements 
     time2 = time.time()
-    yield f"Generating scenarios based on articles and query took {time2-time1} seconds"
+    if verbose: print(f"Generating scenario based on articles and query took {time2-time1} seconds")
 
-    '''
+    scenario += "\n\n\nSources: "
+    for i, article_url in enumerate(relevant_article_urls):
+        scenario += f"\n({i}) " + article_url
     
-
-    #########################################################################################################################################################
-    # this can become asynchronous, will decrease speed BUT will increase API cost (have to refeed context every time =  a lot ofextra input tokens)
-    time1 = time.time()
-    print("Beginning to generate articles")
-    out = []
-    if verbose:
-        print('generated scenarios: ', scenarios)
-    for scenario in scenarios[1:4]:
-        out.append(generate_article(user_prompt, scenario, relevant_articles, max_context_length = 10000))
-    time2 = time.time()
-    print(f"Generating output articles took {time2-time1} seconds")
-    #########################################################################################################################################################
-    
-    '''
-    out = scenarios
+    out = [scenario_title, scenario]
 
     if verbose:
         print("AI generated questions: ", AI_generated_questions, "\n\n\n\n")
         print("Relevant articles: ", relevant_articles, "\n\n\n\n")
         print("Created article:", out, "\n\n\n\n")
-        print("Created scenarios:", scenarios, "\n\n\n\n")
-
-    return [AI_generated_questions, relevant_articles, scenarios, out]
+        print("Created scenario:", scenario, "\n\n\n\n")
 
 
+    return [AI_generated_questions, relevant_articles, scenario, out]
 
 
-def q2a_workflow_wrapper(article, user_prompt, num_articles = 1, verbose = True):
-    '''
-    Placeholder function such that we receive all yields from q2a_workflow
-    but we only return the desired output
-    '''
-    for out in q2a_workflow(article, user_prompt, num_articles, verbose):
-        if type(out) == str:
-            print(out)
-        elif type(out) == list:
-            for info in out:
-                print(info)
-            return out
-
+def retrieve_extreme_scenarios(user_prompt, article_id, override = False):
+    client, db, collection = connect_to_mongodb()
+    doc = collection.find_one({'id': article_id})
+    if 'prompts' not in doc:
+        doc['prompts'] = {}
+    if user_prompt in doc['prompts'] and not override:
+        return doc['prompts'][user_prompt]
+    else:
+        probability = query_chatgpt([], [extreme_scenario_context + f"\n{user_prompt} // Probability  "])
+        polarity = query_chatgpt([], [extreme_scenario_context + f"\n{user_prompt} // Objectivity "])
+        out = {'probability': probability, 'polarity': polarity}
+        doc['prompts'][user_prompt] = out
+        old_doc = collection.find_one({'id': article_id})
+        collection.replace_one(old_doc, doc)
+        return out
+    
+    
 
 
 def save_to_file(data, filename="out_article.txt"):
@@ -187,3 +158,15 @@ def save_to_file(data, filename="out_article.txt"):
             else:
                 file.write(entry + "\n")
             file.write("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+
+
+
+
+
+if __name__ == '__main__':
+    user_prompt = 'What if Iran declares war on Israel?'
+    article_id = 'AA1n5srJ'
+    print(retrieve_extreme_scenarios(user_prompt, article_id, override=False))
+    print(generate_scenario([get_article_contents_from_id(article_id)], 7, 1, retrieve_extreme_scenarios(user_prompt, article_id), user_prompt, max_context_length = 10000))
+    print(generate_scenario([get_article_contents_from_id(article_id)], 4, 4, retrieve_extreme_scenarios(user_prompt, article_id), user_prompt, max_context_length = 10000))
+    print(generate_scenario([get_article_contents_from_id(article_id)], 1, 7, retrieve_extreme_scenarios(user_prompt, article_id), user_prompt, max_context_length = 10000))

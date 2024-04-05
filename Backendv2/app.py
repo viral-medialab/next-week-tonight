@@ -44,25 +44,26 @@ def handle_q2a_workflow():
         verbose (bool)      :   [OPTIONAL, default = False] Prints debug statements 
                                 into the terminal
 
-    Outputs a new article in the format {'title': title, 'body': body}
+    Outputs a new article in the format {'title': title, 'body': body, etc.} 
     '''
     data = request.get_json()
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', None)
+    polarity = data.get('polarity', 7)
+    probability = data.get('probability', 1)
     if article_url:
         article_id = get_article_id(article_url)
     user_prompt = data.get('user_prompt')
-    num_articles = int(data.get('num_articles', '1'))
-    verbose = data.get('verbose', False)
+    verbose = data.get('verbose', True)
     article = get_article_contents_from_id(article_id)
 
-    print(article, user_prompt, num_articles, verbose)
-    results = q2a_workflow_wrapper(article, user_prompt, num_articles, verbose)
+    print(article, user_prompt, verbose)
+    results = q2a_workflow(article, article_id, user_prompt, polarity, probability, verbose)
     out = {}
-    for i, result in enumerate(results[-1]):
-        id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
-        out[f'article_{i}'] = {"title": result[0], "body": result[1], "id": id, "parent": parent, "sources": {"test title 1": "test url 1", "test title 2": "test url 2"}}
-        print(out[f'article_{i}'])
+    result = results[-1]
+    id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
+    out[f'article_0'] = {"title": result[0], "body": result[1], "id": id, "parent": parent}
+    print(out[f'article_0'])
     return jsonify(out)
 
 

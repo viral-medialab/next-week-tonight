@@ -27,8 +27,6 @@ def query_chatgpt(contexts, queries, model="gpt-4-1106-preview"):
         messages=messages,
         model=model,
     )
-
-    print(response.choices[0].message.content)
     out = response.choices[0].message.content.split(";")
     if len(out) > 1:
          return out

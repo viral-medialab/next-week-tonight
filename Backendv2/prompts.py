@@ -245,15 +245,41 @@ scenario_generation_prompt = convert_to_proper_format('''Let's play a game where
                                 scenarios that are possible in real life and also answer the question. For example, if I were to ask 'What happens
                                 if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
                                 scenario that you can output is 'Iran declares war on Israel'. Keep the predictions interesting and use specific
-                                nouns as much as possible. The scenarios you generate must be somewhat distant from each other, such that exploring
-                                multiple scenarios contains at most a tiny amount of overlap. Make sure the predictions are around 5 sentences long and
-                                are not already happening, that is, they have to be future predictions not present predictions.''')
+                                nouns as much as possible. Make sure the predictions are around 5 sentences long and are not already happening, that is, 
+                                they have to be future predictions not present predictions.''')
 
 
 short_scenario_generation_prompt = convert_to_proper_format('''Let's play a game where you are a real-life world builder. Given a question and some relevant context, you build SEPARATE and DISTINCT
                                 scenarios that are possible in real life and also answer the question. Keep the predictions interesting and use specific
                                 nouns as much as possible. The scenarios you generate must be distant from each other. Make sure the predictions are around 5 sentences
                                 long, and all predictions have to be future predictions not present predictions. Lastly, do not tell a story thoughout the scenarios. They are SEPARATE and DISTINCT scenarios.''')
+
+
+
+single_scenario_using_pol_prob_prompt = convert_to_proper_format('''Let's play a game where you are a real-life world builder. Given a question and some relevant context, you build a
+                                scenario that is possible in real life that also answers the question. For example, if I were to ask 'What happens
+                                if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
+                                scenario that you can output is 'Iran declares war on Israel'. Keep the prediction interesting and use specific
+                                nouns as much as possible. Make sure the prediction is around 5 sentences long and is not already happening, that is, 
+                                it has to be a future prediction and not a present prediction. Lastly, you will be given two numbers between 1 and 7 that correspond to the 
+                                polarity (bias level) and probability of whatever scenario you create. A polarity of 1 means that the situation should be worded to be factual
+                                and without opinions, while an polarity of 7 means that the situation is highly subjective and opinionated (think political hit pieces such as 'Biden
+                                Cronies let Putin Take over Europe' as opposed to 'Russia Advances in Ukraine'). A probability ranked at 1 means that the event is super unlikely and a probability
+                                ranked at 7 means it is not a stretch at all. The value of the metric corresponds as 1 being extremely low, 4 being moderate, and 7 being extremely high.''')
+
+
+
+extreme_scenario_context = convert_to_proper_format('''I need concise and creative extremes for a scenario's outcome based on a specific question 
+                                                    and metric (probability, intensity, impact, etc.). For example, regarding the future 
+                                                    of the Russia-Ukraine conflict, with a focus on probability, extremes might be: low 
+                                                    probability - Ukraine changes the tide of war and invades Russia and Belarussia fully (do NOT lean into science fiction); high probability - 
+                                                    global oil supply reduction. When considering objectivity as a metric, the extremes are low objectivity 
+                                                    (highly subjective and opiniated reporting, imagine it almost as writing a journalistic hit piece and use words that CLEARLY show
+                                                    your opinion)- Biden's Terrible Administration lets Putin roll right through 
+                                                    Europe, and high objectivity (strictly factual reporting devoid of any bias or opinion)- Russia declares war on Poland. Keep the response length to a 
+                                                    minimum. Note that these made up outcomes (the predictions you are making) are meant to be EXTREMES used as absolute boundaries of how high 
+                                                    or low the metric can get. Please use this format to provide extreme scenarios for the following question:''')
+
 
 
 if __name__ == '__main__':
