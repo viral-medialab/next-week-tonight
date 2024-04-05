@@ -22,6 +22,8 @@ def connect_to_mongodb():
     return client, db, collection
 
 
+client, db, collection = connect_to_mongodb()
+
 
 
 def remove_duplicate_db_entries():
