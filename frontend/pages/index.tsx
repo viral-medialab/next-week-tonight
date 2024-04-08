@@ -4,8 +4,11 @@ import { useState, useEffect } from "react";
 import { Ring } from "@uiball/loaders";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import ChatCopy from "@/components/ChatCopy";
-import { useRouter } from "next/router";
+import Chat from "@/components/Chat";
+
+const notifyArticleUpdate = () => {
+    // Incrementing the updateTrigger will trigger the useEffect
+  };
 
 import {
     faPlus,
@@ -27,9 +30,7 @@ const Index = () => {
     const [newsTopics, setNewsTopics] = useState<Topic[]>([]);
     const [isLoadingHeadlines, setIsLoadingHeadlines] = useState(true);
     const [isLoadingTrackedTopics, setIsLoadingTrackedTopics] = useState(true);
-    const router = useRouter();
-    const [id, setId] = useState(null);
-    const [urlID, setUrlID] = useState(null);
+    const [urlId, seturlId] = useState(null);
     const [newsTopic, setNewsTopic] = useState(null);
     const [articleTitle, setArticleTitle] = useState("");
     const [articleContents, setArticleContents] = useState("");
@@ -48,7 +49,7 @@ const Index = () => {
     };
 
     const handleTopicClick = (topicId) => {
-        setId(topicId);
+        seturlId(topicId);
     };
 
     useEffect(() => {
@@ -59,7 +60,7 @@ const Index = () => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ topicId: id }),
+                    body: JSON.stringify({ topicId: urlId }),
                 });
 
                 if (!response.ok) {
@@ -69,7 +70,7 @@ const Index = () => {
                 const data = await response.json();
                 // Assuming data contains a list of articles
                 console.log("fetched topic");
-                console.log(id);
+                console.log(urlId);
                 setNewsTopic(data);
             } catch (error) {
                 console.error("Error fetching news by topic ID:", error);
@@ -77,7 +78,7 @@ const Index = () => {
         };
 
         fetchNewsByTopicId();
-    }, [id]);
+    }, [urlId]);
 
     useEffect(() => {
         const fetchArticleInfo = async () => {
@@ -183,10 +184,9 @@ const Index = () => {
                 </div>
             </div>
             <div className="w-full">
-                <p> chat?? </p>
-                <ChatCopy currentArticle={urlID} />
+                <Chat currentArticle={urlId}
+                updateSidebarPredictions={notifyArticleUpdate}/>
             </div>
-            <p> chat?? </p>
         </>
     );
 };
