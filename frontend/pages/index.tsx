@@ -84,7 +84,7 @@ const Index = () => {
         const fetchArticleInfo = async () => {
             try {
                 if (newsTopic && newsTopic.articles && newsTopic.articles.length > 0) {
-                    const firstArticleId = newsTopic.articles[0].id; // Assuming the ID is stored under 'id'
+                    const firstArticleId = newsTopic.articles[0].id;
                     const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
                         method: "POST",
                         headers: {
@@ -102,6 +102,7 @@ const Index = () => {
                     const data = await response.json();
                     console.log("Retrieved first article");
                     console.log(data.title);
+                    seturlId(firstArticleId);
                     setArticleTitle(data.title);
                     setArticleContents(data.contents);
                 } else {
