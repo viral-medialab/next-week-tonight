@@ -148,7 +148,7 @@ const Index = () => {
             </div>
             <div className="flex flex-col h-1/2">
                 <div className="flex flex-1 h-1/2">
-                    <div className="w-1/4 bg-gray-200 p-4">
+                    <div className="w-1/4 bg-gray-200 p-4 overflow-y-auto">
                         <h2 className="text-2xl font-bold">Headlines Today</h2>
                         <h3 className="text-lg font-medium text-gray-700 mb-4">
                             {new Date().toLocaleDateString("en-US", {
@@ -184,6 +184,9 @@ const Index = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="w-full h-px bg-gray-900"></div>
+
             <div className="w-full">
                 <Chat currentArticle={urlId}
                 updateSidebarPredictions={notifyArticleUpdate}/>
