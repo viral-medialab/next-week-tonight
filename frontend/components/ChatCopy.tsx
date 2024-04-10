@@ -6,7 +6,7 @@ interface ChatProps {
   currentArticle: string;
 }
 
-export default function ChatCopy({ currentArticle }: ChatProps) {
+export default function Chat({ currentArticle }: ChatProps) {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,13 +82,13 @@ export default function ChatCopy({ currentArticle }: ChatProps) {
         fetchWhatIfQuestions();
     }, [currentArticle]);
 
-      
-            
+
+
 
     return (
         currentArticle && (
             <div className="flex flex-col p-4 border-t">
-                
+
                 <div className="flex flex-col items-start w-full ">
                     <span className="text-gray-500">What happens if:</span>
                     {questions && questions.map((question, index) => (
@@ -161,66 +161,6 @@ export default function ChatCopy({ currentArticle }: ChatProps) {
                                                   Read more
                                               </button>
                                               </a>
-                                              <p className="text-gray-700 text-base">
-                                                Sources:
-                                                {Object.entries(message.text["article_0"]["source"]).map(([key, value], index) => (
-                                                  <a key={index} href={value} target="_blank" rel="noopener noreferrer">
-                                                    {key}
-                                                  </a>
-                                                ))}
-                                              </p>
-                                            </div>
-                                          </div>
-
-                                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                            <div className="p-6">
-                                              <a href={`/article/${message.text["article_1"]["id"]}`}>
-                                              <h2 className="text-2xl font-bold mb-2">
-                                                {message.text["article_1"]["title"]}
-                                              </h2>
-                                              <p className="text-gray-700 text-base">
-                                                {message.text["article_1"]["body"].split('.')[0] + "..."}
-                                              </p>
-                                              <button
-                                                    className="text-blue-500 font-bold hover:text-blue-700 mt-4"
-                                                >
-                                                    Read more
-                                                </button>
-                                              </a>
-                                              <p className="text-gray-700 text-base">
-                                                Sources:
-                                                {Object.entries(message.text["article_1"]["source"]).map(([key, value], index) => (
-                                                  <a key={index} href={value} target="_blank" rel="noopener noreferrer">
-                                                    {key}
-                                                  </a>
-                                                ))}
-                                              </p>
-                                            </div>
-                                          </div>
-
-                                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                            <div className="p-6">
-                                              <a href={`/article/${message.text["article_2"]["id"]}`}>
-                                              <h2 className="text-2xl font-bold mb-2">
-                                                {message.text["article_2"]["title"]}
-                                              </h2>
-                                              <p className="text-gray-700 text-base">
-                                                {message.text["article_2"]["body"].split('.')[0] + "..."}
-                                              </p>
-                                              <button
-                                                    className="text-blue-500 font-bold hover:text-blue-700 mt-4"
-                                                >
-                                                    Read more
-                                                </button>
-                                              </a>
-                                              <p className="text-gray-700 text-base">
-                                                Sources:
-                                                {Object.entries(message.text["article_2"]["source"]).map(([key, value], index) => (
-                                                  <a key={index} href={value} target="_blank" rel="noopener noreferrer">
-                                                    {key}
-                                                  </a>
-                                                ))}
-                                              </p>
                                             </div>
                                           </div>
                                         </div>
