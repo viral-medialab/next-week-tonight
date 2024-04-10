@@ -79,8 +79,8 @@ def handle_q2a_workflow():
                     print(after_out)
                 for i, generated_article in enumerate(before_out): # this loop converts (prob, pol) to article_i. we want to delete this
                     out[f'article_{i}'] = article['questions'][user_prompt][generated_article] 
-                    out[f'article_{i}']['probability'] = generated_article[0]
-                    out[f'article_{i}']['polarity'] = generated_article[1]
+                    out[f'article_{i}']['probability'] = prob
+                    out[f'article_{i}']['polarity'] = pol
                 break
 
 
