@@ -4,11 +4,7 @@ import { useState, useEffect } from "react";
 import { Ring } from "@uiball/loaders";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Chat from "@/components/Chat";
-
-const notifyArticleUpdate = () => {
-    // Incrementing the updateTrigger will trigger the useEffect
-  };
+import ChatCopy from "@/components/ChatCopy";
 
 import {
     faPlus,
@@ -176,8 +172,7 @@ const Index = () => {
                 </div>
             </div>
             <div className="max-w-6xl mx-auto">
-                <Chat currentArticle={urlId}
-                updateSidebarPredictions={notifyArticleUpdate}/>
+                <ChatCopy currentArticle={urlId}
             </div>
         </>
     );
