@@ -30,6 +30,7 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
             currentArticle,
             [...messages, { id: messages.length + 1, text: newMessage.trim() }]
         );
+        console.log("response", response);
         setMessages([
             ...messages,
             { id: messages.length + 1, text: messageSent },

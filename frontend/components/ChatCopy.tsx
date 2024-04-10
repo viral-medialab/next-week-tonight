@@ -34,8 +34,7 @@ export default function Chat({ currentArticle }: ChatProps) {
         );
         setMessages([
             ...messages,
-            { id: messages.length + 1, text: messageSent },
-            { id: messages.length + 2, text: response },
+            response,
         ]);
         console.log("got response", response);
         setIsSubmitting(false);
@@ -85,13 +84,9 @@ export default function Chat({ currentArticle }: ChatProps) {
         fetchWhatIfQuestions();
     }, [currentArticle]);
 
-
-
-
     return (
         currentArticle && (
             <div className="flex flex-col p-4 border-t">
-
                 <div className="flex flex-col items-start w-full ">
                     <span className="text-gray-500">What happens if:</span>
                     {questions && questions.map((question, index) => (
@@ -100,7 +95,7 @@ export default function Chat({ currentArticle }: ChatProps) {
                         </button>
                     ))}
                 </div>
-
+    
                 <div className="flex items-center mt-4 w-full">
                     <textarea
                         placeholder="Type your message here"
@@ -115,58 +110,35 @@ export default function Chat({ currentArticle }: ChatProps) {
                         onClick={handleSendMessage}
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? (
-                            "Loading..."
-                        ) : (
-                            <FontAwesomeIcon
-                                icon={faPaperPlane}
-                                size="sm"
-                                className="h-6 w-6"
-                            />
-                        )}
+                        {isSubmitting ? "Loading..." : <FontAwesomeIcon icon={faPaperPlane} size="sm" className="h-6 w-6"/>}
                     </button>
                 </div>
-
+    
                 <div className="flex flex-col h-full">
                     <div className="flex-1 p-4 overflow-y-auto">
                         {messages.map((message) => (
                             <div
                                 key={message.id}
-                                className={`${
-                                    message.id % 2 === 0
-                                        ? "justify-end"
-                                        : "justify-start"
-                                } flex mb-4`}
+                                className={`${message.id % 2 === 0 ? "justify-end" : "justify-start"} flex mb-4`}
                             >
                                 <div
-                                    className={`${
-                                        message.id % 2 === 0
-                                            ? "bg-gray-600 w-full"
-                                            : "bg-blue-500 w-full"
-                                    } rounded-lg p-2`}
+                                    className={`${message.id % 2 === 0 ? "bg-gray-600 w-full" : "bg-blue-500 w-full"} rounded-lg p-2`}
                                 >
-                                    {message.id % 2 !== 0 ? (
-                                        <p className="text-white">{message.text}</p>
-                                    ) : (
-                                        <div className="grid grid-cols-3 gap-8 w-full">
-                                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                            <div className="p-6">
-                                              <a href={`/article/${message.text["article_0"]["id"]}`}>
-                                              <h2 className="text-2xl font-bold mb-2">
-                                                {message.text["article_0"]["title"]}
-                                              </h2>
-                                              <p className="text-gray-700 text-base">
-                                                {message.text["article_0"]["body"].split('.')[0] + "..."}
-                                              </p>
-                                              <button
-                                                  className="text-blue-500 font-bold hover:text-blue-700 mt-4"
-                                              >
-                                                  Read more
-                                              </button>
-                                              </a>
-                                            </div>
-                                          </div>
+                                    {/* Dynamic 3x3 grid for displaying articles */}
+                                    {message.id % 2 === 0 ? (
+                                        <div className="grid grid-cols-3 gap-4">
+                                            {Object.entries(message.text).map(([articleKey, article]) => (
+                                                <div key={articleKey} className="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                                    <a href={`/article/${article.id}`}>
+                                                        <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
+                                                        <p className="text-gray-700 text-base">{article.body.split('.')[0] + "..."}</p>
+                                                    </a>
+                                                    <button className="text-blue-500 font-bold hover:text-blue-700 mt-4">Read more</button>
+                                                </div>
+                                            ))}
                                         </div>
+                                    ) : (
+                                        <p className="text-white">{message.text}</p>
                                     )}
                                 </div>
                             </div>
