@@ -1,32 +1,81 @@
 @font-face {
-    font-family: "SometimesTimesTRIAL";
-    src: url("/fonts/SometimesTimesTRIAL-Light.otf") format("opentype");
-    font-weight: 300;
-  }
-  
-  @font-face {
-    font-family: "SometimesTimesTRIAL";
-    src: url("/fonts/SometimesTimesTRIAL-Bold.otf") format("opentype");
-    font-weight: 700;
-  }
-  
-  @font-face {
-    font-family: "SometimesTimesTRIAL";
-    src: url("/fonts/SometimesTimesTRIAL-Medium.otf") format("opentype");
-    font-weight: 500;
-  }
-  
-  @font-face {
-    font-family: "SometimesTimesTRIAL";
-    src: url("/fonts/SometimesTimesTRIAL-Regular.otf") format("opentype");
-    font-weight: 400;
-  }
+  font-family: 'Street 2';
+  src: url('/fonts/Street2-Bold.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Street 2';
+  src: url('/fonts/Street2-BoldItalic.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Street 2';
+  src: url('/fonts/Street2-Book.otf') format('opentype');
+  font-weight: 400; /* Book - Assuming as Normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Street 2';
+  src: url('/fonts/Street2-BookItalic.otf') format('opentype');
+  font-weight: 400; /* Book - Assuming as Normal */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Street 2';
+  src: url('/fonts/Street 2-Medium.otf') format('opentype');
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Street 2';
+  src: url('/fonts/Street2-MediumItalic.otf') format('opentype');
+  font-weight: 500; /* Medium */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Street 2';
+  src: url('/fonts/Street2-Thin.otf') format('opentype');
+  font-weight: 100; /* Thin */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Street 2';
+  src: url('/fonts/Street2-ThinItalic.otf') format('opentype');
+  font-weight: 100; /* Thin */
+  font-style: italic;
+}
+
 
   .title {
-    font-family: "SometimesTimesTRIAL";
+    font-family: "Street 2";
     font-weight: 700;
     font-size: 3rem;
     line-height: 1.15;
     margin: 0;
     text-align: center;
   }
+
+  .flexContainer {
+    display: flex;
+    gap: 4px; /* Adjust gap as needed */
+    max-height: 50vh; /* Set the max height to 50% of the viewport height */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Styles for the sidebar */
+.sidebar {
+    width: 25%; /* Adjust width as needed */
+    background-color: #f3f3f3; /* Example color */
+    padding: 16px; /* Adjust padding as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Example shadow */
+}
