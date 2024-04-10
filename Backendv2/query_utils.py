@@ -14,7 +14,7 @@ print("done loading embeddings")
 
 def generate_relevant_questions(article_context, user_prompt):
     context_prompt = relevant_question_prompt
-    article_context = "Here is an article that you will use to aid your question making: " + article_context
+    article_context = "Make up to 7 questions. Here is the article that you will use to aid your question making: " + article_context
     return query_chatgpt([context_prompt, article_context], [user_prompt], model="gpt-3.5-turbo-0125")
 
 
@@ -100,16 +100,20 @@ def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbos
 
     time1 = time.time()
     relevant_article_urls = list(set(relevant_article_urls))
-    relevant_articles = [get_article_contents_from_id(get_article_id(url)) for url in relevant_article_urls]
+    context_window = 2500
+    relevant_articles = [get_article_contents_from_id(get_article_id(url))[:(context_window//len(relevant_article_urls))] for url in relevant_article_urls]
     if None in relevant_articles:
         relevant_articles.remove(None)
-    relevant_articles = relevant_articles[:3]
     time2 = time.time()
     if verbose: print(f"Loading relevant article contents took {time2-time1} seconds")
     
 
     time1 = time.time()
     extreme_scenarios = retrieve_extreme_scenarios(user_prompt, article_id)
+    time2 = time.time()
+    if verbose: print(f"Generating extreme scenarios took {time2-time1} seconds")
+
+    time1 = time.time()
     scenario_title, scenario = generate_scenario(relevant_articles, polarity, probability, extreme_scenarios, user_query=user_prompt, max_context_length = 10000) #pass in polarity, probability, extreme statements 
     time2 = time.time()
     if verbose: print(f"Generating scenario based on articles and query took {time2-time1} seconds")

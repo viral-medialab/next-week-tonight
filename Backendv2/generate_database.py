@@ -140,4 +140,9 @@ def main(args):
 
 
 if __name__=='__main__':
-    main(sys.argv)
+    #main(sys.argv)
+    topics = ["",
+              "Marjorie Taylor Greene Keeps Up Pressure on Speaker Johnson",
+              "Parents of Michigan School Shooter Sentenced For Manslaughter",]
+    for topic in topics:
+        pass#populate_database_by_topic(topic, 5, trending_topic=True, max_attempts = 30)
