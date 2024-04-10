@@ -172,7 +172,7 @@ const Index = () => {
                 </div>
             </div>
             <div className="max-w-6xl mx-auto">
-                <ChatCopy currentArticle={urlId}
+                <ChatCopy currentArticle={urlId} />
             </div>
         </>
     );
