@@ -129,25 +129,14 @@ const Index = () => {
         <>
             <Head>
                 <title>Next Week Tonight</title>
-                <meta
-                    name="Next Week Tonight"
-                    content="Using Generative AI to Shape Tomorrow's Headlines"
-                />
+                <meta name="Next Week Tonight" content="Using Generative AI to Shape Tomorrow's Headlines" />
             </Head>
-            <div className="w-full h-1/6 bg-gradient-to-br from-purple-400 to-purple-900">
-                <div className="flex items-center justify-center h-full text-center">
-                    <div onClick={() => handleWelcomeClick()} style={{ cursor: "pointer" }}>
-                        <h1 className="text-4xl font-bold text-white mb-2">
-                            Welcome to YOUR Next Week Tonight
-                        </h1>
-                        <h2 className="text-2xl text-gray-300">
-                            Using Generative AI to Shape Tomorrow's Headlines
-                        </h2>
-                    </div>
-                </div>
+            <div className="w-full bg-white flex items-center h-1/6">
+                <img src="/next_week_tonight_horizontal.png" alt="Next Week Tonight Logo" style={{ height: '50%', marginLeft: '40px' }} /> 
             </div>
-            <div className="flex flex-col h-1/2">
-                <div className="flex flex-1 h-1/2">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 h-1/2">
+                <div className="flex h-full">
+                    {/* Sidebar Component */}
                     <div className="w-1/4 bg-gray-200 p-4 overflow-y-auto">
                         <h2 className="text-2xl font-bold">Headlines Today</h2>
                         <h3 className="text-lg font-medium text-gray-700 mb-4">
@@ -163,7 +152,7 @@ const Index = () => {
                                     <a
                                         href="#"
                                         onClick={() => handleTopicClick(topic._id)}
-                                        className="text-blue-500 hover:text-blue-700"
+                                        className="text-blue-500 hover:text-blue-700 block p-2"
                                     >
                                         {topic.topic}
                                     </a>
@@ -171,6 +160,8 @@ const Index = () => {
                             ))}
                         </ul>
                     </div>
+
+                    {/* Article Display Component */}
                     <div className="w-3/4 overflow-y-auto">
                         <div className="p-4 sm:p-6 lg:p-8">
                             <h1 id={articleTitle || ""} className="text-2xl font-bold text-gray-800 mb-4">
@@ -184,10 +175,7 @@ const Index = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="w-full h-px bg-gray-900"></div>
-
-            <div className="w-full">
+            <div className="max-w-6xl mx-auto">
                 <Chat currentArticle={urlId}
                 updateSidebarPredictions={notifyArticleUpdate}/>
             </div>
