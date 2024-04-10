@@ -8,7 +8,7 @@ import numpy as np
 
 
 
-def connect_to_mongodb():
+def connect_to_mongodb(collection_to_open = 'articles'):
     client = MongoClient(MONGODB_URI_KEY)
     try:
         client.admin.command('ping')
@@ -17,7 +17,7 @@ def connect_to_mongodb():
         print(e)
     
     db = client["news"]
-    collection = db["articles"]
+    collection = db[collection_to_open]
 
     return client, db, collection
 
@@ -205,5 +205,26 @@ def add_children_to_all_entries():
 
 
 
+def clear_all_expired_articles():
+    client, db, collection = connect_to_mongodb() # article database
+    for doc in collection.find({ 'url': { '$exists': True} }):
+        contents = get_article_contents_from_id(doc['id'])
+        if contents:
+            print(f"Success with doc['id'] = {doc['id']}")
+        else:
+            print(f"Deleting doc with doc['id'] = {doc['id']}")
+            collection.delete_one(doc)
+
+
+
+def clear_trending_topics():
+    client, db, collection = connect_to_mongodb(collection_to_open = 'trendingTopics') # article database
+    for doc in collection.find({ 'articles': { '$exists': True} }):
+        print(f"Deleting doc with doc['topic'] = {doc['topic']}")
+        collection.delete_one(doc)
+
+
+
+
 if __name__ == '__main__':
-    add_children_to_all_entries()
+    pass

@@ -260,12 +260,12 @@ single_scenario_using_pol_prob_prompt = convert_to_proper_format('''Let's play a
                                 scenario that is possible in real life that also answers the question. For example, if I were to ask 'What happens
                                 if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
                                 scenario that you can output is 'Iran declares war on Israel'. Keep the prediction interesting and use specific
-                                nouns as much as possible. Make sure the prediction is around 5 sentences long and is not already happening, that is, 
-                                it has to be a future prediction and not a present prediction. Lastly, you will be given two numbers between 1 and 7 that correspond to the 
-                                polarity (bias level) and probability of whatever scenario you create. A polarity of 1 means that the situation should be worded to be factual
-                                and without opinions, while an polarity of 7 means that the situation is highly subjective and opinionated (think political hit pieces such as 'Biden
-                                Cronies let Putin Take over Europe' as opposed to 'Russia Advances in Ukraine'). A probability ranked at 1 means that the event is super unlikely and a probability
-                                ranked at 7 means it is not a stretch at all. The value of the metric corresponds as 1 being extremely low, 4 being moderate, and 7 being extremely high.''')
+                                nouns as much as possible. Make sure the prediction is around 3-5 sentences long and is not already happening, that is, 
+                                it has to be a future prediction and not a present prediction. Do not preface the scenario with anything. Only provide the scenario. Lastly, you will be given two numbers between 0 and 1 that correspond to the 
+                                polarity (bias level) and probability of whatever scenario you create. A polarity of 0 means that the situation should be worded to be factual
+                                and without opinions, while an polarity of 1 means that the situation is highly subjective and opinionated (think political hit pieces such as 'Biden
+                                Cronies let Putin Take over Europe' as opposed to 'Russia Advances in Ukraine'). A probability ranked at 0 means that the event is super unlikely and a probability
+                                ranked at 1 means it is not a stretch at all. The value of the metric corresponds as 0 being extremely low, 0.5 being moderate, and 1 being extremely high. You should never specify the polarity and probability. Never say anything related to your thought process or explanation for why you generated a scenario. Only output the generated scenario.''')
 
 
 

@@ -49,21 +49,48 @@ def handle_q2a_workflow():
     data = request.get_json()
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', None)
-    polarity = data.get('polarity', 7)
-    probability = data.get('probability', 1)
+    polarity = data.get('polarity', 2)
+    probability = data.get('probability', 0)
     if article_url:
         article_id = get_article_id(article_url)
+    client, db, collection = connect_to_mongodb(collection_to_open = 'trendingTopics') # here, we will try to see if the article was hashed
     user_prompt = data.get('user_prompt')
     verbose = data.get('verbose', True)
     article = get_article_contents_from_id(article_id)
-
     print(article, user_prompt, verbose)
-    results = q2a_workflow(article, article_id, user_prompt, polarity, probability, verbose)
     out = {}
-    result = results[-1]
-    id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
-    out[f'article_0'] = {"title": result[0], "body": result[1], "id": id, "parent": parent}
-    print(out[f'article_0'])
+
+    #############################################################################
+    # This is where the code is modified to fit the output to what              #
+    # is currently expected in the frontend. I remake the dictionary such that  #
+    # the entries are not (probability, polarity) but rather article_i so that  #
+    # it is recognized by the frontend.                                         #
+    #############################################################################
+    for topic in collection.find(): 
+        article = topic['articles'][0]
+        if article['id'] == article_id:
+            if user_prompt in article['questions']:
+                before_out = article['questions'][user_prompt]
+                after_out = {}
+                for generated_article in before_out: # this loop converts 'prob;pol' to (prob, pol). we want to keep this
+                    content = article['questions'][user_prompt][generated_article]
+                    prob, pol = (int(val) for val in generated_article.split(";"))
+                    after_out[(prob, pol)] = content
+                    print(after_out)
+                for i, generated_article in enumerate(before_out): # this loop converts (prob, pol) to article_i. we want to delete this
+                    out[f'article_{i}'] = article['questions'][user_prompt][generated_article] 
+                    out[f'article_{i}']['probability'] = generated_article[0]
+                    out[f'article_{i}']['polarity'] = generated_article[1]
+                break
+
+
+    if out == {}:
+        results = q2a_workflow(article, article_id, user_prompt, polarity, probability, verbose)
+        result = results[-1]
+        id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
+        out[f'article_0'] = {"title": result[0], "body": result[1], "id": id, "parent": parent}
+        print(out[f'article_0'])
+    print(out)
     return jsonify(out)
 
 
@@ -89,13 +116,15 @@ def handle_generate_what_if_questions():
     article_id = data.get('article_id', None)
     if article_url:
         article_id = get_article_id(article_url)
-    amount_of_predictions = int(data.get('amount_of_predictions', '3'))
-    article = get_article_contents_from_id(article_id)
 
-    result = generate_what_if_questions(article, amount_of_predictions)
     out = {}
-    for i, pred in enumerate(result):
-        out[f'prediction_{i}'] = pred
+    client, db, collection = connect_to_mongodb(collection_to_open = 'trendingTopics') # here, we will try to see if the article was hashed
+    for topic in collection.find():
+        article = topic['articles'][0]
+        if article['id'] == article_id:
+            for i, question in enumerate(article['questions']):
+                out[f'prediction_{i}'] = question.replace("What happens if", "...")
+
     return jsonify(out)
 
 

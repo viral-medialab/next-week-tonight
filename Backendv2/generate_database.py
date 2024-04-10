@@ -17,7 +17,7 @@ def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 1
     query_params = {"count": num_topics*2, 
                     "q": "Breaking Global US News",
                     "mkt": "en-US", 
-                    "offset": 24}
+                    "offset": 0}
     response = requests.get(url, headers=headers, params = query_params)
     response.raise_for_status()
     results = response.json()['value']
@@ -141,8 +141,11 @@ def main(args):
 
 if __name__=='__main__':
     #main(sys.argv)
-    topics = ["",
+    topics = ["U.S. Sends Ukraine Weapons Seized From Iran",
               "Marjorie Taylor Greene Keeps Up Pressure on Speaker Johnson",
-              "Parents of Michigan School Shooter Sentenced For Manslaughter",]
+              "Parents of Michigan School Shooter Sentenced For Manslaughter",
+              "Arizona Supreme Court Issues Near-Total Ban On Abortions",
+              "Trump Hush Money Trial To Move Ahead Despite Bid To Delay",
+              "Russia Foreign Minister Visits Beijing"]
     for topic in topics:
         pass#populate_database_by_topic(topic, 5, trending_topic=True, max_attempts = 30)

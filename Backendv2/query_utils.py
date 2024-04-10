@@ -49,6 +49,12 @@ def generate_scenario(relevant_articles, polarity, probability, extreme_scenario
     query = single_scenario_using_pol_prob_prompt + "\n\n Here is the query: " + user_query + "\n" + extremes_context + f"\nThe polarization is {polarity} and the probability is {probability}"
 
     scenario = query_chatgpt([relevant_context], [query[:max_context_length]])
+    
+    actual_scenario = ""
+    if type(scenario) == list:
+        for part in scenario:
+            actual_scenario += part + ";"
+        scenario = actual_scenario[:-1]
 
     scenario_title= query_chatgpt([], ["Make a title for this scenario (write the title, but do not specify that it is the title by saying 'title:' or 'scenario header:' anything similar, and do not put quotes around it): " + scenario], model="gpt-3.5-turbo-0125")
     out = [scenario_title, scenario]
@@ -79,7 +85,6 @@ def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbos
         5)  Input:  User input, AI-generated scenarios
             Output: AI-generated article 
     '''
-
     time1 = time.time()
     AI_generated_questions = generate_relevant_questions(article, user_prompt)
     time2 = time.time()
@@ -104,6 +109,8 @@ def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbos
     relevant_articles = [get_article_contents_from_id(get_article_id(url))[:(context_window//len(relevant_article_urls))] for url in relevant_article_urls]
     if None in relevant_articles:
         relevant_articles.remove(None)
+    if not relevant_articles:
+        relevant_articles = ["No relevant articles"]
     time2 = time.time()
     if verbose: print(f"Loading relevant article contents took {time2-time1} seconds")
     
