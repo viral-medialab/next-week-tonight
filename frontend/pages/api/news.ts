@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const client = await clientPromise;
         const db = client.db("news"); //client.db("NewsDive");
         const trendingTopics = db.collection("trendingTopics");
-        const topicList = trendingTopics.find({}, { topic: 1, _id: 0 });
+        const topicList = trendingTopics.find({}, { topic: 1, _id: 0 } as any);
         const host = "http://" + req.headers.host;
         const isDebug = true; //-- true 
         // get topics for today

@@ -11,7 +11,7 @@ import {
     faTrash,
     faThumbtack,
 } from "@fortawesome/free-solid-svg-icons";
-import TrackTopicButton from "@/components/TrackTopicButton";
+// import TrackTopicButton from "@/components/TrackTopicButton";
 
 type Topic = {
     _id: string;
