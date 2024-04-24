@@ -87,7 +87,7 @@ export default function Chat({ currentArticle }: ChatProps) {
     return (
         currentArticle && (
             <div className="flex flex-col p-4 border-t">
-                <div className="flex flex-col items-start w-full ">
+                <div className="flex flex-col items-start w-full">
                     <span className="text-gray-500">What happens if:</span>
                     {questions && questions.map((question, index) => (
                         <button key={index} className="text-blue-900 mb-1 text-left" onClick={() => handleAskQuestion(question)}>
@@ -115,37 +115,32 @@ export default function Chat({ currentArticle }: ChatProps) {
                 </div>
     
                 <div className="flex flex-col h-full">
-                    <div className="flex-1 p-4 overflow-y-auto">
-                        {messages.map((message) => (
-                            <div
-                                key={message.id}
-                                className={`${message.id % 2 === 0 ? "justify-end" : "justify-start"} flex mb-4`}
-                            >
-                                <div
-                                    className={`${message.id % 2 === 0 ? "bg-gray-600 w-full" : "bg-blue-500 w-full"} rounded-lg p-2`}
-                                >
-                                    {/* Dynamic 3x3 grid for displaying articles */}
-                                    {message.id % 2 === 0 ? (
-                                        <div className="grid grid-cols-3 gap-4">
-                                            {Object.entries(message.text).map(([articleKey, article]) => (
-                                                <div key={articleKey} className="bg-white rounded-lg shadow-lg overflow-hidden p-6">
-                                                    <a href={`/article/${article.id}`}>
-                                                        <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
-                                                        <p className="text-gray-700 text-base">{article.body.split('.')[0] + "..."}</p>
-                                                    </a>
-                                                    <button className="text-blue-500 font-bold hover:text-blue-700 mt-4">Read more</button>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <p className="text-white">{message.text}</p>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="flex-1 p-4 overflow-y-auto">
+                    {/* Assuming messages[messages.length - 1] is the response with the articles */}
+                    {messages.length > 0 && (
+                        <div className="grid grid-cols-3 gap-4">
+                            {Array.from({ length: 9 }).map((_, index) => {
+                                const articleKey = `article_${index}`;
+                                const article = messages[messages.length - 1][articleKey];
+                                
+                                if (!article) return null;
+
+                                return (
+                                    <div key={article.id} className="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                        <a href={`/article/${article.id}`}>
+                                            <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
+                                            <p className="text-gray-700 text-base">{article.body.split('.')[0] + "..."}</p>
+                                            <button className="text-blue-500 font-bold hover:text-blue-700 mt-4">Read more</button>
+                                        </a>
+                                        
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             </div>
+        </div>
         )
     );
 }

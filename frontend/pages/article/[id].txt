@@ -27,23 +27,42 @@ export default function Article({}: {}) {
               article_id: urlID,
             }),
           });
-
+  
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-
+  
           const data = await response.json();
           setArticleTitle(data["title"]);
-          setArticleContents(data["contents"]);
+          // Original content
+          let contents = data["contents"];
+  
+          // Check if there are sources to format
+          if (contents.includes('Sources:')) {
+            const [content, rawSources] = contents.split('Sources: ');
+            const formattedSources = rawSources
+              .match(/\(\d+\) (https?:\/\/[^\s]+)/g)
+              .map((source, index) => {
+                const url = source.match(/https?:\/\/[^\s]+/)[0];
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer">(Source ${index + 1}) ${url}</a>`;
+              })
+              .join('<br>');
+  
+            // Combine the content and formatted sources with line breaks in between
+            contents = `${content}<br><br>Sources:<br>${formattedSources}`;
+          }
+  
+          // Set the formatted article contents
+          setArticleContents(contents);
         } catch (error) {
           console.error("Error fetching article info:", error);
         }
       }
     };
-
+  
     fetchArticleInfo();
   }, [urlID]);
-
+  
   const handleToggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };

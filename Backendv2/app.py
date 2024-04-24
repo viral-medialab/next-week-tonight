@@ -23,7 +23,8 @@ client = openai.OpenAI(
 )
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+
 '''
 This script serves as the API by which the front-end and back-end interact.
 The current API functions are:
