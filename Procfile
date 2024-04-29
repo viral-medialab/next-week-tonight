@@ -1,0 +1,1 @@
+web: gunicorn Backendv2.app:app
