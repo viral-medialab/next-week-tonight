@@ -1,8 +1,13 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Backendv2')))
+
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from query_utils import *
-from article_utils import *
-from database_utils import clear_cache, save_generated_article_to_DB
+from .query_utils import *
+from .article_utils import *
+from .database_utils import clear_cache, save_generated_article_to_DB
 
 import pandas as pd
 import matplotlib
@@ -11,7 +16,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 import openai
-from env import *
+from .env import *
 
 client = openai.OpenAI(
     api_key=OPENAI_API_KEY,
