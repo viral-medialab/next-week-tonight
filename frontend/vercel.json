@@ -1,7 +1,0 @@
-{
-    "functions": {
-      "frontend/pages/api/chat.js": {
-        "maxDuration": 90
-      }
-    }
-  }
