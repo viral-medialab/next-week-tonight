@@ -34,6 +34,10 @@ handle_gather_article_info()
 '''
 
 
+@app.route('/')
+def home():
+    return 'Next Week Tonight Backend'
+
 
 @app.route('/api/call_q2a_workflow', methods=['GET', 'POST'])
 def handle_q2a_workflow():
