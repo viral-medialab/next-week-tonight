@@ -72,7 +72,7 @@ export default function ArticlesGrid({ newsTopic, handleArticleClick }: Props) {
           const namesPromises = newsTopic.articles?.map(async (article) => {
             try {
               const response = await fetch(
-                "http://127.0.0.1:5000/api/gather_article_info",
+                process.env.BACKEND_URL + "api/gather_article_info",
                 {
                   method: "POST",
                   headers: {

@@ -42,7 +42,7 @@ export default function Article({
   useEffect(() => {
     const fetchArticleInfo = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
+        const response = await fetch(process.env.BACKEND_URL + "api/gather_article_info", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
