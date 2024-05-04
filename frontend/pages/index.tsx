@@ -81,7 +81,7 @@ const Index = () => {
             try {
                 if (newsTopic && newsTopic.articles && newsTopic.articles.length > 0) {
                     const firstArticleId = newsTopic.articles[0].id;
-                    const response = await fetch(process.env.BACKEND_URL + "api/gather_article_info", {
+                    const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -92,7 +92,6 @@ const Index = () => {
                     });
 
                     if (!response.ok) {
-                        console.log(process.env);
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
 

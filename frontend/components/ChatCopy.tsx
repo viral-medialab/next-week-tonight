@@ -60,7 +60,7 @@ export default function Chat({ currentArticle }: ChatProps) {
         const fetchWhatIfQuestions = async () => {
           if(currentArticle){
             try{
-              const response = await fetch(process.env.BACKEND_URL + "api/generate_what_if_questions", {
+              const response = await fetch("http://127.0.0.1:5000/api/generate_what_if_questions", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -181,7 +181,7 @@ async function submitMessages(
 ) {
     console.log("Current article id is:", currentArticle)
     console.log("User query is:", messages[messages.length - 1].text)
-    const res = await fetch(process.env.BACKEND_URL + "api/call_q2a_workflow", {
+    const res = await fetch("http://127.0.0.1:5000/api/call_q2a_workflow", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ article_id: currentArticle, user_prompt: messages[messages.length - 1].text , verbose: true}),
