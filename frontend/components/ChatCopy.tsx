@@ -1,3 +1,6 @@
+import "dotenv/config";
+import Head from "next/head";
+import { Ring } from "@uiball/loaders";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
