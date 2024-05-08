@@ -107,7 +107,8 @@ def get_article_contents_from_id(article_id, return_author = False):
         author = 'Not found'
 
     # soup = BeautifulSoup(html_content, 'lxml')
-    paragraphs = [p.get_text(separator=' ', strip=True) for p in soup.find_all('p')]
+    # paragraphs = [p.get_text(separator=' ', strip=True) for p in soup.find_all('p')]
+    paragraphs = ['a', 'b']
     if return_author:
         return author, '\n\n'.join(paragraphs)
     else:
