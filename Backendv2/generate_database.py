@@ -11,7 +11,7 @@ sentiment_model = SentimentModel()
 
 
 
-def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 10):
+def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 10, simple_return = False):
     url = "https://api.bing.microsoft.com/v7.0/news"  # Changed to general news endpoint
     headers = {'Ocp-Apim-Subscription-Key': BING_API_KEY}
     query_params = {"count": num_topics*2, 
@@ -27,6 +27,9 @@ def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 1
     for article in results:
         query = query + article['name'] + article['description'] + '; '
     topics = query_chatgpt([context], [query[:-2]])[1:-1].replace(' "','').replace('"','').split(",")
+
+    if simple_return:
+        return topics
 
     successful_topics = 0
     for topic in topics:

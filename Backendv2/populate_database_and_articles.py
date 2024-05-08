@@ -30,6 +30,13 @@ def main():
         print(questions)
         questions_dict = {question: {} for question in questions}
         doc_copy['articles'][0]['questions'] = questions_dict
+        for question in questions_dict:
+            new_question = question
+            new_question = new_question.replace("...", "What happens if")
+            if new_question[0] == " ": new_question = new_question[1:]
+            print(new_question)
+            del doc_copy['articles'][0]['questions'][question]
+            doc_copy['articles'][0]['questions'][new_question] = questions_dict[question]
 
         for question in questions:
             for polarity in [0,1,2]:
@@ -39,6 +46,7 @@ def main():
                     out = q2a_workflow(article_contents, article_id, question, normalized_polarity, normalized_probability, verbose=True)
                     article_title, article_body = out[-1][0], out[-1][1]
                     doc_copy['articles'][0]['questions'][question][str(probability) + ';' + str(polarity)] = {'title': article_title, 'body': article_body}
+                    id, parent = save_generated_article_to_DB(title = article['title'], body = article['body'], parent = article_id, query = question)
 
         collection.find_one_and_replace(doc, doc_copy)
         time2 = time.time()
