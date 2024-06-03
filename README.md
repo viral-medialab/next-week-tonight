@@ -1,4 +1,5 @@
 # Next Week Tonight
+[Demo] next-week-tonight.vercel.app
 [Document](https://docs.google.com/document/d/1i82OncJFmE4UVjzzamfDoAXFJ58ildoBO9mC9NspEew/edit) for more details. 
 [Generative AI for News](https://docs.google.com/presentation/d/1RDVTPms0JYfouxjgdvnZfe4yi8U-xZBbFdZqJaAXP4E/edit#slide=id.g35f391192_00) Presentation
 
