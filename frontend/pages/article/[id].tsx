@@ -172,7 +172,7 @@ export default function Article({}: {}) {
   useEffect(() => {
     const updateSidebarPredictions = async () => {
       try {
-        const response = await fetch(""https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/gather_article_info", {
+        const response = await fetch("https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/gather_article_info", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
