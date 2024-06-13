@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import Chat from "@/components/Chat";
+import ChatCopy from "@/components/ChatCopy";
 
 export default function Article({}: {}) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -233,10 +233,7 @@ export default function Article({}: {}) {
       </div>
       <hr className="my-4 border-t-4 border-gray-300" />
       <div className="w-full">
-        <Chat
-          currentArticle={urlID}
-          updateSidebarPredictions={notifyArticleUpdate}
-        />
+        <ChatCopy currentArticle={Array.isArray(urlID) ? urlID[0] : urlID} />
       </div>
     </div>
   );
