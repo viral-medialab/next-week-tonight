@@ -14,9 +14,18 @@ MONGODB_URI_KEY = os.environ.get("MONGODB_URI_KEY")
 
 
 def test_openai_api(key):
+    url = "https://api.openai.com/v1/embeddings"
     headers = {"Authorization": f"Bearer {key}"}
-    response = requests.post("https://api.openai.com/v1/engines/davinci/completions", headers=headers, json={"prompt": "Hello world", "max_tokens": 5})
-    return response.ok
+    data = {
+        "input": "Hello world",
+        "model": "text-embedding-ada-002"
+    }
+    try:
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+        return True  # Return True if the request was successful
+    except:
+        return False
 
 
 def test_bing_api(key):

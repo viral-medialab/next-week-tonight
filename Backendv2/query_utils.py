@@ -106,9 +106,13 @@ def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbos
     time1 = time.time()
     relevant_article_urls = list(set(relevant_article_urls))
     context_window = 2500
-    relevant_articles = [get_article_contents_from_id(get_article_id(url))[:(context_window//len(relevant_article_urls))] for url in relevant_article_urls]
-    if None in relevant_articles:
-        relevant_articles.remove(None)
+    relevant_articles = []
+    for url in relevant_article_urls:
+        article_contents = get_article_contents_from_id(get_article_id(url))
+        if article_contents:
+            relevant_articles.append(article_contents[:(context_window//len(relevant_article_urls))])
+        else:
+            pass
     if not relevant_articles:
         relevant_articles = ["No relevant articles"]
     time2 = time.time()
