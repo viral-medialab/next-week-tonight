@@ -142,38 +142,34 @@ def handle_generate_what_if_questions():
 
 @app.route('/api/gather_article_info', methods=['GET', 'POST'])
 def handle_gather_article_info():
-    '''
-    Fetches relevant information about an article that is not stored
-    in the metadata. This includes author, title, and contents.
-
-    Inputs:
-
-        articleUrl (str)        :   The url of the article that is currently being viewed
-        article_id (str)        :   An alternative to URL (only one of URL and ID is needed)s
-
-
-    Outputs information in the format {'author': author, 'title': title, 'contents': article_contents
-    
-    UPDATE: Now returns a children field for the children of the current article
-    '''
     data = request.get_json()
-    print(data)
+    # print("API Data: ")
+    # print(data)
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', None)
-    if article_url:
-        article_id = get_article_id(article_url)
+    # print("article_url: ", article_url)
+    # if article_url:
+    #     article_id = get_article_id(article_url)
+
     client, db, collection = connect_to_mongodb()
-    article = collection.find_one({'id': article_id})
-    children = article['children'] if 'children' in article else []
+    article = collection.find_one({'url': article_url})
+    # print("article: ", article)
+
+    if article is None:
+        print(f"Article with id {article_id} not found")
+        return jsonify({'error': 'Article not found'}), 404  # Handle the case where the article isn't found
+
+    children = article.get('children', [])
     if article.get('is_generated', False):
         title = article['title']
         author = 'AI Generated'
         article_contents = article['body']
     else:
         title, author, article_contents = get_article_contents_for_website(article_id)
-    out = {'author': author, 'title': title, 'contents': article_contents, 'children': children}
-    return jsonify(out)
 
+    out = {'author': author, 'title': title, 'contents': article_contents, 'children': children}
+    # print("out: ", out)
+    return jsonify(out)
 
 
 

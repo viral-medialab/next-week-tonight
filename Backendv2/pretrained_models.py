@@ -1,4 +1,4 @@
-from transformers import TFAutoModelForSequenceClassification
+from transformers import AutoModelForSequenceClassification
 from transformers import AutoTokenizer
 from scipy.special import softmax
 
@@ -15,7 +15,7 @@ class SentimentModel:
         MODEL = f"cardiffnlp/twitter-roberta-base-sentiment"
 
         self.tokenizer = AutoTokenizer.from_pretrained(MODEL)
-        self.model = TFAutoModelForSequenceClassification.from_pretrained(MODEL)
+        self.model = AutoModelForSequenceClassification.from_pretrained(MODEL)
         self.tokenizer.save_pretrained(MODEL)
         self.model.save_pretrained(MODEL)
 

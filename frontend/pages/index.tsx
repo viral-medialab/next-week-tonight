@@ -35,6 +35,7 @@ const Index = () => {
         fetch("/api/news")
             .then((res) => res.json())
             .then((data) => {
+                console.log("frontend fetched")
                 console.log(data);
                 setNewsTopics(data);
                 setIsLoadingHeadlines(false);
@@ -51,7 +52,8 @@ const Index = () => {
     useEffect(() => {
         const fetchNewsByTopicId = async () => {
             try {
-                const response = await fetch("/api/getNewsByTopicId", {
+                //const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000'; 
+                const response = await fetch("api/getNewsByTopicId", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -65,7 +67,7 @@ const Index = () => {
 
                 const data = await response.json();
                 // Assuming data contains a list of articles
-                console.log("fetched topic");
+                console.log("fetched topic: ", data);
                 console.log(urlId);
                 setNewsTopic(data);
             } catch (error) {
@@ -81,13 +83,19 @@ const Index = () => {
             try {
                 if (newsTopic && newsTopic.articles && newsTopic.articles.length > 0) {
                     const firstArticleId = newsTopic.articles[0].id;
-                    const response = await fetch("https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/gather_article_info", {
+                    const firstArticleUrl = newsTopic.articles[0].url;
+                    console.log(`first article url ${firstArticleUrl}`);
+                    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000'; // Fallback URL
+                    const response = await fetch(`${backendUrl}/api/gather_article_info`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
+                        credentials: 'include', // Add this line
+
                         body: JSON.stringify({
                             article_id: firstArticleId,
+                            articleUrl: firstArticleUrl
                         }),
                     });
 
