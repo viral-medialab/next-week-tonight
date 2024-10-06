@@ -1,3 +1,4 @@
+frontend/.env.local
 vars.env
 Backend
 cardiffnlp
@@ -6,4 +7,3 @@ Backendv2/__pycache__/
 env/
 node_modules/
 Dockerfile
-frontend/.env.local
