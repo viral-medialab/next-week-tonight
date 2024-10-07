@@ -116,25 +116,64 @@ def handle_generate_what_if_questions():
     Inputs:
 
         articleUrl (str)        :   The url of the article that is currently being viewed
-        num_predictions (str)   :   [OPTIONAL, default = 3] The number of 'what if...'
-                                    predictions to make.
+        article_id (str)        :   The id of the article that is currently being viewed
+        new_question (bool)     :   [OPTIONAL, default = False] If True, generate new questions instead of fetching from database
+        num_predictions (int)   :   [OPTIONAL, default = 3] The number of 'what if...' predictions to make.
 
     Outputs predictions in the format {'prediction_1': prediction, 'prediction_2': prediction, etc.}
     '''
     data = request.get_json()
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', None)
+    new_question = data.get('new_question', True)
+    num_predictions = data.get('num_predictions', 3)
+
+    print("Received data:", data)
+    print("new_question:", new_question)
+    print("article_id:", article_id)
     if article_url:
         article_id = get_article_id(article_url)
 
     out = {}
-    client, db, collection = connect_to_mongodb(collection_to_open = 'trendingTopics') # here, we will try to see if the article was hashed
-    for topic in collection.find():
-        article = topic['articles'][0]
-        if article['id'] == article_id:
-            for i, question in enumerate(article['questions']):
-                out[f'prediction_{i}'] = question.replace("What happens if", "...")
+    client, db, collection = connect_to_mongodb(collection_to_open='trendingTopics')
 
+    if new_question:
+        # Generate new questions
+        print("Generating new questions")
+        article_contents = get_article_contents_from_id(article_id)
+        print("article_contents:", article_contents)
+        questions = generate_what_if_questions(article_contents, num_preds=num_predictions)
+        print("Generated questions:", questions)
+        
+        # Update the database with new questions
+        for topic in collection.find():
+            article = topic['articles'][0]
+            if article['id'] == article_id:
+                new_questions = {}
+                for i, question in enumerate(questions):
+                    new_question = question.replace("...", "What happens if")
+                    if new_question[0] == " ":
+                        new_question = new_question[1:]
+                    new_questions[new_question] = {}
+                article['questions'] = new_questions
+                collection.update_one({'_id': topic['_id']}, {'$set': {'articles.0.questions': new_questions}})
+                break
+    else:
+        # Fetch existing questions from the database
+        print("Fetching existing questions")
+        for topic in collection.find():
+            article = topic['articles'][0]
+            if article['id'] == article_id:
+                questions = list(article['questions'].keys())
+                break
+        else:
+            questions = []
+
+    # Format the output
+    for i, question in enumerate(questions):
+        out[f'prediction_{i}'] = question.replace("What happens if", "...")
+
+    print("out: ", out)
     return jsonify(out)
 
 

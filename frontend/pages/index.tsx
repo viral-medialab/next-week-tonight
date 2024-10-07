@@ -27,6 +27,7 @@ const Index = () => {
     const [isLoadingHeadlines, setIsLoadingHeadlines] = useState(true);
     const [isLoadingTrackedTopics, setIsLoadingTrackedTopics] = useState(true);
     const [urlId, seturlId] = useState(null);
+    const [currentArticle, setCurrentArticle] = useState({id: null, url: null});
     const [newsTopic, setNewsTopic] = useState(null);
     const [articleTitle, setArticleTitle] = useState("");
     const [articleContents, setArticleContents] = useState("");
@@ -46,6 +47,7 @@ const Index = () => {
     };
 
     const handleTopicClick = (topicId) => {
+        console.log("handleTopicClick called. Setting urlId to: ", topicId);
         seturlId(topicId);
     };
 
@@ -83,8 +85,9 @@ const Index = () => {
             try {
                 if (newsTopic && newsTopic.articles && newsTopic.articles.length > 0) {
                     const firstArticleId = newsTopic.articles[0].id;
+                    console.log("fetchArticleInfo: Setting urlId to firstArticleId: ", firstArticleId);
                     const firstArticleUrl = newsTopic.articles[0].url;
-                    console.log(`first article url ${firstArticleUrl}`);
+                    //console.log(`first article url ${firstArticleUrl}`);
                     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000'; // Fallback URL
                     const response = await fetch(`${backendUrl}/api/gather_article_info`, {
                         method: "POST",
@@ -107,6 +110,7 @@ const Index = () => {
                     console.log("Retrieved first article");
                     console.log(data.title);
                     seturlId(firstArticleId);
+                    setCurrentArticle({id: firstArticleId, url: firstArticleUrl});
                     setArticleTitle(data.title);
                     setArticleContents(data.contents);
                 } else {
@@ -128,6 +132,9 @@ const Index = () => {
     const handleWelcomeClick = () => {
         window.location.href = "/";
     };
+
+    // Add this log in the render function
+    console.log("Rendering Index component. Current urlId:", urlId);
 
     return (
         <>
@@ -180,7 +187,9 @@ const Index = () => {
                 </div>
             </div>
             <div className="max-w-6xl mx-auto">
-                <ChatCopy currentArticle={urlId} />
+                {currentArticle.id && currentArticle.url && (
+                    <ChatCopy currentArticle={currentArticle} />
+                )}
             </div>
         </>
     );

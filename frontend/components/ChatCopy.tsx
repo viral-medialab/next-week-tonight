@@ -6,7 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 interface ChatProps {
-  currentArticle: string;
+  currentArticle: {
+    id: string;
+    url: string;
+  }
 }
 
 export default function Chat({ currentArticle }: ChatProps) {
@@ -59,20 +62,25 @@ export default function Chat({ currentArticle }: ChatProps) {
     };
 
     useEffect(() => {
+        console.log("ChatCopy useEffect triggered. currentArticle:", currentArticle);
         const fetchWhatIfQuestions = async () => {
           if(currentArticle){
+            console.log("Fetching what-if questions for article:", currentArticle.id);
             try{
-              const response = await fetch("https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/generate_what_if_questions", {
+              console.log("HELLO")
+              const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000'; // Fallback URL
+              const response = await fetch(`${backendUrl}//api/generate_what_if_questions`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ article_id: currentArticle}),
+                body: JSON.stringify({ article_id: currentArticle.id, articleUrl: currentArticle.url}),
               });
               if (!response.ok) {
                 throw new Error(`Network response was not ok`);
               }
               const data = await response.json();
+              console.log("data: ", data)
               const fetchedQuestions = Object.keys(data).map((key) => data[key]);
               setQuestions(fetchedQuestions);
             } catch
