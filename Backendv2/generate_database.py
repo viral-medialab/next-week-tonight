@@ -11,7 +11,7 @@ sentiment_model = SentimentModel()
 
 
 
-def populate_database_by_recent_news(num_articles_to_store = 100, num_topics = 10, simple_return = False):
+def populate_database_by_recent_news(num_articles_to_store = 2, num_topics = 20, simple_return = False, offset=0):
     url = "https://api.bing.microsoft.com/v7.0/news"  # Changed to general news endpoint
     headers = {'Ocp-Apim-Subscription-Key': BING_API_KEY}
     query_params = {"count": num_topics*2, 

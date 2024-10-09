@@ -37,7 +37,7 @@ def repopulate_trendingtopics_database():
         time1 = time.time()
         topic = topic.replace("\n ", "")
         print(f"Now performing on topic: {topic}")
-        populate_database_by_topic(topic, 3, trending_topic=True, max_attempts=30)  # locates actual articles
+        populate_database_by_topic(topic, 5, trending_topic=True, max_attempts=30)  # locates actual articles
 
         # finds newly saved articles in mongodb
         client, db, collection = connect_to_mongodb(collection_to_open='trendingTopics')
@@ -61,31 +61,32 @@ def repopulate_trendingtopics_database():
         questions_dict = {question: {} for question in new_questions}
         doc_copy['articles'][0]['questions'] = questions_dict
 
-        # generates articles for every question
+        #generates articles for every question
         for question in new_questions:
-            for polarity in [0]:
-                for probability in [0]:
-                    normalized_polarity = polarity / 2
-                    normalized_probability = probability / 2
-                    article_pol_prob = str(probability) + ';' + str(polarity)
+            i = 0 
+            for polarity in [0,1, 2]:
+                for probability in [0, 1, 2]:
+                    # normalized_polarity = polarity / 2
+                    # normalized_probability = probability / 2
+                    # article_pol_prob = str(probability) + ';' + str(polarity)
 
-                    out = q2a_workflow(article_contents, article_id, question, normalized_polarity, normalized_probability, verbose=True)
+                    out = q2a_workflow(article_contents, article_id, question, polarity, probability, verbose=True)
                     article_title, article_body = out[-1][0], out[-1][1]
                     id, parent = save_generated_article_to_DB(title=article_title, body=article_body, parent=article_id, query=question)
-                    doc_copy['articles'][0]['questions'][question][article_pol_prob] = {'title': article_title, 'body': article_body, 'id': id, 'parent': parent}
-
+                    doc_copy['articles'][0]['questions'][question][f'article{i}'] = {'title': article_title, 'body': article_body, 'id': id, 'parent': parent, "probability": probability, "polarity": polarity}
+                    i += 1 
         collection.find_one_and_replace(doc, doc_copy)
         time2 = time.time()
         print(f"\n\nCheck MongoDB at topic: {topic}")
         print(f"This process took {time2 - time1} total seconds. Moving on to the next topic...\n\n")
 
 def main():
-    ready_to_replace_old_topics = True
+    ready_to_replace_old_topics = False
 
-    clear_all_expired_articles()
+    #clear_all_expired_articles()
 
-    if ready_to_replace_old_topics:
-        clear_trending_topics()
+    # if ready_to_replace_old_topics:
+    #     clear_trending_topics()
 
     repopulate_trendingtopics_database()
 

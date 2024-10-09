@@ -76,20 +76,16 @@ def handle_q2a_workflow():
     # the entries are not (probability, polarity) but rather article_i so that  #
     # it is recognized by the frontend.                                         #
     #############################################################################
-    for topic in collection.find(): 
+    for topic in collection.find():
         article = topic['articles'][0]
         if article['id'] == article_id:
-            if user_prompt in article['questions']:
+            if user_prompt in article.get('questions', {}):
                 before_out = article['questions'][user_prompt]
-                #after_out = {}
-                for i in range(len(before_out)): 
-                    generated_article = before_out[i] # this loop converts 'prob;pol' to (prob, pol). we want to keep this
-                    prob, pol = generated_article['probability'], generated_article['polarity']
-                    #after_out[(prob, pol)] = generated_article
-                    #print("after_out: ", after_out)
-                    out[f'article_{i}'] = generated_article
-                    out[f'article_{i}']['probability'] = prob
-                    out[f'article_{i}']['polarity'] = pol
+                print("reaches here")
+                for key, value in before_out.items():  # Use .items() for dictionary iteration
+                    # Access probability and polarity directly from the value dictionary
+                    #prob, pol = value['probability'], value['polarity']
+                    out[key] = value
 
     print("article: ", article_content)
     # this means that there are no generated articles in the database, so we need to generate a new one
