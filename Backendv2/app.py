@@ -66,8 +66,8 @@ def handle_q2a_workflow():
     client, db, collection = connect_to_mongodb(collection_to_open = 'trendingTopics') # here, we will try to see if the article was hashed
     user_prompt = data.get('user_prompt')
     verbose = data.get('verbose', True)
-    article = get_article_contents_from_id(article_id)
-    print(article, user_prompt, verbose)
+    article_content = get_article_contents_from_id(article_id)
+    print("blah: ",article_content, user_prompt, verbose)
     out = {}
 
     #############################################################################
@@ -81,26 +81,30 @@ def handle_q2a_workflow():
         if article['id'] == article_id:
             if user_prompt in article['questions']:
                 before_out = article['questions'][user_prompt]
-                after_out = {}
-                for generated_article in before_out: # this loop converts 'prob;pol' to (prob, pol). we want to keep this
-                    content = article['questions'][user_prompt][generated_article]
-                    prob, pol = (int(val) for val in generated_article.split(";"))
-                    after_out[(prob, pol)] = content
-                    print(after_out)
-                for i, generated_article in enumerate(before_out): # this loop converts (prob, pol) to article_i. we want to delete this
-                    out[f'article_{i}'] = article['questions'][user_prompt][generated_article] 
+                #after_out = {}
+                for i in range(len(before_out)): 
+                    generated_article = before_out[i] # this loop converts 'prob;pol' to (prob, pol). we want to keep this
+                    prob, pol = generated_article['probability'], generated_article['polarity']
+                    #after_out[(prob, pol)] = generated_article
+                    #print("after_out: ", after_out)
+                    out[f'article_{i}'] = generated_article
                     out[f'article_{i}']['probability'] = prob
                     out[f'article_{i}']['polarity'] = pol
-                break
 
-
+    print("article: ", article_content)
+    # this means that there are no generated articles in the database, so we need to generate a new one
     if out == {}:
-        results = q2a_workflow(article, article_id, user_prompt, polarity, probability, verbose)
-        result = results[-1]
-        id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_id, query = user_prompt)
-        out[f'article_0'] = {"title": result[0], "body": result[1], "id": id, "parent": parent}
-        print(out[f'article_0'])
-    print(out)
+        i = 0 
+        for (polarity, probability) in [(2, 2), (2, 1), (2,0), (1, 2), (1, 1), (1, 0), (0, 2), (0, 1), (0, 0)]:
+            results = q2a_workflow(article_content, article_url, user_prompt, polarity, probability, verbose)
+            result = results[-1]
+            id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_url, query = user_prompt)
+            out[f'article_{i}'] = {"title": result[0], "body": result[1], "id": id, "parent": parent, "probability": probability, "polarity": polarity}
+            print(out[f'article_{i}'])
+            i += 1
+
+        save_generated_article_to_trending_topic_DB(out, article_url, user_prompt)
+        #print("q2a out: ", out)
     return jsonify(out)
 
 
@@ -125,7 +129,7 @@ def handle_generate_what_if_questions():
     data = request.get_json()
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', None)
-    new_question = data.get('new_question', True)
+    new_question = data.get('new_question', False) # CHANGE THIS TO GENERATE NEW WHAT IF QUESTIONS
     num_predictions = data.get('num_predictions', 3)
 
     print("Received data:", data)
@@ -187,8 +191,8 @@ def handle_gather_article_info():
     article_url = data.get('articleUrl', None)
     article_id = data.get('article_id', None)
     # print("article_url: ", article_url)
-    # if article_url:
-    #     article_id = get_article_id(article_url)
+    if article_url:
+        article_id = get_article_id(article_url)
 
     client, db, collection = connect_to_mongodb()
     article = collection.find_one({'url': article_url})

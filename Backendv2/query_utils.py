@@ -64,7 +64,7 @@ def generate_scenario(relevant_articles, polarity, probability, extreme_scenario
 
 
 
-def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbose = True):
+def q2a_workflow(article, article_url, user_prompt, polarity, probability, verbose = True):
     '''
     Takes an article and corresponding user query, and works it into an article that answers the user's prompt.
 
@@ -85,6 +85,7 @@ def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbos
         5)  Input:  User input, AI-generated scenarios
             Output: AI-generated article 
     '''
+    #article_id = get_article_id_from_url(article_url)
     time1 = time.time()
     AI_generated_questions = generate_relevant_questions(article, user_prompt)
     time2 = time.time()
@@ -120,7 +121,7 @@ def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbos
     
 
     time1 = time.time()
-    extreme_scenarios = retrieve_extreme_scenarios(user_prompt, article_id)
+    extreme_scenarios = retrieve_extreme_scenarios(user_prompt, article_url)
     time2 = time.time()
     if verbose: print(f"Generating extreme scenarios took {time2-time1} seconds")
 
@@ -145,9 +146,9 @@ def q2a_workflow(article, article_id, user_prompt, polarity, probability, verbos
     return [AI_generated_questions, relevant_articles, scenario, out]
 
 
-def retrieve_extreme_scenarios(user_prompt, article_id, override = False):
+def retrieve_extreme_scenarios(user_prompt, article_url, override = False):
     client, db, collection = connect_to_mongodb()
-    doc = collection.find_one({'id': article_id})
+    doc = collection.find_one({'url': article_url})
     if 'prompts' not in doc:
         doc['prompts'] = {}
     if user_prompt in doc['prompts'] and not override:
@@ -157,7 +158,7 @@ def retrieve_extreme_scenarios(user_prompt, article_id, override = False):
         polarity = query_chatgpt([], [extreme_scenario_context + f"\n{user_prompt} // Objectivity "])
         out = {'probability': probability, 'polarity': polarity}
         doc['prompts'][user_prompt] = out
-        old_doc = collection.find_one({'id': article_id})
+        old_doc = collection.find_one({'url': article_url})
         collection.replace_one(old_doc, doc)
         return out
     
@@ -181,7 +182,8 @@ def save_to_file(data, filename="out_article.txt"):
 if __name__ == '__main__':
     user_prompt = 'What if Iran declares war on Israel?'
     article_id = 'AA1n5srJ'
+    article_url = 'https://www.msn.com/en-us/news/world/iran-is-ready-to-attack-israel-if-needed-says-iranian-general/ar-AA1n5srJ'
     print(retrieve_extreme_scenarios(user_prompt, article_id, override=False))
-    print(generate_scenario([get_article_contents_from_id(article_id)], 7, 1, retrieve_extreme_scenarios(user_prompt, article_id), user_prompt, max_context_length = 10000))
-    print(generate_scenario([get_article_contents_from_id(article_id)], 4, 4, retrieve_extreme_scenarios(user_prompt, article_id), user_prompt, max_context_length = 10000))
-    print(generate_scenario([get_article_contents_from_id(article_id)], 1, 7, retrieve_extreme_scenarios(user_prompt, article_id), user_prompt, max_context_length = 10000))
+    print(generate_scenario([get_article_contents_from_id(article_id)], 7, 1, retrieve_extreme_scenarios(user_prompt, article_url), user_prompt, max_context_length = 10000))
+    print(generate_scenario([get_article_contents_from_id(article_id)], 4, 4, retrieve_extreme_scenarios(user_prompt, article_url), user_prompt, max_context_length = 10000))
+    print(generate_scenario([get_article_contents_from_id(article_id)], 1, 7, retrieve_extreme_scenarios(user_prompt, article_url), user_prompt, max_context_length = 10000))

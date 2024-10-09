@@ -5,6 +5,7 @@ from openai_utils import get_embedding
 from copy import deepcopy
 from numpy import random
 import numpy as np
+from article_utils import get_article_id
 
 
 
@@ -122,12 +123,14 @@ def remove_topic(topic):
 
 def save_generated_article_to_DB(title, body, parent, query):
     client, db, collection = connect_to_mongodb()
-    new_id = parent + str(random.randint(10**(len(parent)-1),10**(len(parent))))
+    #id_length = 8 
+    parent_id = get_article_id(parent)
+    new_id = parent_id + str(random.randint(10**(len(parent_id)-1),10**(len(parent_id))))
     doc = {'title': title, 'body': body, 'parent': parent, 'id': new_id, 'query': query, 'is_generated': True}
 
     # we will make a two-way dependency in the DB
     # first, pull the article with the parent id and save the current article id as a child
-    parent_doc = collection.find_one({'id': parent})
+    parent_doc = collection.find_one({'url': parent})
     new_doc = deepcopy(parent_doc)
     if 'children' in parent_doc:
         new_doc['children'].append(new_id)
@@ -139,6 +142,61 @@ def save_generated_article_to_DB(title, body, parent, query):
     collection.insert_one(doc)
     return new_id, parent
 
+def save_generated_article_to_trending_topic_DB(all_generated_articles, article_url, user_prompt):
+    client, db, collection = connect_to_mongodb(collection_to_open='trendingTopics')
+    article_id = get_article_id(article_url)
+    
+    topic = collection.find_one({"articles.0.id": article_id})
+    
+    if topic:
+        # Prepare the new questions data
+        new_questions = {}
+        for key, article in all_generated_articles.items():
+            # prob = article['probability']
+            # pol = article['polarity']
+            new_questions[key] = {
+                "title": article['title'],
+                "body": article['body'],
+                "id": article['id'],
+                "parent": article['parent'],
+                "probability": article["probability"], 
+                "polarity": article['polarity']
+            }
+
+        # Update or add the user_prompt and generated articles
+        update_query = {
+            "$set": {
+                f"articles.0.questions.{user_prompt}": new_questions
+            }
+        }
+
+        # Update the document in the database
+        result = collection.update_one({"_id": topic["_id"]}, update_query)
+        
+        if result.modified_count > 0:
+            print(f"Updated first article in topic with new generated content for prompt: {user_prompt}")
+        else:
+            print(f"No changes were made to the document")
+    else:
+        print(f"Article with ID {article_id} not found as the first article in any topic")
+    #id_length = 8 
+    # parent_id = get_article_id(parent)
+    # new_id = parent_id + str(random.randint(10**(len(parent_id)-1),10**(len(parent_id))))
+    # doc = {'title': title, 'body': body, 'parent': parent, 'id': new_id, 'query': query, 'is_generated': True}
+
+    # # we will make a two-way dependency in the DB
+    # # first, pull the article with the parent id and save the current article id as a child
+    # parent_doc = collection.find_one({'url': parent})
+    # new_doc = deepcopy(parent_doc)
+    # if 'children' in parent_doc:
+    #     new_doc['children'].append(new_id)
+    # else:
+    #     new_doc['children'] = [new_id]
+    # collection.replace_one(parent_doc, new_doc)
+
+    # # then, save the article itself in the database with the parent as its parent
+    # collection.insert_one(doc)
+    # return new_id, parent
 
 
 def clear_cache(parent_id = None):
@@ -225,6 +283,24 @@ def clear_trending_topics():
 
 
 
+def update_articles_with_id():
+    client, db, collection = connect_to_mongodb()  # This will use the default collection
+    
+    # Find all documents that don't have an 'id' field
+    query = {'id': {'$exists': False}, 'url': {'$exists': True}}
+    
+    for doc in collection.find(query):
+        if 'url' in doc:
+            # Generate id from the URL
+            article_id = get_article_id(doc['url'])
+            
+            # Update the document with the new id
+            collection.update_one(
+                {'_id': doc['_id']},
+                {'$set': {'id': article_id}}
+            )
+            print(f"Updated article with URL {doc['url']} to have id {article_id}")
 
+    print("Finished updating articles with ids")
 if __name__ == '__main__':
-    pass
+    update_articles_with_id()

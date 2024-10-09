@@ -157,12 +157,13 @@ async function submitMessages(
     currentArticle: any,
     messages: { id: number; text: string }[]
 ) {
-    console.log("Current article id is:", currentArticle)
+    console.log("Current article id is:", currentArticle.id)
     console.log("User query is:", messages[messages.length - 1].text)
-    const res = await fetch("https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/call_q2a_workflow", {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000';
+    const res = await fetch(`${backendUrl}/api/call_q2a_workflow`, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ article_id: currentArticle, user_prompt: messages[messages.length - 1].text , verbose: true}),
+        body: JSON.stringify({ article_id: currentArticle.id, articleUrl: currentArticle.url, user_prompt: messages[messages.length - 1].text , verbose: true}),
     });
     console.log("Raw Response:", res);
     const data = await res.json();
