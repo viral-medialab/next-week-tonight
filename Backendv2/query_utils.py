@@ -148,7 +148,8 @@ def q2a_workflow(article, article_url, user_prompt, polarity, probability, verbo
 
 def retrieve_extreme_scenarios(user_prompt, article_url, override = False):
     client, db, collection = connect_to_mongodb()
-    doc = collection.find_one({'url': article_url})
+    doc = collection.find_one({'id': get_article_id(article_url)})
+    print("article url: ", article_url)
     if 'prompts' not in doc:
         doc['prompts'] = {}
     if user_prompt in doc['prompts'] and not override:

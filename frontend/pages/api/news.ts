@@ -3,7 +3,7 @@ import { WithId, Document } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 
-const WEEKS_THRESHOLD = 2; // Configure this to change the time frame
+const WEEKS_THRESHOLD = 1; // Configure this to change the time frame
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const headers = {
