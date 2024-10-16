@@ -143,7 +143,7 @@ def main(args):
 
 
 if __name__=='__main__':
-    #main(sys.argv)
+    main(sys.argv)
     topics = ["U.S. Sends Ukraine Weapons Seized From Iran",
               "Marjorie Taylor Greene Keeps Up Pressure on Speaker Johnson",
               "Parents of Michigan School Shooter Sentenced For Manslaughter",
