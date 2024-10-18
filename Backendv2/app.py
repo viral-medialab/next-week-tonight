@@ -39,6 +39,39 @@ handle_gather_article_info()
 def home():
     return 'Next Week Tonight Backend'
 
+@app.route('/api/news', methods=['GET'])
+def get_topics():
+    try:
+        client, db, collection = connect_to_mongodb(collection_to_open='trendingTopics')
+        
+        topics = []
+        for doc in collection.find({}, {'topic': 1, 'articles': {'$slice': 1}}):
+            topic = {
+                'id': str(doc['_id']),
+                'title': doc['topic'],
+                'url': doc['articles'][0]['url'] if doc['articles'] else None
+            }
+            topics.append(topic)
+        
+        return jsonify(topics)
+    except Exception as e:
+        print(f"Error fetching topics: {str(e)}")
+        return jsonify({'error': 'Failed to fetch topics'}), 500
+    
+@app.route('/api/getNewsByTopicId', methods=['POST'])
+def get_news_by_topic_id():
+    data = request.json
+    topic_id = data.get('topicId')
+    if not topic_id:
+        return jsonify({'error': 'No topicId provided'}), 400
+
+    client, db, collection = connect_to_mongodb(collection_to_open='trendingTopics')
+    topic = collection.find_one({'_id': ObjectId(topic_id)})
+
+    if not topic:
+        return jsonify({'error': 'Topic not found'}), 404
+
+    return jsonify(topic)
 
 @app.route('/api/call_q2a_workflow', methods=['GET', 'POST'])
 def handle_q2a_workflow():
@@ -91,11 +124,11 @@ def handle_q2a_workflow():
     # this means that there are no generated articles in the database, so we need to generate a new one
     if out == {}:
         i = 0 
-        for (polarity, probability) in [(2, 2), (2, 1), (2,0), (1, 2), (1, 1), (1, 0), (0, 2), (0, 1), (0, 0)]:
+        for (yscale, xscale) in [(2, 2), (2, 1), (2,0), (1, 2), (1, 1), (1, 0), (0, 2), (0, 1), (0, 0)]:
             results = q2a_workflow(article_content, article_url, user_prompt, polarity, probability, verbose)
             result = results[-1]
-            id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_url, query = user_prompt)
-            out[f'article_{i}'] = {"title": result[0], "body": result[1], "id": id, "parent": parent, "probability": probability, "polarity": polarity}
+            id, parent = save_generated_article_to_DB(title = result[0], body = result[1], parent = article_url, query = user_prompt, probability=xscale, impact=yscale)
+            out[f'article_{i}'] = {"title": result[0], "body": result[1], "id": id, "parent": parent, "probability": xscale, "impact": yscale}
             print(out[f'article_{i}'])
             i += 1
 

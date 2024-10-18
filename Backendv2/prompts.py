@@ -233,7 +233,7 @@ what_if_prompt = convert_to_proper_format('''You will generate what-if questions
                     happens if ... '. However, when you create these questions, you must leave out the first three words, which are 'What happens
                     if'. For example, if you are reading an article about the 2024 Presidential elections and generate the question, 'What happens
                     if Donald Trump wins the 2024 Presidential elections?', you will return '... Donald Trump wins the 2024 Presidential Elections?'.
-                    Make sure your answers are related to the prompt and as brief as possible (no more than 10 words per question). Make your 
+                    Make sure your questions are relevant to the article and as brief as possible (no more than 15 words per question). Make your 
                     questions as thought-provoking as possible so that the end user can ponder them. Make sure your questions also have a large 
                     scope, that is, don't ask multiple questions on the same exact thing. For example, what if Donald Trump wins the 2024 election 
                     is very similar to what if Republicans have power in 2025. ''')
@@ -245,7 +245,7 @@ scenario_generation_prompt = convert_to_proper_format('''Let's play a game where
                                 scenarios that are possible in real life and also answer the question. For example, if I were to ask 'What happens
                                 if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
                                 scenario that you can output is 'Iran declares war on Israel'. Keep the predictions interesting and use specific
-                                nouns as much as possible. Make sure the predictions are around 5 sentences long and are not already happening, that is, 
+                                nouns as much as possible. Make sure the predictions are around 5-10 sentences long and are not already happening, that is, 
                                 they have to be future predictions not present predictions.''')
 
 
@@ -260,12 +260,41 @@ single_scenario_using_pol_prob_prompt = convert_to_proper_format('''Let's play a
                                 scenario that is possible in real life that also answers the question. For example, if I were to ask 'What happens
                                 if Israel takes over Gaza', with the added context 'Iran refuses to let Israel take Gaza', then one valid 
                                 scenario that you can output is 'Iran declares war on Israel'. Keep the prediction interesting and use specific
-                                nouns as much as possible. Make sure the prediction is around 3-5 sentences long and is not already happening, that is, 
-                                it has to be a future prediction and not a present prediction. Do not preface the scenario with anything. Only provide the scenario. Lastly, you will be given two numbers between 0 and 2 that correspond to the 
-                                polarity (bias level) and probability of whatever scenario you create. A polarity of 0 means that the situation should be worded to be factual
-                                and without opinions, while an polarity of 2 means that the situation is highly subjective and opinionated (think political hit pieces such as 'Biden
-                                Cronies let Putin Take over Europe' as opposed to 'Russia Advances in Ukraine'). A probability ranked at 0 means that the event is super unlikely and a probability
-                                ranked at 2 means it is not a stretch at all. The value of the metric corresponds as 0 being extremely low, 1 being moderate, and 2 being extremely high. You should never specify the polarity and probability. Never say anything related to your thought process or explanation for why you generated a scenario. Only output the generated scenario.''')
+                                nouns as much as possible. Make sure the prediction is around 5 sentences long and is not already happening, that is, 
+                                it has to be a future prediction and not a present prediction. Do not preface the scenario with anything. Only provide the scenario. 
+
+                                You will be given two numbers between 0 and 2 that correspond to the yscale (IMPACT) and xscale (PROBABILITY) of whatever scenario you create. 
+                                An yscale or IMPACT value of 0 means low societal impact, 1 means medium societal impact, and 2 means high societal impact. 
+                                A probability ranked at 0 means that the event is super unlikely, 1 means moderately likely, and 2 means it is highly likely. 
+
+                                When constructing a narrative for the scenarios consider these definitions for the societal impact (yscale):
+
+                                High Impact (2):
+                                - The scenario has significant potential to influence public discourse, shape social norms, or impact key decision-making processes on a large scale.
+                                - It covers a major societal issue with groundbreaking or highly influential reporting, data, or arguments.
+                                - It challenges or reinforces widely accepted social norms in a way that sparks significant debate or controversy.
+                                - It proposes or advocates for large-scale legislative or institutional changes.
+                                - It introduces a new or radical perspective that has the potential to shift public opinion or political action on key societal matters.
+                                - It has the potential to mobilize collective action or attract widespread media attention to an issue that could result in societal change.
+
+                                Medium Impact (1):
+                                - The scenario is moderately influential, with potential to affect specific groups or contribute to public discourse without causing a wide societal shift.
+                                - It addresses important societal issues, but its arguments, reporting, or perspectives are already familiar or prevalent within public discussions.
+                                - It reinforces or challenges social norms, but its influence is primarily felt within specific communities, industries, or interest groups.
+                                - It advocates for moderate or incremental changes to policies or societal behaviors, rather than revolutionary shifts.
+                                - It provides insights or analysis that contribute to ongoing public discourse but does not introduce transformative or novel perspectives.
+                                - It may help to mobilize action or draw attention to societal issues, but its impact is likely limited to a smaller audience or specific geographic or demographic groups.
+
+                                Low Impact (0):
+                                - The scenario is unlikely to have a broad or lasting effect on public discourse, societal norms, or behaviors.
+                                - It discusses personal experiences or highly specific topics with minimal connection to broader societal issues.
+                                - It touches on societal norms or behaviors but lacks depth, originality, or compelling arguments that would influence wider societal attitudes.
+                                - It does not advocate for meaningful societal change or policy shifts and instead reiterates common knowledge or trivial observations.
+                                - Its focus is on small-scale, local, or niche issues that are unlikely to resonate with or affect a broader audience.
+                                - It may engage in routine reporting of events or situations without broader societal implications or impact.
+
+                                You should never explicitly specify the yscale number and probability in your scenario. Never say anything related to your thought process or explanation for why you generated a scenario. 
+                                Only output the generated scenario.''')
 
 
 

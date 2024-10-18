@@ -121,12 +121,12 @@ def remove_topic(topic):
 
 
 
-def save_generated_article_to_DB(title, body, parent, query):
+def save_generated_article_to_DB(title, body, parent, query, probability, impact):
     client, db, collection = connect_to_mongodb()
     #id_length = 8 
     parent_id = get_article_id(parent)
     new_id = parent_id + str(random.randint(10**(len(parent_id)-1),10**(len(parent_id))))
-    doc = {'title': title, 'body': body, 'parent': parent, 'id': new_id, 'query': query, 'is_generated': True}
+    doc = {'title': title, 'body': body, 'parent': parent, 'id': new_id, 'query': query, 'is_generated': True, 'probability':probability, 'impact':impact}
 
     # we will make a two-way dependency in the DB
     # first, pull the article with the parent id and save the current article id as a child
@@ -160,7 +160,7 @@ def save_generated_article_to_trending_topic_DB(all_generated_articles, article_
                 "id": article['id'],
                 "parent": article['parent'],
                 "probability": article["probability"], 
-                "polarity": article['polarity']
+                "impact": article['impact']
             }
 
         # Update or add the user_prompt and generated articles
@@ -179,25 +179,6 @@ def save_generated_article_to_trending_topic_DB(all_generated_articles, article_
             print(f"No changes were made to the document")
     else:
         print(f"Article with ID {article_id} not found as the first article in any topic")
-    #id_length = 8 
-    # parent_id = get_article_id(parent)
-    # new_id = parent_id + str(random.randint(10**(len(parent_id)-1),10**(len(parent_id))))
-    # doc = {'title': title, 'body': body, 'parent': parent, 'id': new_id, 'query': query, 'is_generated': True}
-
-    # # we will make a two-way dependency in the DB
-    # # first, pull the article with the parent id and save the current article id as a child
-    # parent_doc = collection.find_one({'url': parent})
-    # new_doc = deepcopy(parent_doc)
-    # if 'children' in parent_doc:
-    #     new_doc['children'].append(new_id)
-    # else:
-    #     new_doc['children'] = [new_id]
-    # collection.replace_one(parent_doc, new_doc)
-
-    # # then, save the article itself in the database with the parent as its parent
-    # collection.insert_one(doc)
-    # return new_id, parent
-
 
 def clear_cache(parent_id = None):
     client, db, collection = connect_to_mongodb()
@@ -210,12 +191,6 @@ def clear_cache(parent_id = None):
         collection.delete_many({'is_generated': True})
     return
 
-
-
-
-
-
-
 def similarity_score(x, y, verbose = True):
     x = np.array(x)
     y = np.array(y)
@@ -223,9 +198,6 @@ def similarity_score(x, y, verbose = True):
     if verbose:
         print(f"Similarity between the two embeddings is: {sim_score:.4f}")
     return sim_score
-
-
-
 
 def find_closest_article_using_simple_search(question_embedding, article_embeddings):
     closest_dist = -1.1
@@ -236,9 +208,6 @@ def find_closest_article_using_simple_search(question_embedding, article_embeddi
             closest_url = other_embed[1]
 
     return closest_url
-
-
-
 
 def add_children_to_all_entries():
     client, db, collection = connect_to_mongodb()
@@ -259,10 +228,6 @@ def add_children_to_all_entries():
                 print(f"Adding children field to document with id {article['id']}")
         collection.replace_one(topic, new_entry)
 
-
-
-
-
 def clear_all_expired_articles():
     client, db, collection = connect_to_mongodb() # article database
     for doc in collection.find({ 'url': { '$exists': True} }):
@@ -273,14 +238,11 @@ def clear_all_expired_articles():
             print(f"Deleting doc with doc['id'] = {doc['id']}")
             collection.delete_one(doc)
 
-
-
 def clear_trending_topics():
     client, db, collection = connect_to_mongodb(collection_to_open = 'trendingTopics') # article database
     for doc in collection.find({ 'articles': { '$exists': True} }):
         print(f"Deleting doc with doc['topic'] = {doc['topic']}")
         collection.delete_one(doc)
-
 
 
 def update_articles_with_id():
@@ -302,5 +264,57 @@ def update_articles_with_id():
             print(f"Updated article with URL {doc['url']} to have id {article_id}")
 
     print("Finished updating articles with ids")
+
+
+def populate_trending_topics():
+    client, db, collection = connect_to_mongodb()
+    
+    # Use aggregation to find all unique topics in the articles collection
+    pipeline = [
+        {"$group": {"_id": "$topic"}}
+    ]
+    unique_topics = collection.aggregate(pipeline)
+    
+    trending_topics_collection = db['trendingTopics']
+    
+    for topic in unique_topics:
+        topic_name = topic['_id']
+        print(f"Processing topic: {topic_name}")
+        
+        # Find all articles related to this topic
+        articles = list(collection.find({"topic": topic_name}))
+        
+        if articles:
+            # Check if the topic already exists in trendingTopics
+            existing_entry = trending_topics_collection.find_one({"topic": topic_name})
+            
+            if existing_entry:
+                # Merge new articles with existing ones
+                existing_article_ids = {article['id'] for article in existing_entry['articles']}
+                new_articles = [article for article in articles if article['id'] not in existing_article_ids]
+                
+                if new_articles:
+                    # Update the existing entry with new articles
+                    trending_topics_collection.update_one(
+                        {"topic": topic_name},
+                        {"$push": {"articles": {"$each": new_articles}}}
+                    )
+                    print(f"Updated topic '{topic_name}' with {len(new_articles)} new articles.")
+                else:
+                    print(f"No new articles to add for topic: {topic_name}")
+            else:
+                # Insert the new topic with its articles
+                trending_topic_entry = {
+                    "topic": topic_name,
+                    "articles": articles
+                }
+                trending_topics_collection.insert_one(trending_topic_entry)
+                print(f"Inserted topic '{topic_name}' with {len(articles)} articles into trendingTopics.")
+        else:
+            print(f"No articles found for topic: {topic_name}")
+
+    print("Finished populating trending topics.")
+
+# Example usage
 if __name__ == '__main__':
-    update_articles_with_id()
+    populate_trending_topics()

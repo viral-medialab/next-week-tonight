@@ -3,7 +3,7 @@ import { WithId, Document } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 
-const WEEKS_THRESHOLD = 1; // Configure this to change the time frame
+const YEARS_THRESHOLD = 3; // Configure this to change the time frame
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const headers = {
@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const isDebug = false;
 
         const today = new Date();
-        const cutoffDate = new Date(today.getTime() - WEEKS_THRESHOLD * 7 * 24 * 60 * 60 * 1000);
+        const cutoffDate = new Date(today.getTime() - YEARS_THRESHOLD * 365 * 24 * 60 * 60 * 1000);
         
         console.log("Current host name: " + host);
         console.log("Cutoff date: " + cutoffDate.toISOString());

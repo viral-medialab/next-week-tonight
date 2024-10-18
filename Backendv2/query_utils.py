@@ -36,7 +36,7 @@ def generate_what_if_questions(text_from_articles, num_preds = 3):
 
 
 
-def generate_scenario(relevant_articles, polarity, probability, extreme_scenarios, user_query, max_context_length = 10000):
+def generate_scenario(relevant_articles, xscale, yscale, extreme_scenarios, user_query, max_context_length = 10000):
     #Relevant info is a list of strings where each string is an article body
     relevant_context = "Here is some relevant information that will aid in your answers: ".replace("\n", "")
     for article in relevant_articles:
@@ -44,9 +44,9 @@ def generate_scenario(relevant_articles, polarity, probability, extreme_scenario
             relevant_context += article + "   --- NEXT ARTICLE ---   "
     relevant_context = relevant_context[:-1]
 
-    extremes_context = f'Here are some examples of extremes for the query:\n\nPOLARIZATION EXTREMES-{extreme_scenarios["polarity"]}\nPROBABILITY EXTREMES-{extreme_scenarios["probability"]}'
+    extremes_context = f'Here are some examples of extremes for the query:\n\n IMPACT EXTREMES-{extreme_scenarios["yscale_extremes"]}\nPROBABILITY EXTREMES-{extreme_scenarios["xscale_extremes"]}'
 
-    query = single_scenario_using_pol_prob_prompt + "\n\n Here is the query: " + user_query + "\n" + extremes_context + f"\nThe polarization is {polarity} and the probability is {probability}"
+    query = single_scenario_using_pol_prob_prompt + "\n\n Here is the query: " + user_query + "\n" + extremes_context + f"\nThe impact is {yscale} and the probability is {xscale}"
 
     scenario = query_chatgpt([relevant_context], [query[:max_context_length]])
     
@@ -64,7 +64,7 @@ def generate_scenario(relevant_articles, polarity, probability, extreme_scenario
 
 
 
-def q2a_workflow(article, article_url, user_prompt, polarity, probability, verbose = True):
+def q2a_workflow(article, article_url, user_prompt, xscale, yscale, verbose = True):
     '''
     Takes an article and corresponding user query, and works it into an article that answers the user's prompt.
 
@@ -85,15 +85,33 @@ def q2a_workflow(article, article_url, user_prompt, polarity, probability, verbo
         5)  Input:  User input, AI-generated scenarios
             Output: AI-generated article 
     '''
-    #article_id = get_article_id_from_url(article_url)
+    # #article_id = get_article_id_from_url(article_url)
+    # time1 = time.time()
+    # AI_generated_questions = generate_relevant_questions(article, user_prompt)
+    # time2 = time.time()
+    # if verbose: print(f"Generating questions took {time2-time1} seconds")
+
+    # Generate AI-suggestions if not already generated
     time1 = time.time()
-    AI_generated_questions = generate_relevant_questions(article, user_prompt)
+    client, db, collection = connect_to_mongodb(collection_to_open='trendingTopics')
+    topic_doc = collection.find_one({'articles.url': article_url})
+    
+    if topic_doc and topic_doc['articles']:
+        for article_doc in topic_doc['articles']:
+            if article_doc['url'] == article_url:
+                AI_generated_questions = list(article_doc.get('questions', {}).keys())
+                break
+    else:
+        AI_generated_questions = []
+
+    if not AI_generated_questions:
+        AI_generated_questions = generate_relevant_questions(article, user_prompt)
+    
     time2 = time.time()
     if verbose: print(f"Generating questions took {time2-time1} seconds")
 
-
     time1 = time.time()
-    embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions[:5]]
+    embeddings = [get_embedding(user_prompt)] + [get_embedding(question) for question in AI_generated_questions[:3]]
     time2 = time.time()
     if verbose: print(f"Fetching embeddings took {time2-time1} seconds")
     
@@ -121,12 +139,12 @@ def q2a_workflow(article, article_url, user_prompt, polarity, probability, verbo
     
 
     time1 = time.time()
-    extreme_scenarios = retrieve_extreme_scenarios(user_prompt, article_url)
+    extreme_scenarios = retrieve_extreme_scenarios(user_prompt, article_url, xscale, yscale)
     time2 = time.time()
     if verbose: print(f"Generating extreme scenarios took {time2-time1} seconds")
 
     time1 = time.time()
-    scenario_title, scenario = generate_scenario(relevant_articles, polarity, probability, extreme_scenarios, user_query=user_prompt, max_context_length = 10000) #pass in polarity, probability, extreme statements 
+    scenario_title, scenario = generate_scenario(relevant_articles, xscale, yscale, extreme_scenarios, user_query=user_prompt, max_context_length = 10000) #pass in polarity, probability, extreme statements 
     time2 = time.time()
     if verbose: print(f"Generating scenario based on articles and query took {time2-time1} seconds")
 
@@ -146,21 +164,45 @@ def q2a_workflow(article, article_url, user_prompt, polarity, probability, verbo
     return [AI_generated_questions, relevant_articles, scenario, out]
 
 
-def retrieve_extreme_scenarios(user_prompt, article_url, override = False):
-    client, db, collection = connect_to_mongodb()
-    doc = collection.find_one({'id': get_article_id(article_url)})
+def retrieve_extreme_scenarios(user_prompt, article_url, xscale, yscale, override=False):
+    client, db, articles_collection = connect_to_mongodb()
+    trending_topics_collection = db['trendingTopics']
+    
+    article_id = get_article_id(article_url)
     print("article url: ", article_url)
+    
+    # Find the article in the articles collection
+    doc = articles_collection.find_one({'id': article_id})
+    if not doc:
+        print(f"Article with ID {article_id} not found in articles collection")
+        return None
+
     if 'prompts' not in doc:
         doc['prompts'] = {}
+    
     if user_prompt in doc['prompts'] and not override:
         return doc['prompts'][user_prompt]
     else:
-        probability = query_chatgpt([], [extreme_scenario_context + f"\n{user_prompt} // Probability  "])
-        polarity = query_chatgpt([], [extreme_scenario_context + f"\n{user_prompt} // Objectivity "])
-        out = {'probability': probability, 'polarity': polarity}
+        xscale_results = query_chatgpt([], [extreme_scenario_context + f"\n{user_prompt} // Probability "])
+        yscale_results = query_chatgpt([], [extreme_scenario_context + f"\n{user_prompt} // Impact "])
+        out = {"xscale_extremes": xscale_results, "yscale_extremes": yscale_results}
         doc['prompts'][user_prompt] = out
-        old_doc = collection.find_one({'url': article_url})
-        collection.replace_one(old_doc, doc)
+        
+        # Update the article in the articles collection
+        articles_collection.replace_one({'id': article_id}, doc)
+        
+        # Update the article in the trendingTopics collection
+        trending_topic = trending_topics_collection.find_one({'articles.id': article_id})
+        if trending_topic:
+            for article in trending_topic['articles']:
+                if article['id'] == article_id:
+                    article['prompts'] = doc['prompts']
+                    break
+            trending_topics_collection.replace_one({'_id': trending_topic['_id']}, trending_topic)
+            print(f"Updated article in trendingTopics collection")
+        else:
+            print(f"Article with ID {article_id} not found in trendingTopics collection")
+        
         return out
     
     

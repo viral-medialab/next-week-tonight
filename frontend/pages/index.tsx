@@ -149,14 +149,7 @@ const Index = () => {
                 <div className="flex h-full">
                     {/* Sidebar Component */}
                     <div className="w-1/4 bg-gray-200 p-4 overflow-y-auto">
-                        <h2 className="text-2xl font-bold">Headlines Today</h2>
-                        <h3 className="text-lg font-medium text-gray-700 mb-4">
-                            {new Date().toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                            })}
-                        </h3>
+                        <h2 className="text-2xl font-bold">News Story</h2>
                         <ul className="space-y-2">
                             {newsTopics.map((topic) => (
                                 <li key={topic._id}>
@@ -178,6 +171,13 @@ const Index = () => {
                             <h1 id={articleTitle || ""} className="text-2xl font-bold text-gray-800 mb-4">
                                 {articleTitle}
                             </h1>
+                            {/* Add probability and impact display */}
+                            {/* {newsTopic && newsTopic.articles && newsTopic.articles.length > 0 && (
+                                <div>
+                                    <p>Probability: {newsTopic.articles[0].probability}</p>
+                                    <p>Impact: {newsTopic.articles[0].impact}</p>
+                                </div>
+                            )} */}
                             <div
                                 className="prose max-w-none"
                                 dangerouslySetInnerHTML={{ __html: articleContents || "" }}
