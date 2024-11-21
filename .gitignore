@@ -3,6 +3,7 @@ vars.env
 cardiffnlp
 node_modules/
 Dockerfile
+scratch
 
 #python cache files
 **/__pycache__/
