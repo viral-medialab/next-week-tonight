@@ -1,6 +1,0 @@
-frontend/
-vars.env
-Backend
-cardiffnlp
-Outputs
-backend/__pycache__/
