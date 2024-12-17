@@ -1,16 +1,21 @@
 import requests
 import sys
-from pretrained_models import SentimentModel
-from openai_utils import *
-from database_utils import *
-from article_utils import *
-from env import *
-from prompts import *
+#from llm.sentiment import SentimentModel
+from llm.openai_utils import *
+from database.database_utils import *
+from api.article_utils import *
+from test.env import *
+from llm.prompts import *
 from datetime import datetime, timedelta
 import sys
 import json
+import sys
+from pathlib import Path
 
-sentiment_model = SentimentModel()
+# Add the parent directory to sys.path
+sys.path.append(str(Path(__file__).parent.parent))
+
+#sentiment_model = SentimentModel()
 
 def populate_database_by_recent_news(num_articles_to_store = 2, num_topics = 20, simple_return = False, offset=0):
     url = "https://api.bing.microsoft.com/v7.0/news"  # Changed to general news endpoint

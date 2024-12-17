@@ -2,7 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-from openai_utils import *
+from backend.llm.openai_utils import *
 '''
 Provides all utility functions for analyzing articles
 '''

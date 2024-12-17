@@ -1,12 +1,10 @@
 from pymongo.mongo_client import MongoClient
-from article_utils import *
-from env import *
-from openai_utils import get_embedding
+from backend.api import *
+from backend.test.env import *
+from backend.llm.openai_utils import get_embedding
 from copy import deepcopy
 from numpy import random
 import numpy as np
-from article_utils import get_article_id
-
 
 
 def connect_to_mongodb(collection_to_open = 'articles'):

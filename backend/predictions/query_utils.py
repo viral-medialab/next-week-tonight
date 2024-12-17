@@ -1,9 +1,9 @@
 import numpy as np
 import time
-from prompts import *
-from openai_utils import *
-from database_utils import *
-from article_utils import *
+from llm.prompts import *
+from llm.openai_utils import *
+from database.database_utils import *
+from api.article_utils import *
 
 print("loading doc embeddings")
 

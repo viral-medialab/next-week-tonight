@@ -1,19 +1,12 @@
 from generate_database import *
-from query_utils import *
-from database_utils import *
+from predictions.query_utils import *
+from database.database_utils import *
 import time
-from transformers import AutoModelForSequenceClassification
+import sys
+from pathlib import Path
 
-# Replace TFAutoModelForSequenceClassification with AutoModelForSequenceClassification for PyTorch
-MODEL = "model-name"  # specify your model name
-
-class SentimentModel:
-    def __init__(self):
-        self.model = AutoModelForSequenceClassification.from_pretrained(MODEL)
-        # other initializations if necessary
-
-    # other methods if necessary
-
+# Add the parent directory to sys.path
+sys.path.append(str(Path(__file__).parent.parent))
 '''
 This script will serve to:
 
@@ -29,54 +22,85 @@ Articles are generated using q2a_workflow in query_utils.py
 
 '''
 
-def populate_trending_topics():
-    client, db, collection = connect_to_mongodb()
+def populate_trending_topics_from_gdelt(topic_title):
+    client, db, gdelt_collection = connect_to_mongodb("GDELT")
     
     # Use aggregation to find all unique topics in the articles collection
-    pipeline = [
-        {"$group": {"_id": "$topic"}}
-    ]
-    unique_topics = collection.aggregate(pipeline)
+    # pipeline = [
+    #     {"$group": {"_id": "$topic"}}
+    # ]
+    # unique_topics = collection.aggregate(pipeline)
     
     trending_topics_collection = db['trendingTopics']
+    gdelt_articles = list(gdelt_collection.find({"topic_title": topic_title}))
+    if not gdelt_articles:
+        print(f"No articles found in GDELT for topic: {topic_title}")
+        return
     
-    for topic in unique_topics:
-        topic_name = topic['_id']
-        print(f"Processing topic: {topic_name}")
-        
-        # Find all articles related to this topic
-        articles = list(collection.find({"topic": topic_name}))
-        
-        if articles:
-            # Check if the topic already exists in trendingTopics
-            existing_entry = trending_topics_collection.find_one({"topic": topic_name})
-            
-            if existing_entry:
-                # Merge new articles with existing ones
-                existing_article_ids = {article['id'] for article in existing_entry['articles']}
-                new_articles = [article for article in articles if article['id'] not in existing_article_ids]
-                
-                if new_articles:
-                    # Update the existing entry with new articles
-                    trending_topics_collection.update_one(
-                        {"topic": topic_name},
-                        {"$push": {"articles": {"$each": new_articles}}}
-                    )
-                    print(f"Updated topic '{topic_name}' with {len(new_articles)} new articles.")
-                else:
-                    print(f"No new articles to add for topic: {topic_name}")
-            else:
-                # Insert the new topic with its articles
-                trending_topic_entry = {
-                    "topic": topic_name,
-                    "articles": articles
-                }
-                trending_topics_collection.insert_one(trending_topic_entry)
-                print(f"Inserted topic '{topic_name}' with {len(articles)} articles into trendingTopics.")
-        else:
-            print(f"No articles found for topic: {topic_name}")
 
-    print("Finished populating trending topics.")
+    new_topic = {
+        "topic": article['news_title'],
+        "articles": [
+            {
+                "url": article['news_url'],
+                "date_published": article['original_event_datetime'],
+                "publisher": article['domain'],
+                "category": "",
+                "keywords": "",
+                "topic": article['news_title'],
+                "image": "",
+                "word_count": "",
+                "id": get_article_id(article['news_url']),
+                "author": "",
+                "sentiment": "",
+                "semantic_embedding": "",
+                "questions": [],
+                "prompts": [],
+            }
+            for article in gdelt_articles
+        ]
+    }
+    trending_topics_collection.insert_one(new_topic)
+
+    print(f"Created new topic '{topic_title}' with {len(gdelt_articles)} articles")
+
+def get_article_id(article):        
+    pattern = re.compile(r'/ar-([A-Za-z0-9]+)')
+    article_url = article if type(article) == str else article['url']
+    match = pattern.search(article_url)
+    if match:
+        article_id = match.group(1)
+        return article_id
+    else:
+        raise Exception("No article ID found")
+    
+def get_article_contents_from_id(news_url, return_author = False):
+    # Returns author and article contents
+    asset_url = news_url
+
+    try:
+        response = requests.get(asset_url)
+        response.raise_for_status()
+        data = response.json()
+        html_content = data.get('body', 'No content found')
+
+    except requests.RequestException as e:
+        print(f"Error fetching article: {e}")
+        return None
+    
+    if data.get('authors', False):
+        author = data.get('authors', 'None')[0]['name']
+    else:
+        author = 'Not found'
+
+    soup = BeautifulSoup(html_content, 'lxml')
+    paragraphs = [p.get_text(separator=' ', strip=True) for p in soup.find_all('p')]
+    # TODO fix LXML library
+    if return_author:
+        return author, '\n\n'.join(paragraphs)
+    else:
+        return '\n\n'.join(paragraphs)
+    
 
 def generate_questions_for_topics(topics):
     client, db, collection = connect_to_mongodb(collection_to_open='trendingTopics')
@@ -95,7 +119,7 @@ def generate_questions_for_topics(topics):
                 continue
             
             article_id = get_article_id(article)
-            article_contents = get_article_contents_from_id(article_id)
+            article_contents = get_article_contents_from_id(article['news_url'])
             
             questions = generate_what_if_questions(article_contents)
             new_questions = []
@@ -129,7 +153,7 @@ def generate_articles_for_questions(topics):
         #first article in the topic
         article = doc['articles'][0]
         article_id = get_article_id(article)
-        article_contents = get_article_contents_from_id(article_id)
+        article_contents = get_article_contents_from_id(article['news_url'])
         questions = doc['articles'][0]['questions']
         
         for question in questions:
@@ -165,10 +189,10 @@ def get_all_trending_topics():
     return topics
 
 def main():
-    populate_trending_topics() # populates trendingtopics from articles collection
+    populate_trending_topics_from_gdelt() # populates trendingtopics from articles collection
     print("Populated trending topics complete")
     topics = get_all_trending_topics()
-    generate_questions_for_topics(topics) # right not, this generates "what if" questions for the first article in the topic. 
+    #generate_questions_for_topics(topics) # right not, this generates "what if" questions for the first article in the topic. 
     #generate_articles_for_questions(topics)
     
 

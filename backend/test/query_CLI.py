@@ -1,6 +1,6 @@
 import sys
-from query_utils import *
-from article_utils import *
+from ..predictions.query_utils import *
+from ..api.article_utils import *
 
 
 
