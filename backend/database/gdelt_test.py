@@ -19,16 +19,16 @@ class GDELTNewsRetriever:
                          'until', 'against', 'among', 'throughout', 'despite', 'towards', 'upon'}
 
             # Split title, remove punctuation, convert to lowercase, and filter out stop words
-            search_terms = ["water overflow", "Bukit Batok"]
+            search_terms = "Los Angeles wildfire"
             print(search_terms)
             #search_query = ' '.join(search_terms)
             
             event_datetime = datetime.fromisoformat(event['published_datetime'])
-            start_date = (event_datetime - timedelta(days=3)).strftime('%Y-%m-%d')
-            end_date = (event_datetime + timedelta(days=3)).strftime('%Y-%m-%d')
+            start_date = (event_datetime - timedelta(days=1)).strftime('%Y-%m-%d')
+            end_date = (event_datetime + timedelta(days=5)).strftime('%Y-%m-%d')
 
             domains = [
-                'straitstimes.com', 'channelnewsasia.com', 'todayonline.com', 'nytimes.com', 'cnn.com', 'reuters.com', 'bloomberg.com'
+                'nytimes.com', 'cnn.com', 'reuters.com', 'bloomberg.com', 'bbc.com'
             ]
 
             filters = Filters(
@@ -37,7 +37,7 @@ class GDELTNewsRetriever:
                 end_date=end_date,
                 num_records=max_articles_per_event,
                 domain=domains,
-                country=['SG', 'US']
+                country=['US']
                 #language=['en']
                 #repeat=repeat(1, "Singapore")
             )
@@ -58,28 +58,28 @@ class GDELTNewsRetriever:
                         articles.to_csv(f'{filename}', index=False)
                         print(f"Saved {len(articles)} articles to {filename}")
 
-                    # #save to mongodb
-                    # mongo_articles = []
-                    # for _, article in articles.iterrows():
-                    #     if article.get('url'):
-                    #         article_doc = {
-                    #             'topic_title': event['topic_title'],
-                    #             'original_event_datetime': event['published_datetime'],
-                    #             'news_title': article.get('title', ''),
-                    #             'news_url': article.get('url', ''),
-                    #             'domain': article.get('domain', ''),
-                    #             'language': article.get('language', ''),
-                    #             'source_country': article.get('sourcecountry', ''),
-                    #             'seen_date': article.get('seendate', '')
-                    #         }
-                    #         mongo_articles.append(article_doc)
+                    #save to mongodb
+                    mongo_articles = []
+                    for _, article in articles.iterrows():
+                        if article.get('url'):
+                            article_doc = {
+                                'topic_title': event['topic_title'],
+                                'original_event_datetime': event['published_datetime'],
+                                'news_title': article.get('title', ''),
+                                'news_url': article.get('url', ''),
+                                'domain': article.get('domain', ''),
+                                'language': article.get('language', ''),
+                                'source_country': article.get('sourcecountry', ''),
+                                'seen_date': article.get('seendate', '')
+                            }
+                            mongo_articles.append(article_doc)
 
-                    # if mongo_articles:
-                    #     try:
-                    #         self.collection.insert_many(mongo_articles, ordered=False)
-                    #         print(f"Retrieved {len(mongo_articles)} articles for: {event['topic_title']}")
-                    #     except Exception as e:
-                    #         print(f"Some articles may be duplicates. Error: {e}")
+                    if mongo_articles:
+                        try:
+                            self.collection.insert_many(mongo_articles, ordered=False)
+                            print(f"Retrieved {len(mongo_articles)} articles for: {event['topic_title']}")
+                        except Exception as e:
+                            print(f"Some articles may be duplicates. Error: {e}")
 
             except Exception as e:
                 print(f"Error processing {event['topic_title']}: {e}")
@@ -108,8 +108,8 @@ def main():
         #     "published_datetime": "2024-07-19T16:10:00+08:00",
         # },
         {
-            "topic_title": "Soil Erosion Causes Water Overflow at Bukit Batok Town Park",
-            "published_datetime": "2021-07-19T12:51:00+08:00",
+            "topic_title": "Los Angeles wildfire",
+            "published_datetime": "2025-01-07T12:51:00+08:00",
         },
         # {
         #     "topic_title": "Oil Tanker Collision near Singapore",

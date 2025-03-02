@@ -37,30 +37,29 @@ def populate_trending_topics_from_gdelt(topic_title):
         print(f"No articles found in GDELT for topic: {topic_title}")
         return
     
-
-    new_topic = {
-        "topic": article['news_title'],
-        "articles": [
-            {
-                "url": article['news_url'],
-                "date_published": article['original_event_datetime'],
-                "publisher": article['domain'],
-                "category": "",
-                "keywords": "",
-                "topic": article['news_title'],
-                "image": "",
-                "word_count": "",
-                "id": get_article_id(article['news_url']),
-                "author": "",
-                "sentiment": "",
-                "semantic_embedding": "",
-                "questions": [],
-                "prompts": [],
-            }
-            for article in gdelt_articles
-        ]
-    }
-    trending_topics_collection.insert_one(new_topic)
+    for article in gdelt_articles:
+        new_topic = {
+            "topic": article['news_title'],
+            "articles": [
+                {
+                    "url": article['news_url'],
+                    "date_published": article['original_event_datetime'],
+                    "publisher": article['domain'],
+                    "category": "",
+                    "keywords": "",
+                    "topic": article['news_title'],
+                    "image": "",
+                    "word_count": "",
+                    "id": get_article_id(article['news_url']),
+                    "author": "",
+                    "sentiment": "",
+                    "semantic_embedding": "",
+                    "questions": [],
+                    "prompts": [],
+                }
+            ]
+        }
+        trending_topics_collection.insert_one(new_topic)
 
     print(f"Created new topic '{topic_title}' with {len(gdelt_articles)} articles")
 
@@ -189,7 +188,7 @@ def get_all_trending_topics():
     return topics
 
 def main():
-    populate_trending_topics_from_gdelt() # populates trendingtopics from articles collection
+    populate_trending_topics_from_gdelt("Singapore Airlines Severe Turbulence") # populates trendingtopics from articles collection
     print("Populated trending topics complete")
     topics = get_all_trending_topics()
     #generate_questions_for_topics(topics) # right not, this generates "what if" questions for the first article in the topic. 

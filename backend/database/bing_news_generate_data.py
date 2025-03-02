@@ -1,16 +1,19 @@
 import requests
 import sys
-#from llm.sentiment import SentimentModel
-from llm.openai_utils import *
-from database.database_utils import *
-from api.article_utils import *
-from test.env import *
-from llm.prompts import *
-from datetime import datetime, timedelta
-import sys
-import json
-import sys
 from pathlib import Path
+#from llm.sentiment import SentimentModel
+# Add the project root directory to Python path
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
+sys.path.append(str(ROOT_DIR))
+from backend.llm.openai_utils import *
+from backend.database.database_utils import *
+from backend.api.article_utils import *
+from backend.test.env import *
+from backend.llm.prompts import *
+from datetime import datetime, timedelta
+import json
+
+
 
 # Add the parent directory to sys.path
 sys.path.append(str(Path(__file__).parent.parent))
