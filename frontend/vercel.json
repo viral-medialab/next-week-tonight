@@ -1,7 +1,2 @@
 {
-    "functions": {
-      "pages/api/chat.ts": {
-        "maxDuration": 60
-      }
-    }
   }

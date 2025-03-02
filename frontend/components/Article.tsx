@@ -42,7 +42,7 @@ export default function Article({
   useEffect(() => {
     const fetchArticleInfo = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/gather_article_info", {
+        const response = await fetch("https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/gather_article_info", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -77,16 +77,16 @@ export default function Article({
 
   return (
     <div className="flex">
-      <Sidebar currentArticleTitle={articleTitle} />
+      <Sidebar currentArticleTitle={articleTitle || "Please pick an article"} />
       <div className="pr-4 sm:pr-6 lg:pr-8 py-12 flex-1">
         <div className="w-full">
-          <h1 id={articleTitle} className="text-2xl font-bold text-gray-800 mb-4">
+          <h1 id={articleTitle || "Default Title"} className="text-2xl font-bold text-gray-800 mb-4">
             {articleTitle}
           </h1>
           {articleImage && (
             <img
               src={articleImage}
-              alt={articleTitle}
+              alt={articleTitle || "Default Title"}
               className="rounded-lg shadow-lg mb-8 w-3/4"
             />
           )}
@@ -107,7 +107,7 @@ export default function Article({
           {!isCollapsed && (
             <div
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: articleContents }}
+              dangerouslySetInnerHTML={{ __html: articleContents || ""}}
             />
           )}
         </div>

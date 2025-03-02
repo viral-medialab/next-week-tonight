@@ -1,13 +1,18 @@
+import "dotenv/config";
+import Head from "next/head";
+import { Ring } from "@uiball/loaders";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 interface ChatProps {
-  currentArticle: string;
-  updateSidebarPredictions: () => void;
+  currentArticle: {
+    id: string;
+    url: string;
+  }
 }
 
-export default function Chat({ currentArticle, updateSidebarPredictions }: ChatProps) {
+export default function Chat({ currentArticle }: ChatProps) {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,14 +35,11 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
             currentArticle,
             [...messages, { id: messages.length + 1, text: newMessage.trim() }]
         );
-        console.log("response", response);
         setMessages([
             ...messages,
-            { id: messages.length + 1, text: messageSent },
-            { id: messages.length + 2, text: response },
+            response,
         ]);
         console.log("got response", response);
-        updateSidebarPredictions();
         setIsSubmitting(false);
     };
 
@@ -60,20 +62,25 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
     };
 
     useEffect(() => {
+        console.log("ChatCopy useEffect triggered. currentArticle:", currentArticle);
         const fetchWhatIfQuestions = async () => {
           if(currentArticle){
+            console.log("Fetching what-if questions for article:", currentArticle.id);
             try{
-              const response = await fetch("https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/generate_what_if_questions", {
+              console.log("HELLO")
+              const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000'; // Fallback URL
+              const response = await fetch(`${backendUrl}//api/generate_what_if_questions`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ article_id: currentArticle}),
+                body: JSON.stringify({ article_id: currentArticle.id, articleUrl: currentArticle.url}),
               });
               if (!response.ok) {
                 throw new Error(`Network response was not ok`);
               }
               const data = await response.json();
+              console.log("data: ", data)
               const fetchedQuestions = Object.keys(data).map((key) => data[key]);
               setQuestions(fetchedQuestions);
             } catch
@@ -85,14 +92,10 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
         fetchWhatIfQuestions();
     }, [currentArticle]);
 
-      
-            
-
     return (
         currentArticle && (
             <div className="flex flex-col p-4 border-t">
-                
-                <div className="flex flex-col items-start w-full ">
+                <div className="flex flex-col items-start w-full">
                     <span className="text-gray-500">What happens if:</span>
                     {questions && questions.map((question, index) => (
                         <button key={index} className="text-blue-900 mb-1 text-left" onClick={() => handleAskQuestion(question)}>
@@ -100,7 +103,7 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
                         </button>
                     ))}
                 </div>
-
+    
                 <div className="flex items-center mt-4 w-full">
                     <textarea
                         placeholder="Type your message here"
@@ -115,65 +118,37 @@ export default function Chat({ currentArticle, updateSidebarPredictions }: ChatP
                         onClick={handleSendMessage}
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? (
-                            "Loading..."
-                        ) : (
-                            <FontAwesomeIcon
-                                icon={faPaperPlane}
-                                size="sm"
-                                className="h-6 w-6"
-                            />
-                        )}
+                        {isSubmitting ? "Loading..." : <FontAwesomeIcon icon={faPaperPlane} size="sm" className="h-6 w-6"/>}
                     </button>
                 </div>
-
+    
                 <div className="flex flex-col h-full">
-                    <div className="flex-1 p-4 overflow-y-auto">
-                        {messages.map((message) => (
-                            <div
-                                key={message.id}
-                                className={`${
-                                    message.id % 2 === 0
-                                        ? "justify-end"
-                                        : "justify-start"
-                                } flex mb-4`}
-                            >
-                                <div
-                                    className={`${
-                                        message.id % 2 === 0
-                                            ? "bg-gray-600 w-full"
-                                            : "bg-blue-500 w-full"
-                                    } rounded-lg p-2`}
-                                >
-                                    {message.id % 2 !== 0 ? (
-                                        <p className="text-white">{message.text}</p>
-                                    ) : (
-                                        <div className="grid grid-cols-3 gap-8 w-full">
-                                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                            <div className="p-6">
-                                              <a href={`/article/${message.text["article_0"]["id"]}`}>
-                                              <h2 className="text-2xl font-bold mb-2">
-                                                {message.text["article_0"]["title"]}
-                                              </h2>
-                                              <p className="text-gray-700 text-base">
-                                                {message.text["article_0"]["body"].split('.')[0] + "..."}
-                                              </p>
-                                              <button
-                                                  className="text-blue-500 font-bold hover:text-blue-700 mt-4"
-                                              >
-                                                  Read more
-                                              </button>
-                                              </a>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="flex-1 p-4 overflow-y-auto">
+                    {/* Assuming messages[messages.length - 1] is the response with the articles */}
+                    {messages.length > 0 && (
+                        <div className="grid grid-cols-3 gap-4">
+                            {Array.from({ length: 9 }).map((_, index) => {
+                                const articleKey = `article_${index}`;
+                                const article = messages[messages.length - 1][articleKey];
+                                
+                                if (!article) return null;
+
+                                return (
+                                    <div key={article.id} className="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                        <a href={`/article/${article.id}`}>
+                                            <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
+                                            <p className="text-gray-700 text-base">{article.body.split('.')[0] + "..."}</p>
+                                            <button className="text-blue-500 font-bold hover:text-blue-700 mt-4">Read more</button>
+                                        </a>
+                                        
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             </div>
+        </div>
         )
     );
 }
@@ -182,12 +157,13 @@ async function submitMessages(
     currentArticle: any,
     messages: { id: number; text: string }[]
 ) {
-    console.log("Current article id is:", currentArticle)
+    console.log("Current article id is:", currentArticle.id)
     console.log("User query is:", messages[messages.length - 1].text)
-    const res = await fetch("https://backend-next-week-tonight-a073583ba0cf.herokuapp.com/api/call_q2a_workflow", {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000';
+    const res = await fetch(`${backendUrl}/api/call_q2a_workflow`, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ article_id: currentArticle, user_prompt: messages[messages.length - 1].text , verbose: true}),
+        body: JSON.stringify({ article_id: currentArticle.id, articleUrl: currentArticle.url, user_prompt: messages[messages.length - 1].text , verbose: true}),
     });
     console.log("Raw Response:", res);
     const data = await res.json();

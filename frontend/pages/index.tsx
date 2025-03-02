@@ -1,16 +1,18 @@
 import "dotenv/config";
 import Head from "next/head";
-import Link from "next/link";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Ring } from "@uiball/loaders";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import ChatCopy from "@/components/ChatCopy";
+
 import {
     faPlus,
     faTrash,
     faThumbtack,
 } from "@fortawesome/free-solid-svg-icons";
-import TrackTopicButton from "@/components/TrackTopicButton";
+// import TrackTopicButton from "@/components/TrackTopicButton";
+
 type Topic = {
     _id: string;
     topic: string;
@@ -24,11 +26,17 @@ const Index = () => {
     const [newsTopics, setNewsTopics] = useState<Topic[]>([]);
     const [isLoadingHeadlines, setIsLoadingHeadlines] = useState(true);
     const [isLoadingTrackedTopics, setIsLoadingTrackedTopics] = useState(true);
+    const [urlId, seturlId] = useState(null);
+    const [currentArticle, setCurrentArticle] = useState({id: null, url: null});
+    const [newsTopic, setNewsTopic] = useState(null);
+    const [articleTitle, setArticleTitle] = useState("");
+    const [articleContents, setArticleContents] = useState("");
 
     const getTopics = () => {
         fetch("/api/news")
             .then((res) => res.json())
             .then((data) => {
+                console.log("frontend fetched")
                 console.log(data);
                 setNewsTopics(data);
                 setIsLoadingHeadlines(false);
@@ -37,197 +45,151 @@ const Index = () => {
                 console.log(err);
             });
     };
-    const setPinnedTopic = (topicId: string) => {
-        fetch(`/api/setPinnedTopic`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ pinnedTopicId: topicId }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                getTopics();
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
+    const handleTopicClick = (topicId) => {
+        console.log("handleTopicClick called. Setting urlId to: ", topicId);
+        seturlId(topicId);
     };
-    const deleteTrackedTopic = (
-        trackedTopicId: string,
-        isPinnedTopic: boolean
-    ) => {
-        fetch(`/api/deleteTrackedTopic`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ trackedTopicId, isPinnedTopic }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                getTopics();
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+
+    useEffect(() => {
+        const fetchNewsByTopicId = async () => {
+            try {
+                //const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000'; 
+                const response = await fetch("api/getNewsByTopicId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ topicId: urlId }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                // Assuming data contains a list of articles
+                console.log("fetched topic: ", data);
+                console.log(urlId);
+                setNewsTopic(data);
+            } catch (error) {
+                console.error("Error fetching news by topic ID:", error);
+            }
+        };
+
+        fetchNewsByTopicId();
+    }, [urlId]);
+
+    useEffect(() => {
+        const fetchArticleInfo = async () => {
+            try {
+                if (newsTopic && newsTopic.articles && newsTopic.articles.length > 0) {
+                    const firstArticleId = newsTopic.articles[0].id;
+                    console.log("fetchArticleInfo: Setting urlId to firstArticleId: ", firstArticleId);
+                    const firstArticleUrl = newsTopic.articles[0].url;
+                    //console.log(`first article url ${firstArticleUrl}`);
+                    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000'; // Fallback URL
+                    const response = await fetch(`${backendUrl}/api/gather_article_info`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: 'include', // Add this line
+
+                        body: JSON.stringify({
+                            article_id: firstArticleId,
+                            articleUrl: firstArticleUrl
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    console.log("Retrieved first article");
+                    console.log(data.title);
+                    seturlId(firstArticleId);
+                    setCurrentArticle({id: firstArticleId, url: firstArticleUrl});
+                    setArticleTitle(data.title);
+                    setArticleContents(data.contents);
+                } else {
+                    console.log("No articles available for the topic");
+                }
+            } catch (error) {
+                console.error("Error fetching article info:", error);
+            }
+        };
+
+        fetchArticleInfo();
+    }, [newsTopic]);
 
     useEffect(() => {
         console.log("i fire once");
         getTopics();
     }, []);
 
+    const handleWelcomeClick = () => {
+        window.location.href = "/";
+    };
+
+    // Add this log in the render function
+    console.log("Rendering Index component. Current urlId:", urlId);
+
     return (
         <>
             <Head>
                 <title>Next Week Tonight</title>
-                <meta
-                    name="Next Week Tonight"
-                    content="Using Generative AI to Shape Tomorrow's Headlines"
-                />
+                <meta name="Next Week Tonight" content="Using Generative AI to Shape Tomorrow's Headlines" />
             </Head>
-            <div className="flex flex-col items-center h-screen">
-                <div className="relative w-full h-screen bg-gradient-to-br from-purple-400 to-purple-900">
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full">
-                        <h1 className="text-4xl font-bold text-white mb-2">
-                            Welcome to YOUR Next Week Tonight
-                        </h1>
-                        <h2 className="text-2xl  text-gray-300 mb-6">
-                            Using Generative AI to Shape Tomorrow's Headlines
-                        </h2>
-{/*                         <button */}
-{/*                             className="bg-white text-purple-700 py-2 px-4 rounded-full font-bold hover:bg-gray-400 transition duration-300 ease-in-out" */}
-{/*                             onClick={() => { */}
-{/*                                 const topicsGrid = */}
-{/*                                     document.getElementById("topics-grid"); */}
-{/*                                 topicsGrid?.scrollIntoView({ */}
-{/*                                     behavior: "smooth", */}
-{/*                                 }); */}
-{/*                             }} */}
-{/*                         > */}
-{/*                             Select a topic */}
-{/*                         </button> */}
-                    </div>
-                </div>
-                <div
-                    className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8"
-                    id="topics-grid"
-                >
-                    <h2 className="text-2xl font-bold text-center">
-                        Tracked Topics
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6 mb-14">
-                        {newsTopics
-                            .filter(
-                                (trackedTopic) =>
-                                    trackedTopic.topic &&
-                                    (trackedTopic.isTrackedTopic ||
-                                        trackedTopic.isPinnedTopic)
-                            )
-                            .map((trackedTopic) => (
-                                <div
-                                    key={trackedTopic._id}
-                                    className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out relative"
-                                >
+            <div className="w-full bg-white flex items-center h-1/6">
+                <img src="/next_week_tonight_horizontal.png" alt="Next Week Tonight Logo" style={{ height: '50%', marginLeft: '40px' }} /> 
+            </div>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 h-1/2">
+                <div className="flex h-full">
+                    {/* Sidebar Component */}
+                    <div className="w-1/4 bg-gray-200 p-4 overflow-y-auto">
+                        <h2 className="text-2xl font-bold">News Story</h2>
+                        <ul className="space-y-2">
+                            {newsTopics.map((topic) => (
+                                <li key={topic._id}>
                                     <a
-                                        href={`/chat/${trackedTopic._id}`}
-                                        className="block p-4 pt-8"
+                                        href="#"
+                                        onClick={() => handleTopicClick(topic._id)}
+                                        className="text-blue-500 hover:text-blue-700 block p-2"
                                     >
-                                        <h3 className="text-lg font-medium text-gray-900">
-                                            {trackedTopic.topic
-                                                ? trackedTopic.topic
-                                                      .charAt(0)
-                                                      .toUpperCase() +
-                                                  trackedTopic.topic.slice(1)
-                                                : ""}
-                                        </h3>
+                                        {topic.topic}
                                     </a>
-
-                                    <button
-                                        className="absolute top-0 right-0 p-2 text-gray-500 hover:text-red-500 transition-colors duration-300 ease-in-out"
-                                        onClick={() => {
-                                            deleteTrackedTopic(
-                                                trackedTopic._id,
-                                                trackedTopic.isPinnedTopic
-                                            );
-                                        }}
-                                        title="Delete tracked topic"
-                                    >
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </div>
+                                </li>
                             ))}
-                        <TrackTopicButton getTopics={getTopics} />
+                        </ul>
                     </div>
-                    <h2 className="text-2xl font-bold text-center">
-                        Headlines Today
-                    </h2>
-                    <h3
-                        className="text-lg font-medium text-gray-700 text-center mb-8"
-                        id="topics-grid"
-                    >
-                        {new Date().toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })}
-                    </h3>
-                    {isLoadingHeadlines && (
-                        <div className="flex justify-center items-center mt-4">
-                            <p className="mr-4 text-lg">Loading </p>
-                            <Ring color="#6d28d9" />
-                        </div>
-                    )}
-                    {!isLoadingHeadlines && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-                            {newsTopics
-                                .filter(
-                                    (newsTopic) =>
-                                        newsTopic.topic &&
-                                        !(
-                                            newsTopic.isTrackedTopic ||
-                                            newsTopic.isPinnedTopic
-                                        )
-                                )
-                                .map((newsTopic) => (
-                                    <div
-                                        key={newsTopic._id}
-                                        className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out relative"
-                                    >
-                                        <a
-                                            href={`/topic/${newsTopic._id}`}
-                                            className="block p-4 pt-6"
-                                        >
-                                            <h3 className="text-lg font-medium text-gray-900">
-                                                {newsTopic.topic
-                                                    ? newsTopic.topic
-                                                          .charAt(0)
-                                                          .toUpperCase() +
-                                                      newsTopic.topic.slice(1)
-                                                    : ""}
-                                            </h3>
-                                        </a>
 
-                                        <button
-                                            className="absolute top-0 right-0 p-2 text-gray-500 hover:text-purple-800 transition-colors duration-300 ease-in-out"
-                                            onClick={() => {
-                                                setPinnedTopic(newsTopic._id);
-                                            }}
-                                            title="Track this topic"
-                                        >
-                                            <FontAwesomeIcon
-                                                icon={faThumbtack}
-                                                transform={{ rotate: 45 }}
-                                            />
-                                        </button>
-                                    </div>
-                                ))}
+                    {/* Article Display Component */}
+                    <div className="w-3/4 overflow-y-auto">
+                        <div className="p-4 sm:p-6 lg:p-8">
+                            <h1 id={articleTitle || ""} className="text-2xl font-bold text-gray-800 mb-4">
+                                {articleTitle}
+                            </h1>
+                            {/* Add probability and impact display */}
+                            {/* {newsTopic && newsTopic.articles && newsTopic.articles.length > 0 && (
+                                <div>
+                                    <p>Probability: {newsTopic.articles[0].probability}</p>
+                                    <p>Impact: {newsTopic.articles[0].impact}</p>
+                                </div>
+                            )} */}
+                            <div
+                                className="prose max-w-none"
+                                dangerouslySetInnerHTML={{ __html: articleContents || "" }}
+                            />
                         </div>
-                    )}
+                    </div>
                 </div>
+            </div>
+            <div className="max-w-6xl mx-auto">
+                {currentArticle.id && currentArticle.url && (
+                    <ChatCopy currentArticle={currentArticle} />
+                )}
             </div>
         </>
     );
