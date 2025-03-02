@@ -34,3 +34,6 @@ ENV/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Data files
+backend/database/gdelt_news_articles.csv

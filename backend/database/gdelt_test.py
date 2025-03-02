@@ -27,11 +27,11 @@ class GDELTNewsRetriever:
             #search_query = ' '.join(search_terms)
             
             event_datetime = datetime.fromisoformat(event['published_datetime'])
-            start_date = (event_datetime - timedelta(days=3)).strftime('%Y-%m-%d')
-            end_date = (event_datetime + timedelta(days=3)).strftime('%Y-%m-%d')
+            start_date = (event_datetime - timedelta(days=1)).strftime('%Y-%m-%d')
+            end_date = (event_datetime + timedelta(days=5)).strftime('%Y-%m-%d')
 
             domains = [
-                'straitstimes.com', 'channelnewsasia.com', 'todayonline.com', 'nytimes.com', 'cnn.com', 'reuters.com', 'bloomberg.com'
+                'nytimes.com', 'cnn.com', 'reuters.com', 'bloomberg.com', 'bbc.com'
             ]
 
             filters = Filters(
