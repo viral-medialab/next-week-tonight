@@ -1,4 +1,4 @@
-from generate_database import *
+from backend.database.bing_news_generate_data import *
 from predictions.query_utils import *
 from database.database_utils import *
 import time
