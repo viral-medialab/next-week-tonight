@@ -37,3 +37,4 @@ Thumbs.db
 
 # Data files
 backend/database/gdelt_news_articles.csv
+backend/graphrag/ragtest/.env
