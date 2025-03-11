@@ -27,11 +27,11 @@ class GDELTNewsRetriever:
             #search_query = ' '.join(search_terms)
             
             event_datetime = datetime.fromisoformat(event['published_datetime'])
-            start_date = (event_datetime - timedelta(days=1)).strftime('%Y-%m-%d')
-            end_date = (event_datetime + timedelta(days=5)).strftime('%Y-%m-%d')
+            start_date = (event_datetime - timedelta(days=3)).strftime('%Y-%m-%d')
+            end_date = (event_datetime + timedelta(days=3)).strftime('%Y-%m-%d')
 
             domains = [
-                'nytimes.com', 'cnn.com', 'reuters.com', 'bloomberg.com', 'bbc.com'
+                'straitstimes.com', 'channelnewsasia.com', 'todayonline.com', 'nytimes.com', 'cnn.com', 'reuters.com', 'bloomberg.com'
             ]
 
             filters = Filters(
@@ -61,7 +61,7 @@ class GDELTNewsRetriever:
                     filename = f"articles_{safe_title}_{date_str}.csv"
 
                     #generate a unique ID to be stored in the database for the current event topic
-                    print(len(articles),type(event['topic_title']))
+                    # print(len(articles),type(event['topic_title']))
                     unique_id = self.generate_event_id(event['topic_title'])
 
                     #ADD UNIQUE_ID TO THE DATAFRAME
@@ -88,6 +88,7 @@ class GDELTNewsRetriever:
                                 #article_data
                                 #event_id
                                 'original_event_datetime': datetime(*extracted_date,*extracted_time),
+                                'event_id':unique_id,
                                 'article_data': {
                                     'topic_title': event['topic_title'],
                                     'news_title': article.get('title', ''),
@@ -96,12 +97,11 @@ class GDELTNewsRetriever:
                                     'language': article.get('language', ''),
                                     'source_country': article.get('sourcecountry', ''),
                                     'seen_date': article.get('seendate', ''),
-                                    'event_id':unique_id  
+                                    'text': article.get('article_text', '')
                                                 },
                                   
                             }
                             mongo_articles.append(article_doc)
-
                     if mongo_articles:
                         try:
                             self.collection.insert_many(mongo_articles, ordered=False)
@@ -200,7 +200,7 @@ def main():
         # },
         {
             "topic_title": "Los Angeles forest fires",
-            "published_datetime": "2025-01-01T02:20:00+08:00",
+            "published_datetime": "2025-01-14T02:20:00+08:00",
         },
         # {
         #     "topic_title": "Oil Tanker Collision near Singapore",
