@@ -7,13 +7,15 @@ from database_utils import connect_to_mongodb
 import random
 from extract_article_text import extract_text_from_url
 from datetime import datetime
-
+from perplexity_article_query import perplexity_article_query
+from firecrawl_scrape import firecrawl_scrape
 class GDELTNewsRetriever:
     def __init__(self, collection_name='GDELT_test'):
         self.client, self.db, self.collection = connect_to_mongodb(collection_name)
         self.gdelt = GdeltDoc()
 
     def fetch_gdelt_articles(self, events, max_articles_per_event=10):
+        perplexity_urls = []
         for event in events:
             # Use just the first two important words from the title
             # Common English stop words including prepositions
@@ -44,7 +46,8 @@ class GDELTNewsRetriever:
                 #language=['en']
                 #repeat=repeat(1, "Singapore")
             )
-
+            #Query perplexity for article urls
+            perplexity_urls+=perplexity_article_query(event['topic_title'])
             try:
                 #SEARCH FOR ARTICLES
                 articles = self.gdelt.article_search(filters)
@@ -69,7 +72,6 @@ class GDELTNewsRetriever:
 
                     #GET ARTICLE TEXT (CALL EXTRACT_ARTICLE_TEXT)
                     article_text = extract_text_from_url(articles)
-                    # print(len(article_text),article_text)
 
                     #ADD ARTICLE TEXT TO THE DATAFRAME
                     articles['article_text'] = article_text
@@ -93,15 +95,18 @@ class GDELTNewsRetriever:
                                     'topic_title': event['topic_title'],
                                     'news_title': article.get('title', ''),
                                     'news_url': article.get('url', ''),
-                                    'domain': article.get('domain', ''),
-                                    'language': article.get('language', ''),
-                                    'source_country': article.get('sourcecountry', ''),
+                                    # 'domain': article.get('domain', ''),
+                                    # 'language': article.get('language', ''),
+                                    # 'source_country': article.get('sourcecountry', ''),
                                     'seen_date': article.get('seendate', ''),
                                     'text': article.get('article_text', '')
-                                                },
-                                  
+                                                },  
                             }
                             mongo_articles.append(article_doc)
+            
+                    #Extracts additional article information and article text from the perplexity urls (it can be really slow)           
+                    mongo_articles+=firecrawl_scrape(perplexity_urls,unique_id,event['topic_title'])
+
                     if mongo_articles:
                         try:
                             self.collection.insert_many(mongo_articles, ordered=False)

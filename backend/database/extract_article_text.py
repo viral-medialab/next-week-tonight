@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import requests
 from openai import OpenAI
+from firecrawl import FirecrawlApp
+from pydantic import BaseModel, Field
+from typing import Any, Optional, List
 def perplexity_text_extractor(news_url):
     """
     :param news_url: The url of the article to search
@@ -53,7 +56,19 @@ def perplexity_text_extractor(news_url):
     # print(response.choices[0].message.content)
     # print(news_url, score.choices[0].message.content)
     return (score.choices[0].message.content,response.choices[0].message.content)
+class ExtractSchema(BaseModel):
+        article_text: str
+app = FirecrawlApp(api_key='fc-312aa443d7114da6b7ffffd079d2de44')
 
+def firecrawl_text_extractor(url):
+    try:
+        output = app.extract([url], {
+            'prompt': '',
+            'schema': ExtractSchema.model_json_schema(),
+        })['data']['article_text']
+        return output
+    except:
+        return
 def BSoup_text_extractor(news_url):
     """
     :param news_url: The url of the article to search
@@ -101,18 +116,21 @@ def extract_text_from_url(article_data):
             #     continue
 
             #Try to summarize using Perplexity API Chat completion
-            print("Accessing text using Perplexity API")
-            article_text = perplexity_text_extractor(news_url)
+            # print("Accessing text using Perplexity API")
+            # article_text = perplexity_text_extractor(news_url)
 
-            #article_text returns in the form (score, text). Extraction failed if score is less than 2.
-            if article_text[0].isnumeric() and int(article_text[0]) < 2:
-                print(f"Perplexity text extraction returned a score of {article_text[0]}. Extracting text with Beautiful Soup.")
+            # #article_text returns in the form (score, text). Extraction failed if score is less than 2.
+            # if article_text[0].isnumeric() and int(article_text[0]) < 2:
+            #     print(f"Perplexity text extraction returned a score of {article_text[0]}. Extracting text with Beautiful Soup.")
 
-                #If extraction fails, resort to extraction using BeautifulSoup
-                article_text = BSoup_text_extractor(news_url)
+            #     #If extraction fails, resort to extraction using BeautifulSoup
+            #     article_text = BSoup_text_extractor(news_url)
+            print("Extracting with firecrawl")
+            article_text = firecrawl_text_extractor(news_url)
             #If both BeautifulSoup and Perplexity fail, store Extraction Failed, which can be purged later
             if not article_text:
                 article_text = "Extraction Failed"
             #Append the final result
             output_text.append(article_text)        
         return output_text
+        
