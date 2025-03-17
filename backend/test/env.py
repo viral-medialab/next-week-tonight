@@ -11,6 +11,7 @@ load_dotenv("vars.env")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 BING_API_KEY = os.environ.get("BING_API_KEY")
 MONGODB_URI_KEY = os.environ.get("MONGODB_URI_KEY")
+PERPLEXITY_API_KEY = os.environ.get("PERPLEXITY_API_KEY")
 
 
 def test_openai_api(key):
