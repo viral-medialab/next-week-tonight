@@ -42,4 +42,4 @@ def firecrawl_scrape(urls,event_id,topic_title,event_datetime):
         except:
             continue
     return data
-print(firecrawl_scrape(['https://www.usatoday.com/story/news/politics/2025/03/12/trump-doge-federal-layoffs-timeline/82240271007/','https://www.nytimes.com/2025/03/12/us/politics/trump-crackdown-dissent.html'],0,'trump'))
+# print(firecrawl_scrape(['https://www.usatoday.com/story/news/politics/2025/03/12/trump-doge-federal-layoffs-timeline/82240271007/','https://www.nytimes.com/2025/03/12/us/politics/trump-crackdown-dissent.html'],0,'trump'))
