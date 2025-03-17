@@ -1,7 +1,0 @@
-The U.S. Supreme Court has unanimously upheld the ban on TikTok, the popular video-sharing app. The ban, which is set to take effect on Sunday, is the culmination of a long-running battle between the federal government and TikTok's parent company, ByteDance.
-The government has argued that TikTok poses a national security risk because the Chinese government could access user data or manipulate content on the platform. TikTok has denied these allegations, but the Supreme Court sided with the government.
-The ruling allows the federal government to legally shut down TikTok in the U.S. starting Sunday. The ban is the result of a law passed last year that requires TikTok to cut ties with its China-based parent company, ByteDance, or face a ban in the U.S.
-TikTok has argued that the law violates Americans' First Amendment free speech rights, but the Supreme Court rejected that argument.
-
-Citations: 
-[1] https://www.npr.org/2025/01/17/nx-s1-5258396/supreme-court-upholds-tiktok-ban
