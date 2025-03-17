@@ -9,13 +9,12 @@ class ExtractSchema(BaseModel):
         article_title: str
         article_publish_date: str
         article_author: str = 'N/A'
-def create_article_doc(firecrawl_output,event_id,topic_title,url):
-     extracted_date = [int(t) for t in datetime(firecrawl_output['article_publish_date'])[:10].split("-")]+[0,0,0,0,0,0]
+def create_article_doc(firecrawl_output,event_id,topic_title,url,event_datetime):
      article_doc = {
         #original_event_datetime
         #article_data
         #event_id
-        'original_event_datetime': datetime(*extracted_date),
+        'original_event_datetime': event_datetime,
         'event_id':event_id,
         'article_data': {
             'topic_title': topic_title,
@@ -31,7 +30,7 @@ def create_article_doc(firecrawl_output,event_id,topic_title,url):
      return article_doc
 
 app = FirecrawlApp(api_key='fc-312aa443d7114da6b7ffffd079d2de44')
-def firecrawl_scrape(urls,event_id,topic_title):
+def firecrawl_scrape(urls,event_id,topic_title,event_datetime):
     data = []
     for url in urls:
         try:

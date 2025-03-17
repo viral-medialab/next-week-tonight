@@ -46,6 +46,7 @@ class GDELTNewsRetriever:
                 #language=['en']
                 #repeat=repeat(1, "Singapore")
             )
+
             #Query perplexity for article urls
             perplexity_urls+=perplexity_article_query(event['topic_title'])
             try:
@@ -105,7 +106,7 @@ class GDELTNewsRetriever:
                             mongo_articles.append(article_doc)
             
                     #Extracts additional article information and article text from the perplexity urls (it can be really slow)           
-                    mongo_articles+=firecrawl_scrape(perplexity_urls,unique_id,event['topic_title'])
+                    mongo_articles+=firecrawl_scrape(perplexity_urls,unique_id,event['topic_title'],datetime(*extracted_date,*extracted_time))
 
                     if mongo_articles:
                         try:
