@@ -1,11 +1,13 @@
 from openai import OpenAI
+from backend.test.env import *
+
 def perplexity_article_query(topic):
     """
     :param news_url: The url of the article to search
     :type news_url: str
     :returns: A tuple with the summarized text from the article url and a score of the summary: (score,text)
     """
-    YOUR_API_KEY = "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"
+    
     messages = [
         {
         "role": "system",
@@ -21,7 +23,7 @@ def perplexity_article_query(topic):
         }
     ]
     
-    client = OpenAI(api_key=YOUR_API_KEY, base_url="https://api.perplexity.ai")
+    client = OpenAI(api_key=PERPLEXITY_API_KEY, base_url="https://api.perplexity.ai")
 
     response = client.chat.completions.create(
         model="sonar-pro",

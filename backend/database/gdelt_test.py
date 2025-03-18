@@ -1,5 +1,3 @@
-
-
 from gdeltdoc import GdeltDoc, Filters, repeat
 from datetime import datetime, timedelta
 import pandas as pd
