@@ -5,6 +5,10 @@ from openai import OpenAI
 from firecrawl import FirecrawlApp
 from pydantic import BaseModel, Field
 from typing import Any, Optional, List
+from backend.test.env import *
+from dotenv import load_dotenv
+load_dotenv()
+
 def perplexity_text_extractor(news_url):
     """
     :param news_url: The url of the article to search
@@ -58,7 +62,7 @@ def perplexity_text_extractor(news_url):
     return (score.choices[0].message.content,response.choices[0].message.content)
 class ExtractSchema(BaseModel):
         article_text: str
-app = FirecrawlApp(api_key='fc-312aa443d7114da6b7ffffd079d2de44')
+app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
 
 def firecrawl_text_extractor(url):
     try:
