@@ -24,7 +24,7 @@ def perplexity_text_extractor(news_url):
     :type news_url: str
     :returns: A tuple with the summarized text from the article url and a score of the summary: (score,text)
     """
-    YOUR_API_KEY = PERPLEXITY_API_KEY
+    YOUR_API_KEY = perplexity_api_key
     messages = [
         {
         "role": "system",
