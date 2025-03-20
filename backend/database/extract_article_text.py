@@ -5,9 +5,18 @@ from openai import OpenAI
 from firecrawl import FirecrawlApp
 from pydantic import BaseModel, Field
 from typing import Any, Optional, List
-from backend.test.env import *
+# from backend.test.env import *
 from dotenv import load_dotenv
-load_dotenv()
+import os
+
+load_dotenv("../../vars.env")
+load_dotenv("../vars.env")
+load_dotenv("vars.env")
+
+
+perplexity_api_key = os.getenv("PERPLEXITY_API_KEY")
+firecrawl_api_key = os.getenv("FIRECRAWL_API_KEY")
+print(perplexity_api_key, firecrawl_api_key)
 
 def perplexity_text_extractor(news_url):
     """
@@ -15,7 +24,7 @@ def perplexity_text_extractor(news_url):
     :type news_url: str
     :returns: A tuple with the summarized text from the article url and a score of the summary: (score,text)
     """
-    YOUR_API_KEY = "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"
+    YOUR_API_KEY = PERPLEXITY_API_KEY
     messages = [
         {
         "role": "system",
@@ -60,9 +69,11 @@ def perplexity_text_extractor(news_url):
     # print(response.choices[0].message.content)
     # print(news_url, score.choices[0].message.content)
     return (score.choices[0].message.content,response.choices[0].message.content)
+
+
 class ExtractSchema(BaseModel):
         article_text: str
-app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
+app = FirecrawlApp(api_key=firecrawl_api_key)
 
 def firecrawl_text_extractor(url):
     try:
