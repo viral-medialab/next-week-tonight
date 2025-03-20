@@ -1,0 +1,15 @@
+{
+  "files": [],
+  // "references": [
+  //   { "path": "./tsconfig.app.json" },
+  //   { "path": "./tsconfig.node.json" }
+  // ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,  
+     "jsx": "react-jsx"
+  },
+  "include": ["src"], 
+  "exclude": ["node_modules", "dist"]
+}
