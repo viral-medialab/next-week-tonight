@@ -117,7 +117,7 @@ class GDELTNewsRetriever:
             '_id': 0  # Explicitly exclude _id
         }"""
         #collect article text (separate function?)
-        
+
         """
         Send to the collection with:
         topic_title
@@ -207,8 +207,11 @@ def main():
         if not collection:
             print("No collection provided. Exiting.")
             sys.exit(1)
-    
-        date = parser.parse(args.date)
+        try:
+            date = parser.parse(args.date)
+        except:
+            print("Invalid date format. Please enter in the format YYYY-MM-DD. Exiting.")
+            sys.exit(1)
 
 
         events = [{
