@@ -2,13 +2,17 @@ from gdeltdoc import GdeltDoc, Filters, repeat
 from datetime import datetime, timedelta
 import pandas as pd
 from database_utils import connect_to_mongodb
-import random
 from extract_article_text import extract_text_from_url
 from datetime import datetime
 from perplexity_article_query import perplexity_article_query
 from firecrawl_scrape import firecrawl_scrape
+import argparse
+import sys
+from dateutil import parser
+
 class GDELTNewsRetriever:
-    def __init__(self, collection_name='GDELT_test'):
+    def __init__(self, collection_name='GDELT_test2'):
+        self.collection_name = collection_name
         self.client, self.db, self.collection = connect_to_mongodb(collection_name)
         self.gdelt = GdeltDoc()
 
@@ -23,10 +27,12 @@ class GDELTNewsRetriever:
 
             # Split title, remove punctuation, convert to lowercase, and filter out stop words
             search_terms = ["forest fires", "Los Angeles"]
-            print(search_terms)
             #search_query = ' '.join(search_terms)
             
-            event_datetime = datetime.fromisoformat(event['published_datetime'])
+            if type(event['published_datetime']) == str:
+                event_datetime = datetime.fromisoformat(event['published_datetime'])
+            else:
+                event_datetime = event['published_datetime']
             start_date = (event_datetime - timedelta(days=3)).strftime('%Y-%m-%d')
             end_date = (event_datetime + timedelta(days=3)).strftime('%Y-%m-%d')
 
@@ -41,75 +47,32 @@ class GDELTNewsRetriever:
                 num_records=max_articles_per_event,
                 domain=domains,
                 country='US'
-                #language=['en']
+                # language=['en']
                 #repeat=repeat(1, "Singapore")
             )
-
+            print(f'Searching for article urls from query: {event['topic_title']}...')
             #Query perplexity for article urls
-            perplexity_urls+=perplexity_article_query(event['topic_title'])
+            perplexity_urls = perplexity_article_query(f'{event['topic_title']}, {event['published_datetime']}')
+            # perplexity_urls = []
+
             try:
                 #SEARCH FOR ARTICLES
                 articles = self.gdelt.article_search(filters)
-                
-                print(type(articles))
-                if not articles.empty:
-                    # #save to csv 
-                    # if not articles.empty:
-                    # Create filename using topic title (sanitized) and date
-                    #WHY TOPIC_TITLE WHEN IN THE CSV IT'S TITLE IN THE CSV
-                    safe_title = "".join(x for x in event['topic_title'] if x.isalnum() or x.isspace()).rstrip()
-                    date_str = datetime.fromisoformat(event['published_datetime']).strftime('%Y%m%d')
-                    #articles_Soil Erosion Causes Water Overflow at Bukit Batok Town Park_20210719.csv
-                    filename = f"articles_{safe_title}_{date_str}.csv"
-
-                    #generate a unique ID to be stored in the database for the current event topic
-                    # print(len(articles),type(event['topic_title']))
-                    unique_id = self.generate_event_id(event['topic_title'])
-
-                    #ADD UNIQUE_ID TO THE DATAFRAME
-                    articles['event_id'] = unique_id
-
-                    #GET ARTICLE TEXT (CALL EXTRACT_ARTICLE_TEXT)
-                    article_text = extract_text_from_url(articles)
-
-                    #ADD ARTICLE TEXT TO THE DATAFRAME
-                    articles['article_text'] = article_text
-                    # Save to CSV
-                    articles.to_csv(f'{filename}', index=False)
-                    print(f"Saved {len(articles)} articles to {filename}")
-
-                    #save to mongodb
-                    extracted_date = [int(t) for t in event['published_datetime'][:10].split("-")]
-                    extracted_time = [int(t) for t in event['published_datetime'][11:19].split(":")]
+                print(f"Found {len(perplexity_urls)+len(articles)} articles.\nExtracting article text (this may take a few minutes)...")
+                article_urls = articles['url'].tolist() + perplexity_urls
+                if article_urls:
                     mongo_articles = []
-                    for _, article in articles.iterrows():
-                        if article.get('url'):
-                            article_doc = {
-                                #original_event_datetime
-                                #article_data
-                                #event_id
-                                'original_event_datetime': datetime(*extracted_date,*extracted_time),
-                                'event_id':unique_id,
-                                'article_data': {
-                                    'topic_title': event['topic_title'],
-                                    'news_title': article.get('title', ''),
-                                    'news_url': article.get('url', ''),
-                                    # 'domain': article.get('domain', ''),
-                                    # 'language': article.get('language', ''),
-                                    # 'source_country': article.get('sourcecountry', ''),
-                                    'seen_date': article.get('seendate', ''),
-                                    'text': article.get('article_text', '')
-                                                },  
-                            }
-                            mongo_articles.append(article_doc)
+                    unique_id = self.generate_event_id(event['topic_title'])
             
-                    #Extracts additional article information and article text from the perplexity urls (it can be really slow)           
-                    mongo_articles+=firecrawl_scrape(perplexity_urls,unique_id,event['topic_title'],datetime(*extracted_date,*extracted_time))
+                    #Extracts additional article information and article text from the perplexity urls          
+                    mongo_articles+=firecrawl_scrape(article_urls,unique_id,event['topic_title'],event_datetime)
 
+
+                    #Try to insert the article data into the collection
                     if mongo_articles:
                         try:
                             self.collection.insert_many(mongo_articles, ordered=False)
-                            print(f"Retrieved {len(mongo_articles)} articles for: {event['topic_title']}")
+                            print(f"Inserted {len(mongo_articles)} articles into collection {self.collection_name} for topic: {event['topic_title']}")
                         except Exception as e:
                             print(f"Some articles may be duplicates. Error: {e}")
 
@@ -193,39 +156,68 @@ class GDELTNewsRetriever:
             self.client.close()
 
 def main():
-    events = [
-        # {
-        #     "topic_title": "CrowdStrike Outage Singapore",
-        #     "published_datetime": "2024-07-19T16:10:00+08:00",
-        # },
-        # {
-        #     "topic_title": "Soil Erosion Causes Water Overflow at Bukit Batok Town Park",
-        #     "published_datetime": "2021-07-19T12:51:00+08:00",
-        # },
-        {
-            "topic_title": "Los Angeles forest fires",
-            "published_datetime": "2025-01-14T02:20:00+08:00",
-        },
-        # {
-        #     "topic_title": "Oil Tanker Collision near Singapore",
-        #     "published_datetime": "2024-07-20T02:20:00+08:00",
-        # },
-        # {
-        #     "topic_title": "Singapore Airlines Severe Turbulence",
-        #     "published_datetime": "2024-05-30T00:00:00+00:00",
-        # },
-        # {
-        #     "topic_title": "Fire in Singapore Data Centre",
-        #     "published_datetime": "2024-09-10T23:47:00+08:00",
-        # }
+    # events = [
+    #     # {
+    #     #     "topic_title": "CrowdStrike Outage Singapore",
+    #     #     "published_datetime": "2024-07-19T16:10:00+08:00",
+    #     # },
+    #     # {
+    #     #     "topic_title": "Soil Erosion Causes Water Overflow at Bukit Batok Town Park",
+    #     #     "published_datetime": "2021-07-19T12:51:00+08:00",
+    #     # },
+    #     {
+    #         "topic_title": "Los Angeles forest fires",
+    #         "published_datetime": "2025-01-14T02:20:00+08:00",
+    #     },
+    #     # {
+    #     #     "topic_title": "Oil Tanker Collision near Singapore",
+    #     #     "published_datetime": "2024-07-20T02:20:00+08:00",
+    #     # },
+    #     # {
+    #     #     "topic_title": "Singapore Airlines Severe Turbulence",
+    #     #     "published_datetime": "2024-05-30T00:00:00+00:00",
+    #     # },
+    #     # {
+    #     #     "topic_title": "Fire in Singapore Data Centre",
+    #     #     "published_datetime": "2024-09-10T23:47:00+08:00",
+    #     # }
            
-    ]
+    # ]
 
     retriever = None
     try:
-        retriever = GDELTNewsRetriever()
+        argparser = argparse.ArgumentParser(description='Get article sources from Perplexity API and extract text')
+        argparser.add_argument('--query', type=str, help='The query to search for')
+        argparser.add_argument('--date', type=str, default=datetime.now(), help='Approximate article publish date')
+        argparser.add_argument('--collection', type=str, help='Collection to save extracted article data')
+        args = argparser.parse_args()
+        
+        if args.query:
+            query = args.query
+        else:
+            # If no query argument provided, prompt for input
+            query = input("Enter your query for articles: ")
+        
+        if args.collection:
+            collection = args.collection
+        else:
+            # If no collection argument provided, prompt for input
+            collection = input("Enter the collection name: ")
+
+        if not collection:
+            print("No collection provided. Exiting.")
+            sys.exit(1)
+    
+        date = parser.parse(args.date)
+
+
+        events = [{
+            "topic_title": query,
+            "published_datetime": date,
+        }]
+        retriever = GDELTNewsRetriever(collection_name=collection)
         retriever.fetch_gdelt_articles(events)
-        retriever.export_to_csv()
+        # retriever.export_to_csv()
     except Exception as e:
         print(f"Error: {e}")
     finally:

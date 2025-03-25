@@ -3,11 +3,12 @@ from urllib.request import urlopen
 import requests
 from openai import OpenAI
 from firecrawl import FirecrawlApp
-from pydantic import BaseModel, Field
-from typing import Any, Optional, List
-# from backend.test.env import *
+from pydantic import BaseModel
+from typing import Any
 from dotenv import load_dotenv
 import os
+import sys
+from tqdm import tqdm
 
 load_dotenv("../../vars.env")
 load_dotenv("../vars.env")
@@ -16,7 +17,6 @@ load_dotenv("vars.env")
 
 perplexity_api_key = os.getenv("PERPLEXITY_API_KEY")
 firecrawl_api_key = os.getenv("FIRECRAWL_API_KEY")
-print(perplexity_api_key, firecrawl_api_key)
 
 def perplexity_text_extractor(news_url):
     """
@@ -24,7 +24,6 @@ def perplexity_text_extractor(news_url):
     :type news_url: str
     :returns: A tuple with the summarized text from the article url and a score of the summary: (score,text)
     """
-    YOUR_API_KEY = perplexity_api_key
     messages = [
         {
         "role": "system",
@@ -39,14 +38,17 @@ def perplexity_text_extractor(news_url):
             ),
         }
     ]
-    
-    client = OpenAI(api_key=YOUR_API_KEY, base_url="https://api.perplexity.ai")
+    if not perplexity_api_key:
+        print("Error: PERPLEXITY_API_KEY not found in environment variables.")
+        print("Please add your Perplexity API key to your vars.env file.")
+        sys.exit(1)
+    client = OpenAI(api_key=perplexity_api_key, base_url="https://api.perplexity.ai")
 
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
     )
-    # print(response)
+
     score_message = [
         {
         "role": "system",
@@ -66,14 +68,17 @@ def perplexity_text_extractor(news_url):
         model="sonar-pro",
         messages=score_message,
     )
-    # print(response.choices[0].message.content)
-    # print(news_url, score.choices[0].message.content)
+
     return (score.choices[0].message.content,response.choices[0].message.content)
 
 
 class ExtractSchema(BaseModel):
         article_text: str
 app = FirecrawlApp(api_key=firecrawl_api_key)
+if not firecrawl_api_key:
+        print("Error: FIRECRAWL_API_KEY not found in environment variables.")
+        print("Please add your Firecrawl API key to your vars.env file.")
+        sys.exit(1)
 
 def firecrawl_text_extractor(url):
     try:
@@ -125,7 +130,7 @@ def BSoup_text_extractor(news_url):
 def extract_text_from_url(article_data):
         article_urls = article_data['url'].tolist()
         output_text = []
-        for news_url in article_urls:
+        for i in tqdm (range (len(article_urls)), desc="Loading..."):
             # #check if the url is present
             # if not news_url:
             #     continue
@@ -140,7 +145,8 @@ def extract_text_from_url(article_data):
 
             #     #If extraction fails, resort to extraction using BeautifulSoup
             #     article_text = BSoup_text_extractor(news_url)
-            print("Extracting with firecrawl")
+            # print("---> Firecrawl extraction...")
+            news_url = article_urls[i]
             article_text = firecrawl_text_extractor(news_url)
             #If both BeautifulSoup and Perplexity fail, store Extraction Failed, which can be purged later
             if not article_text:
