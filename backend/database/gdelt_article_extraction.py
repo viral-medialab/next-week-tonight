@@ -117,7 +117,7 @@ class GDELTNewsRetriever:
             '_id': 0  # Explicitly exclude _id
         }"""
         #collect article text (separate function?)
-        #text = beautifulsoup...
+        
         """
         Send to the collection with:
         topic_title
