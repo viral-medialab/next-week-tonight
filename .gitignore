@@ -1,4 +1,5 @@
 frontend/.env.local
+news-broom/.env
 vars.env
 cardiffnlp
 node_modules/
