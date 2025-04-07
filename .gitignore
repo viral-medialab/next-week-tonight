@@ -18,6 +18,7 @@ venv/
 ENV/
 .env/
 .venv/
+news-broom/.env/
 
 # IDE
 .idea/
