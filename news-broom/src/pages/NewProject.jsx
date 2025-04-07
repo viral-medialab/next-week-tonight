@@ -3,6 +3,13 @@ import { FaMicrophone, FaPaperPlane } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // You'll need to install axios: npm install axios
 
+// Add this at the top of your file to debug
+console.log("Environment variables:", {
+    VITE_BACKEND_URL: import.meta.env.VITE_BACKEND_URL,
+    MODE: import.meta.env.MODE,
+    DEV: import.meta.env.DEV
+});
+
 const NewProject = () => {
     const navigate = useNavigate();
     const [topic, setTopic] = useState("");
@@ -13,8 +20,9 @@ const NewProject = () => {
         
         setIsLoading(true);
         try {
-            // Configure API URL based on your environment
-            const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+            // Access the environment variable
+            const API_URL = "http://127.0.0.1:5001";
+            console.log(API_URL)
             
             const response = await axios.post(`${API_URL}/api/get_news_by_user_input`, {
                 topic: topic
@@ -22,7 +30,7 @@ const NewProject = () => {
             
             // Store the response data in localStorage for use on the next page
             localStorage.setItem("topicData", JSON.stringify(response.data));
-            
+            console.log(response.data)
             // Navigate to the next page
             navigate("/generating-scenarios");
         } catch (error) {

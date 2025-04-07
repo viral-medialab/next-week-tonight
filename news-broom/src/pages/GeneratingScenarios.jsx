@@ -12,7 +12,6 @@ const GeneratingScenarios = () => {
 
   const steps = [
     "Gathering News Sources...",
-    "Summarizing Individual Reports...",
     "Creating Graph...",
     "Generating Key Findings...",
   ];

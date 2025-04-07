@@ -45,7 +45,7 @@ const HomePage = () => {
       </div>
 
       {/* Bottom Input Bar */}
-      <div className="flex-1 flex items-end justify-center w-full">
+      {/* <div className="flex-1 flex items-end justify-center w-full">
         <div className="w-full max-w-3xl flex items-center border border-gray-300 rounded-lg p-3 shadow-sm">
           <FaMicrophone className="text-gray-500 text-xl mr-3 cursor-pointer" />
           <input 
@@ -55,7 +55,7 @@ const HomePage = () => {
           />
           <FaPaperPlane className="text-gray-500 text-xl ml-3 cursor-pointer" />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

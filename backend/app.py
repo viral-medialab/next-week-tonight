@@ -246,6 +246,8 @@ def handle_gather_article_info():
 
 
 
+
+
 @app.route('/api/test', methods=['GET', 'POST'])
 def handle_test():
     print("handling test")
@@ -449,4 +451,4 @@ def handle_get_news_by_user_input():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001, host='0.0.0.0')
