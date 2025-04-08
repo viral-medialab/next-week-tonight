@@ -26,7 +26,7 @@ class GDELTNewsRetriever:
                          'until', 'against', 'among', 'throughout', 'despite', 'towards', 'upon'}
 
             # Split title, remove punctuation, convert to lowercase, and filter out stop words
-            search_terms = ["forest fires", "Los Angeles"]
+            search_terms = [event['topic_title']]
             #search_query = ' '.join(search_terms)
             
             if type(event['published_datetime']) == str:
@@ -59,13 +59,16 @@ class GDELTNewsRetriever:
                 #SEARCH FOR ARTICLES
                 articles = self.gdelt.article_search(filters)
                 print(f"Found {len(perplexity_urls)+len(articles)} articles.\nExtracting article text (this may take a few minutes)...")
-                article_urls = articles['url'].tolist() + perplexity_urls
+                article_urls = articles['url'].tolist()
+                for p_url in perplexity_urls:
+                    article_urls.append(p_url)
+            
                 if article_urls:
                     mongo_articles = []
                     unique_id = self.generate_event_id(event['topic_title'])
             
                     #Extracts additional article information and article text from the perplexity urls          
-                    mongo_articles+=firecrawl_scrape(article_urls,unique_id,event['topic_title'],event_datetime)
+                    mongo_articles=firecrawl_scrape(article_urls,unique_id,event['topic_title'],event_datetime)
 
 
                     #Try to insert the article data into the collection
