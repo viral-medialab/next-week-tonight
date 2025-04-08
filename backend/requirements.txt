@@ -11,7 +11,7 @@ pymongo[srv]==3.12.0
 python-dotenv==1.0.0
 Requests==2.31.0
 #scipy==1.10.0
-#torch==1.11.0              # I don't even see this being used #
+#torch==1.11.0             
 #transformers==4.32.1
 Flask==2.2.5
 Flask-Cors==3.0.10

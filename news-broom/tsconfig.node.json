@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "CommonJS",  // ✅ Updated for Node.js compatibility
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "node",  // ✅ Ensures proper Node.js module resolution
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src", "server/**/*.ts", "vite.config.ts"],  // ✅ Ensure correct paths
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,4 +1,5 @@
 frontend/.env.local
+news-broom/.env
 vars.env
 cardiffnlp
 node_modules/
@@ -17,6 +18,7 @@ venv/
 ENV/
 .env/
 .venv/
+news-broom/.env/
 
 # IDE
 .idea/
@@ -37,3 +39,8 @@ Thumbs.db
 
 # Data files
 backend/database/gdelt_news_articles.csv
+backend/graphrag/ragtest/.env
+backend/graphrag/ragtest/input/
+backend/graphrag/ragtest/output/
+backend/graphrag/ragtest/cache/
+backend/graphrag/ragtest/logs/

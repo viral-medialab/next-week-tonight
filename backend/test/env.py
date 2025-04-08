@@ -16,6 +16,7 @@ MONGODB_URI_KEY = os.environ.get("MONGODB_URI_KEY")
 PERPLEXITY_API_KEY = os.environ.get("PERPLEXITY_API_KEY")
 FIRECRAWL_API_KEY = os.environ.get("FIRECRAWL_API_KEY")
 
+
 #print(PERPLEXITY_API_KEY,FIRECRAWL_API_KEY)
 def test_openai_api(key):
     url = "https://api.openai.com/v1/embeddings"

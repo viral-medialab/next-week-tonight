@@ -246,6 +246,8 @@ def handle_gather_article_info():
 
 
 
+
+
 @app.route('/api/test', methods=['GET', 'POST'])
 def handle_test():
     print("handling test")
@@ -409,6 +411,44 @@ def handle_test():
 
 '''
 
+@app.route('/api/get_news_by_user_input', methods=['GET', 'POST'])
+def handle_get_news_by_user_input():
+    '''
+    Returns news stories based on a user-specified topic
+    
+    Inputs:
+        topic (str) : The topic specified by the user
+        
+    Outputs:
+        Dictionary containing news stories related to the topic
+    '''
+    data = request.get_json()
+    topic = data.get('topic', '')
+    
+    # For now, return dummy data regardless of the topic
+    dummy_response = {
+        'success': True,
+        'topic': topic,
+        'stories': [
+            {
+                'id': '1',
+                'title': 'Sample News Story About ' + topic,
+                'url': 'https://example.com/news/1',
+                'source': 'Example News',
+                'published_date': '2023-04-15'
+            },
+            {
+                'id': '2',
+                'title': 'Another Story Related to ' + topic,
+                'url': 'https://example.com/news/2',
+                'source': 'Example News',
+                'published_date': '2023-04-14'
+            }
+        ]
+    }
+    
+    return jsonify(dummy_response)
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001, host='0.0.0.0')
