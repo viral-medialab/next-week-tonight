@@ -21,7 +21,7 @@ const NewProject = () => {
         setIsLoading(true);
         try {
             // Access the environment variable
-            const API_URL = "http://127.0.0.1:5001";
+            const API_URL = "http://127.0.0.1:5000";
             console.log(API_URL)
             
             const response = await axios.post(`${API_URL}/api/get_news_by_user_input`, {

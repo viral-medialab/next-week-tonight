@@ -25,7 +25,7 @@ def perplexity_article_query(topic):
         {
             "role": "user",
             "content": (
-                f"Provide 10 news urls from any news source given the following topic published within 1 week of the following date. Return only the urls with no other words or line breaks, separated by commas: {topic}."
+                f"Provide as many news urls from any news source given the following topic for the topic:{topic}. Return only the urls with no other words or line breaks, separated by commas."
             ),
         }
     ]

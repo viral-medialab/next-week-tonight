@@ -13,13 +13,13 @@ def perplexity_text_extractor(news_url):
         {
         "role": "system",
         "content": (
-            "You are an artificial intelligence assistant with the sole purpose of summarizing the plain text from webpage urls."
+            "You are an artificial intelligence assistant with the sole purpose of providing raw text or summarizing the plain text from webpage urls."
         ),
         },
         {
             "role": "user",
             "content": (
-                f"Summarize the plain text from the following url: {news_url}."
+                f"Provide the plain text from the following url: {news_url}. If the plain text is not available to extract, provide a summary of the article."
             ),
         }
     ]

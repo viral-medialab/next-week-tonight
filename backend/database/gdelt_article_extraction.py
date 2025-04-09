@@ -9,12 +9,46 @@ from firecrawl_scrape import firecrawl_scrape
 import argparse
 import sys
 from dateutil import parser
+import os  # Added for folder creation
 
 class GDELTNewsRetriever:
-    def __init__(self, collection_name='GDELT_test2'):
+    def __init__(self, collection_name='GDELT_test2', folder="articles"):
         self.collection_name = collection_name
+        self.folder = folder
+        # Create folder if it doesn't exist
+        os.makedirs(folder, exist_ok=True)
         self.client, self.db, self.collection = connect_to_mongodb(collection_name)
         self.gdelt = GdeltDoc()
+
+    def save_text_to_file(self, text, topic_title, url, unique_id):
+        """
+        Save extracted text to a file.
+        
+        Args:
+            text (str): The text to save
+            topic_title (str): The topic title (used for file naming)
+            url (str): The source URL (used for file naming)
+            unique_id (str): A unique identifier for the article
+        
+        Returns:
+            str: The path to the saved file
+        """
+        # Create a safe filename from the topic title
+        safe_topic = "".join(x for x in topic_title if x.isalnum() or x.isspace()).rstrip()
+        safe_topic = safe_topic.replace(" ", "_")[:50]  # Limit length
+        
+        # Create a unique filename using the unique_id and a hash of the URL
+        url_hash = str(abs(hash(url)) % 10000)
+        filename = f"{safe_topic}_{unique_id}_{url_hash}.txt"
+        
+        filepath = os.path.join(self.folder, filename)
+        
+        # Save text to file
+        with open(filepath, "w", encoding="utf-8") as file:
+            file.write(f"Source: {url}\n\n")
+            file.write(text)
+        
+        return filepath
 
     def fetch_gdelt_articles(self, events, max_articles_per_event=10):
         perplexity_urls = []
@@ -26,6 +60,15 @@ class GDELTNewsRetriever:
                          'until', 'against', 'among', 'throughout', 'despite', 'towards', 'upon'}
 
             # Split title, remove punctuation, convert to lowercase, and filter out stop words
+            search_terms = [event['topic_title']]  # Use the topic title as search term
+            
+            # Get current datetime for the query
+            event_datetime = datetime.now()
+            
+            print(f"Searching for article urls from query: {event['topic_title']}...")
+            # Query perplexity for article urls
+            perplexity_urls = perplexity_article_query(f"{event['topic_title']}")
+            
             search_terms = [event['topic_title']]
             #search_query = ' '.join(search_terms)
             
@@ -56,6 +99,8 @@ class GDELTNewsRetriever:
             # perplexity_urls = []
 
             try:
+                # No GDELT search for now
+                article_urls = perplexity_urls
                 #SEARCH FOR ARTICLES
                 articles = self.gdelt.article_search(filters)
                 print(f"Found {len(perplexity_urls)+len(articles)} articles.\nExtracting article text (this may take a few minutes)...")
@@ -66,12 +111,40 @@ class GDELTNewsRetriever:
                 if article_urls:
                     mongo_articles = []
                     unique_id = self.generate_event_id(event['topic_title'])
-            
-                    #Extracts additional article information and article text from the perplexity urls          
-                    mongo_articles=firecrawl_scrape(article_urls,unique_id,event['topic_title'],event_datetime)
+                    
+                    # Extracts additional article information and article text from the perplexity urls
+                    print(f"Extracting text from {len(article_urls)} articles...")
+                    firecrawl_results = firecrawl_scrape(article_urls, unique_id, event['topic_title'], event_datetime)
+                    
+                    # Debug the structure of firecrawl_results
+                    print(f"Got {len(firecrawl_results)} results from firecrawl_scrape")
+                    
+                    # Save each article's text to a file
+                    saved_count = 0
+                    for i, result in enumerate(firecrawl_results):
+                        # Print keys to debug
+                        print(f"Result {i+1} keys: {result.keys()}")
+                        
+                        if 'article_text' in result and result['article_text']:
+                            try:
+                                filepath = self.save_text_to_file(
+                                    result['article_text'], 
+                                    event['topic_title'], 
+                                    result['news_url'], 
+                                    unique_id
+                                )
+                                result['text_filepath'] = filepath
+                                print(f"Saved article text to {filepath}")
+                                saved_count += 1
+                            except Exception as save_error:
+                                print(f"Error saving article to file: {save_error}")
+                        else:
+                            print(f"Article {i+1} has no article_text field or it's empty")
+                    
+                    print(f"Saved {saved_count} articles to folder: {self.folder}")
+                    mongo_articles += firecrawl_results
 
-
-                    #Try to insert the article data into the collection
+                    # Try to insert the article data into the collection
                     if mongo_articles:
                         try:
                             self.collection.insert_many(mongo_articles, ordered=False)
@@ -159,40 +232,12 @@ class GDELTNewsRetriever:
             self.client.close()
 
 def main():
-    # events = [
-    #     # {
-    #     #     "topic_title": "CrowdStrike Outage Singapore",
-    #     #     "published_datetime": "2024-07-19T16:10:00+08:00",
-    #     # },
-    #     # {
-    #     #     "topic_title": "Soil Erosion Causes Water Overflow at Bukit Batok Town Park",
-    #     #     "published_datetime": "2021-07-19T12:51:00+08:00",
-    #     # },
-    #     {
-    #         "topic_title": "Los Angeles forest fires",
-    #         "published_datetime": "2025-01-14T02:20:00+08:00",
-    #     },
-    #     # {
-    #     #     "topic_title": "Oil Tanker Collision near Singapore",
-    #     #     "published_datetime": "2024-07-20T02:20:00+08:00",
-    #     # },
-    #     # {
-    #     #     "topic_title": "Singapore Airlines Severe Turbulence",
-    #     #     "published_datetime": "2024-05-30T00:00:00+00:00",
-    #     # },
-    #     # {
-    #     #     "topic_title": "Fire in Singapore Data Centre",
-    #     #     "published_datetime": "2024-09-10T23:47:00+08:00",
-    #     # }
-           
-    # ]
-
     retriever = None
     try:
         argparser = argparse.ArgumentParser(description='Get article sources from Perplexity API and extract text')
         argparser.add_argument('--query', type=str, help='The query to search for')
-        argparser.add_argument('--date', type=str, default=datetime.now(), help='Approximate article publish date')
         argparser.add_argument('--collection', type=str, help='Collection to save extracted article data')
+        argparser.add_argument('--folder', type=str, default='articles', help='Folder to save extracted text files')
         args = argparser.parse_args()
         
         if args.query:
@@ -210,20 +255,13 @@ def main():
         if not collection:
             print("No collection provided. Exiting.")
             sys.exit(1)
-        try:
-            date = parser.parse(args.date)
-        except:
-            print("Invalid date format. Please enter in the format YYYY-MM-DD. Exiting.")
-            sys.exit(1)
-
 
         events = [{
-            "topic_title": query,
-            "published_datetime": date,
+            "topic_title": query
         }]
-        retriever = GDELTNewsRetriever(collection_name=collection)
+        
+        retriever = GDELTNewsRetriever(collection_name=collection, folder=args.folder)
         retriever.fetch_gdelt_articles(events)
-        # retriever.export_to_csv()
     except Exception as e:
         print(f"Error: {e}")
     finally:
