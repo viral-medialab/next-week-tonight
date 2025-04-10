@@ -1,0 +1,14 @@
+# Ignore everything except the frontend
+/api/
+/backend/
+/cardiffnlp/
+/env/
+/frontend/
+/next_week_tonight.egg-info/
+/node_modules/
+Dockerfile
+preprocess_mongodb.py
+README.md
+requirements.txt
+setup.py 
+vars.env

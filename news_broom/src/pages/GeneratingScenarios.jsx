@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaMicrophone, FaPaperPlane, FaUserCircle, FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const GeneratingScenarios = () => {
   const [progress, setProgress] = useState(-1); // Start at -1
@@ -21,35 +22,75 @@ const GeneratingScenarios = () => {
     navigate("/scenario-analysis", { state: { userInput: message } });
   };
 
-  // First useEffect to load data from localStorage
+  // Execute step 1 - Gather News Sources
+  const executeStep1 = async (topicData) => {
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/api/gather_news_sources", {
+        topic: topicData.topic
+      });
+      
+      if (response.data.status === "success") {
+        setProgress(0); // Mark step 1 as complete
+        executeStep2(topicData); // Proceed to step 2
+      } else {
+        console.error("Failed to gather news sources:", response.data);
+      }
+    } catch (error) {
+      console.error("Error gathering news sources:", error);
+    }
+  };
+
+  // Execute step 2 - Create Knowledge Graph
+  const executeStep2 = async (topicData) => {
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/api/create_knowledge_graph", {
+        topic: topicData.topic
+      });
+      
+      if (response.data.status === "success") {
+        setProgress(1); // Mark step 2 as complete
+        executeStep3(topicData); // Proceed to step 3
+      } else {
+        console.error("Failed to create knowledge graph:", response.data);
+      }
+    } catch (error) {
+      console.error("Error creating knowledge graph:", error);
+    }
+  };
+
+  // Execute step 3 - Generate Scenarios
+  const executeStep3 = async (topicData) => {
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/api/generate_scenarios", {
+        topic: topicData.topic
+      });
+      
+      if (response.data.status === "success") {
+        setProgress(2); // Mark step 3 as complete
+        setTimeout(() => setShowParagraph(true), 1000); // Show final paragraph
+      } else {
+        console.error("Failed to generate scenarios:", response.data);
+      }
+    } catch (error) {
+      console.error("Error generating scenarios:", error);
+    }
+  };
+
+  // First useEffect to load data from localStorage and start the process
   useEffect(() => {
     const storedData = localStorage.getItem("topicData");
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       setData(parsedData);
-      // Set first step as complete immediately when data is loaded
-      setProgress(0);
       setIsLoading(false);
+      
+      // Start the sequence by executing step 1
+      executeStep1(parsedData);
     } else {
       // Redirect if no data
       navigate("/new-project");
     }
   }, [navigate]);
-
-  // Second useEffect to handle the remaining steps with timer
-  useEffect(() => {
-    // Only start the timer after data is loaded and first step is marked complete
-    if (progress >= 0 && progress < steps.length - 1) {
-      const timer = setTimeout(() => {
-        setProgress((prev) => prev + 1);
-      }, 1000);
-      
-      return () => clearTimeout(timer);
-    } else if (progress >= steps.length - 1) {
-      // Show paragraph after all steps are complete
-      setTimeout(() => setShowParagraph(true), 1000);
-    }
-  }, [progress, steps.length]);
 
   // If still loading initial data
   if (isLoading) {

@@ -20,7 +20,7 @@ except ImportError:  # pragma: no cover
 #  Configuration
 # ────────────────────────────────────────────────────────────────────────────────
 GRAPH_OUTPUT_DIR = (
-    Path(__file__).resolve().parent / "graphrag" / "ragtest" / "output"
+    Path(__file__).resolve().parent / "graphrag" / "ragtest" / "small_output"
 )
 DEFAULT_NODES_FILE = "nodes.parquet"
 DEFAULT_EDGES_FILE = "edges.parquet"

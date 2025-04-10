@@ -11,9 +11,9 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "New Report", path: "/new-project", icon: <FaPlus /> },
-    { name: "Canada Sanctions", path: "/", icon: <FaFileAlt /> },
-    { name: "Gaza Ceasefire", path: "/", icon: <FaFileAlt /> },
-    { name: "Singapore Budget 2025", path: "/", icon: <FaFileAlt /> },
+    // { name: "Canada Sanctions", path: "/", icon: <FaFileAlt /> },
+    // { name: "Gaza Ceasefire", path: "/", icon: <FaFileAlt /> },
+    // { name: "Singapore Budget 2025", path: "/", icon: <FaFileAlt /> },
   ];
 
   return (

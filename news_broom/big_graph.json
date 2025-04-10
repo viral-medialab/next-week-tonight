@@ -1,0 +1,1661 @@
+{
+  "links": [
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "TikTok became inaccessible in the United States as a result of a Supreme Court decision, leading to a ban that affects its 170 million monthly users in the country. This significant action has impacted the platform's accessibility and its large user base within the United States, highlighting the legal and regulatory challenges TikTok is facing in the country.",
+        "human_readable_id": 0,
+        "id": "1e37bc77-8bd9-48c1-a0e2-d040688d3b53",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 17.0
+      },
+      "source": "TIKTOK",
+      "target": "UNITED STATES"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "The Supreme Court upheld a ban on TikTok, leading to its official shutdown in the U.S. This decision made TikTok inaccessible to users, reinforcing the ban against the platform.",
+        "human_readable_id": 1,
+        "id": "fab0ce76-1e15-42c5-ac6f-b10e91519305",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13",
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53",
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 35.0
+      },
+      "source": "TIKTOK",
+      "target": "SUPREME COURT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "ByteDance, a Chinese company, is the parent company of TikTok. Both ByteDance and TikTok have been involved in legal battles concerning the app's ban. This relationship places ByteDance at the forefront of discussions and legal scrutiny regarding TikTok's operations and regulatory challenges.",
+        "human_readable_id": 2,
+        "id": "d6520086-4482-46bf-8647-4c8f1238335d",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "weight": 18.0
+      },
+      "source": "TIKTOK",
+      "target": "BYTE DANCE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 38,
+        "description": "The federal government and TikTok have been engaged in a prolonged conflict centered around national security concerns. This dispute has escalated into a legal battle, culminating in a Supreme Court ruling against TikTok. The core of the federal government's argument is that TikTok poses a national security risk, which has ultimately led to a ban on the app. This situation highlights the tension between the two entities, underscoring the government's stance on the potential threats posed by the social media platform.",
+        "human_readable_id": 3,
+        "id": "2d984e4b-f074-4729-bbf8-ab08045df4c3",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 24.0
+      },
+      "source": "TIKTOK",
+      "target": "FEDERAL GOVERNMENT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "The federal government has been in a dispute with ByteDance, TikTok's parent company, over the app's security implications",
+        "human_readable_id": 4,
+        "id": "fee7441f-28cc-4056-a8bb-f85d53a042cd",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef"
+        ],
+        "weight": 1.0
+      },
+      "source": "BYTE DANCE",
+      "target": "FEDERAL GOVERNMENT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "The US Supreme Court upheld a law that could force TikTok to cease operations in the United States",
+        "human_readable_id": 5,
+        "id": "80aec9c1-94da-44cf-8aad-afac9bd6d563",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 9.0
+      },
+      "source": "US SUPREME COURT",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 38,
+        "description": "Congress passed a law that forces TikTok to cease operations in the US unless it is sold",
+        "human_readable_id": 6,
+        "id": "db559523-00ee-4f84-9ee2-f7f098272a36",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 9.0
+      },
+      "source": "CONGRESS",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "ByteDance, a company based in China, is the parent company of TikTok. TikTok, a subsidiary of ByteDance, is currently facing a ban in the United States. Both entities are closely linked, with ByteDance owning TikTok and being recognized for its origins in China.",
+        "human_readable_id": 7,
+        "id": "308b7caf-44cb-4c6c-b8b0-d70b916094f9",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53",
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 29.0
+      },
+      "source": "TIKTOK",
+      "target": "BYTEDANCE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "Shou Zi Chew is the CEO of TikTok and testified before Congress regarding the app's operations",
+        "human_readable_id": 8,
+        "id": "dfac15cc-8ab4-408c-a6e9-29cd9b2659c4",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "SHOU ZI CHEW"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "Oracle was proposed as a supervisor over TikTok's data transactions in the US",
+        "human_readable_id": 9,
+        "id": "65223e23-cb84-4922-8ed1-cfd12af68ec3",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 5.0
+      },
+      "source": "TIKTOK",
+      "target": "ORACLE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Michael McCaul commented on the necessity of TikTok cutting ties with ByteDance to address lawmakers' concerns",
+        "human_readable_id": 10,
+        "id": "30058eb1-f370-43f8-8c02-5cba3c0ea557",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 4.0
+      },
+      "source": "TIKTOK",
+      "target": "MICHAEL MCCAUL"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Amnesty International criticized the US ban on TikTok, stating it fails to address broader Big Tech issues",
+        "human_readable_id": 11,
+        "id": "d0f99ff2-ec8a-46b4-8f67-1cc6013a7397",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 3.0
+      },
+      "source": "TIKTOK",
+      "target": "AMNESTY INTERNATIONAL"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Matt Perault commented on the TikTok case as significant for internet regulation in the US",
+        "human_readable_id": 12,
+        "id": "653a6e66-3aaa-43f0-8d2d-d8db60fe9666",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 1.0
+      },
+      "source": "TIKTOK",
+      "target": "MATT PERAULT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 38,
+        "description": "TikTok, a popular social media platform, has nearly 200 million users in the United States. However, the app recently went offline in the U.S. after the Supreme Court upheld a ban on the app, effectively facing a significant setback in the country. This decision impacts its vast user base and marks a pivotal moment in the app's presence in the U.S. market.",
+        "human_readable_id": 13,
+        "id": "9e1f9698-029c-4a6a-96ce-bd24cde3bdf9",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13",
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 17.0
+      },
+      "source": "TIKTOK",
+      "target": "U.S."
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Alena Maze wrote an article discussing the potential health effects of a TikTok ban",
+        "human_readable_id": 14,
+        "id": "0099eabf-0292-4de7-99ad-acf6c370baef",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13"
+        ],
+        "weight": 5.0
+      },
+      "source": "TIKTOK",
+      "target": "ALENA MAZE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "Thea Gallagher commented on the mental health effects of TikTok and social media",
+        "human_readable_id": 15,
+        "id": "4b77a2dc-42a3-477e-9bfa-874be20bf83c",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13"
+        ],
+        "weight": 1.0
+      },
+      "source": "TIKTOK",
+      "target": "THEA GALLAGHER"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 3,
+        "description": "Thea Gallagher is a clinical psychologist and assistant professor at NYU Langone Health",
+        "human_readable_id": 16,
+        "id": "4d490871-b547-4493-a06c-32af873b7cc1",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13"
+        ],
+        "weight": 9.0
+      },
+      "source": "THEA GALLAGHER",
+      "target": "NYU LANGONE HEALTH"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 6,
+        "description": "ByteDance is the parent company of TikTok, which was involved in the legal case TikTok, Inc. v. Garland",
+        "human_readable_id": 17,
+        "id": "757c6f5b-72e7-4678-bf6f-c0543bcbe227",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "weight": 9.0
+      },
+      "source": "BYTEDANCE",
+      "target": "TIKTOK, INC. V. GARLAND"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "The United States government was the opposing party in the legal case against TikTok",
+        "human_readable_id": 18,
+        "id": "1d8ead4c-5f3b-4cc8-81b5-ef8a9bec2eb0",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "weight": 9.0
+      },
+      "source": "UNITED STATES GOVERNMENT",
+      "target": "TIKTOK, INC. V. GARLAND"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 6,
+        "description": "The US Supreme Court issued the decision in the case TikTok, Inc. v. Garland",
+        "human_readable_id": 19,
+        "id": "5166432d-7134-4250-894a-ad33bd0190b6",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "weight": 9.0
+      },
+      "source": "US SUPREME COURT",
+      "target": "TIKTOK, INC. V. GARLAND"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "The case TikTok, Inc. v. Garland was about the legality of the Protecting Americans from Foreign Adversary Controlled Applications Act",
+        "human_readable_id": 20,
+        "id": "1b8b8fdb-4dd1-4f7b-bafe-d0547c4263a6",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK, INC. V. GARLAND",
+      "target": "PROTECTING AMERICANS FROM FOREIGN ADVERSARY CONTROLLED APPLICATIONS ACT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 2,
+        "description": "Christopher Jon Sprigman is a professor at NYU\u2019s School of Law",
+        "human_readable_id": 21,
+        "id": "a5e9cb88-ed94-423b-a9f7-04dc1712c392",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "weight": 9.0
+      },
+      "source": "CHRISTOPHER JON SPRIGMAN",
+      "target": "NYU\u2019S SCHOOL OF LAW"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "TikTok proposed Project Texas as a solution to address US government's national security concerns",
+        "human_readable_id": 22,
+        "id": "79a1e414-066e-4371-ab55-b3a70b3129ed",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "weight": 8.0
+      },
+      "source": "PROJECT TEXAS",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 4,
+        "description": "Project Texas involved putting a US-based subsidiary of TikTok under the supervision of Oracle",
+        "human_readable_id": 23,
+        "id": "fe24135e-2e93-4d2b-bd4c-9bda4922c0f2",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "weight": 1.0
+      },
+      "source": "PROJECT TEXAS",
+      "target": "ORACLE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "President Trump issued an executive order in an attempt to override a law passed by Congress",
+        "human_readable_id": 24,
+        "id": "ce6b7528-540b-4cae-93c1-6fc9abd9bb98",
+        "text_unit_ids": [
+          "fc14b316dce405bb79d1cc357c5791aa7b60491028471678cb0738b9a81ce3f86938ee7f3ac324cc3d081581facbf50ef013bece17a09b7f81ac3195a5e45dc7"
+        ],
+        "weight": 5.0
+      },
+      "source": "PRESIDENT TRUMP",
+      "target": "CONGRESS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 4,
+        "description": "President Trump attempted to override a law that was signed by President Biden",
+        "human_readable_id": 25,
+        "id": "7bd7a8ad-be57-4749-9f7a-77fffb35d6d9",
+        "text_unit_ids": [
+          "fc14b316dce405bb79d1cc357c5791aa7b60491028471678cb0738b9a81ce3f86938ee7f3ac324cc3d081581facbf50ef013bece17a09b7f81ac3195a5e45dc7"
+        ],
+        "weight": 1.0
+      },
+      "source": "PRESIDENT TRUMP",
+      "target": "PRESIDENT BIDEN"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "President Biden signed a law in April 2024 that was passed by Congress",
+        "human_readable_id": 26,
+        "id": "f634b842-e83b-4626-8f1e-f89a5d2a4bc2",
+        "text_unit_ids": [
+          "fc14b316dce405bb79d1cc357c5791aa7b60491028471678cb0738b9a81ce3f86938ee7f3ac324cc3d081581facbf50ef013bece17a09b7f81ac3195a5e45dc7"
+        ],
+        "weight": 5.0
+      },
+      "source": "PRESIDENT BIDEN",
+      "target": "CONGRESS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "The U.S. Federal Government initiated a ban against TikTok",
+        "human_readable_id": 27,
+        "id": "4317bd71-1b42-48af-bac0-408cdbe16274",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "U.S. FEDERAL GOVERNMENT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Apple began removing TikTok from its app store following the ban",
+        "human_readable_id": 28,
+        "id": "e3558e8f-8385-43fd-a7fc-39ced6891779",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "APPLE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Google began removing TikTok from its app store following the ban",
+        "human_readable_id": 29,
+        "id": "f73025e3-f19c-4fdb-8247-fdc7c367ff28",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "GOOGLE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Samsung began removing TikTok from its app store following the ban",
+        "human_readable_id": 30,
+        "id": "86f99d1d-0c46-4e72-bd83-3ef4cdb06313",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "SAMSUNG"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "Donald Trump has vowed to reverse the ban on TikTok",
+        "human_readable_id": 31,
+        "id": "6deb13f3-40fd-4dcb-9e38-bad40d522560",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "DONALD TRUMP"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Pam Bondi, as attorney general nominee, declined to commit to enforcing the TikTok ban",
+        "human_readable_id": 32,
+        "id": "2fe6507c-0f85-45ee-a93f-532a6aaa61b7",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 5.0
+      },
+      "source": "TIKTOK",
+      "target": "PAM BONDI"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 4,
+        "description": "Shou Zi Chew thanked Donald Trump for his commitment to work with TikTok to find a solution",
+        "human_readable_id": 33,
+        "id": "ce314bff-1cac-4537-bcc2-5d70810412f8",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 1.0
+      },
+      "source": "DONALD TRUMP",
+      "target": "SHOU ZI CHEW"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "John Piacentini discusses the impact of social media platforms like TikTok on adolescent mental health",
+        "human_readable_id": 34,
+        "id": "40f33f26-273c-4d45-907f-ad1cc48e9359",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "weight": 5.0
+      },
+      "source": "JOHN PIACENTINI",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Anne Marie Albano discusses how platforms like TikTok can affect youth with social anxiety or depression",
+        "human_readable_id": 35,
+        "id": "84848684-68a6-49de-8076-10adff30ea01",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "weight": 5.0
+      },
+      "source": "TIKTOK",
+      "target": "ANNE MARIE ALBANO"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Jaclyn Halpern expresses concern over TikTok's content and its impact on youth mental health",
+        "human_readable_id": 36,
+        "id": "bdd53106-e465-4b5c-9db9-0812dc83142f",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "weight": 5.0
+      },
+      "source": "TIKTOK",
+      "target": "JACLYN HALPERN"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Peter Wallerich-Neils uses TikTok to share his experiences with ADHD and connect with others",
+        "human_readable_id": 37,
+        "id": "48362464-ac37-4ad4-8233-d4a3c415ee01",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "PETER WALLERICH-NEILS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Kojo Sarfo uses TikTok to create spaces for mental health discussions and support",
+        "human_readable_id": 38,
+        "id": "1710cd5e-9b5b-4869-9235-550a11494ef2",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "weight": 1.0
+      },
+      "source": "TIKTOK",
+      "target": "KOJO SARFO"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Wallerich-Neils used TikTok to share his ADHD journey and connect with others",
+        "human_readable_id": 39,
+        "id": "4c5e47c7-1c0b-43f3-8fc2-87f3d30ea005",
+        "text_unit_ids": [
+          "90ff24c488195fc69cb8c7879746d26f644ccc446a41ed9ab45bfe638c72c42a588306996e996c975598c15bd5e2e1bd9ec0a0288138f538e8d4b7e924f0a6d0"
+        ],
+        "weight": 8.0
+      },
+      "source": "WALLERICH-NEILS",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Kojo Sarfo uses TikTok to create awareness and spaces for mental health discussions",
+        "human_readable_id": 40,
+        "id": "4387ef48-bb57-4133-9b82-b1cf90c99ccc",
+        "text_unit_ids": [
+          "90ff24c488195fc69cb8c7879746d26f644ccc446a41ed9ab45bfe638c72c42a588306996e996c975598c15bd5e2e1bd9ec0a0288138f538e8d4b7e924f0a6d0"
+        ],
+        "weight": 9.0
+      },
+      "source": "KOJO SARFO",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 36,
+        "description": "Columbia University's program for social anxiety includes teaching about healthy engagement with TikTok",
+        "human_readable_id": 41,
+        "id": "c35d5c81-530c-436c-8475-178ba62bdec8",
+        "text_unit_ids": [
+          "90ff24c488195fc69cb8c7879746d26f644ccc446a41ed9ab45bfe638c72c42a588306996e996c975598c15bd5e2e1bd9ec0a0288138f538e8d4b7e924f0a6d0"
+        ],
+        "weight": 1.0
+      },
+      "source": "TIKTOK",
+      "target": "COLUMBIA UNIVERSITY"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "The U.S. Supreme Court upheld the ban on TikTok, effectively siding with the federal government against TikTok",
+        "human_readable_id": 42,
+        "id": "8ec23424-1e33-4a4c-b152-615188666d51",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 9.0
+      },
+      "source": "U.S. SUPREME COURT",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "The U.S. Supreme Court sided with the federal government in the legal battle against TikTok",
+        "human_readable_id": 43,
+        "id": "67d08de8-185d-4ca0-b299-2a986157bbe2",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 1.0
+      },
+      "source": "U.S. SUPREME COURT",
+      "target": "FEDERAL GOVERNMENT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "Jonathan Haidt has publicly criticized TikTok for its negative impact on children's mental health",
+        "human_readable_id": 44,
+        "id": "4ac37e79-3c1e-474b-9551-0e2291744c4f",
+        "text_unit_ids": [
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "weight": 8.0
+      },
+      "source": "JONATHAN HAIDT",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 3,
+        "description": "Jonathan Haidt is a faculty member at New York University\u2019s Stern School of Business",
+        "human_readable_id": 45,
+        "id": "80e28a7c-e475-4027-a451-8da3fceb04e8",
+        "text_unit_ids": [
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "weight": 1.0
+      },
+      "source": "JONATHAN HAIDT",
+      "target": "NEW YORK UNIVERSITY\u2019S STERN SCHOOL OF BUSINESS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "The U.S. Supreme Court upheld the ban on TikTok, affecting its operations in the U.S.",
+        "human_readable_id": 46,
+        "id": "8540ea36-b2d6-4b91-ac44-0c97c00852ad",
+        "text_unit_ids": [
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "U.S. SUPREME COURT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 40,
+        "description": "Motley Rice is investigating potential legal claims against TikTok for negatively impacting users' mental health",
+        "human_readable_id": 47,
+        "id": "e81b3577-0710-4b1e-ae4f-f4c15ced54d0",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "MOTLEY RICE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "The use of TikTok has been associated with causing or exacerbating anxiety among its users",
+        "human_readable_id": 48,
+        "id": "67e037b6-8e7b-4c23-aca8-0f61f5123a31",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "ANXIETY"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "Depression has been identified as a potential risk associated with prolonged TikTok use",
+        "human_readable_id": 49,
+        "id": "8429e8dd-6994-4e7d-b6ec-f2c8e4982071",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "DEPRESSION"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 37,
+        "description": "TikTok use has been linked to an increase in suicidal thoughts among some users",
+        "human_readable_id": 50,
+        "id": "c5d2aabe-e2a3-4361-b6b2-112bdf0ac5c7",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "SUICIDAL THOUGHTS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 8,
+        "description": "Motley Rice is offering legal assistance in the U.S. for claims related to TikTok's impact on mental health",
+        "human_readable_id": 51,
+        "id": "02823abd-9c0b-43c5-ae5a-93424ae31f73",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 5.0
+      },
+      "source": "MOTLEY RICE",
+      "target": "U.S."
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 7,
+        "description": "Motley Rice is investigating claims on behalf of individuals who developed anxiety potentially due to TikTok use",
+        "human_readable_id": 52,
+        "id": "96b1753a-16a3-4b43-b1e3-28dfcc63fe29",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 5.0
+      },
+      "source": "MOTLEY RICE",
+      "target": "ANXIETY"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 7,
+        "description": "Motley Rice seeks to represent individuals who believe their depression was worsened by TikTok",
+        "human_readable_id": 53,
+        "id": "ab85229c-6bd5-49e3-95d8-593e0e4cc6ea",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 5.0
+      },
+      "source": "MOTLEY RICE",
+      "target": "DEPRESSION"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 7,
+        "description": "Motley Rice is looking into cases where TikTok use may be linked to suicidal thoughts",
+        "human_readable_id": 54,
+        "id": "9c4d0866-0e66-4c4f-975e-ed43074535db",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 1.0
+      },
+      "source": "MOTLEY RICE",
+      "target": "SUICIDAL THOUGHTS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "The Supreme Court, as the highest court in the U.S., made a decision affecting the operation of TikTok within the country",
+        "human_readable_id": 55,
+        "id": "ec990cb5-fe68-4012-91e7-a74bffa1171c",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "weight": 1.0
+      },
+      "source": "SUPREME COURT",
+      "target": "U.S."
+    }
+  ],
+  "nodes": [
+    {
+      "group": "ORGANIZATION",
+      "id": "TIKTOK",
+      "label": "TIKTOK",
+      "properties": {
+        "degree": 35,
+        "description": "TikTok, a fast-growing social media video platform owned by the China-based company ByteDance, has significantly influenced youth culture worldwide. It is renowned for its addictive algorithm that captivates nearly 200 million users in the United States alone. Despite its popularity, TikTok has faced criticism for contributing to mental health concerns among its users, with some content being labeled as harmful. The platform has been a space where individuals like Wallerich-Neils and Kojo Sarfo share content related to mental health, highlighting its complex impact on user well-being.\n\nHowever, TikTok's ties with ByteDance have led to severe national security concerns in the United States, culminating in a ban. Initially facing potential restrictions, the situation escalated when the U.S. Supreme Court upheld a ban in 2025, rendering the service inaccessible to its substantial user base in the country. This decision was influenced by fears over data privacy and the potential for foreign interference, reflecting growing tensions between the U.S. and China in the digital space.\n\nDespite its controversial status and the legal challenges that led to its ban, TikTok's influence on digital culture and social media trends remains undeniable. Its closure in the U.S. marks a significant moment in the ongoing debate over the balance between national security, user privacy, and the free flow of information online.",
+        "frequency": 9,
+        "human_readable_id": 0,
+        "original_id": "9b66781e-8674-4755-b7fa-4903531fa673",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13",
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53",
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744",
+          "90ff24c488195fc69cb8c7879746d26f644ccc446a41ed9ab45bfe638c72c42a588306996e996c975598c15bd5e2e1bd9ec0a0288138f538e8d4b7e924f0a6d0",
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f",
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a",
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "x": -18.085735321044922,
+        "y": -0.22535376250743866
+      }
+    },
+    {
+      "group": "GEO",
+      "id": "UNITED STATES",
+      "label": "UNITED STATES",
+      "properties": {
+        "degree": 1,
+        "description": "The United States is a country where TikTok has faced significant challenges, culminating in the platform no longer being accessible to its 170 million monthly users. This situation arose following a Supreme Court ruling, effectively instituting a ban on TikTok within the country.",
+        "frequency": 2,
+        "human_readable_id": 1,
+        "original_id": "9874e3db-d6d5-4272-9ab2-def3e7a46682",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "x": 8.243489265441895,
+        "y": -7.630414009094238
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "SUPREME COURT",
+      "label": "SUPREME COURT",
+      "properties": {
+        "degree": 2,
+        "description": "The Supreme Court, recognized as the highest court in the United States, upheld a ban on TikTok, citing national security concerns. This decision, which reflects a consensus on the merit of national security issues associated with TikTok, will see the ban taking effect in January 2025. The Court's unanimous stance on this matter underscores the gravity with which it views the potential threats posed by the app, aligning all descriptions of its ruling to emphasize the importance of national security in its deliberation.",
+        "frequency": 4,
+        "human_readable_id": 2,
+        "original_id": "639c6484-698f-4743-9eae-afedc2191155",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13",
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53",
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "x": -5.929612636566162,
+        "y": 13.524982452392578
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "BYTE DANCE",
+      "label": "BYTE DANCE",
+      "properties": {
+        "degree": 2,
+        "description": "ByteDance, a Chinese company, is the parent company of TikTok. It has been embroiled in a long-running battle with the U.S. federal government over national security concerns. This dispute has led to TikTok being banned in the U.S. due to the perceived risks it poses to national security. ByteDance's ownership of TikTok is central to the controversy surrounding its operations and the scrutiny it faces from U.S. authorities.",
+        "frequency": 2,
+        "human_readable_id": 3,
+        "original_id": "33a677b5-497e-49f3-ace3-eca3fb73fc01",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "x": 10.736156463623047,
+        "y": -9.086813926696777
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "FEDERAL GOVERNMENT",
+      "label": "FEDERAL GOVERNMENT",
+      "properties": {
+        "degree": 3,
+        "description": "The national government of the United States, which has argued that TikTok poses a national security risk",
+        "frequency": 2,
+        "human_readable_id": 4,
+        "original_id": "1a8b2bd4-1063-4aac-b231-9b5b62024444",
+        "text_unit_ids": [
+          "bf3a6edc26d07ee2b439d01e2db583955a8c51c6f64a8aa01ea4bf073c4ce4a5e4f7c72a8ae6aaf85c7a3f9fcf7d58f9f0548bc122d90ca6ebe017f709561fef",
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "x": -16.109947204589844,
+        "y": 3.8310129642486572
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "US SUPREME COURT",
+      "label": "US SUPREME COURT",
+      "properties": {
+        "degree": 2,
+        "description": "The US Supreme Court, recognized as the highest court in the United States, issued a decision that upheld a law affecting TikTok's operations in the country. This decision effectively supports the ban on TikTok, demonstrating the Court's stance on matters concerning the regulation of digital platforms within the United States.",
+        "frequency": 2,
+        "human_readable_id": 5,
+        "original_id": "459a720d-3eee-4a77-8450-2b26bfb723bb",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": 10.169384956359863,
+        "y": -7.736143112182617
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "CONGRESS",
+      "label": "CONGRESS",
+      "properties": {
+        "degree": 3,
+        "description": "Congress, the legislative body of the United States, passed a significant law that was signed by President Biden in April 2024. This law, notable for its impact, was aimed at forcing TikTok to cease operations within the United States unless the company was sold. In a notable turn of events, President Trump attempted to override this law with an executive order, highlighting a moment of contention between the executive branch and Congress. This action underscores Congress's role in shaping major legislative decisions and the complex interplay between different branches of the U.S. government.",
+        "frequency": 2,
+        "human_readable_id": 6,
+        "original_id": "c11eb48a-adeb-4870-ab2a-9acdc1431f13",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "fc14b316dce405bb79d1cc357c5791aa7b60491028471678cb0738b9a81ce3f86938ee7f3ac324cc3d081581facbf50ef013bece17a09b7f81ac3195a5e45dc7"
+        ],
+        "x": -16.77789306640625,
+        "y": 1.7839257717132568
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "BYTEDANCE",
+      "label": "BYTEDANCE",
+      "properties": {
+        "degree": 2,
+        "description": "ByteDance, the China-based parent company of TikTok, is deeply involved in a high-stakes and long-running battle with the U.S. federal government over national security concerns. This Chinese company is at the center of a legal battle with the United States government concerning a ban issue. The conflict has escalated to the point where ByteDance was given 270 days to find a buyer for the app due to a law passed by Congress. This situation underscores the intense scrutiny and challenges ByteDance faces in navigating its operations amidst geopolitical tensions.",
+        "frequency": 4,
+        "human_readable_id": 7,
+        "original_id": "469c2647-7763-4c7c-bc04-42ed7ddb4ad4",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9",
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53",
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "x": 10.999859809875488,
+        "y": -8.13629150390625
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "SHOU ZI CHEW",
+      "label": "SHOU ZI CHEW",
+      "properties": {
+        "degree": 2,
+        "description": "SHOU ZI CHEW is the CEO of TikTok who has played a significant role in addressing the app's international challenges. He testified before Congress to address concerns about the app's ties to the Chinese government, showcasing his involvement in critical discussions regarding the platform's operations and policies. Additionally, SHOU ZI CHEW expressed gratitude towards President Trump for his commitment to work with TikTok to find a solution that would keep the app available in the U.S. This indicates his proactive approach in navigating the political and regulatory landscapes to ensure the app's continuity in key markets.",
+        "frequency": 2,
+        "human_readable_id": 8,
+        "original_id": "f2bcc00b-5d20-435c-8899-d6ee00c1f4bd",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "x": -6.514688968658447,
+        "y": 14.002192497253418
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "ORACLE",
+      "label": "ORACLE",
+      "properties": {
+        "degree": 2,
+        "description": "Oracle, a Texas-based software company and US tech giant, has been proposed as a supervisor over TikTok's data transactions in the United States. This supervision is part of an initiative known as Project Texas, which aims to oversee TikTok's US-based subsidiary. Oracle's role would involve ensuring the secure handling and processing of data, aligning with regulatory requirements and safeguarding user information within the United States.",
+        "frequency": 2,
+        "human_readable_id": 9,
+        "original_id": "c03a4a77-5753-4d37-b4e4-81d1103ae576",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": -16.783899307250977,
+        "y": 3.060044288635254
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "MICHAEL MCCAUL",
+      "label": "MICHAEL MCCAUL",
+      "properties": {
+        "degree": 1,
+        "description": "US Representative from Texas who commented on the necessity of TikTok cutting ties with ByteDance",
+        "frequency": 1,
+        "human_readable_id": 10,
+        "original_id": "61e0e26f-30a0-4452-806e-743842eed3e4",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "x": 5.974360466003418,
+        "y": -6.341861248016357
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "AMNESTY INTERNATIONAL",
+      "label": "AMNESTY INTERNATIONAL",
+      "properties": {
+        "degree": 1,
+        "description": "Human rights organization that criticized the US ban on TikTok",
+        "frequency": 1,
+        "human_readable_id": 11,
+        "original_id": "2195a069-0541-4f30-8229-747fc2963c69",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "x": 5.552309036254883,
+        "y": -5.251726150512695
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "MATT PERAULT",
+      "label": "MATT PERAULT",
+      "properties": {
+        "degree": 1,
+        "description": "Professor at the University of North Carolina who commented on the significance of the TikTok case",
+        "frequency": 1,
+        "human_readable_id": 12,
+        "original_id": "4f1ea3fd-d133-46ac-af31-89f58a9cf074",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "x": 4.888227462768555,
+        "y": -3.141852378845215
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "ALENA MAZE",
+      "label": "ALENA MAZE",
+      "properties": {
+        "degree": 1,
+        "description": "Author of the article discussing the potential health effects of a TikTok ban in the U.S.",
+        "frequency": 1,
+        "human_readable_id": 13,
+        "original_id": "235fac4c-25ce-476c-bc24-d32549f25149",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13"
+        ],
+        "x": 5.2147040367126465,
+        "y": -3.921326160430908
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "THEA GALLAGHER",
+      "label": "THEA GALLAGHER",
+      "properties": {
+        "degree": 2,
+        "description": "Clinical psychologist and assistant professor at NYU Langone Health, commented on the mental health effects of social media",
+        "frequency": 1,
+        "human_readable_id": 14,
+        "original_id": "370a9151-ec03-4dec-8598-ceed34f7a6e0",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13"
+        ],
+        "x": -17.40921974182129,
+        "y": 2.4294791221618652
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "NYU LANGONE HEALTH",
+      "label": "NYU LANGONE HEALTH",
+      "properties": {
+        "degree": 1,
+        "description": "Healthcare organization where Thea Gallagher serves as an assistant professor and clinical psychologist",
+        "frequency": 1,
+        "human_readable_id": 15,
+        "original_id": "00258499-1a20-4b5e-94cb-3881b4fe8d58",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13"
+        ],
+        "x": -7.267923355102539,
+        "y": 13.640012741088867
+      }
+    },
+    {
+      "group": "GEO",
+      "id": "U.S.",
+      "label": "U.S.",
+      "properties": {
+        "degree": 3,
+        "description": "The United States, a country where TikTok once boasted nearly 200 million users, officially saw the app go offline in 2025 after the Supreme Court upheld a ban on the platform. This decision came after facing significant scrutiny and legal challenges, culminating in the app's discontinuation within the U.S. market.",
+        "frequency": 2,
+        "human_readable_id": 16,
+        "original_id": "e0238368-df2c-4602-bd6b-3dcd45de9c07",
+        "text_unit_ids": [
+          "1846e180bb41de2c9b5721017e16f2c46cf4d6e818b6b6522cbe5015e5c3fd05a3e02bee2b0c5d6ba753c8bb0fa675c6204b1a9ea248762b8a8ce6c98aa5dd13",
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "x": -17.87441062927246,
+        "y": 1.533347487449646
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "UNITED STATES GOVERNMENT",
+      "label": "UNITED STATES GOVERNMENT",
+      "properties": {
+        "degree": 1,
+        "description": "Government entity that contested TikTok's operations in the US, citing national security concerns",
+        "frequency": 1,
+        "human_readable_id": 17,
+        "original_id": "adb0a460-f27e-4cba-870b-4bfbd0c5d525",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": -7.445438385009766,
+        "y": 14.532942771911621
+      }
+    },
+    {
+      "group": "EVENT",
+      "id": "TIKTOK, INC. V. GARLAND",
+      "label": "TIKTOK, INC. V. GARLAND",
+      "properties": {
+        "degree": 4,
+        "description": "Legal case where the US Supreme Court decided on the legality of a ban on TikTok",
+        "frequency": 1,
+        "human_readable_id": 18,
+        "original_id": "76885325-90af-47a5-b1e3-fbf8cbc02485",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": -18.887615203857422,
+        "y": -1.1361979246139526
+      }
+    },
+    {
+      "group": "EVENT",
+      "id": "PROTECTING AMERICANS FROM FOREIGN ADVERSARY CONTROLLED APPLICATIONS ACT",
+      "label": "PROTECTING AMERICANS FROM FOREIGN ADVERSARY CONTROLLED APPLICATIONS ACT",
+      "properties": {
+        "degree": 1,
+        "description": "Act passed by Congress leading to the requirement for TikTok to cease operations in the US unless sold",
+        "frequency": 1,
+        "human_readable_id": 19,
+        "original_id": "603eb932-53dc-4cbc-87ab-54ed23ffccb7",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": 11.175394058227539,
+        "y": -7.513194561004639
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "CHRISTOPHER JON SPRIGMAN",
+      "label": "CHRISTOPHER JON SPRIGMAN",
+      "properties": {
+        "degree": 1,
+        "description": "Murray and Kathleen Bring Professor of Law at NYU\u2019s School of Law, commented on the TikTok ban in the context of free speech",
+        "frequency": 1,
+        "human_readable_id": 20,
+        "original_id": "b04c03c4-7314-48d1-8959-5fb589668a63",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": null,
+        "y": null
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "NYU\u2019S SCHOOL OF LAW",
+      "label": "NYU\u2019S SCHOOL OF LAW",
+      "properties": {
+        "degree": 1,
+        "description": "Educational institution where Christopher Jon Sprigman is a professor",
+        "frequency": 1,
+        "human_readable_id": 21,
+        "original_id": "8b9ea076-22a5-4537-9f53-04e4b28d2316",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": null,
+        "y": null
+      }
+    },
+    {
+      "group": "EVENT",
+      "id": "PROJECT TEXAS",
+      "label": "PROJECT TEXAS",
+      "properties": {
+        "degree": 2,
+        "description": "A program proposed by TikTok to address US government concerns by putting US user data and content moderation under a US-based subsidiary supervised by Oracle",
+        "frequency": 1,
+        "human_readable_id": 22,
+        "original_id": "a77d5e3e-af87-471c-acab-3e63db778ed4",
+        "text_unit_ids": [
+          "1306e691161bc6eb48e628760d838397eac0fc0b1ae15c635abd58ed9d9f0cc8684aa8452973ac70df36ff4493ce7e7b35a1770c1ce12586df9979b1028455b9"
+        ],
+        "x": -18.890277862548828,
+        "y": 0.37380972504615784
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "PRESIDENT TRUMP",
+      "label": "PRESIDENT TRUMP",
+      "properties": {
+        "degree": 2,
+        "description": "Issued an executive order in an effort to override a law passed by Congress and signed by President Biden in April 2024",
+        "frequency": 1,
+        "human_readable_id": 23,
+        "original_id": "69dc5ba4-9dc0-4c88-bff3-f1517bec66e8",
+        "text_unit_ids": [
+          "fc14b316dce405bb79d1cc357c5791aa7b60491028471678cb0738b9a81ce3f86938ee7f3ac324cc3d081581facbf50ef013bece17a09b7f81ac3195a5e45dc7"
+        ],
+        "x": -16.349674224853516,
+        "y": 2.261267900466919
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "PRESIDENT BIDEN",
+      "label": "PRESIDENT BIDEN",
+      "properties": {
+        "degree": 2,
+        "description": "Signed a law in April 2024 that President Trump attempted to override with an executive order",
+        "frequency": 1,
+        "human_readable_id": 24,
+        "original_id": "9c01668c-7002-40e3-a958-db5729b36d45",
+        "text_unit_ids": [
+          "fc14b316dce405bb79d1cc357c5791aa7b60491028471678cb0738b9a81ce3f86938ee7f3ac324cc3d081581facbf50ef013bece17a09b7f81ac3195a5e45dc7"
+        ],
+        "x": -18.991607666015625,
+        "y": -0.19756357371807098
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "U.S. FEDERAL GOVERNMENT",
+      "label": "U.S. FEDERAL GOVERNMENT",
+      "properties": {
+        "degree": 1,
+        "description": "The government entity that initiated the ban against TikTok citing national security concerns",
+        "frequency": 1,
+        "human_readable_id": 25,
+        "original_id": "f46c0c38-1609-4e4b-85ea-643f392ef693",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "x": 4.617006301879883,
+        "y": -1.8248748779296875
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "APPLE",
+      "label": "APPLE",
+      "properties": {
+        "degree": 1,
+        "description": "Technology company that, along with Google and Samsung, began removing TikTok from its app store following the ban",
+        "frequency": 1,
+        "human_readable_id": 26,
+        "original_id": "6e9345fb-f015-4b13-9f15-52445f54574b",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "x": 6.245521545410156,
+        "y": -4.994635581970215
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "GOOGLE",
+      "label": "GOOGLE",
+      "properties": {
+        "degree": 1,
+        "description": "Technology company that, along with Apple and Samsung, began removing TikTok from its app store following the ban",
+        "frequency": 1,
+        "human_readable_id": 27,
+        "original_id": "21eb1f17-921c-4d83-9b62-4d4a6cf9bc54",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "x": 9.136846542358398,
+        "y": -8.867803573608398
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "SAMSUNG",
+      "label": "SAMSUNG",
+      "properties": {
+        "degree": 1,
+        "description": "Technology company that, along with Apple and Google, began removing TikTok from its app store following the ban",
+        "frequency": 1,
+        "human_readable_id": 28,
+        "original_id": "3bef764e-47e8-4003-8316-0dc15ed2ce9f",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "x": 4.306845188140869,
+        "y": -2.4428532123565674
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "DONALD TRUMP",
+      "label": "DONALD TRUMP",
+      "properties": {
+        "degree": 2,
+        "description": "President-elect of the United States who has vowed to reverse the TikTok ban",
+        "frequency": 1,
+        "human_readable_id": 29,
+        "original_id": "9eca2fa5-5ff2-4b0f-bdc3-212bab3bd00a",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "x": -5.797414302825928,
+        "y": 14.382771492004395
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "PAM BONDI",
+      "label": "PAM BONDI",
+      "properties": {
+        "degree": 1,
+        "description": "Trump's nominee for attorney general who declined to commit to enforcing the TikTok ban during her confirmation hearing",
+        "frequency": 1,
+        "human_readable_id": 30,
+        "original_id": "3e727ca8-e57e-4ada-92d5-7dbe022e68f9",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "x": 7.136745452880859,
+        "y": -6.866104602813721
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "DEPRESSION AND BIPOLAR SUPPORT ALLIANCE",
+      "label": "DEPRESSION AND BIPOLAR SUPPORT ALLIANCE",
+      "properties": {
+        "degree": 0,
+        "description": "An organization focused on mental health, particularly on the impacts of social media on youth mental health",
+        "frequency": 1,
+        "human_readable_id": 31,
+        "original_id": "4c4713a4-30b4-4cd5-8a5b-1b6d4d7e5280",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "x": null,
+        "y": null
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "JOHN PIACENTINI",
+      "label": "JOHN PIACENTINI",
+      "properties": {
+        "degree": 1,
+        "description": "A professor in the UCLA Department of Psychiatry and Biobehavioral Sciences, discussing the impact of the pandemic on adolescents",
+        "frequency": 1,
+        "human_readable_id": 32,
+        "original_id": "aa89afac-b254-4033-aee5-b21cfbceb48c",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "x": 3.8926520347595215,
+        "y": -1.3266627788543701
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "ANNE MARIE ALBANO",
+      "label": "ANNE MARIE ALBANO",
+      "properties": {
+        "degree": 1,
+        "description": "Director of the Columbia University Clinic for Anxiety and Related Disorders, discussing the impact of social media on youth with social anxiety or depression",
+        "frequency": 1,
+        "human_readable_id": 33,
+        "original_id": "ded80caf-c0f3-46b5-83da-cdc2671cc885",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "x": 8.271865844726562,
+        "y": -8.436722755432129
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "JACLYN HALPERN",
+      "label": "JACLYN HALPERN",
+      "properties": {
+        "degree": 1,
+        "description": "Director of the SOAR program at Behavioral Medicine Associates, discussing the potential risks and benefits of TikTok for youth",
+        "frequency": 1,
+        "human_readable_id": 34,
+        "original_id": "738a878b-d800-443f-b164-0d66a21c264e",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "x": 5.821049213409424,
+        "y": -4.001779556274414
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "PETER WALLERICH-NEILS",
+      "label": "PETER WALLERICH-NEILS",
+      "properties": {
+        "degree": 1,
+        "description": "A TikTok influencer known as Peter Hyphen, who discusses his ADHD diagnosis and connects with others on the platform",
+        "frequency": 1,
+        "human_readable_id": 35,
+        "original_id": "b8172f6b-a80b-46ab-b2f6-9f30466e3953",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744"
+        ],
+        "x": 6.622326850891113,
+        "y": -5.8883209228515625
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "KOJO SARFO",
+      "label": "KOJO SARFO",
+      "properties": {
+        "degree": 1,
+        "description": "KOJO SARFO is a mental health nurse practitioner and psychotherapist who has garnered a large following on TikTok. He is known for promoting mental health awareness through his platform, leveraging his expertise to educate and engage with his audience on various aspects of mental health. Sarfo's significant presence on TikTok highlights his commitment to spreading knowledge and understanding about mental health issues, making him a notable figure in the online community dedicated to this cause.",
+        "frequency": 2,
+        "human_readable_id": 36,
+        "original_id": "1bae2c68-b2dc-4f68-a966-1751f70d55fd",
+        "text_unit_ids": [
+          "7eac5a46f20b347ea4862c905b63af346e49ee4c3c8b05d962ac9ae61459a8a7f36823f7b980065638e6730def1153c790a8c02e8ed9a9d06f44c058ac52a744",
+          "90ff24c488195fc69cb8c7879746d26f644ccc446a41ed9ab45bfe638c72c42a588306996e996c975598c15bd5e2e1bd9ec0a0288138f538e8d4b7e924f0a6d0"
+        ],
+        "x": 9.280969619750977,
+        "y": -8.311352729797363
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "WALLERICH-NEILS",
+      "label": "WALLERICH-NEILS",
+      "properties": {
+        "degree": 1,
+        "description": "An individual who shared his ADHD journey on TikTok during the pandemic lockdowns",
+        "frequency": 1,
+        "human_readable_id": 37,
+        "original_id": "26c7a699-e7bb-456d-b2e3-be45db8cc080",
+        "text_unit_ids": [
+          "90ff24c488195fc69cb8c7879746d26f644ccc446a41ed9ab45bfe638c72c42a588306996e996c975598c15bd5e2e1bd9ec0a0288138f538e8d4b7e924f0a6d0"
+        ],
+        "x": 3.4024462699890137,
+        "y": -1.8926674127578735
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "COLUMBIA UNIVERSITY",
+      "label": "COLUMBIA UNIVERSITY",
+      "properties": {
+        "degree": 1,
+        "description": "An educational institution where a program for social anxiety teaches healthy social media engagement",
+        "frequency": 1,
+        "human_readable_id": 38,
+        "original_id": "65faba13-16b8-4717-876b-9d6afefdbd83",
+        "text_unit_ids": [
+          "90ff24c488195fc69cb8c7879746d26f644ccc446a41ed9ab45bfe638c72c42a588306996e996c975598c15bd5e2e1bd9ec0a0288138f538e8d4b7e924f0a6d0"
+        ],
+        "x": 10.081474304199219,
+        "y": -8.914034843444824
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "U.S. SUPREME COURT",
+      "label": "U.S. SUPREME COURT",
+      "properties": {
+        "degree": 2,
+        "description": "The U.S. Supreme Court, the highest court in the United States, has unanimously upheld the ban on TikTok, siding with the federal government's national security concerns. This decision reflects the Court's agreement with the government's stance on the matter.",
+        "frequency": 2,
+        "human_readable_id": 39,
+        "original_id": "40c40698-6183-47db-a54f-139dec1673cc",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f",
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "x": -6.479567050933838,
+        "y": 14.787407875061035
+      }
+    },
+    {
+      "group": "PERSON",
+      "id": "JONATHAN HAIDT",
+      "label": "JONATHAN HAIDT",
+      "properties": {
+        "degree": 2,
+        "description": "Jonathan Haidt is a social psychologist at New York University\u2019s Stern School of Business, author of \u201cThe Anxious Generation,\u201d and has spoken about the negative impacts of social media on children\u2019s mental health",
+        "frequency": 1,
+        "human_readable_id": 40,
+        "original_id": "69dd2fb6-da0b-4873-b708-c50e7b5d7489",
+        "text_unit_ids": [
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "x": -17.69441795349121,
+        "y": -0.7898539900779724
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "NEW YORK UNIVERSITY\u2019S STERN SCHOOL OF BUSINESS",
+      "label": "NEW YORK UNIVERSITY\u2019S STERN SCHOOL OF BUSINESS",
+      "properties": {
+        "degree": 1,
+        "description": "A prestigious business school where Jonathan Haidt is a social psychologist",
+        "frequency": 1,
+        "human_readable_id": 41,
+        "original_id": "82b2373d-a32c-4c13-9388-d1cb981a8d7a",
+        "text_unit_ids": [
+          "1ec76d5dbbc776d6939ad631cbc8ce314c9167a15840a9b08ae707e1374f34065bf8d29787e242bd451658607ee8a8653c21b771b28adb353271680e23d7d18a"
+        ],
+        "x": -19.549392700195312,
+        "y": -0.5917763113975525
+      }
+    },
+    {
+      "group": "ORGANIZATION",
+      "id": "MOTLEY RICE",
+      "label": "MOTLEY RICE",
+      "properties": {
+        "degree": 5,
+        "description": "A law firm investigating potential legal claims on behalf of individuals and families negatively impacted by TikTok use, offering free reviews of potential claims related to mental health issues.",
+        "frequency": 1,
+        "human_readable_id": 42,
+        "original_id": "9493cc09-c7f7-4892-8632-16ebdb28bcd5",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "x": -18.445119857788086,
+        "y": -1.089038372039795
+      }
+    },
+    {
+      "group": "EVENT",
+      "id": "DEPRESSION",
+      "label": "DEPRESSION",
+      "properties": {
+        "degree": 2,
+        "description": "A mental health condition that can be exacerbated by TikTok use, part of the basis for investigating legal claims.",
+        "frequency": 1,
+        "human_readable_id": 43,
+        "original_id": "7aab1c2b-e7b8-4e1e-8394-93b9cf3fb14b",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "x": -15.510133743286133,
+        "y": 3.3379695415496826
+      }
+    },
+    {
+      "group": "EVENT",
+      "id": "SUICIDAL THOUGHTS",
+      "label": "SUICIDAL THOUGHTS",
+      "properties": {
+        "degree": 2,
+        "description": "Severe mental health issues linked to TikTok use, prompting investigations into legal recourse.",
+        "frequency": 1,
+        "human_readable_id": 44,
+        "original_id": "58717c51-bcdd-4ce0-b82a-d16e89fe323b",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "x": -5.5854692459106445,
+        "y": 14.970718383789062
+      }
+    },
+    {
+      "group": "entity",
+      "id": "ANXIETY",
+      "label": "ANXIETY",
+      "properties": {
+        "degree": 2,
+        "description": "",
+        "frequency": 1,
+        "human_readable_id": 45,
+        "original_id": "7dbca228-daab-4848-9d3d-5901324318ca",
+        "text_unit_ids": [
+          "dd6538178f98f02b667f91a793b9a93375f0210c7e6ec6d4880c7be80de7c350f53f679d168828530bba42a86da82b1138caf1517d7662d0cae42179e19dd3c0"
+        ],
+        "x": -15.151641845703125,
+        "y": 4.053325176239014
+      }
+    }
+  ]
+}

@@ -108,7 +108,7 @@ def get_perplexity_sources(query):
         return [], ""
 
 
-def save_text_to_file(text, query, url, folder="input", is_perplexity_response=False):
+def save_text_to_file(text, query, url, folder="graphrag/ragtest/input", is_perplexity_response=False):
     """
     Save extracted text to a file.
     

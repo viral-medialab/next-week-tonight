@@ -1,0 +1,750 @@
+{
+  "links": [
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 6,
+        "description": "The US Supreme Court upheld a law passed by Congress",
+        "human_readable_id": 0,
+        "id": "7cb06226-72df-4549-86d9-3ce44c1a27f6",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 9.0
+      },
+      "source": "US SUPREME COURT",
+      "target": "CONGRESS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "The highest court in the United States upheld a law affecting TikTok",
+        "human_readable_id": 1,
+        "id": "2412f0f8-30fe-4b50-859d-75b259ab7c8e",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 1.0
+      },
+      "source": "US SUPREME COURT",
+      "target": "UNITED STATES"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 7,
+        "description": "Congress, the legislative body of the United States, passed a law affecting TikTok",
+        "human_readable_id": 2,
+        "id": "a3e30f58-0342-4266-ac1b-e4cc3d0b5883",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 9.0
+      },
+      "source": "CONGRESS",
+      "target": "UNITED STATES"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 24,
+        "description": "ByteDance, a company based in China, is the parent company of TikTok. TikTok operates as a subsidiary under ByteDance and has been at the center of national security concerns, leading to discussions about a potential ban. This relationship places ByteDance at the heart of these concerns due to its ownership of TikTok and its base of operations in China.",
+        "human_readable_id": 3,
+        "id": "d4f00beb-7ee5-4da5-9ebb-38c2ba2cb975",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7",
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53",
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 28.0
+      },
+      "source": "TIKTOK",
+      "target": "BYTEDANCE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "TikTok's operations are directly affected by this act",
+        "human_readable_id": 4,
+        "id": "40d8aee8-88b6-432d-9e0e-bd5d3b5f6f8a",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "PROTECTING AMERICANS FROM FOREIGN ADVERSARY CONTROLLED APPLICATIONS ACT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 23,
+        "description": "Shou Zi Chew is the CEO of TikTok and represented the company before Congress",
+        "human_readable_id": 5,
+        "id": "da3cc1e1-3828-45e3-9d68-c9bd57648527",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "SHOU ZI CHEW"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Oracle has been suggested as a supervisor over TikTok's US data transactions",
+        "human_readable_id": 6,
+        "id": "a8a61e6a-3101-43de-8d46-b83bd99b3f95",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "ORACLE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Michael McCaul has suggested that TikTok could resolve issues by cutting ties with ByteDance",
+        "human_readable_id": 7,
+        "id": "e4660083-be2b-453a-b774-3bf1401e3e69",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "MICHAEL MCCAUL"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Matt Perault commented on the TikTok case as significant for future US internet regulation",
+        "human_readable_id": 8,
+        "id": "a05cec0f-1ecb-4c66-a021-d3adbb8dc221",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 6.0
+      },
+      "source": "TIKTOK",
+      "target": "MATT PERAULT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Amnesty International criticized the US ban on TikTok",
+        "human_readable_id": 9,
+        "id": "364f4633-a053-4959-8e39-74da9e82ac54",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 1.0
+      },
+      "source": "TIKTOK",
+      "target": "AMNESTY INTERNATIONAL"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 24,
+        "description": "TikTok faces a ban in the United States, affecting its operations and user base",
+        "human_readable_id": 10,
+        "id": "ff9de404-36e3-4ef0-9fa9-188a3701d3f1",
+        "text_unit_ids": [
+          "d93081d9200cb226b744a2569da5056b34f5ca428dffe1af7583fb2a500333f57cf63466dbf0bfc229f10d3f646941e46216773d4c286cdb7848be52c65eecb7"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "UNITED STATES"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 23,
+        "description": "The U.S. Federal Government initiated a ban against TikTok citing national security concerns",
+        "human_readable_id": 11,
+        "id": "181acd4a-b480-4164-b5a3-23545226d8b3",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "U.S. FEDERAL GOVERNMENT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "The Supreme Court upheld the ban against TikTok, finding merit in the national security concerns",
+        "human_readable_id": 12,
+        "id": "d9139323-52d8-4e24-9039-bdd5a6c3dda6",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "SUPREME COURT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Apple began removing TikTok from its app store following the U.S. ban",
+        "human_readable_id": 13,
+        "id": "fe4fcd74-5a80-475a-8df1-fef4ea3aeac9",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "APPLE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Google began removing TikTok from its app store following the U.S. ban",
+        "human_readable_id": 14,
+        "id": "269ac576-c106-4dad-80f7-7b5849f0e6f2",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "GOOGLE"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Samsung began removing TikTok from its app store following the U.S. ban",
+        "human_readable_id": 15,
+        "id": "5912263a-0ed5-4179-80ac-e0c7b33e0488",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "SAMSUNG"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 23,
+        "description": "Donald Trump has vowed to reverse the ban on TikTok",
+        "human_readable_id": 16,
+        "id": "e2ddb80f-e2d7-4f9a-83de-890e46e855ab",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 7.0
+      },
+      "source": "TIKTOK",
+      "target": "DONALD TRUMP"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "Pam Bondi, as attorney general nominee, declined to commit to enforcing the TikTok ban, affecting the app's legal challenges",
+        "human_readable_id": 17,
+        "id": "e176886a-eaba-4fa4-a098-db1c137833ef",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 6.0
+      },
+      "source": "TIKTOK",
+      "target": "PAM BONDI"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 25,
+        "description": "Congress passed a measure granting TikTok a 270-day window to cut ties with ByteDance or face a ban",
+        "human_readable_id": 18,
+        "id": "e6e5e2c8-da0d-4dd0-ad75-a7fd334fbff9",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "CONGRESS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "ABC News reported on the developments and implications of the TikTok ban, providing information to the public",
+        "human_readable_id": 19,
+        "id": "8a5d3d1e-13e5-42ad-ad2c-2d1c297180dc",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 1.0
+      },
+      "source": "TIKTOK",
+      "target": "ABC NEWS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 6,
+        "description": "Congress, as part of the U.S. federal government, played a key role in the legislative process to ban TikTok",
+        "human_readable_id": 20,
+        "id": "e547e5ae-e074-43d2-9c33-9fd2a4c686e2",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 8.0
+      },
+      "source": "U.S. FEDERAL GOVERNMENT",
+      "target": "CONGRESS"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 4,
+        "description": "Shou Zi Chew thanked Donald Trump for his commitment to work with TikTok to find a solution for keeping the app available in the U.S.",
+        "human_readable_id": 21,
+        "id": "f7adf4b3-ae7c-414f-abc7-7044d3fef148",
+        "text_unit_ids": [
+          "3dc270e6a909bc4385c1089723ea8dde2f385f3cb1f457c6ce64f4391a010a7fc50d214a51301340bf7f5a47da9966ac1e198429e73815eacfbae60b32737a53"
+        ],
+        "weight": 1.0
+      },
+      "source": "DONALD TRUMP",
+      "target": "SHOU ZI CHEW"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "The U.S. Supreme Court upheld the ban on TikTok, siding with the federal government",
+        "human_readable_id": 22,
+        "id": "aa103b12-940a-4bec-a3f0-c04fa8979d26",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 9.0
+      },
+      "source": "U.S. SUPREME COURT",
+      "target": "TIKTOK"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 22,
+        "description": "The federal government has argued that TikTok poses a national security risk, leading to its ban",
+        "human_readable_id": 23,
+        "id": "b942be91-4ff3-4b78-b2d8-0625d0e58cc9",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 9.0
+      },
+      "source": "TIKTOK",
+      "target": "FEDERAL GOVERNMENT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 23,
+        "description": "TikTok is set to be shut down in the U.S. following a Supreme Court ruling",
+        "human_readable_id": 24,
+        "id": "ea1bfd77-0223-40eb-abf9-b09576941874",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "U.S."
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 23,
+        "description": "The U.S. federal government has raised concerns that the Chinese government could access user data on TikTok",
+        "human_readable_id": 25,
+        "id": "f3a8c320-58d5-4ede-8f95-41e71c28a712",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 8.0
+      },
+      "source": "TIKTOK",
+      "target": "CHINESE GOVERNMENT"
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "ByteDance, TikTok's parent company, is at the center of a national security concern debate in the U.S.",
+        "human_readable_id": 26,
+        "id": "2c6181d4-7cfe-44ea-9cf8-4f048c97e984",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 1.0
+      },
+      "source": "BYTEDANCE",
+      "target": "U.S."
+    },
+    {
+      "label": "related",
+      "properties": {
+        "combined_degree": 5,
+        "description": "Concerns include potential access or manipulation by the Chinese government due to ByteDance's location in China",
+        "human_readable_id": 27,
+        "id": "426f7c61-0f92-4874-8a9b-6875a2611203",
+        "text_unit_ids": [
+          "e968a8a5b9ae9c448fb0e27f52e273ec672a125a84abeee91ae6641671454a6f1cf2c64e44781f2f520c46fc6d0696210444312bd65ce7f4106098c81c96e37f"
+        ],
+        "weight": 1.0
+      },
+      "source": "BYTEDANCE",
+      "target": "CHINESE GOVERNMENT"
+    }
+  ],
+  "nodes": [
+    {
+      "group": "entity",
+      "id": "US SUPREME COURT",
+      "label": "US SUPREME COURT",
+      "properties": {
+        "community": 2,
+        "degree": 2,
+        "human_readable_id": 0,
+        "level": 0,
+        "original_id": "0afcfd93-fe7a-46aa-8761-f491c4383ac8",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "CONGRESS",
+      "label": "CONGRESS",
+      "properties": {
+        "community": 2,
+        "degree": 4,
+        "human_readable_id": 1,
+        "level": 0,
+        "original_id": "cd837281-8697-4972-a5e7-1ac1ae775175",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "TIKTOK",
+      "label": "TIKTOK",
+      "properties": {
+        "community": 0,
+        "degree": 21,
+        "human_readable_id": 2,
+        "level": 0,
+        "original_id": "1f5247d5-5f39-447b-b22d-704069c13071",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "BYTEDANCE",
+      "label": "BYTEDANCE",
+      "properties": {
+        "community": 1,
+        "degree": 3,
+        "human_readable_id": 3,
+        "level": 0,
+        "original_id": "eeecd58c-9d34-4840-a2f6-6784bafb2f81",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "PROTECTING AMERICANS FROM FOREIGN ADVERSARY CONTROLLED APPLICATIONS ACT",
+      "label": "PROTECTING AMERICANS FROM FOREIGN ADVERSARY CONTROLLED APPLICATIONS ACT",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 4,
+        "level": 0,
+        "original_id": "121c2ed5-0959-4a52-9b3e-75b74031b013",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "SHOU ZI CHEW",
+      "label": "SHOU ZI CHEW",
+      "properties": {
+        "community": 3,
+        "degree": 2,
+        "human_readable_id": 5,
+        "level": 0,
+        "original_id": "0902bd30-e432-4da1-83e6-9b349fd2729f",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "ORACLE",
+      "label": "ORACLE",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 6,
+        "level": 0,
+        "original_id": "654b776e-714c-4b4c-ac7c-c90154a7b1ba",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "MICHAEL MCCAUL",
+      "label": "MICHAEL MCCAUL",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 7,
+        "level": 0,
+        "original_id": "b5fa1348-ad6f-41a7-9566-683817156d21",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "MATT PERAULT",
+      "label": "MATT PERAULT",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 8,
+        "level": 0,
+        "original_id": "021697f1-d8d3-4474-8e04-825d23089375",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "AMNESTY INTERNATIONAL",
+      "label": "AMNESTY INTERNATIONAL",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 9,
+        "level": 0,
+        "original_id": "ba0b331c-aeae-4927-b3a8-fdaf71821fcf",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "UNITED STATES",
+      "label": "UNITED STATES",
+      "properties": {
+        "community": 2,
+        "degree": 3,
+        "human_readable_id": 10,
+        "level": 0,
+        "original_id": "c6829c86-20de-4afe-ad04-cbaec241574a",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "U.S. FEDERAL GOVERNMENT",
+      "label": "U.S. FEDERAL GOVERNMENT",
+      "properties": {
+        "community": 2,
+        "degree": 2,
+        "human_readable_id": 11,
+        "level": 0,
+        "original_id": "fffeb7db-83a9-49c1-8a02-6913c16caee2",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "SUPREME COURT",
+      "label": "SUPREME COURT",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 12,
+        "level": 0,
+        "original_id": "cfedc7a3-2e4e-4c57-a849-708f53491358",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "APPLE",
+      "label": "APPLE",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 13,
+        "level": 0,
+        "original_id": "e5e8f246-a48f-4be5-a69f-1b2b73f71ade",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "GOOGLE",
+      "label": "GOOGLE",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 14,
+        "level": 0,
+        "original_id": "ecd65e84-d19c-4ea3-972f-ece261481f10",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "SAMSUNG",
+      "label": "SAMSUNG",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 15,
+        "level": 0,
+        "original_id": "21103f5d-9fcf-4ac6-9c85-c71ac806b875",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "DONALD TRUMP",
+      "label": "DONALD TRUMP",
+      "properties": {
+        "community": 3,
+        "degree": 2,
+        "human_readable_id": 16,
+        "level": 0,
+        "original_id": "f4797db0-6644-42de-94ed-d8c01b0b50de",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "PAM BONDI",
+      "label": "PAM BONDI",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 17,
+        "level": 0,
+        "original_id": "44ff0ca5-5f2f-45ff-8694-6aca32b85d37",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "ABC NEWS",
+      "label": "ABC NEWS",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 18,
+        "level": 0,
+        "original_id": "b2d7cd70-a74e-4cbb-93b9-bd3fa9c36aee",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "U.S. SUPREME COURT",
+      "label": "U.S. SUPREME COURT",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 19,
+        "level": 0,
+        "original_id": "f51e7004-20e0-4e89-8ace-fc4df6fce8fc",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "FEDERAL GOVERNMENT",
+      "label": "FEDERAL GOVERNMENT",
+      "properties": {
+        "community": 0,
+        "degree": 1,
+        "human_readable_id": 20,
+        "level": 0,
+        "original_id": "bc82a62f-5871-47e9-9b94-1e050b93ac5f",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "U.S.",
+      "label": "U.S.",
+      "properties": {
+        "community": 1,
+        "degree": 2,
+        "human_readable_id": 21,
+        "level": 0,
+        "original_id": "70670068-a478-4524-9c10-25f160b84c10",
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "entity",
+      "id": "CHINESE GOVERNMENT",
+      "label": "CHINESE GOVERNMENT",
+      "properties": {
+        "community": 1,
+        "degree": 2,
+        "human_readable_id": 22,
+        "level": 0,
+        "original_id": "7116cba0-3500-4bd1-a2d0-90cf251fcb87",
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}

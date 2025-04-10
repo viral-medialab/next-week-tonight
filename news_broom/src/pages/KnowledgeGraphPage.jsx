@@ -4,14 +4,15 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ForceGraph3D from "react-force-graph-3d";
 import ForceGraph2D from "react-force-graph-2d";
-
-const GRAPH_URL = "http://127.0.0.1:5000/api/graph";   // <- adjust if you expose it elsewhere
+import smallGraphData from "../../small_graph.json";  // Import small graph data
+import bigGraphData from "../../big_graph.json";      // Import big graph data
 
 export default function KnowledgeGraphPage() {
   const navigate = useNavigate();
   const [graph, setGraph] = useState({ nodes: [], links: [] });
   const [loading, setLoading] = useState(true);
   const [view3D, setView3D] = useState(true);
+  const [expandedGraph, setExpandedGraph] = useState(false);
   const graphRef = useRef();
   const [hoverNode, setHoverNode] = useState(null);
   const [hoverLink, setHoverLink] = useState(null);
@@ -34,23 +35,19 @@ export default function KnowledgeGraphPage() {
   return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ---------- load the graph once on mount ----------
+  // ---------- load the graph data when expanded state changes ----------
   useEffect(() => {
-    async function load() {
-      try {
-        setLoading(true);
-        const res = await fetch(GRAPH_URL);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        setGraph(data);
-      } catch (err) {
-        console.error("Could not load graph:", err);
-      } finally {
-        setLoading(false);
-      }
+    try {
+      setLoading(true);
+      // Use expanded graph data if toggle is on, otherwise use small graph
+      const data = expandedGraph ? bigGraphData : smallGraphData;
+      setGraph(data);
+    } catch (err) {
+      console.error("Could not load graph data:", err);
+    } finally {
+      setLoading(false);
     }
-    load();
-  }, []);
+  }, [expandedGraph]);
 
   // ---------- once layout stabilises, zoom to fit ----------
   useEffect(() => {
@@ -103,6 +100,22 @@ export default function KnowledgeGraphPage() {
               >
                 Toggle {view3D ? "2-D" : "3-D"}
               </button>
+              
+              {/* New toggle for graph size */}
+              <div className="flex items-center">
+                <span className="mr-2 text-sm">Small</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    className="sr-only peer"
+                    checked={expandedGraph}
+                    onChange={() => setExpandedGraph(prev => !prev)}
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+                <span className="ml-2 text-sm">Expanded</span>
+              </div>
+              
               <p className="text-sm">
                 Nodes {graph.nodes.length} • Links {graph.links.length}
               </p>

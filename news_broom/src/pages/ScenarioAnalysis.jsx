@@ -84,17 +84,21 @@ const ScenarioAnalysis = () => {
             </p>
             <ul className="list-disc ml-6 text-gray-700 mt-2">
               <li>
-                <strong>Social and Emotional Well-being:</strong> Reduced social connections and increased feelings of isolation.
+                <strong>Ownership Change Impact:</strong> ByteDance's TikTok divestment represents a significant shift in platform control affecting nearly 200 million US users.
               </li>
-              <li>Potential loss of support versus reduced exposure to harmful content.</li>
+              <li>This transition in ownership structure could fundamentally reshape the platform's operations and governance.</li>
               <li>
-                <strong>Economic and Professional Opportunities:</strong> Limited opportunities for career building and entrepreneurship.
+                <strong>National Security Considerations:</strong> Divestment addresses concerns about Chinese government data access.
               </li>
-              <li>Disruption of content creation opportunities and potential income streams.</li>
+              <li>Potential increased trust in TikTok's privacy practices among American users and government regulators.</li>
               <li>
-                <strong>Civic Engagement and Information Access:</strong> Decreased platform for political engagement and activism.
+                <strong>Mental Health Implications:</strong> Could influence ongoing debates about social media's impact on adolescent mental health.
               </li>
-              <li>Loss of access to diverse information and informal learning.</li>
+              <li>Potential shifts in content algorithms and safety features under new ownership.</li>
+              <li>
+                <strong>Regulatory Precedent:</strong> Changes in content moderation and data handling may establish new standards.
+              </li>
+              <li>Could set precedent for how foreign-owned technology platforms operate within the United States.</li>
             </ul>
           </div>
         )}

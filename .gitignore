@@ -1,5 +1,5 @@
 frontend/.env.local
-news-broom/.env
+news_broom/.env
 vars.env
 cardiffnlp
 node_modules/
@@ -18,7 +18,7 @@ venv/
 ENV/
 .env/
 .venv/
-news-broom/.env/
+
 
 # IDE
 .idea/
@@ -44,3 +44,4 @@ backend/graphrag/ragtest/input/
 backend/graphrag/ragtest/output/
 backend/graphrag/ragtest/cache/
 backend/graphrag/ragtest/logs/
+.vercel

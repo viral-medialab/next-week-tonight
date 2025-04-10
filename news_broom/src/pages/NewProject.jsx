@@ -24,13 +24,13 @@ const NewProject = () => {
             const API_URL = "http://127.0.0.1:5000";
             console.log(API_URL)
             
-            const response = await axios.post(`${API_URL}/api/get_news_by_user_input`, {
-                topic: topic
-            });
+            // const response = await axios.post("http://127.0.0.1:5000/api/gather_news_sources", {
+            //     topic: topic
+            // });
             
             // Store the response data in localStorage for use on the next page
-            localStorage.setItem("topicData", JSON.stringify(response.data));
-            console.log(response.data)
+            //localStorage.setItem("topicData", JSON.stringify(response.data));
+            //console.log(response.data)
             // Navigate to the next page
             navigate("/generating-scenarios");
         } catch (error) {
