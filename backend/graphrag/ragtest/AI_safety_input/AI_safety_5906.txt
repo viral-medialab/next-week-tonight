@@ -1,0 +1,51 @@
+Source: https://cloudsecurityalliance.org/blog/2024/03/19/ai-safety-vs-ai-security-navigating-the-commonality-and-differences
+
+The full plain text of the article from the provided URL is not available for extraction. However, here is a detailed summary of the key points from the article "AI Safety vs. AI Security: Navigating the Commonality and Differences" published by the Cloud Security Alliance:
+
+## **Summary of "AI Safety vs. AI Security: Navigating the Commonality and Differences"**
+
+### **Definitions and Foundational Concepts**
+
+- **AI Security** focuses on protecting AI systems and their data against malicious actions, unauthorized access, data breaches, and adversarial attacks. It is anchored in the traditional C.I.A. triad: Confidentiality, Integrity, and Availability. This involves safeguarding sensitive data used for AI training, securing AI models as intellectual property, and preventing information leaks that might arise from model outputs[1][9].
+
+- **AI Safety** centers on ensuring that AI systems do not cause unintended harm or negative consequences. It is concerned with aligning AI behavior and outputs with human values, ethics, and societal norms, emphasizing system reliability, robustness, and transparency. Key risks include unintended biases, lack of transparency, and potential negative impacts on individuals or society[1][9].
+
+### **Key Areas of AI Security**
+
+- **Confidentiality**: Protects training data, business information, and model details from unauthorized disclosure using techniques like differential privacy, encryption, and access controls.
+- **Model Security**: Prevents unauthorized access or theft of AI models through methods such as obfuscation, watermarking, and secure deployment environments.
+- **Prevention of Information Leaks**: Mitigates risks from AI systems inadvertently revealing sensitive information through outputs by using filtering, privacy-preserving computation, and auditing mechanisms[1][9].
+
+### **Shared Principles and Commonalities**
+
+Both AI safety and security share foundational goals and concepts, including:
+- **Risk Mitigation**: Both aim to reduce risks—AI safety to prevent harm and AI security to stop malicious exploitation.
+- **Ethical Considerations**: Both require attention to ethical implications, such as fairness, privacy, and non-discrimination.
+- **Trustworthiness and Reliability**: Each field seeks to make AI systems reliable and robust—AI safety through alignment with values and continuous learning, AI security by protecting against attacks and ensuring system integrity.
+- **Transparency and Accountability**: Both promote explainability, clear accountability, and the ability to monitor and audit AI systems[1].
+
+### **Distinctions Between AI Safety and AI Security**
+
+- **Objectives**:  
+  - *AI Safety* is about preventing unintended behaviors or harms caused by AI's own actions or decisions.
+  - *AI Security* is about defending AI systems from external threats, ensuring they do not become tools for malicious actors.
+
+- **Scope**:  
+  - *AI Safety* addresses system behavior, societal impact, ethical alignment, and robustness against unpredictable outcomes.
+  - *AI Security* addresses technical protection measures, including defending against hacking, data leaks, and adversarial inputs.
+
+- **Risk Types**:  
+  - *Safety Risks* include AI systems exhibiting bias, lack of transparency, or causing harm due to misalignment.
+  - *Security Risks* include cyber attacks, model theft, data breaches, and exploitation of vulnerable AI components[1][6][9].
+
+### **Conclusion**
+
+AI safety and AI security are interrelated but distinct. A comprehensive approach to trustworthy AI requires both disciplines to be addressed in tandem:
+- AI safety ensures AI systems are ethically aligned and do no harm.
+- AI security protects against external threats and keeps AI systems, data, and outputs secure.
+
+Both domains must work together, involving technical, ethical, and organizational strategies, to foster responsible and trustworthy AI development and deployment[1][9].
+
+---
+
+For those interested in detailed frameworks, examples, or further reading, the original article provides more in-depth explanations and practical guidance[1].

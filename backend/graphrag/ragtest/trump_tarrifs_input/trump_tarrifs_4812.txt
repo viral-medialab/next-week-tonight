@@ -1,0 +1,7 @@
+Source: https://budgetmodel.wharton.upenn.edu
+
+The webpage at the provided URL, Penn Wharton Budget Model (PWBM) homepage, serves as an overview of their capabilities and methodology. Since the plain text cannot be entirely extracted, here is a summary based on available details:
+
+The Penn Wharton Budget Model (PWBM) uses advanced economic modeling techniques, such as *stochastic simulation*, to project the fiscal and economic impacts of public policy changes. PWBM integrates both structural and reduced-form model features to account for realistic economic details while analyzing policy changes. Its tools combine big data science, cloud computing, and visualization, allowing policymakers and the public to simulate scenarios before legislation is enacted. The model is calibrated with extensive demographic and economic data, simulating life events (e.g., employment, retirement) and the behavior of businesses in response to policies.
+
+Additionally, PWBM aims to be non-partisan and transparent, supporting public understanding of fiscal policy choices. It provides interactive simulation tools for accessible and informed decision-making regarding government spending and revenue policies.

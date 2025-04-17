@@ -1,0 +1,7 @@
+Source: https://budgetlab.yale.edu
+
+The provided content from the URL (https://budgetlab.yale.edu) outlines the mission and activities of The Budget Lab at Yale. Below is a summary based on the available information:
+
+The Budget Lab at Yale is a non-partisan policy research center aimed at providing comprehensive analyses of federal policy proposals and their effects on the American economy. Unlike traditional policy evaluations that focus narrowly on costs or macroeconomic impacts, the Budget Lab emphasizes broader considerations, including income distribution, long-term economic effects, and social impacts. The Lab addresses issues such as the child tax credit, tax cuts, paid family leave, deficit reduction, and universal pre-K.
+
+The Lab's approach involves creating transparent, innovative tools and models that policymakers can use to better understand the fiscal and social implications of their proposals. By making its methodologies and code publicly available, the Budget Lab seeks to foster trust and encourage collaboration in the policy analysis process. It is supported by several prominent foundations and led by experts with extensive academic and policy experience, including Danny Yagan, Natasha Sarin, and Martha Gimbel.

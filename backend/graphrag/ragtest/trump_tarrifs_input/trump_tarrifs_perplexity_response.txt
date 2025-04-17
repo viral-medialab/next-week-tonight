@@ -1,0 +1,45 @@
+President Donald Trump's tariff policies in 2025 have significantly reshaped the U.S. and global economic landscape. These measures have included broad-based import taxes on numerous goods, higher tariffs targeted at specific countries, and the invocation of a "national economic emergency" to justify the actions. Below is a comprehensive overview of these policies and their impacts:
+
+## Major Tariff Actions in 2025
+1. **Global Tariffs:** On April 2, 2025, Trump announced a 10% baseline tariff on all imports, with higher tariffs (ranging from 11% to 50%) imposed on imports from 57 countries with which the U.S. has trade deficits. The stated goal was to address trade imbalances, strengthen domestic manufacturing, and bolster national security[1][4].
+   
+2. **Targeted Tariffs:** Specific sectors were targeted, such as:
+   - **Automobiles**: A 25% tariff on auto imports was enacted, contributing to increased vehicle prices domestically[1][8].
+   - **Steel and Aluminum**: These products saw tariffs of 25%, building on prior import taxes to protect U.S. industries[1].
+   - **China**: Tariffs on Chinese imports were raised to 125%–145%, citing intellectual property theft and other trade disputes[7][10].
+
+3. **Retaliatory Actions:** Countries like China, Canada, and the European Union imposed retaliatory tariffs on U.S. exports, affecting agricultural goods, industrial equipment, and consumer products, further escalating trade tensions[1][5][10].
+
+4. **Sector-Specific Exemptions:** Products such as pharmaceuticals and certain energy resources were exempt from the broader tariffs due to their strategic importance[4].
+
+## Economic Impacts
+1. **U.S. Economy:**
+   - **GDP:** Projections indicate that the tariffs will reduce U.S. GDP by 0.9% in 2025, equating to a $160 billion annual loss in the long term[9][10]. The tariffs have had a contractionary effect on economic growth, leading to higher consumer prices and reduced real incomes.
+   - **Household Costs:** Tariffs have raised average household expenses by $3,800 annually, disproportionately impacting lower-income families[9][10].
+   - **Business Costs:** U.S. industries reliant on global supply chains, such as automakers, face higher input costs, reducing competitiveness globally[8].
+
+2. **Global Economy:**
+   - Retaliatory tariffs and disrupted trade flows have slowed economic growth in Canada, China, and the EU. For instance, China's economy is projected to shrink by 0.6% in the long term due to reduced exports and retaliatory measures[9][10].
+   - The global economy faces increased inflationary pressure, with consumer prices rising by 2.9% globally as a result of tariff-related supply chain disruptions[10].
+
+3. **Fiscal Impact:**
+   - Revenue raised from tariffs is projected to total $2.2–$3.1 trillion over a decade, offsetting some federal deficits. However, dynamic economic losses (e.g., reduced trade and GDP) diminish these benefits[5][9].
+
+## Broader Policy Implications
+1. **Policy Uncertainty:** The aggressive tariff approach has led to heightened economic uncertainty, discouraging investment and affecting labor markets. Approximately 740,000 fewer payroll jobs are expected by year-end 2025[9][10].
+   
+2. **Trade Policy Shift:** Trump's tariffs signal a broader move away from globalization toward protectionism, emphasizing domestic industries. This shift risks long-term relationships with trading partners and could lead to entrenched economic inefficiencies.
+
+3. **Retaliation Dynamics:** Retaliatory tariffs have disproportionately affected key U.S. exports, such as agricultural goods, which are critical to rural economies[1][10].
+
+In summary, while President Trump’s tariff policies aim to address trade imbalances and protect certain domestic industries, they have introduced significant economic costs, both domestically and globally. These include reduced GDP growth, higher household expenses, and a weakened international trading system, raising questions about the long-term efficacy of such measures.
+
+---
+
+### Sources:
+1. [PBS News](https://www.pbs.org/newshour/economy/a-timeline-of-trumps-tariff-actions-so-far)
+2. [Wharton Budget Model](https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs)
+3. [White House Fact Sheet](https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-declares-national-emergency-to-increase-our-competitive-edge-protect-our-sovereignty-and-strengthen-our-national-and-economic-security/)
+4. [Tax Foundation](https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/)
+5. [J.P. Morgan Research](https://www.jpmorgan.com/insights/global-research/current-events/us-tariffs)
+6. [Budget Lab Yale](https://budgetlab.yale.edu/research/fiscal-and-economic-effects-revised-april-9-tariffs)

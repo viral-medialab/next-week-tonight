@@ -1,0 +1,31 @@
+Source: https://almanac.eto.tech/topics/ai-safety/
+
+The plain text of the article at https://almanac.eto.tech/topics/ai-safety/ is not directly available to extract. However, based on search results and supporting documentation, here is a comprehensive summary of the "AI Safety" topic from the ETO Research Almanac:
+
+## Summary: AI Safety – ETO Research Almanac
+
+AI safety is a rapidly growing research field focused on ensuring that artificial intelligence (AI) systems are robust, reliable, and do not cause harmful outcomes. The ETO Research Almanac tracks output and trends in this domain using bibliometric analysis of global research publications.
+
+### Key Points
+
+- Between 2018 and 2023, an estimated 45,595 AI safety articles were released, representing a 312% growth in research over that period. Despite this rapid increase, AI safety research still represents only about 2% of all artificial intelligence research[1][5].
+- The United States leads globally in the production of AI safety literature, with American schools and companies at the forefront. Chinese organizations are less prominent in this subfield compared to their share in AI overall, but still hold the second spot[5].
+- The most active institutions in AI safety include leading American universities such as Carnegie Mellon, MIT, and Stanford, with both U.S. and Chinese organizations making up the top ten contributors[5].
+- AI safety research in the Almanac covers themes such as:
+  - Data poisoning
+  - Algorithmic fairness
+  - Explainable machine learning
+  - Gender bias
+  - Out-of-distribution detection[5]
+- AI safety articles are highly cited, averaging 33 citations per article, compared to 16 for general AI research, indicating high impact and relevance in the field[5].
+- The Almanac’s AI safety dataset is constructed using a custom classifier that tags scholarly articles as AI safety-related if they address topics such as robustness, misspecification, unwanted bias, explainability, and value alignment[7]. The classifier is built using a combination of expert manual annotation and programmatic weak supervision, achieving a validation F1 of over 80% for relevance[7].
+- Research on AI safety remains challenging to define and categorize due to the field’s rapid evolution and conceptual overlap with related areas like trustworthy AI and responsible AI[4][7].
+- The ETO Research Almanac provides tools for exploring trends, identifying leading organizations and countries, and analyzing research impact in AI safety and other emerging technology areas[2][3].
+
+### Methodology Notes
+
+- The research output figures and analysis are based on English-language articles from the Merged Academic Corpus, omitting non-public and Chinese-language-only research, which may affect some statistics[5][7].
+
+### Conclusion
+
+AI safety is evolving quickly, with research output growing much faster than the overall AI field, but it remains a small subset of total AI work. The United States continues to dominate output and citations. The Almanac’s data, sourced from large academic corpora and refined with machine learning, allows for in-depth analysis of trends and institutional performance in this critical area of technology[1][5][7].

@@ -1,0 +1,25 @@
+Source: https://arkose.org/aisafety
+
+Here is a summary of the article at https://arkose.org/aisafety:
+
+The Arkose AI Safety page presents a curated set of key technical research papers and resources addressing risks from advanced AI. The content is organized into major research areas, each featuring highly-cited or recent papers as entry points to core technical challenges in AI safety:
+
+**Overviews**  
+Papers provide broad discussion of the risks and core questions in AI alignment and safety, including anticipated problems with advanced systems. Notable works include Ngo et al. (2022) on the deep learning perspective of the alignment problem, Hendrycks et al. (2023) on catastrophic AI risks, and Chan et al. (2023) discussing harms from increasingly agentic algorithms.
+
+**Dangerous Capability Evaluations**  
+This section focuses on developing benchmarks and technical tools for identifying when AI models have acquired potentially hazardous abilities such as deception, manipulation, or misalignment with human values. Cited works include research from Perez et al. (2023) and Phuong et al. (2024), as well as practical resources from organizations like METR and the UK AISI.
+
+**Interpretability**  
+Papers address techniques for making AI models more transparent and understandable, to aid in robust monitoring and control. Examples include Olah et al. (2020) on neural circuits, Templeton et al. (2024) on extracting interpretable features, Marks et al. (2024) on discovering causal graphs in LLMs, and Zou et al. (2023) on AI transparency.
+
+**Robustness**  
+Research explores how to make AI systems resilient to adversarial attacks and distributional shifts, and to ensure models generalize intended behavior beyond the conditions seen in training. Works cited include Perez et al. (2022) and Zou et al. (2023), among others.
+
+**Scalable Oversight**  
+This area covers mechanisms for supervising or overseeing advanced AI models, particularly when they exceed human performance in complex tasks. Papers discuss strategies like using simpler models or debate frameworks to aid human overseers, including Bowman et al. (2022) and Bai et al. (2022).
+
+**Deception**  
+Papers investigate the risk and evidence for deceptive or sycophantic behavior in AI systems, the potential for "alignment faking," and the prospects for detecting or mitigating these behaviors. Key references include Greenblatt et al. (2025) and Meinke et al. (2024).
+
+The page closes by directing readers to additional curated AI safety resources and providing a glossary for research categories. The overall aim is to offer a high-level map of the technical landscape in AI safety for researchers, policymakers, and practitioners seeking to understand and mitigate risks from advanced AI[1].
