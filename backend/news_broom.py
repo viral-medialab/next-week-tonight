@@ -410,7 +410,7 @@ def create_knowledge_graph():
         }), 500
 
 
-@app.route("/api/query_knowledge_graph", methods=["POST"])
+@app.route("/api/query_knowledge_graph", methods=["GET", "POST"])
 def query_knowledge_graph():
     """
     Query the knowledge graph using GraphRAG global query method.
