@@ -44,4 +44,7 @@ backend/graphrag/ragtest/input/
 backend/graphrag/ragtest/output/
 backend/graphrag/ragtest/cache/
 backend/graphrag/ragtest/logs/
+backend/graphrag/ragtest/logs_default/
+backend/graphrag/ragtest/cache_default/
+news_broom/dist/
 .vercel
