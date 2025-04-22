@@ -87,7 +87,7 @@ models:
     tokens_per_minute: 0
     type: openai_embedding
 output:
-  base_dir: output
+  base_dir: AI_safety_output
   type: file
 reporting:
   base_dir: logs_default

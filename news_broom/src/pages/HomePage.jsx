@@ -41,6 +41,9 @@ const HomePage = () => {
   const [graphWarning, setGraphWarning] = useState(null);
   const [followUpResponse, setFollowUpResponse] = useState(null);
   const [showFollowUpResponse, setShowFollowUpResponse] = useState(false);
+  const [followUpLoading, setFollowUpLoading] = useState(false);
+  const [submittedFollowUp, setSubmittedFollowUp] = useState(""); // Store the follow-up question
+  const [expandedScenarios, setExpandedScenarios] = useState([false, false, false]);
 
   // Graph refs and state
   const graphRef = useRef();
@@ -56,6 +59,10 @@ const HomePage = () => {
   // Add these new state variables for selection (instead of just hover)
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedLink, setSelectedLink] = useState(null);
+
+  // Add new state variables for highlighted nodes and links
+  const [highlightedNodes, setHighlightedNodes] = useState(new Set());
+  const [highlightedLinks, setHighlightedLinks] = useState(new Set());
 
   // Set container size on mount and window resize
   useEffect(() => {
@@ -257,23 +264,61 @@ const HomePage = () => {
   const handleFollowUpSubmit = async () => {
     if (!followUpInput.trim()) return;
     
-    // Reset follow-up response states
+    // Reset states
     setFollowUpResponse(null);
     setShowFollowUpResponse(false);
+    setSubmittedFollowUp(followUpInput);
+    setFollowUpLoading(true);
+    setHighlightedNodes(new Set());
+    setHighlightedLinks(new Set());
+    setExpandedScenarios([false, false, false]);
     
     try {
       const API_URL = "http://127.0.0.1:5000";
       
-      // Call the query_knowledge_graph endpoint with the follow-up question
       const response = await axios.post(`${API_URL}/api/query_knowledge_graph`, {
         query: followUpInput,
+        topic: submittedQuery,
         num_sources: 5
       });
       
       if (response.data.status === "success") {
-        // Store and display the follow-up response
-        setFollowUpResponse(response.data.data.result);
+        // Process the response to remove unwanted prefixes
+        let cleanedResponse = response.data.data.result;
+        
+        // Remove the technical headers with a more comprehensive regex
+        cleanedResponse = cleanedResponse.replace(/INFO:[\s\S]*?REDACTED ====\}\s*\n/g, '');
+        cleanedResponse = cleanedResponse.replace(/SUCCESS:\s*(?:Global|Local)\s*Search\s*Response:?\s*/g, '');
+        cleanedResponse = cleanedResponse.replace(/Follow-up\s*Response:?\s*/g, '');
+        
+        // Trim leading and trailing whitespace
+        cleanedResponse = cleanedResponse.trim();
+        
+        // Store and display the processed follow-up response
+        setFollowUpResponse(cleanedResponse);
         setShowFollowUpResponse(true);
+        
+        // Process highlighted graph data if available
+        if (response.data.data.highlighted_graph) {
+          const highlightData = response.data.data.highlighted_graph;
+          
+          // Create sets of node and link IDs to highlight
+          const nodeSet = new Set();
+          highlightData.nodes.forEach(node => nodeSet.add(node.id));
+          
+          const linkSet = new Set();
+          highlightData.links.forEach(link => {
+            // Create a unique ID for each link (source-target)
+            const linkId = typeof link.source === 'object' 
+              ? `${link.source.id}-${link.target.id}` 
+              : `${link.source}-${link.target}`;
+            linkSet.add(linkId);
+          });
+          
+          // Update state with highlighted elements
+          setHighlightedNodes(nodeSet);
+          setHighlightedLinks(linkSet);
+        }
       } else {
         throw new Error(response.data.message || "Failed to process follow-up question");
       }
@@ -285,8 +330,8 @@ const HomePage = () => {
         "Failed to process your follow-up question. Please try again."
       );
     } finally {
-      // Clear the follow-up input after submission
       setFollowUpInput("");
+      setFollowUpLoading(false);
     }
   };
 
@@ -432,6 +477,84 @@ const HomePage = () => {
         )}
       </div>
     );
+  };
+
+  // Modify the parseScenarios function to also extract the conclusion
+  const parseScenarios = (text) => {
+    // Look for scenario headers like "Scenario 1", "Most Likely Scenario", etc.
+    const scenarioMarkers = [
+      /scenario\s*1|most\s*likely\s*scenario/i,
+      /scenario\s*2|moderate(?:ly)?\s*likely\s*scenario/i,
+      /scenario\s*3|least\s*likely\s*scenario/i
+    ];
+    
+    let scenarios = [];
+    let lastFound = 0;
+    let conclusion = "";
+    
+    // Look for conclusion section
+    const conclusionMatch = text.search(/conclusion|in\s+summary|to\s+summarize/i);
+    
+    // Try to find each scenario in order
+    for (let i = 0; i < scenarioMarkers.length; i++) {
+      // Find the current scenario marker
+      const match = text.slice(lastFound).search(scenarioMarkers[i]);
+      
+      if (match !== -1) {
+        const start = lastFound + match;
+        
+        // Look for the next marker, conclusion, or end of text
+        let end;
+        if (i < scenarioMarkers.length - 1) {
+          const nextMatch = text.slice(start).search(scenarioMarkers[i+1]);
+          end = nextMatch !== -1 ? start + nextMatch : 
+                (conclusionMatch !== -1 && conclusionMatch > start) ? conclusionMatch : 
+                text.length;
+        } else {
+          end = (conclusionMatch !== -1 && conclusionMatch > start) ? conclusionMatch : text.length;
+        }
+        
+        // Extract the scenario text
+        scenarios.push(text.slice(start, end).trim());
+        lastFound = end;
+      }
+    }
+    
+    // Extract conclusion if found
+    if (conclusionMatch !== -1) {
+      conclusion = text.slice(conclusionMatch).trim();
+    }
+    
+    // If we couldn't find any markers, try to just split by "Scenario" keyword
+    if (scenarios.length === 0) {
+      const parts = text.split(/scenario\s*\d+|conclusion/i).filter(p => p.trim().length > 0);
+      scenarios = parts.slice(0, 3); // Take at most 3
+    }
+    
+    // If still no scenarios, just return the whole text
+    if (scenarios.length === 0) {
+      scenarios = [text];
+    }
+    
+    // Ensure we have exactly 3 scenarios (or empty strings for missing ones)
+    while (scenarios.length < 3) {
+      scenarios.push("");
+    }
+    
+    return { scenarios, conclusion };
+  };
+
+  // Add this function to toggle expansion state for a specific scenario
+  const toggleScenarioExpansion = (index) => {
+    const newExpandedState = [...expandedScenarios];
+    newExpandedState[index] = !newExpandedState[index];
+    setExpandedScenarios(newExpandedState);
+  };
+
+  // Add this function to truncate text for collapsed view
+  const truncateText = (text, maxLength = 150) => {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength) + '...';
   };
 
   return (
@@ -593,9 +716,26 @@ const HomePage = () => {
                             setSelectedNode(null);
                             setSelectedLink(null);
                           }}
-                          nodeVal={(n) => (highlightNodes.has(n) || n === selectedNode ? 12 : 6)}
-                          linkWidth={(l) => (highlightLinks.has(l) || l === selectedLink ? 3 : 1)}
-                          linkDirectionalParticles={(l) => (highlightLinks.has(l) || l === selectedLink ? 4 : 0)}
+                          nodeVal={(n) => (
+                            highlightedNodes.has(n.id) ? 15 : // Highlighted nodes are largest
+                            highlightNodes.has(n) || n === selectedNode ? 12 : // Interactive nodes are medium
+                            6 // Default size
+                          )}
+                          nodeColor={(n) => (
+                            highlightedNodes.has(n.id) ? '#ff5500' : // Highlighted nodes in orange
+                            getNodeColor(n.group, colorScale.current) // Default coloring
+                          )}
+                          linkWidth={(l) => {
+                            // Create a unique ID for the link
+                            const linkId = typeof l.source === 'object' 
+                              ? `${l.source.id}-${l.target.id}` 
+                              : `${l.source}-${l.target}`;
+                            
+                            return highlightedLinks.has(linkId) ? 4 : // Highlighted links are thickest
+                                   highlightLinks.has(l) || l === selectedLink ? 3 : // Interactive links are medium
+                                   1; // Default width
+                          }}
+                          linkDirectionalParticles={(l) => (highlightedLinks.has(l) || l === selectedLink ? 4 : 0)}
                           linkDirectionalParticleWidth={2}
                           linkDirectionalArrowLength={3.5}
                           linkDirectionalArrowRelPos={1}
@@ -610,14 +750,92 @@ const HomePage = () => {
               )}
             </div>
 
-            {followUpResponse && showFollowUpResponse && (
-              <div className="mb-8 text-left bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold mb-2">Follow-up Response:</h3>
-                <div className="prose prose-sm max-w-none">
-                  <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
-                    {followUpResponse}
-                  </ReactMarkdown>
+            {followUpLoading && (
+              <div className="flex items-center text-left mb-4">
+                <FaSpinner className="text-blue-600 text-xl animate-spin mr-3" />
+                <span className="text-lg">Querying Knowledge Graph...</span>
+              </div>
+            )}
+
+            {submittedFollowUp && followUpResponse && showFollowUpResponse && !followUpLoading && (
+              <div className="mb-8 text-left">
+                <div className="flex items-center gap-3 mb-4">
+                  <FaUserCircle className="text-3xl text-gray-600" />
+                  <div>
+                    <p className="text-sm text-gray-500">You asked:</p>
+                    <p className="text-lg font-semibold">{submittedFollowUp}</p>
+                  </div>
                 </div>
+                
+                {/* Parse the response */}
+                {(() => {
+                  const { scenarios, conclusion } = parseScenarios(followUpResponse);
+                  
+                  return (
+                    <>
+                      {/* Scenarios in 3 columns */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {scenarios.map((scenario, index) => (
+                          <div 
+                            key={index} 
+                            className={`p-4 rounded-lg transition-all duration-300 ${
+                              index === 0 ? 'bg-green-50 border border-green-200' : 
+                              index === 1 ? 'bg-blue-50 border border-blue-200' : 
+                              'bg-yellow-50 border border-yellow-200'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center mb-2">
+                              <h3 className="text-lg font-bold">
+                                {index === 0 ? 'Most Likely' : index === 1 ? 'Moderately Likely' : 'Least Likely'}
+                              </h3>
+                              <button 
+                                onClick={() => toggleScenarioExpansion(index)}
+                                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 p-1 rounded-full hover:bg-gray-200"
+                                aria-label={expandedScenarios[index] ? "Collapse" : "Expand"}
+                              >
+                                {expandedScenarios[index] ? 
+                                  <FaChevronUp className="text-sm" /> : 
+                                  <FaChevronDown className="text-sm" />
+                                }
+                              </button>
+                            </div>
+                            <div className={`prose prose-sm max-w-none overflow-hidden transition-all duration-300 ${
+                              expandedScenarios[index] ? 'max-h-[1000px]' : 'max-h-[150px]'
+                            }`}>
+                              <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
+                                {scenario}
+                              </ReactMarkdown>
+                            </div>
+                            {!expandedScenarios[index] && scenario.length > 150 && (
+                              <div className="mt-2 text-center">
+                                <button
+                                  onClick={() => toggleScenarioExpansion(index)}
+                                  className="text-blue-500 text-sm hover:text-blue-700 hover:underline focus:outline-none"
+                                >
+                                  Read more
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Conclusion section (if present) */}
+                      {conclusion && (
+                        <div className="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
+                          <div className="flex justify-between items-center mb-2">
+                            <h3 className="text-lg font-bold">Conclusion</h3>
+                          </div>
+                          <div className="prose prose-sm max-w-none">
+                            <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
+                              {conclusion}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
             )}
 

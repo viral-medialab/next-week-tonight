@@ -321,27 +321,45 @@ def create_knowledge_graph():
         
         # Define paths
         graphrag_dir = Path("backend/graphrag")
-        settings_file = graphrag_dir / "ragtest" / "settings.yaml"
+        ragtest_dir = graphrag_dir / "ragtest"
+        
+        # Make sure the ragtest directory exists
+        ragtest_dir.mkdir(parents=True, exist_ok=True)
+        
+        settings_file = ragtest_dir / "settings.yaml"
         
         # Check if the input folder exists
-        input_dir = graphrag_dir / "ragtest" / input_folder
-        output_dir = graphrag_dir / "ragtest" / output_folder
+        input_dir = ragtest_dir / input_folder
+        output_dir = ragtest_dir / output_folder
         if not input_dir.exists():
             return jsonify({
                 "status": "error",
                 "message": f"Input folder {input_folder} does not exist. Please gather news sources first."
             }), 404
         
-        # Create backup of original settings file
-        backup_file = settings_file.with_suffix(".yaml.bak")
-        shutil.copy2(settings_file, backup_file)
+        # Make sure output directory exists
+        output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Read the current settings.yaml
+        # Default settings if file doesn't exist
+        default_settings = {
+            "input": {"base_dir": "default_input"},
+            "output": {"base_dir": "default_output"}
+        }
+        
+        # Check if settings.yaml exists, create if not
+        if not settings_file.exists():
+            with open(settings_file, "w") as f:
+                yaml.dump(default_settings, f, default_flow_style=False)
+            print(f"Created new settings file at {settings_file}")
+        
+        # Read the current settings from file
         with open(settings_file, "r") as f:
             settings = yaml.safe_load(f)
         
-        # Update only the input path to use topic-specific folder
-        # Keep output in the default location
+        # Store original settings to restore later
+        original_settings = settings.copy()
+        
+        # Update settings to use topic-specific folders
         settings["input"]["base_dir"] = input_folder
         settings["output"]["base_dir"] = output_folder
         print(f"Using input folder: {input_folder}")
@@ -370,9 +388,9 @@ def create_knowledge_graph():
         # Get the output and errors
         stdout, stderr = process.communicate()
         
-        # Restore original settings file
-        shutil.copy2(backup_file, settings_file)
-        os.remove(backup_file)
+        # Restore original settings
+        with open(settings_file, "w") as f:
+            yaml.dump(original_settings, f, default_flow_style=False)
         
         # Check if command was successful
         if process.returncode == 0:
@@ -398,7 +416,6 @@ def create_knowledge_graph():
                 "command": " ".join(command)
             }), 500
         
-       
         data = get_graph(output_dir)
         return jsonify(data)
             
@@ -418,6 +435,7 @@ def query_knowledge_graph():
     Expected JSON body:
     {
         "query": "The question to ask about the knowledge graph",
+        "topic": "The original topic that was used to create the knowledge graph",
         "num_sources": 5  // Optional: Number of sources to return (default: 3)
     }
     
@@ -425,37 +443,88 @@ def query_knowledge_graph():
         JSON with status, message, and query results
     """
     try:
+        # Import required modules
+        import subprocess
+        import os
+        import yaml
+        from pathlib import Path
+        import re
+        
         # Get query from request body
         data = request.get_json()
         if not data or 'query' not in data:
             return jsonify({"error": "Missing 'query' in request body"}), 400
+        if not data or 'topic' not in data:
+            return jsonify({"error": "Missing 'topic' in request body"}), 400
             
-        query = data['query']
+        original_query = data['query']
+        topic = data['topic']
         num_sources = data.get('num_sources', 3)  # Default to 3 sources if not specified
         
-        # Import subprocess to run shell commands
-        import subprocess
-        import os
-        from pathlib import Path
-        import re
+        # Format the query to ask for scenarios from most likely to least likely
+        # Check if query already ends with a question mark
+        if original_query.endswith('?'):
+            original_query = original_query[:-1]  # Remove the question mark
+            
+        # Format the query to ask for three scenarios
+        formatted_query = f"Give me 3 scenarios from most likely to least likely about what would happen if {original_query}. Make each scenario different from the others. For each scenario, explain the reasoning and cite relevant sources."
         
-        # Define the root directory for graphrag
-        root_dir = Path("backend/graphrag/ragtest")
+        # Use the EXACT SAME folder name creation logic as create_knowledge_graph
+        folder_name = "_".join(topic.split()[:4])  # First 4 words
+        folder_name = "".join(c for c in folder_name if c.isalnum() or c == '_')  # Remove special chars
+        input_folder = f"{folder_name}_input"
+        output_folder = f"{folder_name}_output"
         
-        # Ensure the root directory exists
-        if not root_dir.exists():
+        # Define paths
+        graphrag_dir = Path("backend/graphrag")
+        ragtest_dir = graphrag_dir / "ragtest"
+        
+        # Make sure the ragtest directory exists
+        ragtest_dir.mkdir(parents=True, exist_ok=True)
+        
+        settings_file = ragtest_dir / "settings.yaml"
+        
+        # Check if the output folder exists
+        output_dir = ragtest_dir / output_folder
+        if not output_dir.exists():
             return jsonify({
                 "status": "error",
-                "message": f"Root directory {root_dir} does not exist"
+                "message": f"Output folder {output_folder} does not exist. Please create the knowledge graph first."
             }), 404
         
-        # Prepare the graphrag query command
+        # Default settings if file doesn't exist
+        default_settings = {
+            "input": {"base_dir": "default_input"},
+            "output": {"base_dir": "default_output"}
+        }
+        
+        # Check if settings.yaml exists, create if not
+        if not settings_file.exists():
+            with open(settings_file, "w") as f:
+                yaml.dump(default_settings, f, default_flow_style=False)
+            print(f"Created new settings file at {settings_file}")
+        
+        # Read the current settings from file
+        with open(settings_file, "r") as f:
+            settings = yaml.safe_load(f)
+        
+        # Store original settings to restore later
+        original_settings = settings.copy()
+        
+        # Update settings to use topic-specific folders
+        settings["input"]["base_dir"] = input_folder
+        settings["output"]["base_dir"] = output_folder
+        
+        # Write the updated settings back to the file
+        with open(settings_file, "w") as f:
+            yaml.dump(settings, f, default_flow_style=False)
+        
+        # Prepare the graphrag query command with the formatted query
         command = [
             "graphrag", "query",
             "--root", "./ragtest",
-            "--method", "global",
-            "--top-k", str(num_sources),  # Add parameter for number of sources
-            "--query", query
+            "--method", "local",
+            "--query", formatted_query
         ]
         
         # Execute the command
@@ -464,35 +533,152 @@ def query_knowledge_graph():
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            cwd=str(Path("backend/graphrag"))  # Change working directory to be relative to graphrag folder
+            cwd=str(graphrag_dir)  # Change working directory to be relative to graphrag folder
         )
         
         # Get the output and errors
         stdout, stderr = process.communicate()
         
+        # Restore original settings
+        with open(settings_file, "w") as f:
+            yaml.dump(original_settings, f, default_flow_style=False)
+        
         # Check if command was successful
         if process.returncode == 0:
             # Try to determine how many sources were actually found
-            # This is a simple heuristic and may need adjustment based on actual output format
             found_sources = 0
             
-            # Count sources by looking for "Source:" or similar patterns in the output
-            source_matches = re.findall(r'Source\s*\d*:', stdout, re.IGNORECASE) or \
-                             re.findall(r'Reference\s*\d*:', stdout, re.IGNORECASE)
+            # Improved pattern matching for various citation formats
+            data_citations = []
             
-            if source_matches:
-                found_sources = len(source_matches)
+            # Match [Data: Reports (X)] format
+            report_matches = re.findall(r'\[Data:\s*Reports\s*\((\d+)\)\]', stdout)
+            for report_num in report_matches:
+                data_citations.append({"type": "report", "id": report_num})
+            
+            # Match [Data: Sources (Y)] format
+            source_matches = re.findall(r'\[Data:\s*Sources\s*\((\d+)\)\]', stdout)
+            for source_num in source_matches:
+                data_citations.append({"type": "source", "id": source_num})
+            
+            # Match [Data: Reports (X); Sources (Y)] format
+            combined_matches = re.findall(r'\[Data:\s*Reports\s*\((\d+)\);\s*Sources\s*\((\d+)\)\]', stdout)
+            for report_num, source_num in combined_matches:
+                data_citations.append({"type": "report", "id": report_num})
+                data_citations.append({"type": "source", "id": source_num})
+            
+            # Count unique citations
+            found_sources = len(data_citations)
+            print(f"Found {found_sources} data citations: {data_citations}")
+            
+            # Add header to the response
+            response_text = "## Three Scenarios: From Most Likely to Least Likely\n\n" + stdout
+            
+            # Get the full graph data
+            full_graph = get_graph(output_dir)
+            print(f"Full graph loaded with {len(full_graph.get('nodes', []))} nodes and {len(full_graph.get('links', []))} links")
+            
+            # Log some sample nodes to understand the structure
+            if full_graph.get('nodes', []):
+                print("Sample nodes:")
+                for i, node in enumerate(full_graph.get('nodes', [])[:5]):  # First 5 nodes
+                    print(f"Node {i}: ID={node.get('id')}, Label={node.get('label')}")
+                    if node.get('properties'):
+                        print(f"  Properties: {list(node.get('properties', {}).keys())}")
+            
+            # Set a maximum number of highlighted nodes to prevent overwhelming the graph
+            MAX_HIGHLIGHTED_NODES = 5
+
+            # More targeted approach to find relevant nodes
+            highlighted_node_ids = set()
+            relevant_nodes = []
+
+            # Only do direct matching - no fallbacks to keep highlights conservative
+            for citation in data_citations:
+                citation_id = citation["id"]
+                citation_type = citation["type"]
+                
+                # Find nodes directly matching this citation - with scoring
+                matches = []
+                
+                for node in full_graph.get('nodes', []):
+                    node_id = str(node.get('id', ''))
+                    node_label = str(node.get('label', '')).lower()
+                    node_props = node.get('properties', {})
+                    
+                    # Convert props to string for searching
+                    prop_str = str(node_props).lower()
+                    
+                    # Score the match (higher is better)
+                    score = 0
+                    
+                    # Exact ID matches are strongest
+                    if f"{citation_type}_{citation_id}" == node_id.lower():
+                        score = 100
+                    elif f"{citation_id}" == node_id:
+                        score = 90
+                    # Label matches
+                    elif f"{citation_type} {citation_id}" == node_label:
+                        score = 80
+                    elif f"{citation_type}({citation_id})" in node_label:
+                        score = 70
+                    # Partial matches in properties
+                    elif citation_id in prop_str and citation_type in prop_str:
+                        score = 50
+                    elif citation_id in prop_str:
+                        score = 30
+                    else:
+                        continue  # No match at all
+                    
+                    matches.append((node, score))
+                
+                # Sort by score and take the best match for this citation
+                if matches:
+                    matches.sort(key=lambda x: x[1], reverse=True)
+                    best_match = matches[0][0]
+                    node_id = str(best_match.get('id', ''))
+                    
+                    if node_id not in highlighted_node_ids and len(highlighted_node_ids) < MAX_HIGHLIGHTED_NODES:
+                        highlighted_node_ids.add(node_id)
+                        node_copy = dict(best_match)
+                        node_copy['highlighted'] = True
+                        node_copy['citation_match'] = f"{citation_type}({citation_id})"
+                        relevant_nodes.append(node_copy)
+                        print(f"Best match for {citation_type}({citation_id}): {node_id}")
+
+            # Get only direct links between highlighted nodes
+            relevant_links = []
+            for link in full_graph.get('links', []):
+                source = str(link.get('source', ''))
+                target = str(link.get('target', ''))
+                
+                if source in highlighted_node_ids and target in highlighted_node_ids:
+                    link_copy = dict(link)
+                    link_copy['highlighted'] = True
+                    relevant_links.append(link_copy)
+
+            # Create the highlighted graph subset (much smaller now)
+            highlighted_graph = {
+                'nodes': relevant_nodes,
+                'links': relevant_links,
+                'citations': data_citations
+            }
+
+            print(f"Conservative highlighted graph has {len(relevant_nodes)} nodes and {len(relevant_links)} links")
             
             # Prepare response data
             response_data = {
                 "status": "success",
                 "message": "Knowledge graph queried successfully",
                 "data": {
-                    "query": query,
+                    "query": original_query,
+                    "formatted_query": formatted_query,
+                    "topic": topic,
                     "requested_sources": num_sources,
                     "found_sources": found_sources,
                     "command": " ".join(command),
-                    "result": stdout,
+                    "result": response_text,
+                    "highlighted_graph": highlighted_graph  # Add the highlighted graph data
                 }
             }
             
@@ -543,6 +729,141 @@ def get_report():
     """
     return jsonify({"status": "success", "message": "Report retrieved successfully"})
 
+@app.route("/api/explore_graph_data", methods=["POST"])
+def explore_graph_data():
+    """
+    Explore the structure of graph data to help understand how citations map to nodes.
+    
+    Expected JSON body:
+    {
+        "topic": "The original topic that was used to create the knowledge graph",
+        "citation_type": "report",  // Optional: "report" or "source"
+        "citation_id": "0"  // Optional: The specific ID number to look for
+    }
+    
+    Returns:
+        JSON with insights about the data structure
+    """
+    try:
+        import pandas as pd
+        from pathlib import Path
+        
+        # Get topic from request body
+        data = request.get_json()
+        if not data or 'topic' not in data:
+            return jsonify({"error": "Missing 'topic' in request body"}), 400
+            
+        topic = data['topic']
+        citation_type = data.get('citation_type')
+        citation_id = data.get('citation_id')
+        
+        # Get folder path using the same logic
+        folder_name = "_".join(topic.split()[:4])
+        folder_name = "".join(c for c in folder_name if c.isalnum() or c == '_')
+        output_folder = f"{folder_name}_output"
+        
+        graphrag_dir = Path("backend/graphrag")
+        output_dir = graphrag_dir / "ragtest" / output_folder
+        
+        if not output_dir.exists():
+            return jsonify({
+                "status": "error",
+                "message": f"Output folder {output_folder} does not exist."
+            }), 404
+        
+        # Look for parquet files
+        parquet_files = list(output_dir.glob("*.parquet"))
+        
+        if not parquet_files:
+            return jsonify({
+                "status": "error",
+                "message": "No parquet files found in the output directory."
+            }), 404
+        
+        # Get full graph structure
+        full_graph = get_graph(output_dir)
+        
+        # Analyze parquet files
+        parquet_insights = []
+        
+        for pf in parquet_files:
+            try:
+                df = pd.read_parquet(pf)
+                
+                # Get column names
+                columns = df.columns.tolist()
+                
+                # Look for specific citation if requested
+                matching_rows = []
+                if citation_type and citation_id:
+                    # Search each column for the citation
+                    for col in columns:
+                        if df[col].dtype == 'object':  # String-like columns
+                            matches = df[df[col].astype(str).str.contains(f"{citation_type}.*{citation_id}", regex=True, na=False)]
+                            if not matches.empty:
+                                for _, row in matches.iterrows():
+                                    matching_rows.append(row.to_dict())
+                
+                parquet_insights.append({
+                    "filename": pf.name,
+                    "row_count": len(df),
+                    "columns": columns,
+                    "sample_row": df.iloc[0].to_dict() if not df.empty else {},
+                    "matching_rows": matching_rows[:5]  # Limit to 5 matches
+                })
+            except Exception as e:
+                parquet_insights.append({
+                    "filename": pf.name,
+                    "error": str(e)
+                })
+        
+        # Basic graph structure analysis
+        graph_structure = {
+            "node_count": len(full_graph.get('nodes', [])),
+            "link_count": len(full_graph.get('links', [])),
+            "node_properties": set(),
+            "node_types": {},
+            "sample_nodes": []
+        }
+        
+        # Analyze nodes
+        for i, node in enumerate(full_graph.get('nodes', [])[:10]):  # First 10 nodes
+            props = node.get('properties', {})
+            for prop in props:
+                graph_structure["node_properties"].add(prop)
+            
+            group = node.get('group')
+            if group:
+                graph_structure["node_types"][group] = graph_structure["node_types"].get(group, 0) + 1
+            
+            # Add sample nodes
+            graph_structure["sample_nodes"].append({
+                "id": node.get('id'),
+                "label": node.get('label'),
+                "group": group,
+                "key_properties": {k: props.get(k) for k in list(props.keys())[:5]}  # First 5 properties
+            })
+        
+        return jsonify({
+            "status": "success",
+            "message": "Graph data structure analyzed",
+            "data": {
+                "topic": topic,
+                "citation_search": {
+                    "type": citation_type,
+                    "id": citation_id
+                },
+                "parquet_files": parquet_insights,
+                "graph_structure": graph_structure
+            }
+        })
+        
+    except Exception as e:
+        traceback.print_exc(file=sys.stderr)
+        return jsonify({
+            "status": "error",
+            "message": f"Error exploring graph data: {str(e)}"
+        }), 500
 
 # ------------------------------------------------------------------------------
 
