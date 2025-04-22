@@ -7,6 +7,21 @@ import rehypeSanitize from 'rehype-sanitize';
 import ForceGraph2D from "react-force-graph-2d";
 import ForceGraph3D from "react-force-graph-3d";
 import Logo from "../assets/images/Logo.png";
+import * as d3 from 'd3';
+
+// Update the getNodeColor function at the top of the file
+const getNodeColor = (group, colorScale) => {
+  // Custom color mapping to match what's displayed in the actual graph
+  const groupColorMap = {
+    "EVENT": "#68a0cf",      // lighter blue
+    "ORGANIZATION": "#1f77b4", // darker blue
+    "PERSON": "#8bcc84",     // lighter green
+    "GEO": "#2ca02c"         // darker green
+  };
+  
+  // Use the direct mapping if available, otherwise fall back to the color scale
+  return groupColorMap[group] || (colorScale ? colorScale(group) : "#cccccc");
+};
 
 const HomePage = () => {
   const [userInput, setUserInput] = useState("");
@@ -22,7 +37,7 @@ const HomePage = () => {
   const [creatingGraph, setCreatingGraph] = useState(false);
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
   const [graphReady, setGraphReady] = useState(false);
-  const [view3D, setView3D] = useState(false);
+  const [view3D, setView3D] = useState(true);
   const [graphWarning, setGraphWarning] = useState(null);
   const [followUpResponse, setFollowUpResponse] = useState(null);
   const [showFollowUpResponse, setShowFollowUpResponse] = useState(false);
@@ -34,18 +49,27 @@ const HomePage = () => {
   const [hoverNode, setHoverNode] = useState(null);
   const [hoverLink, setHoverLink] = useState(null);
 
+  // Add new state for keeping track of node groups and their colors
+  const [nodeGroups, setNodeGroups] = useState([]);
+  const colorScale = useRef(d3.scaleOrdinal(d3.schemeCategory10));
+
+  // Add these new state variables for selection (instead of just hover)
+  const [selectedNode, setSelectedNode] = useState(null);
+  const [selectedLink, setSelectedLink] = useState(null);
+
   // Set container size on mount and window resize
   useEffect(() => {
     function handleResize() {
       if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
         setSize({
-          w: containerRef.current.offsetWidth,
-          h: 400 // Fixed height
+          w: containerWidth, 
+          h: 600 // Match the container height
         });
       }
     }
     
-    handleResize(); // Initial size
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -74,6 +98,15 @@ const HomePage = () => {
       } else {
         setGraphWarning(null);
       }
+    }
+  }, [graphData]);
+
+  // Add this useEffect to extract node groups when graph data changes
+  useEffect(() => {
+    if (graphData && graphData.nodes && graphData.nodes.length > 0) {
+      // Extract unique groups from nodes
+      const groups = [...new Set(graphData.nodes.map(node => node.group))].filter(Boolean);
+      setNodeGroups(groups);
     }
   }, [graphData]);
 
@@ -284,6 +317,123 @@ const HomePage = () => {
     highlightNodes.add(hoverLink.target);
   }
 
+  // Add this new Legend component or replace the existing one
+  const GraphLegend = () => {
+    if (nodeGroups.length === 0) return null;
+    
+    // Use selection state or hover state for display
+    const displayNode = selectedNode || hoverNode;
+    const displayLink = selectedLink || hoverLink;
+    
+    return (
+      <div className="absolute right-4 top-4 bg-white bg-opacity-90 p-4 rounded-lg shadow-md border border-gray-200 max-w-xs z-10 overflow-auto" style={{ maxHeight: '90%' }}>
+        <h3 className="text-sm font-bold mb-3 text-left">Legend</h3>
+        <div className="flex flex-col gap-2">
+          {nodeGroups.map((group) => (
+            <div key={group} className="flex items-center gap-2 text-left">
+              <div 
+                className="w-4 h-4 rounded-full" 
+                style={{ backgroundColor: getNodeColor(group, colorScale.current) }}
+              ></div>
+              <span className="text-xs">{group}</span>
+            </div>
+          ))}
+        </div>
+        
+        {/* Show selected or hovered item details */}
+        {displayNode ? (
+          <div className="mt-4 pt-3 border-t border-gray-200">
+            <div className="flex justify-between items-center">
+              <h4 className="text-sm font-bold text-left mb-2">Node Details</h4>
+              {selectedNode && (
+                <button 
+                  onClick={() => setSelectedNode(null)} 
+                  className="text-xs text-gray-500 hover:text-gray-700"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+            <div className="text-left">
+              <div className="mb-1">
+                <span className="font-semibold text-gray-700 mr-1">ID:</span>
+                <span className="text-gray-600">{displayNode.id}</span>
+              </div>
+              {displayNode.label && (
+                <div className="mb-1">
+                  <span className="font-semibold text-gray-700 mr-1">Label:</span>
+                  <span className="text-gray-600">{displayNode.label}</span>
+                </div>
+              )}
+              {displayNode.group && (
+                <div className="mb-1">
+                  <span className="font-semibold text-gray-700 mr-1">Group:</span>
+                  <span className="text-gray-600">{displayNode.group}</span>
+                </div>
+              )}
+              {displayNode.properties && Object.entries(displayNode.properties).map(([key, value]) => {
+                if (key.startsWith('_') || typeof value === 'object') return null;
+                return (
+                  <div key={key} className="mb-1">
+                    <span className="font-semibold text-gray-700 mr-1">{key}:</span>
+                    <span className="text-gray-600">{value.toString()}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : displayLink ? (
+          <div className="mt-4 pt-3 border-t border-gray-200">
+            <div className="flex justify-between items-center">
+              <h4 className="text-sm font-bold text-left mb-2">Link Details</h4>
+              {selectedLink && (
+                <button 
+                  onClick={() => setSelectedLink(null)} 
+                  className="text-xs text-gray-500 hover:text-gray-700"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+            <div className="text-left">
+              <div className="mb-1">
+                <span className="font-semibold text-gray-700 mr-1">Source:</span>
+                <span className="text-gray-600">
+                  {typeof displayLink.source === 'object' ? displayLink.source.id : displayLink.source}
+                </span>
+              </div>
+              <div className="mb-1">
+                <span className="font-semibold text-gray-700 mr-1">Target:</span>
+                <span className="text-gray-600">
+                  {typeof displayLink.target === 'object' ? displayLink.target.id : displayLink.target}
+                </span>
+              </div>
+              {displayLink.value && (
+                <div className="mb-1">
+                  <span className="font-semibold text-gray-700 mr-1">Value:</span>
+                  <span className="text-gray-600">{displayLink.value}</span>
+                </div>
+              )}
+              {displayLink.properties && Object.entries(displayLink.properties).map(([key, value]) => {
+                if (key.startsWith('_') || typeof value === 'object') return null;
+                return (
+                  <div key={key} className="mb-1">
+                    <span className="font-semibold text-gray-700 mr-1">{key}:</span>
+                    <span className="text-gray-600">{value.toString()}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div className="mt-4 pt-3 border-t border-gray-200 text-gray-500 text-xs italic text-left">
+            Click on a node or link to see details
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-white text-center px-6 py-10">
       {/* Logo (Top) */}
@@ -292,7 +442,7 @@ const HomePage = () => {
       </div>
 
       {/* Content Area (Middle) */}
-      <div className="flex-1 w-full overflow-auto max-w-5xl mx-auto">
+      <div className="flex-1 w-full max-w-5xl mx-auto">
         {showSections ? (
           // Original Three Sections
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full">
@@ -348,7 +498,7 @@ const HomePage = () => {
                   </button>
                 </div>
                 
-                <div className={`prose prose-sm max-w-none text-sm overflow-hidden transition-all duration-300 ${isOverviewExpanded ? 'max-h-[5000px]' : 'max-h-28'}`}>
+                <div className={`prose prose-sm max-w-none text-sm ${!isOverviewExpanded && 'line-clamp-3'}`}>
                   <ReactMarkdown 
                     rehypePlugins={[rehypeRaw, rehypeSanitize]}
                     components={{
@@ -389,61 +539,71 @@ const HomePage = () => {
             </div>
 
             {/* Knowledge Graph Section */}
-            <div className="mb-8">
+            <div className="mb-8 w-full">
               {creatingGraph ? (
                 <div className="flex items-center text-left mb-4">
                   <FaSpinner className="text-blue-600 text-xl animate-spin mr-3" />
                   <span className="text-lg">Creating Knowledge Graph...</span>
                 </div>
               ) : graphReady && (
-                <div className="mb-4">
+                <div className="mb-4 w-full">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-lg font-bold">Knowledge Graph</h2>
-                    <button
-                      onClick={() => setView3D(prev => !prev)}
-                      className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
-                    >
-                      Toggle {view3D ? "2D" : "3D"} View
-                    </button>
                   </div>
                   
                   <div 
                     ref={containerRef} 
-                    className="border border-gray-200 rounded-lg overflow-hidden" 
-                    style={{ height: '400px' }}
+                    className="border border-gray-200 rounded-lg overflow-hidden relative w-full" 
+                    style={{ height: '600px' }}
                   >
                     {graphData.nodes.length > 0 && (
-                      <Graph
-                        ref={graphRef}
-                        graphData={graphData}
-                        width={size.w}
-                        height={size.h}
-                        nodeAutoColorBy="group"
-                        nodeOpacity={0.85}
-                        nodeLabel={(n) => n.label || n.id}
-                        linkLabel={(l) => {
-                          const src = typeof l.source === "object" ? l.source.id : l.source;
-                          const tgt = typeof l.target === "object" ? l.target.id : l.target;
-                          const w = l.properties?.weight ?? l.properties?.Weight ?? "n/a";
-                          return `${src} → ${tgt}\nweight: ${w}`;
-                        }}
-                        nodeVal={(n) => (highlightNodes.has(n) ? 12 : 6)}
-                        linkWidth={(l) => (highlightLinks.has(l) ? 3 : 1)}
-                        linkDirectionalParticles={(l) => (highlightLinks.has(l) ? 4 : 0)}
-                        linkDirectionalParticleWidth={2}
-                        onNodeHover={(n) => {
-                          setHoverNode(n || null);
-                          setHoverLink(null);
-                        }}
-                        onLinkHover={(l) => {
-                          setHoverLink(l || null);
-                          setHoverNode(null);
-                        }}
-                        linkDirectionalArrowLength={3.5}
-                        linkDirectionalArrowRelPos={1}
-                        linkCurvature={0.25}
-                        cooldownTime={2000}
-                      />
+                      <>
+                        <Graph
+                          ref={graphRef}
+                          graphData={graphData}
+                          width={size.w}
+                          height={size.h}
+                          backgroundColor="#000"
+                          nodeAutoColorBy="group"
+                          nodeOpacity={0.85}
+                          nodeLabel={(n) => n.label || n.id}
+                          linkLabel={(l) => {
+                            const src = typeof l.source === 'object' ? l.source.id : l.source;
+                            const tgt = typeof l.target === 'object' ? l.target.id : l.target;
+                            const w = l.properties?.weight ?? l.properties?.Weight ?? "n/a";
+                            return `${src} → ${tgt}\nweight: ${w}`;
+                          }}
+                          onNodeHover={(n) => {
+                            setHoverNode(n || null);
+                            setHoverLink(null);
+                          }}
+                          onLinkHover={(l) => {
+                            setHoverLink(l || null);
+                            setHoverNode(null);
+                          }}
+                          onNodeClick={(n) => {
+                            setSelectedNode(n);
+                            setSelectedLink(null);
+                          }}
+                          onLinkClick={(l) => {
+                            setSelectedLink(l);
+                            setSelectedNode(null);
+                          }}
+                          onBackgroundClick={() => {
+                            setSelectedNode(null);
+                            setSelectedLink(null);
+                          }}
+                          nodeVal={(n) => (highlightNodes.has(n) || n === selectedNode ? 12 : 6)}
+                          linkWidth={(l) => (highlightLinks.has(l) || l === selectedLink ? 3 : 1)}
+                          linkDirectionalParticles={(l) => (highlightLinks.has(l) || l === selectedLink ? 4 : 0)}
+                          linkDirectionalParticleWidth={2}
+                          linkDirectionalArrowLength={3.5}
+                          linkDirectionalArrowRelPos={1}
+                          linkCurvature={0.25}
+                          cooldownTime={2000}
+                        />
+                        <GraphLegend />
+                      </>
                     )}
                   </div>
                 </div>
