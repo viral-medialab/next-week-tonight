@@ -5,6 +5,7 @@ Flask API - imports helpers from graph_utils.py
 from pathlib import Path
 import traceback, sys
 import json
+import os
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -27,7 +28,7 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY)
 # ────────────────────────────────────────────────────────────────────────────────
 app = Flask(__name__)
 # Use the simplest CORS configuration
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route("/")
@@ -864,15 +865,6 @@ def explore_graph_data():
             "status": "error",
             "message": f"Error exploring graph data: {str(e)}"
         }), 500
-
-# ------------------------------------------------------------------------------
-
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    return response
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
