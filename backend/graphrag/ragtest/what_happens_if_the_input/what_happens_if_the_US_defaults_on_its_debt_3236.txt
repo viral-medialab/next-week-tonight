@@ -1,0 +1,13 @@
+Source: https://www.nbcwashington.com/news/local/what-is-the-debt-ceiling-and-what-happens-if-the-us-defaults/3796095/
+
+The full plain text of the article from the provided URL is not accessible, but here is a thorough summary using the available content:
+
+The debt ceiling, also known as the debt limit, is the total amount of money the United States government is authorized to borrow to meet its existing obligations, such as spending on infrastructure and defense[1]. 
+
+When the U.S. hits the debt limit, it does not immediately result in catastrophe. Instead, it marks the starting point for a countdown: the government must either raise or suspend the debt limit before running out of cash. During this period, the Treasury cannot issue new bonds or securities, meaning it cannot raise money to cover bills already accumulated by the government[1].
+
+If the ceiling is not increased or suspended in time, the government is unable to pay its bills—resulting in a default. This is considered a truly catastrophic event, as it means the U.S. would fail to meet its legal obligations on debt payments, impacting both domestic programs and global financial markets[1].
+
+For example, in early 2023, Treasury Secretary Janet Yellen warned Congress that the U.S. would likely run out of money by June 1 if the limit was not raised or suspended. Congress did act to avert the crisis, voting to suspend the limit just days before the deadline[1].
+
+In summary, the debt ceiling is about paying debts the government has already incurred, not new spending. When the ceiling is reached, unless Congress acts, the risk is a default, which would have widespread economic consequences[1].

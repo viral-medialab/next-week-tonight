@@ -24,6 +24,9 @@ const getNodeColor = (group, colorScale) => {
 };
 
 const HomePage = () => {
+  // Add this debugging log
+  console.log("API URL:", import.meta.env.VITE_API_URL || "Not found, using fallback");
+
   const [userInput, setUserInput] = useState("");
   const [followUpInput, setFollowUpInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -154,11 +157,13 @@ const HomePage = () => {
     });
   };
 
+  // At the top of your component, add this constant
+  const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5001";
+
+  // Then update createKnowledgeGraphWithQuery function
   const createKnowledgeGraphWithQuery = async (query) => {
     try {
       setCreatingGraph(true);
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
-      
       console.log("Creating knowledge graph for query:", query);
       
       // Single API call to create_knowledge_graph, which now also returns the graph data
@@ -219,8 +224,6 @@ const HomePage = () => {
 
     try {
       // First call gather_news_sources
-      const API_URL = "http://127.0.0.1:5000";
-      
       const gatherResponse = await axios.post(`${API_URL}/api/gather_news_sources`, {
         query: currentQuery
       });
@@ -274,12 +277,10 @@ const HomePage = () => {
     setExpandedScenarios([false, false, false]);
     
     try {
-      const API_URL = "http://127.0.0.1:5000";
-      
-      const response = await axios.post(`${API_URL}/api/query_knowledge_graph`, {
+      const response = await axios.post(`${API_URL}/api/query_global_knowledge_graph`, {
         query: followUpInput,
         topic: submittedQuery,
-        num_sources: 5
+        //num_sources: 5
       });
       
       if (response.data.status === "success") {
@@ -479,84 +480,6 @@ const HomePage = () => {
     );
   };
 
-  // Modify the parseScenarios function to also extract the conclusion
-  const parseScenarios = (text) => {
-    // Look for scenario headers like "Scenario 1", "Most Likely Scenario", etc.
-    const scenarioMarkers = [
-      /scenario\s*1|most\s*likely\s*scenario/i,
-      /scenario\s*2|moderate(?:ly)?\s*likely\s*scenario/i,
-      /scenario\s*3|least\s*likely\s*scenario/i
-    ];
-    
-    let scenarios = [];
-    let lastFound = 0;
-    let conclusion = "";
-    
-    // Look for conclusion section
-    const conclusionMatch = text.search(/conclusion|in\s+summary|to\s+summarize/i);
-    
-    // Try to find each scenario in order
-    for (let i = 0; i < scenarioMarkers.length; i++) {
-      // Find the current scenario marker
-      const match = text.slice(lastFound).search(scenarioMarkers[i]);
-      
-      if (match !== -1) {
-        const start = lastFound + match;
-        
-        // Look for the next marker, conclusion, or end of text
-        let end;
-        if (i < scenarioMarkers.length - 1) {
-          const nextMatch = text.slice(start).search(scenarioMarkers[i+1]);
-          end = nextMatch !== -1 ? start + nextMatch : 
-                (conclusionMatch !== -1 && conclusionMatch > start) ? conclusionMatch : 
-                text.length;
-        } else {
-          end = (conclusionMatch !== -1 && conclusionMatch > start) ? conclusionMatch : text.length;
-        }
-        
-        // Extract the scenario text
-        scenarios.push(text.slice(start, end).trim());
-        lastFound = end;
-      }
-    }
-    
-    // Extract conclusion if found
-    if (conclusionMatch !== -1) {
-      conclusion = text.slice(conclusionMatch).trim();
-    }
-    
-    // If we couldn't find any markers, try to just split by "Scenario" keyword
-    if (scenarios.length === 0) {
-      const parts = text.split(/scenario\s*\d+|conclusion/i).filter(p => p.trim().length > 0);
-      scenarios = parts.slice(0, 3); // Take at most 3
-    }
-    
-    // If still no scenarios, just return the whole text
-    if (scenarios.length === 0) {
-      scenarios = [text];
-    }
-    
-    // Ensure we have exactly 3 scenarios (or empty strings for missing ones)
-    while (scenarios.length < 3) {
-      scenarios.push("");
-    }
-    
-    return { scenarios, conclusion };
-  };
-
-  // Add this function to toggle expansion state for a specific scenario
-  const toggleScenarioExpansion = (index) => {
-    const newExpandedState = [...expandedScenarios];
-    newExpandedState[index] = !newExpandedState[index];
-    setExpandedScenarios(newExpandedState);
-  };
-
-  // Add this function to truncate text for collapsed view
-  const truncateText = (text, maxLength = 150) => {
-    if (text.length <= maxLength) return text;
-    return text.slice(0, maxLength) + '...';
-  };
-
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-white text-center px-6 py-10">
       {/* Logo (Top) */}
@@ -716,26 +639,64 @@ const HomePage = () => {
                             setSelectedNode(null);
                             setSelectedLink(null);
                           }}
-                          nodeVal={(n) => (
-                            highlightedNodes.has(n.id) ? 15 : // Highlighted nodes are largest
-                            highlightNodes.has(n) || n === selectedNode ? 12 : // Interactive nodes are medium
-                            6 // Default size
-                          )}
-                          nodeColor={(n) => (
-                            highlightedNodes.has(n.id) ? '#ff5500' : // Highlighted nodes in orange
-                            getNodeColor(n.group, colorScale.current) // Default coloring
-                          )}
+                          nodeVal={(n) => {
+                            // Check if node is highlighted from backend
+                            if (n.highlighted || highlightedNodes.has(n.id)) {
+                              return 15; // Largest size for highlighted nodes
+                            }
+                            // Interactive nodes (hovered or selected)
+                            if (highlightNodes.has(n) || n === selectedNode) {
+                              return 12; // Medium size
+                            }
+                            // Default size
+                            return 6;
+                          }}
+                          nodeColor={(n) => {
+                            // Check if node is highlighted from backend
+                            if (n.highlighted || highlightedNodes.has(n.id)) {
+                              return '#ff5500'; // Orange for highlighted nodes
+                            }
+                            // Default coloring based on group
+                            return getNodeColor(n.group, colorScale.current);
+                          }}
                           linkWidth={(l) => {
                             // Create a unique ID for the link
                             const linkId = typeof l.source === 'object' 
                               ? `${l.source.id}-${l.target.id}` 
                               : `${l.source}-${l.target}`;
                             
-                            return highlightedLinks.has(linkId) ? 4 : // Highlighted links are thickest
-                                   highlightLinks.has(l) || l === selectedLink ? 3 : // Interactive links are medium
-                                   1; // Default width
+                            // Check if link is highlighted from backend
+                            if (l.highlighted || highlightedLinks.has(linkId)) {
+                              return 4; // Thickest for highlighted links
+                            }
+                            // Interactive links (hovered or selected)
+                            if (highlightLinks.has(l) || l === selectedLink) {
+                              return 3; // Medium width
+                            }
+                            // Default width
+                            return 1;
                           }}
-                          linkDirectionalParticles={(l) => (highlightedLinks.has(l) || l === selectedLink ? 4 : 0)}
+                          linkColor={(l) => {
+                            // Create a unique ID for the link
+                            const linkId = typeof l.source === 'object' 
+                              ? `${l.source.id}-${l.target.id}` 
+                              : `${l.source}-${l.target}`;
+                            
+                            // Check if link is highlighted from backend
+                            if (l.highlighted || highlightedLinks.has(linkId)) {
+                              return '#ff5500'; // Orange for highlighted links
+                            }
+                            // Default color
+                            return '#ffffff';
+                          }}
+                          linkDirectionalParticles={(l) => {
+                            // Create a unique ID for the link
+                            const linkId = typeof l.source === 'object' 
+                              ? `${l.source.id}-${l.target.id}` 
+                              : `${l.source}-${l.target}`;
+                            
+                            return (l.highlighted || highlightedLinks.has(linkId) || l === selectedLink) ? 4 : 0;
+                          }}
                           linkDirectionalParticleWidth={2}
                           linkDirectionalArrowLength={3.5}
                           linkDirectionalArrowRelPos={1}
@@ -767,75 +728,21 @@ const HomePage = () => {
                   </div>
                 </div>
                 
-                {/* Parse the response */}
-                {(() => {
-                  const { scenarios, conclusion } = parseScenarios(followUpResponse);
-                  
-                  return (
-                    <>
-                      {/* Scenarios in 3 columns */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {scenarios.map((scenario, index) => (
-                          <div 
-                            key={index} 
-                            className={`p-4 rounded-lg transition-all duration-300 ${
-                              index === 0 ? 'bg-green-50 border border-green-200' : 
-                              index === 1 ? 'bg-blue-50 border border-blue-200' : 
-                              'bg-yellow-50 border border-yellow-200'
-                            }`}
-                          >
-                            <div className="flex justify-between items-center mb-2">
-                              <h3 className="text-lg font-bold">
-                                {index === 0 ? 'Most Likely' : index === 1 ? 'Moderately Likely' : 'Least Likely'}
-                              </h3>
-                              <button 
-                                onClick={() => toggleScenarioExpansion(index)}
-                                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 p-1 rounded-full hover:bg-gray-200"
-                                aria-label={expandedScenarios[index] ? "Collapse" : "Expand"}
-                              >
-                                {expandedScenarios[index] ? 
-                                  <FaChevronUp className="text-sm" /> : 
-                                  <FaChevronDown className="text-sm" />
-                                }
-                              </button>
-                            </div>
-                            <div className={`prose prose-sm max-w-none overflow-hidden transition-all duration-300 ${
-                              expandedScenarios[index] ? 'max-h-[1000px]' : 'max-h-[150px]'
-                            }`}>
-                              <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
-                                {scenario}
-                              </ReactMarkdown>
-                            </div>
-                            {!expandedScenarios[index] && scenario.length > 150 && (
-                              <div className="mt-2 text-center">
-                                <button
-                                  onClick={() => toggleScenarioExpansion(index)}
-                                  className="text-blue-500 text-sm hover:text-blue-700 hover:underline focus:outline-none"
-                                >
-                                  Read more
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                      
-                      {/* Conclusion section (if present) */}
-                      {conclusion && (
-                        <div className="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
-                          <div className="flex justify-between items-center mb-2">
-                            <h3 className="text-lg font-bold">Conclusion</h3>
-                          </div>
-                          <div className="prose prose-sm max-w-none">
-                            <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
-                              {conclusion}
-                            </ReactMarkdown>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  );
-                })()}
+                {/* Simple single-column display for the response */}
+                <div className="p-4 rounded-lg bg-green-50 border border-green-200">
+                  <div className="prose prose-sm max-w-none">
+                    <ReactMarkdown 
+                      rehypePlugins={[rehypeRaw, rehypeSanitize]}
+                      components={{
+                        a: ({node, ...props}) => (
+                          <a target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline" {...props} />
+                        )
+                      }}
+                    >
+                      {followUpResponse}
+                    </ReactMarkdown>
+                  </div>
+                </div>
               </div>
             )}
 

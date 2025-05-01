@@ -1,0 +1,98 @@
+import json
+
+# Sample data
+sample_data = [
+    {
+        "question": "What will happen if Meta is forced to divest Instagram and WhatsApp in the next two years?",
+        "response_a": """The Potential Consequences of Meta's Forced Divestiture of Instagram and WhatsApp
+In the midst of a landmark antitrust trial that began in April 2025, Meta Platforms faces the possibility of being forced to divest two of its most valuable assets-Instagram and WhatsApp. This comprehensive analysis examines the potential financial, operational, market, and consumer implications if such a divestiture were to occur within the next two years.
+
+Financial Implications for Meta
+Meta stands to lose a substantial portion of its revenue if forced to divest Instagram and WhatsApp. Instagram has become an increasingly vital component of Meta's financial success, generating an estimated $66.9 billion in revenue in 2024, which accounts for almost 40% of Meta's total revenue. This percentage has grown dramatically from just 3.4% in 2015 to 40.6% in 2024, demonstrating Instagram's escalating importance to Meta's business model.
+
+WhatsApp, while contributing a smaller portion of overall revenue, has been described as "the primary driver of a 48% year-over-year spike in non-advertising revenue" for Meta's family of apps. Though WhatsApp's monetization is still in its early stages, the messaging app is beginning to justify the $22 billion Meta paid for it a decade ago through business messaging products that allow companies to pay for customer communications.
+
+The combined loss of these platforms would dramatically reshape Meta's financial structure, potentially reducing its overall market value and forcing a strategic pivot to focus more intensely on its core Facebook platform and emerging technologies like augmented reality.
+
+Advertising Revenue Impact
+Instagram is projected to exceed $32 billion in U.S. ad revenue alone in 2025, representing a 24% increase from the previous year. The platform's emphasis on video content has been a key driver of this growth, with users spending approximately two-thirds of their Instagram time watching videos. Losing this revenue stream would significantly impact Meta's advertising business, which could lose tens of billions in ad spend.
+
+Possible Divestiture Structures
+If Meta is forced to divest Instagram and WhatsApp, there are two primary scenarios that could unfold:
+
+Spin-off Scenario
+Meta could spin off Instagram and WhatsApp into independent, publicly traded companies. Under this arrangement, current Meta shareholders would receive shares in all three resulting companies. This approach would maintain some continuity for shareholders while creating three distinct entities that could pursue their own strategic directions.
+
+A spin-off would likely result in each platform trading at different multiples based on their unique growth profiles and business models. As one analyst noted, "WhatsApp is the fastest-growing, Instagram is the second fastest, and Facebook is the slowest". This differentiation could potentially unlock greater total shareholder value than currently exists in the combined entity.
+
+Sale Scenario
+Alternatively, Meta could sell one or both subsidiaries to other companies or investors. This scenario would generate immediate cash proceeds that Meta could use for various purposes, including investing in its remaining businesses, returning capital to shareholders, or pursuing new acquisitions in areas not subject to the same regulatory scrutiny.
+
+A sale would typically end all stake that current Meta shareholders have in the divested businesses, fundamentally changing their investment in the company.
+
+Impact on Individual Platforms Post-Divestiture
+Instagram as an Independent Entity
+As a standalone company, Instagram would likely benefit from increased operational flexibility and the ability to focus exclusively on its own growth strategies. With over two billion monthly users and revenue expected to reach approximately $71 billion by the end of 2024, Instagram would immediately become one of the world's largest social media companies.
+
+Instagram's success has been driven by its evolution into a "video-first platform," directly competing with TikTok through features like Reels. As an independent entity, Instagram could potentially accelerate this competition without being tied to Meta's broader strategic priorities.
+
+WhatsApp's Independent Future
+WhatsApp, with its massive global user base, would face different challenges and opportunities. Its monetization is still developing, primarily through business messaging products. As an independent company, WhatsApp might accelerate its monetization efforts, potentially through expanded business services or new features.
+
+However, WhatsApp has been described as "not really directly monetizable," with its main value to Meta being the user insights it provides. This could present challenges for WhatsApp as a standalone business seeking to generate sufficient revenue to satisfy public market investors.
+
+Facebook Without Its Growth Engines
+Post-divestiture, the remaining Meta (primarily Facebook) would be left with its slower-growing core platform. This could position it as more of a value stock than a growth stock, potentially leading to higher dividends or increased stock buybacks to attract investors seeking stable returns rather than rapid growth.
+
+Without Instagram and WhatsApp, Facebook would also lose valuable data synergies across the platforms and would need to redouble its efforts in areas like artificial intelligence and the metaverse to create new growth opportunities.
+
+Market and Industry Consequences
+Competitive Landscape Shifts
+A forced breakup would significantly alter the social media competitive landscape. Instagram and WhatsApp as independent entities would become new competitors to not only Meta but also other social platforms. This could accelerate innovation as each company seeks to differentiate itself and secure its market position.
+
+The divestiture could potentially address the FTC's concerns about competition in social media, creating a more diverse marketplace with multiple strong players rather than a single dominant entity.
+
+Precedent for Tech Regulation
+If successful, the case against Meta would set a powerful precedent for antitrust enforcement in the tech sector, potentially becoming the most significant antitrust action since the breakup of AT&T in the 1980s. This could embolden regulators to pursue similar cases against other tech giants perceived to have acquired competitors to eliminate threats.
+
+Consumer and User Experience Impacts
+Platform Integration Challenges
+Currently, Meta's platforms benefit from integration that allows users and advertisers to streamline content sharing between Instagram and Facebook. Divestiture would likely disrupt these integrations, potentially creating a less seamless experience for users who engage across multiple platforms.
+
+Innovation and Feature Development
+Each platform currently benefits from Meta's substantial investments in artificial intelligence and other technologies. As standalone entities, they might have smaller R&D budgets, potentially affecting the pace of innovation. Conversely, more focused development priorities might lead to more targeted improvements that better serve each platform's specific user base.
+
+Financial Market Reactions
+Short-term Volatility
+The divestiture process would likely trigger significant market volatility as investors reassess the value of each component of Meta's business. This uncertainty could depress share prices in the short term as the market adapts to the new structure.
+
+Long-term Value Creation Potential
+Some analysts believe a breakup could ultimately create more total shareholder value, as each business would be free to pursue strategies that maximize its own potential rather than serving Meta's broader goals. Gil Luria, a technology research analyst, has suggested Meta should even consider proactively spinning off the segments because they could trade at higher multiples individually.
+
+Conclusion
+A forced divestiture of Instagram and WhatsApp would represent a watershed moment for Meta and the broader technology industry. While Meta would lose significant revenue and growth engines, the resulting independent companies could potentially thrive with more focused strategies. For consumers and the market, the outcome could mean more competition but also potential disruption to integrated services.
+
+The ultimate impact would depend heavily on the specific structure of the divestiture, how each resulting company positions itself strategically, and how investors respond to these dramatic changes. What's clear is that such a forced breakup would fundamentally reshape not just Meta's business but potentially the entire social media landscape for years to come.""",
+        "response_b": """Implications of Meta's Potential Divestiture of Instagram and WhatsApp
+The potential forced divestiture of Instagram and WhatsApp from Meta, as a result of the Federal Trade Commission's (FTC) antitrust lawsuit, presents a significant shift in the social networking and digital economy landscape. This action could have far-reaching implications for Meta, the technology sector, and consumers.
+
+Market Dynamics and Competition
+The divestiture could fundamentally alter the current market dynamics by challenging Meta's dominance in the social networking space. This move is expected to foster increased innovation and consumer choice by breaking up what is perceived as a monopolistic control over significant communication platforms [Data: Reports (0)]. The introduction of new ownership for Instagram and WhatsApp could invigorate the sector with fresh perspectives and competitive strategies, potentially leading to enhanced features and services for users.
+
+Legal and Regulatory Precedents
+A ruling against Meta that leads to the divestiture of these key platforms would set a critical precedent for future regulatory actions against other technology giants. It underscores the evolving nature of antitrust laws in the digital economy and highlights the challenges regulators face in defining monopoly power and market competition in this sector [Data: Reports (0)]. This case could serve as a benchmark for how antitrust laws are applied to technology companies, influencing regulatory approaches and legal frameworks moving forward.
+
+Impact on Meta and the Tech Industry
+For Meta, the divestiture could significantly impact its business practices, particularly in terms of future acquisitions and its operational strategy. The company may face restrictions on acquiring new technologies and platforms, altering its growth trajectory and potentially limiting its ability to innovate at its previous pace [Data: Reports (0)]. This situation also serves as a cautionary tale for other tech companies, highlighting the tension between innovation-driven growth and the maintenance of competitive markets. The outcome of this case could lead to a reevaluation of business practices across the tech industry, emphasizing the importance of fostering competition and preventing monopolistic behaviors.
+
+Conclusion
+The potential divestiture of Instagram and WhatsApp from Meta represents a pivotal moment in the intersection of technology, law, and market competition. It not only challenges Meta's current market position but also signals a broader shift towards more stringent regulatory scrutiny of tech giants. This case could redefine the boundaries of competition and innovation in the digital age, with significant implications for consumers, companies, and regulators alike."""
+    }
+    # You can add more questions/responses here when ready
+]
+
+# Save to JSON file
+with open("backend/eval/sample_comparisons.json", "w") as f:
+    json.dump(sample_data, f, indent=2)
+
+print("Sample input file created at: backend/eval/sample_comparisons.json") 

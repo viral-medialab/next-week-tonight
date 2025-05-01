@@ -1,0 +1,15 @@
+Source: https://en.wikipedia.org/wiki/FTC_v._Meta
+
+Based on the search results, I can provide the plain text from the Wikipedia article about FTC v. Meta:
+
+Federal Trade Commission v. Meta Platforms, Inc. (formerly Federal Trade Commission v. Facebook, Inc.) is an ongoing antitrust court case brought by the Federal Trade Commission (FTC) against Facebook parent company Meta Platforms. The lawsuit alleges that Meta has accumulated monopoly power via anti-competitive mergers, with the suit centering on the acquisitions of Instagram and WhatsApp.[1]
+
+The suit was filed on December 8, 2020, in conjunction with 46 states. The lawsuit was initially dismissed in June 2021, but was refiled with an amended complaint in August 2021. The case survived Meta's motion to dismiss the lawsuit in January 2022 and April 2024. The trial began on April 14, 2025, with Meta CEO Mark Zuckerberg testifying during the first day of the proceedings.[1]
+
+## Background and initial filing
+
+The case centers on Meta acquisition of Facebook's two former competitors—Instagram and WhatsApp. The FTC alleges that Meta holds monopolistic power in the US social networking market and seeks to force the company to divest from Instagram and WhatsApp to break up the conglomerate. The Federal Trade Commission said that Meta's actions prevent consumers from enjoying the benefits of competition.[1]
+
+On December 8, 2020, the Federal Trade Commission, along with 46 US states (all excluding Alabama, Georgia, South Carolina, and South Dakota), the District of Columbia and the territory of Guam, launched the antitrust lawsuit against Meta.[1]
+
+The complaint alleges that Facebook has engaged in a systematic strategy—including its 2012 acquisition of up-and-coming rival Instagram, its 2014 acquisition of the mobile messaging app WhatsApp, and the imposition of anticompetitive conditions on software developers—to eliminate threats to its monopoly.[2]
