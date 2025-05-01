@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { FaPlus, FaFileAlt, FaBars } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
@@ -17,7 +16,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-72 h-screen bg-white p-4 flex flex-col border-r shadow-md">
+    <div className="w-72 h-screen bg-white p-4 flex flex-col border-r shadow-md fixed top-0 left-0">
       {/* Top Section: Hamburger + Logo */}
       <div className="flex items-center gap-3 mb-6">
         <FaBars className="text-xl text-black cursor-pointer" />
