@@ -27,8 +27,12 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY)
 #  Flask app
 # ────────────────────────────────────────────────────────────────────────────────
 app = Flask(__name__)
-# Use the simplest CORS configuration
-CORS(app, resources={r"/*": {"origins": "*"}})
+# Configure CORS to allow requests from anywhere
+CORS(app, resources={r"/*": {
+    "origins": "*",  # Allow all origins
+    "methods": ["GET", "POST", "OPTIONS"],
+    "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"]
+}})
 
 
 @app.route("/")
