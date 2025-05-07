@@ -6,6 +6,7 @@ node_modules/
 Dockerfile
 scratch
 backend/eval/
+backend/database/deprecated/
 
 #python cache files
 **/__pycache__/
