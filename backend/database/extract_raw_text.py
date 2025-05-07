@@ -2,13 +2,15 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import requests
 from openai import OpenAI
+from backend.test.env import *
+
 def perplexity_text_extractor(news_url):
     """
     :param news_url: The url of the article to search
     :type news_url: str
     :returns: A tuple with the summarized text from the article url and a score of the summary: (score,text)
     """
-    YOUR_API_KEY = "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"
+    YOUR_API_KEY = PERPLEXITY_API_KEY
     messages = [
         {
         "role": "system",

@@ -8,16 +8,7 @@ from tqdm import tqdm
 import os
 import sys
 from dateutil import parser
-
-load_dotenv("../../vars.env")
-load_dotenv("../vars.env")
-load_dotenv("vars.env")
-
-firecrawl_api_key = os.getenv("FIRECRAWL_API_KEY")
-if not firecrawl_api_key:
-        print("Error: FIRECRAWL_API_KEY not found in environment variables.")
-        print("Please add your Firecrawl API key to your vars.env file.")
-        sys.exit(1)
+from backend.test.env import *
 
 
 class ExtractSchema(BaseModel):
@@ -27,50 +18,116 @@ class ExtractSchema(BaseModel):
         # article_author: str = 'N/A'
 
 def create_article_doc(firecrawl_output,event_id,topic_title,url,query_datetime):
-    #  print(firecrawl_output['article_publish_date'],'\n')
-    #  print(parser.parse(firecrawl_output['article_publish_date']))
      article_doc = {
-        #original_event_datetime
-        #article_data
-        #event_id
-        # 'article_publish_date': parser.parse(firecrawl_output['article_publish_date']),
         'article_publish_date': query_datetime,
         'event_id':event_id,
             'topic_title': topic_title,
             'news_title': firecrawl_output['article_title'],
             'news_url': url,
-            # 'domain': article.get('domain', ''),
-            # 'language': article.get('language', ''),
-            # 'source_country': article.get('sourcecountry', ''),
             'text': firecrawl_output['article_text']
      }
-    #  print("articledoc", article_doc)
      return article_doc
 
-app = FirecrawlApp(api_key=firecrawl_api_key)
-def firecrawl_scrape(urls,event_id,topic_title,query_datetime):
+app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
+
+def firecrawl_scrape(urls, output_folder="output", query=""):
+    """
+    Extract article data from a list of URLs using Firecrawl.
+    
+    Args:
+        urls (list): List of URLs to extract data from
+        output_folder (str): Folder to save the extracted articles
+        query (str): The search query used to find these articles (for file naming)
+        
+    Returns:
+        list: List of dictionaries containing extracted article data
+    """
     data = []
     checked = set()
     fail_count = 0
-    for i in tqdm (range (len(urls)), desc="Loading..."):
+    success_count = 0
+    
+    # Create output folder if it doesn't exist
+    os.makedirs(output_folder, exist_ok=True)
+    
+    for i in tqdm(range(len(urls)), desc="Extracting articles"):
         url = urls[i]
         if url in checked:
             continue
         checked.add(url)
+        
         try:
+            # Extract article data using Firecrawl
             output = app.extract([url], {
                 'prompt': '',
                 'schema': ExtractSchema.model_json_schema(),
             })['data']
+            
+            # Check if extraction was successful
             if not output['article_text']:
-                raise Exception
-            data.append(create_article_doc(output,event_id,topic_title,url,query_datetime))
-        except:
-            fail_count+=1
+                raise Exception("No article text extracted")
+            
+            # Create article document
+            article_data = {
+                'news_title': output['article_title'],
+                'news_url': url,
+                'text': output['article_text']
+            }
+            
+            # Save to text file
+            safe_query = "".join(x for x in query if x.isalnum() or x.isspace()).replace(" ", "_")[:50]
+            url_id = str(abs(hash(url)) % 10000)
+            filename = f"{safe_query}_{url_id}.txt" if safe_query else f"article_{url_id}.txt"
+            filepath = os.path.join(output_folder, filename)
+            
+            with open(filepath, "w", encoding="utf-8") as file:
+                file.write(f"Title: {article_data['news_title']}\n")
+                file.write(f"Source: {article_data['news_url']}\n\n")
+                file.write(article_data['text'])
+            
+            # Add file path to the article data
+            article_data['file_path'] = filepath
+            
+            # Add to results
+            data.append(article_data)
+            success_count += 1
+            
+        except Exception as e:
+            fail_count += 1
+            print(f"Failed to extract from {url}: {str(e) if str(e) else 'Unknown error'}")
             continue
-    print("Extraction complete.")
+    
+    print(f"Extraction complete. Successfully extracted {success_count} articles.")
     if fail_count:
-        print(f"Extraction for {fail_count} articles failed.")
+        print(f"Extraction failed for {fail_count} articles.")
+    
     return data
-# print(datetime.strptime('2025-01-15T19:30:58.540Z', '%Y-%m-%dT%H:%M:%S.%fZ'))
-# print(firecrawl_scrape(['https://www.usatoday.com/story/news/politics/2025/03/12/trump-doge-federal-layoffs-timeline/82240271007/','https://www.nytimes.com/2025/03/12/us/politics/trump-crackdown-dissent.html'],0,'trump'))
+
+def test_extraction(url):
+    """
+    Simple test function to extract content from a URL and print the results.
+    """
+    print(f"Testing extraction on: {url}")
+    
+    try:
+        # Extract article data using Firecrawl
+        output = app.extract([url], {
+            'prompt': '',
+            'schema': ExtractSchema.model_json_schema(),
+        })['data']
+        
+        # Print results
+        print("\nExtraction successful!")
+        print(f"Title: {output['article_title']}")
+        print(f"Text length: {len(output['article_text'])} characters")
+        print(f"Text preview: {output['article_text'][:150]}...")
+        
+    except Exception as e:
+        print(f"Extraction failed: {str(e)}")
+
+
+# Simple test main function
+if __name__ == "__main__":
+    # Test URL - replace with any article URL you want to test
+    test_url = "https://www.bbc.com/news/world-us-canada-68825346"
+    test_extraction(test_url)
