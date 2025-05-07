@@ -1,7 +1,6 @@
 # Exclude test data and examples
 test/
 eval/
-database/
 api/
 __pycache__/
 predictions/
