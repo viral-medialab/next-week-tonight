@@ -157,8 +157,12 @@ const HomePage = () => {
     });
   };
 
-  // At the top of your component, add this constant
+  // Update the API_URL constant to include a fallback
   const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5001";
+
+  // Add this debugging log to help verify the URL being used
+  console.log("Current API URL:", API_URL);
+  console.log("Current environment:", import.meta.env.MODE);
 
   // Then update createKnowledgeGraphWithQuery function
   const createKnowledgeGraphWithQuery = async (query) => {
