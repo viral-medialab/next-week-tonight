@@ -27,13 +27,22 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY)
 #  Flask app
 # ────────────────────────────────────────────────────────────────────────────────
 app = Flask(__name__)
-# Configure CORS to allow requests from anywhere
-CORS(app, resources={r"/*": {
-    "origins": "*",  # Allow all origins
-    "methods": ["GET", "POST", "OPTIONS"],
-    "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"]
-}})
 
+# More explicit CORS configuration
+CORS(app, 
+     origins=["*"],  
+     methods=["GET", "POST", "OPTIONS"],
+     allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+     supports_credentials=True,
+     max_age=3600)
+
+# Also add CORS headers manually to all responses for extra assurance
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    return response
 
 @app.route("/")
 def home():
@@ -287,6 +296,14 @@ def gather_news_sources():
             "status": "error",
             "message": f"Error gathering news sources: {str(e)}"
         }), 500
+
+@app.route('/api/gather_news_sources', methods=['OPTIONS'])
+def handle_preflight():
+    response = jsonify({'status': 'ok'})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    return response
 
 @app.route("/api/create_knowledge_graph", methods=["GET", "POST"])
 def create_knowledge_graph():
