@@ -5,6 +5,7 @@ cardiffnlp
 node_modules/
 Dockerfile
 scratch
+backend/eval/
 
 #python cache files
 **/__pycache__/
