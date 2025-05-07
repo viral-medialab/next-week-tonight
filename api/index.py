@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.abspath("backend"))
 
 # Import your Flask app
-from backend.news_broom import app
+from news_broom import app
 
 # This is the handler Vercel will use
 def handler(request):

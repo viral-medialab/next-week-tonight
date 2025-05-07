@@ -12,8 +12,8 @@ from dotenv import load_dotenv
 from pathlib import Path
 import pandas as pd
 from tqdm import tqdm
-from backend.test.env import *
-from backend.database.extract_raw_text import extract_text_from_url, perplexity_text_extractor, BSoup_text_extractor
+from test.env import *
+from database.extract_raw_text import extract_text_from_url, perplexity_text_extractor, BSoup_text_extractor
 
 # Load environment variables from .env file
 load_dotenv()
@@ -28,7 +28,7 @@ def get_perplexity_sources(query):
     Returns:
         list: A list of article URLs that can be used for data extraction
     """
-    # Use the PERPLEXITY_API_KEY imported from backend.test.env
+    # Use the PERPLEXITY_API_KEY imported from test.env
     api_key = PERPLEXITY_API_KEY
     
     if not api_key:

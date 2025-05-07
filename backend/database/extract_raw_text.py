@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import requests
 from openai import OpenAI
-from backend.test.env import *
+from test.env import *
 
 def perplexity_text_extractor(news_url):
     """

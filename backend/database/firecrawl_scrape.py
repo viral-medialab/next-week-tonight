@@ -8,7 +8,7 @@ from tqdm import tqdm
 import os
 import sys
 from dateutil import parser
-from backend.test.env import *
+from test.env import *
 
 
 class ExtractSchema(BaseModel):

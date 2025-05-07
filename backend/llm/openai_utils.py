@@ -1,5 +1,5 @@
 import openai
-from backend.test.env import *
+from test.env import *
 '''
 Provides all utility functions relating to the OpenAI API, including
 generating responses using an OpenAI LLM model and creating embeddings
