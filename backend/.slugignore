@@ -1,4 +1,23 @@
-backend/__pycache__/
-env.py
+# Exclude test data and examples
+test/
+eval/
+database/
+api/
+__pycache__/
+predictions/
+app.py
+*.pyc
+
+# Exclude any large files
+*.csv
+*.pkl
+*.bin
+*.h5
+*.zip
+*.tar.gz
+*.pdf
+*.jpg
+*.png
+
+
 track_user_activity.py
-test.tsx
