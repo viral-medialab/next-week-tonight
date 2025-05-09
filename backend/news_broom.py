@@ -11,7 +11,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 # Project helpers
-from graph_utils import get_graph, GRAPH_OUTPUT_DIR
+from graph_utils import get_graph, extract_citations_from_response, GRAPH_OUTPUT_DIR
 
 # (Your existing project imports remain – shortened here)
 from predictions.query_utils import *            # noqa: F401,F403
@@ -388,7 +388,8 @@ def create_knowledge_graph():
         # Prepare the graphrag index command
         command = [
             "graphrag", "index",
-            "--root", "./ragtest"
+            "--root", "./ragtest",
+            "--logger", "none"
         ]
         
         # Execute the command
@@ -938,77 +939,6 @@ def query_global_knowledge_graph():
             "message": f"Error querying knowledge graph: {str(e)}"
         }), 500
 
-def extract_citations_from_response(stdout, output_dir):
-    """
-    Helper function to extract and lookup citations from GraphRAG response.
-    
-    Args:
-        stdout (str): The response text from GraphRAG
-        output_dir (Path): Directory containing the parquet files
-        
-    Returns:
-        dict: Dictionary containing parsed citations and their data
-    """
-    import pandas as pd
-    import re
-    
-    # Initialize citation containers
-    citations = {
-        'reports': [],
-        'sources': [],
-        'entities': [],
-        'raw_matches': []
-    }
-    
-    try:
-        # Load parquet files if they exist
-        data_files = {
-            'reports': pd.read_parquet(output_dir / "community_reports.parquet") if (output_dir / "community_reports.parquet").exists() else None,
-            'sources': pd.read_parquet(output_dir / "sources.parquet") if (output_dir / "sources.parquet").exists() else None,
-            'entities': pd.read_parquet(output_dir / "entities.parquet") if (output_dir / "entities.parquet").exists() else None
-        }
-        
-        # Extract citations using regex patterns
-        patterns = {
-            'reports': r'\[Data:\s*Reports\s*\((\d+)\)\]',
-            'sources': r'\[Data:\s*Sources\s*\((\d+)\)\]',
-            'entities': r'\[Data:\s*Entities\s*\((\d+)\)\]'
-        }
-        
-        # Find all citations in the text
-        for citation_type, pattern in patterns.items():
-            matches = re.findall(pattern, stdout)
-            df = data_files[citation_type]
-            
-            for item_id in matches:
-                citation_info = {
-                    'type': citation_type,
-                    'id': item_id,
-                }
-                
-                # Add to raw matches for reference
-                citations['raw_matches'].append(f"{citation_type}({item_id})")
-                
-                # Look up the data if dataframe is available
-                if df is not None:
-                    try:
-                        item_data = df[df['id'] == int(item_id)].to_dict('records')
-                        if item_data:
-                            citation_info['data'] = item_data[0]
-                        else:
-                            citation_info['error'] = f"No {citation_type} found with ID {item_id}"
-                    except Exception as e:
-                        citation_info['error'] = f"Error looking up {citation_type} {item_id}: {str(e)}"
-                else:
-                    citation_info['error'] = f"No {citation_type} data file available"
-                
-                citations[citation_type].append(citation_info)
-        
-        return citations
-        
-    except Exception as e:
-        print(f"Error extracting citations: {str(e)}")
-        return citations
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5001))
