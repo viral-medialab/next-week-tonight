@@ -304,14 +304,12 @@ const HomePage = () => {
         if (response.data.data.citations) {
           const highlightNodes = response.data.data.citations.highlightNodes;
           const highlightEdges = response.data.data.citations.highlightEdges;
-          console.log('edges ',highlightEdges);
           // const graphData = response.data.data.graph;
           // Create sets of node and link IDs to highlight
           const nodeSet = new Set();
           const linkSet = new Set();
           highlightNodes.forEach(node => nodeSet.add(node));
           highlightEdges.forEach(link => {
-            console.log(link.source,link.target)
             // Create a unique ID for each link (source-target)
             const linkId = typeof link.source === 'object' 
               ? `${link.source.id}-${link.target.id}` 
