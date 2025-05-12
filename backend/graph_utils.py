@@ -65,7 +65,7 @@ def get_graph(output_dir=None, force_reload=False):
             row.get("community_id") or 
             row.get("type") or 
             row.get("category") or 
-            "entity"
+            "ENTITY"
         )
         
         # Collect other properties

@@ -41,8 +41,8 @@ def get_perplexity_sources(query):
     
     # Create a message with a prompt that asks for sources and avoids PDFs and videos
     messages = [
-        {"role": "system", "content": "You are a helpful assistant that provides informative responses with high-quality sources. Focus on providing source URLs that are articles or web pages with extractable text content. Do not include YouTube videos, PDFs, or other media files as sources. After your response, provide a clearly labeled 'Sources:' section with a numbered list of all source URLs used."},
-        {"role": "user", "content": f"Please research the following query and provide a comprehensive response with multiple high-quality sources. Include a clearly labeled 'Sources:' section at the end with a numbered list of all source URLs. Avoid using YouTube videos, PDFs, or other non-article sources: {query}"}
+        {"role": "system", "content": "You are a helpful assistant focused on providing comprehensive news coverage. Your goal is to find and share as many high-quality news sources as possible for each query, with an emphasis on diversity across time periods. Include both historical archives and the latest news stories to give a complete picture. Focus only on reputable news sites, academic sources, and established media outlets. Do not include YouTube videos, PDFs, or social media. ALWAYS end your response with a clearly labeled 'Sources:' section containing a numbered list (1., 2., etc.) of ALL source URLs used, with each URL on its own line."},
+        {"role": "user", "content": f"Please find and provide as many high-quality news sources as possible about this topic: {query}. I want extensive coverage from both historical archives and recent news stories. Include sources from major news outlets, academic institutions, and reputable media organizations spanning different time periods. Your response MUST end with a clearly labeled 'Sources:' section containing a numbered list of ALL source URLs used. Focus on finding diverse perspectives and coverage across different years and events. Do not include YouTube, PDFs, or social media sources."}
     ]
     
     try:
@@ -57,46 +57,58 @@ def get_perplexity_sources(query):
         # Extract the response text
         response_text = response.choices[0].message.content
         
-        # First attempt to find a sources section
-        sources_section_pattern = r'Sources:[\s\n]+((?:\d+\.\s+https?://[^\s\n]+[\s\n]*)+)'
-        sources_match = re.search(sources_section_pattern, response_text, re.IGNORECASE)
+        # Debug the raw response
+        print("\n=== PERPLEXITY RAW RESPONSE ===")
+        print(response_text)
+        print("================================\n")
         
+        # First attempt to find a sources section
+        sources_section_patterns = [
+            r'Sources:[\s\n]+((?:\d+\.\s+https?://[^\s\n]+[\s\n]*)+)',  # Original pattern
+            r'Sources:[\s\n]+((?:\[\d+\]:\s*https?://[^\s\n]+[\s\n]*)+)',  # [1]: http://... format
+            r'References:[\s\n]+((?:\d+\.\s+https?://[^\s\n]+[\s\n]*)+)',  # "References" instead of "Sources"
+            r'Bibliography:[\s\n]+((?:\d+\.\s+https?://[^\s\n]+[\s\n]*)+)'  # "Bibliography" instead of "Sources"
+        ]
+
         filtered_sources = []
-        if sources_match:
-            # Extract the numbered list of sources
-            sources_list = sources_match.group(1)
-            # Extract each numbered URL
-            url_pattern = r'\d+\.\s+(https?://[^\s\n]+)'
-            sources = re.findall(url_pattern, sources_list)
-            
-            # Filter out YouTube videos and PDFs
-            for source in sources:
-                # Clean up the URL (remove trailing punctuation or formatting)
+        for pattern in sources_section_patterns:
+            sources_match = re.search(pattern, response_text, re.IGNORECASE)
+            if sources_match:
+                # Extract the numbered list of sources
+                sources_list = sources_match.group(1)
+                # Extract each numbered URL
+                url_patterns = [
+                    r'\d+\.\s+(https?://[^\s\n]+)',  # 1. http://... format
+                    r'\[\d+\]:\s*(https?://[^\s\n]+)'  # [1]: http://... format
+                ]
+                for url_pattern in url_patterns:
+                    sources = re.findall(url_pattern, sources_list)
+                    
+                    # Filter out YouTube videos and PDFs
+                    for source in sources:
+                        # Clean up the URL (remove trailing punctuation or formatting)
+                        clean_source = source.rstrip('.,;:"\'')
+                        
+                        # Skip YouTube videos
+                        if 'youtube.com' in clean_source or 'youtu.be' in clean_source:
+                            continue
+                        # Skip PDFs
+                        if clean_source.lower().endswith('.pdf'):
+                            continue
+                        # Add valid article sources
+                        filtered_sources.append(clean_source)
+        else:
+            # If no sources section found, look for footnote references
+            footnote_pattern = r'\[\d+\]\s*(https?://[^\s\n]+)'
+            footnote_sources = re.findall(footnote_pattern, response_text)
+            for source in footnote_sources:
+                # Clean up the URL
                 clean_source = source.rstrip('.,;:"\'')
-                
-                # Skip YouTube videos
-                if 'youtube.com' in clean_source or 'youtu.be' in clean_source:
-                    continue
-                # Skip PDFs
-                if clean_source.lower().endswith('.pdf'):
+                # Skip YouTube videos and PDFs
+                if 'youtube.com' in clean_source or 'youtu.be' in clean_source or clean_source.lower().endswith('.pdf'):
                     continue
                 # Add valid article sources
                 filtered_sources.append(clean_source)
-        else:
-            # Fallback: Try to find any URLs in the text if no sources section is found
-            url_pattern = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+'
-            sources = re.findall(url_pattern, response_text)
-            
-            # Filter out YouTube videos and PDFs
-            for source in sources:
-                # Skip YouTube videos
-                if 'youtube.com' in source or 'youtu.be' in source:
-                    continue
-                # Skip PDFs
-                if source.lower().endswith('.pdf'):
-                    continue
-                # Add valid article sources
-                filtered_sources.append(source)
         
         # Remove duplicates
         filtered_sources = list(set(filtered_sources))

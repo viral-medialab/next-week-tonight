@@ -19,6 +19,18 @@ from graph_utils import get_graph, GRAPH_OUTPUT_DIR
 #from database.database_utils import clear_cache, save_generated_article_to_DB  # noqa: F401
 import openai
 from test.env import OPENAI_API_KEY
+from database.extract_data_perplexity import (
+    get_perplexity_sources, 
+    save_text_to_file,
+    extract_text_from_url
+)
+import pandas as pd
+from database.firecrawl_scrape import firecrawl_extract_only
+import subprocess
+import os
+import yaml
+from pathlib import Path
+        
 #import re
 
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
@@ -190,14 +202,6 @@ def gather_news_sources():
         # Ensure folder exists for new extraction
         folder.mkdir(parents=True, exist_ok=True)
         
-        # Import the functions we need from extract_data_perplexity
-        from database.extract_data_perplexity import (
-            get_perplexity_sources, 
-            save_text_to_file,
-            extract_text_from_url
-        )
-        import pandas as pd
-        
         # Get sources from Perplexity
         sources, perplexity_response = get_perplexity_sources(query)
         
@@ -205,6 +209,12 @@ def gather_news_sources():
             return jsonify({
                 "status": "error",
                 "message": "No sources found from Perplexity API"
+            }), 404
+        elif not sources and perplexity_response:
+            print("Warning: Perplexity response received but no sources were extracted. This likely indicates an issue with source parsing.")
+            return jsonify({
+                "status": "error", 
+                "message": "Sources could not be extracted from Perplexity response"
             }), 404
             
         # Save the Perplexity response
@@ -222,57 +232,88 @@ def gather_news_sources():
         saved_sources = []
         successful_extractions = 0
         
-        if sources:
-            # Create a DataFrame to pass to extract_text_from_url
-            sources_df = pd.DataFrame({'url': sources})
-            
-            # Extract text using the functions from extract_raw_text.py
-            article_texts = extract_text_from_url(sources_df)
-            
-            # Save each extracted text to a file
-            for i, (source, text) in enumerate(zip(sources, article_texts)):
+        # Process each source from Perplexity API response
+        if sources: 
+            for source in sources:
                 extraction_info = {
                     "url": source,
                     "successful": False,
                     "extraction_method": "Unknown"
                 }
                 
-                # Check if extraction was successful
-                if isinstance(text, tuple):  # If text is a tuple (score, content) from perplexity_text_extractor
-                    score, content = text
-                    if score.isnumeric() and int(score) >= 2:
-                        text_to_save = content
-                        extraction_method = f"Perplexity (score: {score})"
+                # Get the extraction result - returns a dictionary with 'text', 'news_title', etc.
+                extraction_result = firecrawl_extract_only(source)
+                
+                if extraction_result:
+                    # Extraction succeeded
+                    extraction_method = extraction_result.get('extraction_method', 'Unknown method')
+                    successful = True
+                    
+                    # Save the extraction result
+                    try:
+                        filepath = save_text_to_file(
+                            extraction_result, 
+                            query, 
+                            source, 
+                            folder=str(folder)
+                        )
+                        
+                        extraction_info.update({
+                            "filepath": filepath,
+                            "successful": successful,
+                            "extraction_method": extraction_method
+                        })
+                        
+                        successful_extractions += 1
+                        
+                    except Exception as e:
+                        print(f"Error saving source {source}: {str(e)}")
+                        extraction_info["error"] = str(e)
+                else:
+                    # If firecrawl_extract_only failed, try the perplexity fallback
+                    print(f"All extraction methods failed for {source}, trying Perplexity extraction as fallback")
+                    
+                    # Create a DataFrame with just this source for extract_text_from_url
+                    source_df = pd.DataFrame({'url': [source]})
+                    
+                    # Use Perplexity extraction as fallback
+                    text = extract_text_from_url(source_df)[0]
+                    
+                    # Check if Perplexity extraction was successful
+                    if isinstance(text, tuple):  # If text is a tuple (score, content) from perplexity_text_extractor
+                        score, content = text
+                        if score.isnumeric() and int(score) >= 2:
+                            text_to_save = content
+                            extraction_method = f"Perplexity (score: {score})"
+                            successful = True
+                        else:
+                            text_to_save = content
+                            extraction_method = f"Perplexity with low score ({score}), fallback to BeautifulSoup"
+                            successful = True
+                    elif text != "Extraction Failed":
+                        text_to_save = text
+                        extraction_method = "BeautifulSoup"
                         successful = True
                     else:
-                        # Text was not good enough, but was already handled by extract_text_from_url
-                        text_to_save = content
-                        extraction_method = f"Perplexity with low score ({score}), fallback to BeautifulSoup"
-                        successful = True
-                elif text != "Extraction Failed":
-                    text_to_save = text
-                    extraction_method = "BeautifulSoup"
-                    successful = True
-                else:
-                    text_to_save = "Could not extract text from this source."
-                    extraction_method = "Failed"
-                    successful = False
-                
-                # Save the text (even if failed, to keep record)
-                try:
-                    filepath = save_text_to_file(text_to_save, query, source, folder=str(folder))
+                        text_to_save = "Could not extract text from this source."
+                        extraction_method = "Failed"
+                        successful = False
                     
-                    extraction_info.update({
-                        "filepath": filepath,
-                        "successful": successful,
-                        "extraction_method": extraction_method
-                    })
-                    
-                    if successful:
-                        successful_extractions += 1
-                except Exception as e:
-                    print(f"Error saving source {source}: {str(e)}")
-                    extraction_info["error"] = str(e)
+                    # Only save here if we didn't already save with firecrawl_extract_only
+                    try:
+                        filepath = save_text_to_file(text_to_save, query, source, folder=str(folder))
+                        
+                        extraction_info.update({
+                            "filepath": filepath,
+                            "successful": successful,
+                            "extraction_method": extraction_method
+                        })
+                        
+                        if successful:
+                            successful_extractions += 1
+                    except Exception as e:
+                        print(f"Error saving source {source}: {str(e)}")
+                        extraction_info["error"] = str(e)
                 
                 saved_sources.append(extraction_info)
                 
@@ -283,10 +324,10 @@ def gather_news_sources():
                 "query": query,
                 "folder": str(folder),
                 "num_sources": len(sources),
-                "successful_extractions": successful_extractions,
+                "successful_extractions": successful_extractions, #TODO: remove filepath from here
                 "sources": saved_sources,
                 "perplexity_response_saved": bool(response_file),
-                "perplexity_response_file": response_file
+                "perplexity_response_file": response_file #TODO: remove filepath from here
             }
         })
         
@@ -296,14 +337,6 @@ def gather_news_sources():
             "status": "error",
             "message": f"Error gathering news sources: {str(e)}"
         }), 500
-
-@app.route('/api/gather_news_sources', methods=['OPTIONS'])
-def handle_preflight():
-    response = jsonify({'status': 'ok'})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-    return response
 
 @app.route("/api/create_knowledge_graph", methods=["GET", "POST"])
 def create_knowledge_graph():
@@ -369,7 +402,6 @@ def create_knowledge_graph():
         
         # If parquet or json files already exist, we can skip running graphrag index
         if all_existing_files:
-            print(f"Found existing graph files in {output_folder}, skipping indexing step")
             print(f"Existing files: {all_existing_files}")
             data = get_graph(output_dir)
             return jsonify(data)
@@ -436,13 +468,13 @@ def create_knowledge_graph():
             
             # Look for output files in the output directory
             output_files = list(output_dir.glob("*.parquet")) if output_dir.exists() else []
-            print(f"Output parquet files: {output_files}")
+            print(f"No. of Output parquet files: {len(output_files)}")
             output_json_files = list(output_dir.glob("*.json")) if output_dir.exists() else []
-            print(f"Output json files: {output_json_files}")
+            print(f"No of. Output json files: {len(output_json_files)}")
             
             # Combine all found files
             all_output_files = output_files + output_json_files
-            print(f"All output files: {all_output_files}")
+            print(f"All output files: {len(all_output_files)}")
             
             print("Knowledge graph indexed successfully with output files: ", all_output_files)
            
@@ -471,10 +503,7 @@ def query_knowledge_graph():
     """
     try:
         # Import required modules
-        import subprocess
-        import os
-        import yaml
-        from pathlib import Path
+        
         
         # Get query from request body
         data = request.get_json()
@@ -1031,6 +1060,83 @@ def extract_citations_from_response(stdout, output_dir):
     except Exception as e:
         print(f"Error extracting citations: {str(e)}")
         return citations
+
+def save_text_to_file(text, query, url, folder="graphrag/ragtest/input", is_perplexity_response=False):
+    """Save extracted text to a file."""
+    # Create folder if it doesn't exist
+    os.makedirs(folder, exist_ok=True)
+    
+    # Create a safe filename from the query and URL
+    safe_query = "".join(x for x in query if x.isalnum() or x.isspace()).rstrip()
+    safe_query = safe_query.replace(" ", "_")[:50]  # Limit length
+    
+    # Get a unique identifier from the URL or use "response" for the main perplexity response
+    if is_perplexity_response:
+        filename = f"{safe_query}_perplexity_response.txt"
+    else:
+        url_id = str(abs(hash(url)) % 10000)
+        filename = f"{safe_query}_{url_id}.txt"
+    
+    filepath = os.path.join(folder, filename)
+    
+    # Debug what we're about to save
+    print(f"\n--- DEBUGGING TEXT SAVING ---")
+    print(f"File path: {filepath}")
+    print(f"URL: {url}")
+    print(f"Text type: {type(text)}")
+    
+    if isinstance(text, dict):
+        print(f"Dictionary keys: {text.keys()}")
+        if 'text' in text:
+            text_sample = text['text'][:150] + "..." if len(text['text']) > 150 else text['text']
+            print(f"Text content length: {len(text['text'])} chars")
+            print(f"Text sample: {text_sample}")
+    else:
+        text_sample = text[:150] + "..." if len(text) > 150 else text
+        print(f"Text content length: {len(text)} chars")
+        print(f"Text sample: {text_sample}")
+    
+    # Save text to file
+    try:
+        with open(filepath, "w", encoding="utf-8") as file:
+            # Add title and source information
+            if not is_perplexity_response:
+                if isinstance(text, dict) and 'news_title' in text and 'text' in text:
+                    # Handle case where text is actually a dictionary with content
+                    file.write(f"Title: {text['news_title']}\n")
+                    file.write(f"Source: {url}\n\n")
+                    file.write(text['text'])
+                    
+                    # Debug what we actually wrote
+                    print(f"Wrote dictionary with title and text (news_title + text)")
+                else:
+        
+                    file.write(text)
+                    
+                    # Debug what we actually wrote
+                    print(f"Wrote plain text (text only)")
+            else:
+                # Just write the perplexity response directly
+                file.write(text)
+                print(f"Wrote perplexity response")
+                
+        # Verify file was written correctly
+        file_size = os.path.getsize(filepath)
+        file_content = None
+        with open(filepath, "r", encoding="utf-8") as f:
+            file_content = f.read(500)  # Read first 500 chars to check
+        
+        print(f"File saved: {filepath} ({file_size} bytes)")
+        print(f"File content starts with: {file_content[:150]}...")
+        
+        # If file size is suspiciously small, log a warning
+        if file_size < 500 and not is_perplexity_response:
+            print(f"WARNING: File {filepath} is very small ({file_size} bytes). Content may be truncated.")
+            
+    except Exception as e:
+        print(f"Error saving to file {filepath}: {str(e)}")
+        
+    return filepath
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5001))

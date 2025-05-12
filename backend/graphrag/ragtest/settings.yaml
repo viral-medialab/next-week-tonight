@@ -52,7 +52,7 @@ global_search:
   map_prompt: prompts/global_search_map_system_prompt.txt
   reduce_prompt: prompts/global_search_reduce_system_prompt.txt
 input:
-  base_dir: AI_safety_input
+  base_dir: India_Pakistan_Conflict_input
   file_encoding: utf-8
   file_pattern: .*\.txt$$
   file_type: text
@@ -87,7 +87,7 @@ models:
     tokens_per_minute: 0
     type: openai_embedding
 output:
-  base_dir: AI_safety_output
+  base_dir: India_Pakistan_Conflict_output
   type: file
 reporting:
   base_dir: logs_default
