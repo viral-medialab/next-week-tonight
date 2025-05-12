@@ -1024,8 +1024,9 @@ def extract_citations_from_response(stdout, output_dir):
                     citation_info['error'] = f"No {citation_type} data file available"
                 
                 citations[citation_type].append(citation_info)
-        
+        print(citations)
         return citations
+    
         
     except Exception as e:
         print(f"Error extracting citations: {str(e)}")

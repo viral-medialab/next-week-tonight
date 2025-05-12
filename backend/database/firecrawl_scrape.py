@@ -129,5 +129,5 @@ def test_extraction(url):
 # Simple test main function
 if __name__ == "__main__":
     # Test URL - replace with any article URL you want to test
-    test_url = "https://www.bbc.com/news/world-us-canada-68825346"
+    test_url = "https://nlihc.org/news/nlihc-releases-gap-2025-shortage-affordable-homes"
     test_extraction(test_url)
