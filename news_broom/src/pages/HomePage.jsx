@@ -406,7 +406,7 @@ const HomePage = () => {
                 className="w-4 h-4 rounded-full" 
                 style={{ backgroundColor: '#ff5500'}}
               ></div>
-              <span className="text-xs">SEARCH NODES</span>
+              <span className="text-xs">CITED NODES</span>
             </div>
           )}
         </div>
@@ -603,8 +603,9 @@ const HomePage = () => {
                         </div>
                       )}
                       
+                      {/* Show count of highlighted nodes in the graph */}
                       <div className="mt-1">
-                        <span className="font-medium">Contains:</span> {report.nodes?.length || 0} entities
+                        <span className="font-medium">Highlighted in Graph:</span> {highlightedNodes?.length || 0} entities
                       </div>
                       
                       {/* Report Content */}
