@@ -618,6 +618,20 @@ const HomePage = () => {
                   >
                     {graphData.nodes.length > 0 && (
                       <>
+                        {/* Add the node/edge count overlay */}
+                        <div className="absolute left-4 top-4 bg-white bg-opacity-90 p-2 rounded-lg shadow-md border border-gray-200 z-10">
+                          <div className="text-sm">
+                            <div className="flex items-center gap-2">
+                              <span className="font-semibold">Nodes:</span>
+                              <span>{graphData.nodes.length}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className="font-semibold">Edges:</span>
+                              <span>{graphData.links.length}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
                         <Graph
                           ref={graphRef}
                           graphData={graphData}
