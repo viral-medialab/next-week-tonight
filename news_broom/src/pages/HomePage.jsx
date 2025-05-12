@@ -91,7 +91,7 @@ const HomePage = () => {
         graphRef.current.zoomToFit(400);
       }, 500);
     }
-  }, [graphData]);
+  }, [graphData, highlightedNodes]);
 
   useEffect(() => {
     if (graphData) {
@@ -179,6 +179,7 @@ const HomePage = () => {
       if (graphResponse.data && (graphResponse.data.nodes || graphResponse.data.links)) {
         setGraphData(graphResponse.data);
         setGraphReady(true);
+        // return graphResponse.data
       } else {
         // Create a minimal graph if response doesn't have expected data
         console.warn("Creating minimal graph - received:", graphResponse.data);
@@ -304,15 +305,15 @@ const HomePage = () => {
         setShowFollowUpResponse(true);
         
         // Process highlighted graph data if available
-        if (response.data.data.highlighted_graph) {
-          const highlightData = response.data.data.highlighted_graph;
-          
+        if (response.data.data.citations) {
+          const highlightNodes = response.data.data.citations.highlightNodes;
+          const highlightEdges = response.data.data.citations.highlightEdges;
+          // const graphData = response.data.data.graph;
           // Create sets of node and link IDs to highlight
           const nodeSet = new Set();
-          highlightData.nodes.forEach(node => nodeSet.add(node.id));
-          
           const linkSet = new Set();
-          highlightData.links.forEach(link => {
+          highlightNodes.forEach(node => nodeSet.add(node));
+          highlightEdges.forEach(link => {
             // Create a unique ID for each link (source-target)
             const linkId = typeof link.source === 'object' 
               ? `${link.source.id}-${link.target.id}` 
@@ -388,6 +389,15 @@ const HomePage = () => {
               <span className="text-xs">{group}</span>
             </div>
           ))}
+          {highlightedNodes.size > 0 && (
+            <div key="Search Result" className="flex items-center gap-2 text-left">
+              <div 
+                className="w-4 h-4 rounded-full" 
+                style={{ backgroundColor: '#ff5500'}}
+              ></div>
+              <span className="text-xs">SEARCH NODES</span>
+            </div>
+          )}
         </div>
         
         {/* Show selected or hovered item details */}
@@ -649,7 +659,7 @@ const HomePage = () => {
                               return 15; // Largest size for highlighted nodes
                             }
                             // Interactive nodes (hovered or selected)
-                            if (highlightNodes.has(n) || n === selectedNode) {
+                            if (highlightNodes.has(n.id) || n === selectedNode) {
                               return 12; // Medium size
                             }
                             // Default size
@@ -668,10 +678,10 @@ const HomePage = () => {
                             const linkId = typeof l.source === 'object' 
                               ? `${l.source.id}-${l.target.id}` 
                               : `${l.source}-${l.target}`;
-                            
+
                             // Check if link is highlighted from backend
                             if (l.highlighted || highlightedLinks.has(linkId)) {
-                              return 4; // Thickest for highlighted links
+                              return 5; // Thickest for highlighted links
                             }
                             // Interactive links (hovered or selected)
                             if (highlightLinks.has(l) || l === selectedLink) {
