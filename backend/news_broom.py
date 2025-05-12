@@ -402,7 +402,7 @@ def create_knowledge_graph():
         
         # If parquet or json files already exist, we can skip running graphrag index
         if all_existing_files:
-            print(f"Existing files: {all_existing_files}")
+            #print(f"Existing files: {all_existing_files}")
             data = get_graph(output_dir)
             return jsonify(data)
             
@@ -964,7 +964,7 @@ def query_global_knowledge_graph():
             
             # Enhance citations with detailed node/relationship information
             enhanced_citations = enhance_citations_with_details(citations, output_dir)
-            print("enhanced_citations", enhanced_citations)
+            #("enhanced_citations", enhanced_citations)
             
             # Prepare response data
             response_data = {

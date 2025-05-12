@@ -240,14 +240,7 @@ def get_report_nodes(output_dir=None, force_reload=False):
 def extract_citations_from_response(stdout, output_dir):
     """
     Helper function to extract and lookup citations from GraphRAG response.
-    Now recursively processes citations in report content as well.
-    
-    Args:
-        stdout (str): The response text from GraphRAG
-        output_dir (Path): Directory containing the parquet files
-        
-    Returns:
-        dict: Dictionary containing parsed citations and their data
+    Recursively processes citations in report content with improved pattern matching.
     """
     import pandas as pd
     import re
@@ -265,12 +258,19 @@ def extract_citations_from_response(stdout, output_dir):
     
     try:
         # Extract citations using regex patterns
+        # Standard citation pattern in [Data: ...] format
         citation_pattern = r'\[Data:\s*((?:Reports|Entities|Relationships)\s*\(\d+\)(?:,\s*(?:Reports|Entities|Relationships)\s*\(\d+\))*)\]'
-        entry_pattern = r'(Reports|Entities|Relationships)\s*\((\d+)\)'
+        # More flexible pattern that can catch citations even without the [Data:] wrapper
+        loose_citation_pattern = r'(Reports|Entities|Relationships)\s*\((\d+)\)'
         
         # Extract citation blocks from main text
         main_matches = re.findall(citation_pattern, stdout)
-        process_citation_matches(main_matches, citations, entry_pattern)
+        process_citation_matches(main_matches, citations, loose_citation_pattern)
+        
+        # Also scan for standalone citations not in [Data:] blocks
+        standalone_matches = re.findall(loose_citation_pattern, stdout)
+        for citation_type, citation_id in standalone_matches:
+            add_citation(citations, citation_type, citation_id)
         
         # Now get report content to look for nested citations
         reports_path = output_dir / "community_reports.parquet"
@@ -291,17 +291,14 @@ def extract_citations_from_response(stdout, output_dir):
                         # Check various possible content fields
                         for content_field in ['full_content', 'text', 'content', 'summary']:
                             if content_field in report and report[content_field]:
-                                # Log what we're searching through
-                                print(f"Searching for citations in report {report_id} {content_field}")
-                                content = report[content_field]
-                                # Log any found relationships
-                                rel_matches = re.findall(r'Relationships\s*\((\d+)\)', content)
-                                if rel_matches:
-                                    print(f"Found relationships in report {report_id}: {rel_matches}")
-                                    
-                                # Extract citations from report content
+                                # Extract citations from report content - use both patterns
                                 report_matches = re.findall(citation_pattern, report[content_field])
-                                process_citation_matches(report_matches, citations, entry_pattern)
+                                process_citation_matches(report_matches, citations, loose_citation_pattern)
+                                
+                                # Also look for standalone citations not in [Data:] blocks
+                                standalone_matches = re.findall(loose_citation_pattern, report[content_field])
+                                for citation_type, citation_id in standalone_matches:
+                                    add_citation(citations, citation_type, citation_id)
         
         # Get the mapping data for nodes and relationships
         report_id_to_node_ids, node_human_id_to_label, edge_human_id_to_nodes = get_report_nodes(output_dir)
@@ -376,23 +373,6 @@ def extract_citations_from_response(stdout, output_dir):
                 if not edge_already_exists:
                     citations['highlightEdges'].append(edge)
         
-        # Specifically check if relationship 46 was found
-        rel_46_found = False
-        for rel in citations.get('relationships', []):
-            if rel.get('id') == 46:
-                rel_46_found = True
-                print("Relationship 46 found in citations list")
-                break
-        
-        if not rel_46_found:
-            print("WARNING: Relationship 46 not found in citations despite being in report content")
-            # Force add it if it's not found
-            citations['relationships'].append({
-                'type': 'relationships',
-                'id': 46
-            })
-            citations['raw_matches'].append('relationships(46)')
-        
         return citations
         
     except Exception as e:
@@ -425,6 +405,28 @@ def process_citation_matches(matches, citations, entry_pattern):
                 raw_match = f"{key}({did})"
                 if raw_match not in citations['raw_matches']:
                     citations['raw_matches'].append(raw_match)
+
+def add_citation(citations, citation_type, citation_id):
+    """Helper function to add a citation of a specific type and ID to the citations dict"""
+    key = citation_type.lower()  # convert to 'reports', 'entities', 'relationships'
+    
+    # Check if this citation already exists
+    citation_exists = False
+    for existing_citation in citations[key]:
+        if existing_citation['id'] == int(citation_id):
+            citation_exists = True
+            break
+            
+    if not citation_exists:
+        citations[key].append({
+            'type': key,
+            'id': int(citation_id)
+        })
+        
+        # Add to raw matches
+        raw_match = f"{key}({citation_id})"
+        if raw_match not in citations['raw_matches']:
+            citations['raw_matches'].append(raw_match)
 
 def enhance_citations_with_details(citations, output_dir):
     """

@@ -500,8 +500,11 @@ const HomePage = () => {
     );
   };
 
-  // Add this new component to display citation details
+  // Updated CitationDetails component report section
   const CitationDetails = ({ enhancedCitations }) => {
+    // Add state for toggling details visibility
+    const [expandedReports, setExpandedReports] = useState({});
+    
     if (!enhancedCitations) return null;
     
     const { reports, highlightedNodes, highlightedEdges } = enhancedCitations;
@@ -514,6 +517,14 @@ const HomePage = () => {
     ) {
       return null;
     }
+    
+    // Toggle report detail expansion
+    const toggleReportDetails = (reportId) => {
+      setExpandedReports(prev => ({
+        ...prev,
+        [reportId]: !prev[reportId]
+      }));
+    };
     
     return (
       <div className="mt-6 text-left">
@@ -569,71 +580,134 @@ const HomePage = () => {
           </div>
         )}
         
-        {/* Display reports */}
+        {/* Display reports with improved formatting */}
         {reports && reports.length > 0 && (
           <div className="mb-4">
             <h4 className="font-medium text-gray-800 mb-1">Reports</h4>
             <div className="space-y-3">
-              {reports.map((report, index) => (
-                <div key={index} className="border border-gray-200 rounded-md p-3 bg-gray-50">
-                  <div className="font-medium">Report {report.id}</div>
-                  {report.details && (
+              {reports.map((report, index) => {
+                const isExpanded = expandedReports[report.id] || false;
+                
+                // Extract findings from properties if available
+                const findings = report.properties?.findings || [];
+                
+                return (
+                  <div key={index} className="border border-gray-200 rounded-md p-3 bg-gray-50">
+                    <div className="font-medium">Report {report.id}</div>
+                    
+                    {/* Report Content Section */}
                     <div className="text-sm text-gray-600">
-                      {report.title && <div className="mt-1"><span className="font-medium">Title:</span> {report.title}</div>}
-                      <div className="mt-1"><span className="font-medium">Contains:</span> {report.nodes?.length || 0} entities</div>
+                      {report.title && (
+                        <div className="mt-1">
+                          <span className="font-medium">Title:</span> {report.title}
+                        </div>
+                      )}
                       
-                      {/* Display report content in a cleaner way */}
+                      <div className="mt-1">
+                        <span className="font-medium">Contains:</span> {report.nodes?.length || 0} entities
+                      </div>
+                      
+                      {/* Report Content */}
                       {report.text && (
                         <div className="mt-2 border-t border-gray-200 pt-2">
                           <div className="font-medium mb-1">Report Content:</div>
                           <div className="bg-white p-2 rounded border border-gray-300 max-h-60 overflow-y-auto">
-                            {/* Display only the summary section, not the full raw content */}
-                            {report.text.includes('##') 
-                              ? report.text.split('##')[0].trim() // Just show the introduction if markdown
-                              : report.text.length > 300 
-                                ? report.text.substring(0, 300) + '...' // Truncate long text
-                                : report.text
-                            }
+                            {/* Display summary text or beginning of content */}
+                            {report.summary || (report.text.length > 300 ? report.text.substring(0, 300) + '...' : report.text)}
                           </div>
                         </div>
                       )}
                       
-                      {/* Selective display of relevant properties */}
-                      {report.properties && (
+                      {/* Key Findings Section - Always show this since user likes it */}
+                      {findings.length > 0 && (
+                        <div className="mt-2 border-t border-gray-200 pt-2">
+                          <div className="font-medium mb-1">Key Findings:</div>
+                          <div className="space-y-2">
+                            {findings.map((finding, idx) => (
+                              <div key={idx} className="bg-white p-2 rounded border border-gray-300">
+                                <div className="font-medium">{finding.summary}</div>
+                                <div className="text-sm mt-1">{finding.explanation}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Consolidated Metadata Section - replaces both Additional Properties and Report Metadata */}
+                      {(report.details || report.properties) && (
                         <div className="mt-2 border-t border-gray-200 pt-2">
                           <div className="font-medium mb-1 flex justify-between items-center">
-                            <span>Additional Information:</span>
-                            <button className="text-xs text-blue-500 hover:underline">
-                              {/* Add a show/hide toggle for details */}
-                              Show More Details
+                            <span>Report Metadata:</span>
+                            <button 
+                              onClick={() => toggleReportDetails(report.id)}
+                              className="text-xs text-blue-500 hover:underline"
+                            >
+                              {isExpanded ? 'Show Less' : 'Show More Details'}
                             </button>
                           </div>
                           
-                          {/* Only show key properties, not full_content or other large fields */}
+                          {/* Always show a few key metadata fields */}
                           <div className="space-y-1">
-                            {Object.entries(report.properties)
-                              .filter(([key, val]) => 
-                                !['full_content', 'full_content_json', 'entity_ids'].includes(key) && 
-                                val && 
-                                typeof val !== 'object'
-                              )
-                              .map(([key, val]) => (
+                            {/* Priority fields to always show */}
+                            {report.details?.period && (
+                              <div><span className="font-medium">Period:</span> {report.details.period}</div>
+                            )}
+                            {report.details?.rank && (
+                              <div><span className="font-medium">Impact Rank:</span> {report.details.rank}</div>
+                            )}
+                            {report.details?.rating_explanation && (
+                              <div>
+                                <span className="font-medium">Rating Explanation:</span> {
+                                  report.details.rating_explanation.length > 100 && !isExpanded 
+                                    ? report.details.rating_explanation.substring(0, 100) + '...' 
+                                    : report.details.rating_explanation
+                                }
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Show additional metadata when expanded */}
+                          {isExpanded && (
+                            <div className="mt-2 space-y-1">
+                              {/* Combine metadata from both report.details and report.properties */}
+                              {Object.entries({
+                                // Merge properties from both sources, prioritizing details
+                                ...Object.entries(report.properties || {})
+                                  .filter(([key, val]) => (
+                                    !['full_content', 'full_content_json', 'findings', 'entity_ids',
+                                      'summary', 'title', 'text', 'rating_explanation', 'period', 'rank'].includes(key) &&
+                                    !key.startsWith('_') && 
+                                    val && 
+                                    typeof val !== 'object'
+                                  ))
+                                  .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {}),
+                                
+                                ...Object.entries(report.details || {})
+                                  .filter(([key, val]) => (
+                                    !['properties', 'full_content', 'full_content_json', 'findings',
+                                      'summary', 'title', 'text', 'nodes', 'rating_explanation', 'period', 'rank'].includes(key) &&
+                                    !key.startsWith('_') && 
+                                    val && 
+                                    typeof val !== 'object'
+                                  ))
+                                  .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {})
+                              }).map(([key, val]) => (
                                 <div key={key}>
                                   <span className="font-medium">{key}:</span> {
-                                    typeof val === 'string' && val.length > 100 
+                                    typeof val === 'string' && val.length > 100
                                       ? val.substring(0, 100) + '...' 
                                       : val.toString()
                                   }
                                 </div>
-                              ))
-                            }
-                          </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
@@ -792,14 +866,14 @@ const HomePage = () => {
                           nodeLabel={(n) => n.label || n.id || ''}
                           linkLabel={(l) => l.type || ''}
                           
+                          // Fix the d3Force syntax error - changed comma to array notation
+                          d3Force={['charge', d3.forceManyBody().strength(-50).distanceMax(200)]}
+                          
                           // Add performance optimizations
                           d3AlphaDecay={0.02} // Faster stabilization
                           d3VelocityDecay={0.3} // Less node movement
                           cooldownTime={1000} // Reduced from 2000
                           warmupTicks={50} // Initial ticks in background
-                          
-                          // Add physics optimization
-                          d3Force={'charge', d3.forceManyBody().strength(-50).distanceMax(200)}
                           
                           onNodeHover={(n) => {
                             setHoverNode(n || null);
