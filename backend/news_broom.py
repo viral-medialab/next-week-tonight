@@ -11,7 +11,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 # Project helpers
-from graph_utils import get_graph, extract_citations_from_response, GRAPH_OUTPUT_DIR
+from graph_utils import get_graph, extract_citations_from_response, GRAPH_OUTPUT_DIR, enhance_citations_with_details
 
 # (Your existing project imports remain – shortened here)
 #from predictions.query_utils import *          
@@ -599,64 +599,64 @@ def query_knowledge_graph():
             yaml.dump(original_settings, f, default_flow_style=False)
         
         # Check if command was successful
-        if process.returncode == 1:
+        if process.returncode == 0:
             # Extract citations and their data
             citations = extract_citations_from_response(stdout, output_dir)
             
             # Get the full graph data
             full_graph = get_graph(output_dir)
             
-            # Find nodes related to citations
-            highlighted_nodes = []
-            highlighted_links = []
+            # # Find nodes related to citations
+            # highlighted_nodes = []
+            # highlighted_links = []
             
-            if full_graph and full_graph.get('nodes'):
-                # Track nodes we want to highlight
-                highlight_ids = set()
+            # if full_graph and full_graph.get('nodes'):
+            #     # Track nodes we want to highlight
+            #     highlight_ids = set()
                 
-                # Look for nodes matching our citations
-                for citation_type in ['reports', 'sources', 'entities']:
-                    for citation in citations[citation_type]:
-                        citation_id = citation['id']
+            #     # Look for nodes matching our citations
+            #     for citation_type in ['reports', 'sources', 'entities']:
+            #         for citation in citations[citation_type]:
+            #             citation_id = citation['id']
                         
-                        # Look for matching nodes
-                        for node in full_graph['nodes']:
-                            node_id = str(node.get('id', ''))
-                            node_label = str(node.get('label', '')).lower()
+            #             # Look for matching nodes
+            #             for node in full_graph['nodes']:
+            #                 node_id = str(node.get('id', ''))
+            #                 node_label = str(node.get('label', '')).lower()
                             
-                            # Check for matches in id or label
-                            if (f"{citation_type}_{citation_id}" == node_id.lower() or
-                                f"{citation_type}({citation_id})" in node_label):
+            #                 # Check for matches in id or label
+            #                 if (f"{citation_type}_{citation_id}" == node_id.lower() or
+            #                     f"{citation_type}({citation_id})" in node_label):
                                 
-                                # Copy node and mark as highlighted
-                                highlighted_node = dict(node)
-                                highlighted_node['highlighted'] = True
-                                highlighted_node['citation_match'] = f"{citation_type}({citation_id})"
-                                highlighted_nodes.append(highlighted_node)
-                                highlight_ids.add(node_id)
+            #                     # Copy node and mark as highlighted
+            #                     highlighted_node = dict(node)
+            #                     highlighted_node['highlighted'] = True
+            #                     highlighted_node['citation_match'] = f"{citation_type}({citation_id})"
+            #                     highlighted_nodes.append(highlighted_node)
+            #                     highlight_ids.add(node_id)
                 
-                # Find links between highlighted nodes
-                if full_graph.get('links'):
-                    for link in full_graph['links']:
-                        source = str(link.get('source', ''))
-                        target = str(link.get('target', ''))
+            #     # Find links between highlighted nodes
+            #     if full_graph.get('links'):
+            #         for link in full_graph['links']:
+            #             source = str(link.get('source', ''))
+            #             target = str(link.get('target', ''))
                         
-                        if source in highlight_ids and target in highlight_ids:
-                            highlighted_link = dict(link)
-                            highlighted_link['highlighted'] = True
-                            highlighted_links.append(highlighted_link)
+            #             if source in highlight_ids and target in highlight_ids:
+            #                 highlighted_link = dict(link)
+            #                 highlighted_link['highlighted'] = True
+            #                 highlighted_links.append(highlighted_link)
             
-            # Prepare visualization data
-            visualization_data = {
-                'full_graph': full_graph,
-                'highlighted_subgraph': {
-                    'nodes': highlighted_nodes,
-                    'links': highlighted_links
-                }
-            }
+            # # Prepare visualization data
+            # visualization_data = {
+            #     'full_graph': full_graph,
+            #     'highlighted_subgraph': {
+            #         'nodes': highlighted_nodes,
+            #         'links': highlighted_links
+            #     }
+            # }
 
-            print("visualization_data", visualization_data)
-            print("citations", citations)
+            # print("visualization_data", visualization_data)
+            # print("citations", citations)
             
             # Prepare response data
             response_data = {
@@ -668,7 +668,8 @@ def query_knowledge_graph():
                     "topic": topic,
                     "result": stdout,
                     "citations": citations,
-                    "visualization": visualization_data
+                    "full_graph": full_graph,
+                    #"visualization": visualization_data
                 }
             }
             
@@ -863,7 +864,7 @@ def query_global_knowledge_graph():
     }
     
     Returns:
-        JSON with status, message, and query results
+        JSON with status, message, and query results with detailed citation information
     """
     try:
         # Import required modules
@@ -956,9 +957,14 @@ def query_global_knowledge_graph():
         if process.returncode == 0:
             # Extract citations and their data
             citations = extract_citations_from_response(stdout, output_dir)
+            print("citations", citations)
             
             # Get the full graph data
             full_graph = get_graph(output_dir)
+            
+            # Enhance citations with detailed node/relationship information
+            enhanced_citations = enhance_citations_with_details(citations, output_dir)
+            print("enhanced_citations", enhanced_citations)
             
             # Prepare response data
             response_data = {
@@ -970,6 +976,7 @@ def query_global_knowledge_graph():
                     "command": " ".join(command),
                     "result": stdout,
                     "citations": citations,
+                    "enhanced_citations": enhanced_citations,
                     "graph": full_graph
                 }
             }

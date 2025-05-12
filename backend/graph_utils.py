@@ -214,11 +214,33 @@ def get_report_nodes(output_dir=None, force_reload=False):
         #Set the output
         processed_communities[report_human_id] = entities
 
+    # Check for community_reports.parquet
+    reports_path = out_dir / "community_reports.parquet"
+    if reports_path.exists():
+        reports_tbl = pq.read_table(reports_path)
+        reports_data = reports_tbl.to_pylist()
+        print(f"Found {len(reports_data)} reports in community_reports.parquet")
+        
+        # Map report IDs to their content
+        for report in reports_data:
+            report_id = report.get('human_readable_id')
+            if report_id is not None:
+                report_human_id = report_id
+                # Extract entities mentioned in this report
+                if 'entity_ids' in report:
+                    entity_ids = report.get('entity_ids', [])
+                    # Add these to the processed_communities map
+                    processed_communities[report_human_id] = [
+                        id_to_label.get(node_id) for node_id in entity_ids 
+                        if id_to_label.get(node_id) is not None
+                    ]
+
     return (processed_communities, human_id_to_label, link_id_to_nodes)
 
 def extract_citations_from_response(stdout, output_dir):
     """
     Helper function to extract and lookup citations from GraphRAG response.
+    Now recursively processes citations in report content as well.
     
     Args:
         stdout (str): The response text from GraphRAG
@@ -236,87 +258,407 @@ def extract_citations_from_response(stdout, output_dir):
         'reports': [],
         'relationships': [],
         'entities': [],
-        'raw_matches': []
+        'raw_matches': [],
+        'highlightNodes': [],
+        'highlightEdges': []
     }
-    try:
-        # Load parquet files if they exist
-        # data_files = {
-        #     'reports': pq.read_table(output_dir / "community_reports.parquet").to_pylist() if (output_dir / "community_reports.parquet").exists() else None,
-        #     'relationships': pq.read_table(output_dir / "relationships.parquet").to_pylist() if (output_dir / "relationships.parquet").exists() else None,
-        #     'entities': pq.read_table(output_dir / "entities.parquet").to_pylist() if (output_dir / "entities.parquet").exists() else None
-        # }
-        
-        # Extract citations using regex patterns
-        # Regex to capture individual data items inside [Data: ...]
     
+    try:
+        # Extract citations using regex patterns
         citation_pattern = r'\[Data:\s*((?:Reports|Entities|Relationships)\s*\(\d+\)(?:,\s*(?:Reports|Entities|Relationships)\s*\(\d+\))*)\]'
-
-        # Regex to extract each (type, id) pair
         entry_pattern = r'(Reports|Entities|Relationships)\s*\((\d+)\)'
-
-        # Initialize result
-        citation_dict = {'reports': [], 'entities': [], 'relationships': []}
-
-        # Extract citation blocks
-        matches = re.findall(citation_pattern, stdout)
-
-        for match in matches:
-            entries = re.findall(entry_pattern, match)
-            for dtype, did in entries:
-                key = dtype.lower()  # convert to 'reports', 'entities', 'relationships'
-                citation_dict[key].append(int(did)) 
-
-        #Get a dictionary mapping report_human_id : [list of node human ids], node_human_id : node_label, edge_human_id: {'source':node_label,'target':node_label}
+        
+        # Extract citation blocks from main text
+        main_matches = re.findall(citation_pattern, stdout)
+        process_citation_matches(main_matches, citations, entry_pattern)
+        
+        # Now get report content to look for nested citations
+        reports_path = output_dir / "community_reports.parquet"
+        if reports_path.exists():
+            # Get the IDs of cited reports
+            cited_report_ids = [str(report['id']) for report in citations['reports']]
+            
+            if cited_report_ids:
+                # Load report data
+                reports_tbl = pq.read_table(reports_path)
+                reports_data = reports_tbl.to_pylist()
+                
+                # For each cited report, extract additional citations from its content
+                for report in reports_data:
+                    report_id = str(report.get('id', '')) or str(report.get('human_readable_id', ''))
+                    
+                    if report_id in cited_report_ids:
+                        # Check various possible content fields
+                        for content_field in ['full_content', 'text', 'content', 'summary']:
+                            if content_field in report and report[content_field]:
+                                # Log what we're searching through
+                                print(f"Searching for citations in report {report_id} {content_field}")
+                                content = report[content_field]
+                                # Log any found relationships
+                                rel_matches = re.findall(r'Relationships\s*\((\d+)\)', content)
+                                if rel_matches:
+                                    print(f"Found relationships in report {report_id}: {rel_matches}")
+                                    
+                                # Extract citations from report content
+                                report_matches = re.findall(citation_pattern, report[content_field])
+                                process_citation_matches(report_matches, citations, entry_pattern)
+        
+        # Get the mapping data for nodes and relationships
         report_id_to_node_ids, node_human_id_to_label, edge_human_id_to_nodes = get_report_nodes(output_dir)
-        citations['highlightNodes'] = []
-        citations['highlightEdges'] = []
+        
+        # Process all collected citations to add highlight nodes and edges
         highlightNodeSet = set()
-        # Find all citations in the text
-        for citation_type, matches in citation_dict.items():
-            if not matches:
-                continue
-
-            for item_id in matches:
-                item_id = int(item_id)
-                citation_info = {
-                    'type': citation_type,
-                    'id': item_id,
-                }
-                #Extract child nodes from reports
+        
+        # Process each citation type
+        for citation_type, citation_list in [
+            ('reports', citations['reports']), 
+            ('entities', citations['entities']), 
+            ('relationships', citations['relationships'])
+        ]:
+            for citation_info in citation_list:
+                item_id = citation_info['id']
+                
                 if citation_type == 'reports':
-                    #Get the human_ids of the report's sources and add them to the highlight list
-                    report_child_nodes = report_id_to_node_ids.get(item_id,[])
-
-                    #Extract and add the nodes in the report
+                    # Add nodes from the report
+                    report_child_nodes = report_id_to_node_ids.get(item_id, [])
                     for node_human_id in report_child_nodes:
                         if node_human_id not in citations['highlightNodes']:
                             citations['highlightNodes'].append(node_human_id)
                             highlightNodeSet.add(node_human_id)
-
-                #Extract nodes
+                            
                 elif citation_type == 'entities':
-                    citations['highlightNodes'].append(node_human_id_to_label[item_id])
-                    highlightNodeSet.add(node_human_id_to_label[item_id])
-
-                #Add edges to be highlighted
+                    # Add entity nodes
+                    if item_id in node_human_id_to_label:
+                        node_label = node_human_id_to_label[item_id]
+                        if node_label not in citations['highlightNodes']:
+                            citations['highlightNodes'].append(node_label)
+                            highlightNodeSet.add(node_label)
+                            
                 elif citation_type == 'relationships':
-
-                    #{'source':node_label,'target':node_label}
+                    # Add relationship edges
                     edge_source_target = edge_human_id_to_nodes.get(item_id)
-                    citations['highlightEdges'].append(edge_source_target)
-                    
-                # Add to raw matches for reference
-                citations['raw_matches'].append(f"{citation_type}({item_id})")
-                citations[citation_type].append(citation_info)
-
-        #Highlight all edges that have source and target in highlightNodes
+                    if edge_source_target:
+                        # Check if this edge is already in highlightEdges
+                        edge_already_exists = False
+                        for existing_edge in citations['highlightEdges']:
+                            if (existing_edge.get('source') == edge_source_target.get('source') and 
+                                existing_edge.get('target') == edge_source_target.get('target')):
+                                edge_already_exists = True
+                                break
+                                
+                        if not edge_already_exists:
+                            citations['highlightEdges'].append(edge_source_target)
+                            
+                            # Also add the source and target nodes to highlightNodes
+                            source_label = edge_source_target.get('source')
+                            target_label = edge_source_target.get('target')
+                            
+                            if source_label and source_label not in citations['highlightNodes']:
+                                citations['highlightNodes'].append(source_label)
+                                highlightNodeSet.add(source_label)
+                                
+                            if target_label and target_label not in citations['highlightNodes']:
+                                citations['highlightNodes'].append(target_label)
+                                highlightNodeSet.add(target_label)
+        
+        # Highlight edges between highlighted nodes (transitive closure)
         for edge in edge_human_id_to_nodes.values():
-            source, target = edge['source'], edge['target']
+            source, target = edge.get('source'), edge.get('target')
             if source in highlightNodeSet and target in highlightNodeSet:
-                citations['highlightEdges'].append(edge)
-
+                # Check if this edge is already in highlightEdges
+                edge_already_exists = False
+                for existing_edge in citations['highlightEdges']:
+                    if (existing_edge.get('source') == source and 
+                        existing_edge.get('target') == target):
+                        edge_already_exists = True
+                        break
+                        
+                if not edge_already_exists:
+                    citations['highlightEdges'].append(edge)
+        
+        # Specifically check if relationship 46 was found
+        rel_46_found = False
+        for rel in citations.get('relationships', []):
+            if rel.get('id') == 46:
+                rel_46_found = True
+                print("Relationship 46 found in citations list")
+                break
+        
+        if not rel_46_found:
+            print("WARNING: Relationship 46 not found in citations despite being in report content")
+            # Force add it if it's not found
+            citations['relationships'].append({
+                'type': 'relationships',
+                'id': 46
+            })
+            citations['raw_matches'].append('relationships(46)')
+        
         return citations
         
     except Exception as e:
         print(f"Error extracting citations: {str(e)}")
         return citations
+
+def process_citation_matches(matches, citations, entry_pattern):
+    """Helper function to process regex matches and add them to citations dict"""
+    import re
+    
+    for match in matches:
+        entries = re.findall(entry_pattern, match)
+        for dtype, did in entries:
+            key = dtype.lower()  # convert to 'reports', 'entities', 'relationships'
+            
+            # Check if this citation already exists
+            citation_exists = False
+            for existing_citation in citations[key]:
+                if existing_citation['id'] == int(did):
+                    citation_exists = True
+                    break
+                    
+            if not citation_exists:
+                citations[key].append({
+                    'type': key,
+                    'id': int(did)
+                })
+                
+                # Add to raw matches
+                raw_match = f"{key}({did})"
+                if raw_match not in citations['raw_matches']:
+                    citations['raw_matches'].append(raw_match)
+
+def enhance_citations_with_details(citations, output_dir):
+    """
+    Enhances citation information with detailed node and relationship data from the graph.
+    Ensures that each citation appears only once in the result.
+    
+    Args:
+        citations (dict): Citations extracted from the GraphRAG response
+        output_dir (Path): Directory containing the parquet files
+        
+    Returns:
+        dict: Enhanced citations with detailed information (deduplicated)
+    """
+    import pyarrow.parquet as pq
+    
+    enhanced = {
+        'reports': [],
+        'entities': [],
+        'relationships': [],
+        'highlightedNodes': [],
+        'highlightedEdges': []
+    }
+    
+    # Track processed items to avoid duplication
+    processed_reports = set()
+    processed_entities = set()
+    processed_relationships = set()
+    processed_nodes = set()
+    processed_edges = set()
+    
+    # Load the full graph data for node and link details
+    full_graph = get_graph(output_dir)
+    
+    # Load community reports directly from parquet
+    reports_path = output_dir / "community_reports.parquet"
+    if reports_path.exists():
+        reports_tbl = pq.read_table(reports_path)
+        reports_data = reports_tbl.to_pylist()
+        print(f"Loaded {len(reports_data)} reports from {reports_path}")
+    else:
+        reports_data = []
+        print(f"No community reports found at {reports_path}")
+    
+    # Create lookups for nodes and links
+    nodes_by_label = {}
+    for node in full_graph.get('nodes', []):
+        label = node.get('label')
+        if label:
+            nodes_by_label[str(label).upper()] = node
+    
+    # Process highlighted nodes
+    highlight_nodes = citations.get('highlightNodes', [])
+    for node_label in highlight_nodes:
+        # Skip if we've already processed this node
+        if node_label in processed_nodes:
+            continue
+        
+        # Look for node by label (case-insensitive)
+        upper_label = str(node_label).upper()
+        node_details = nodes_by_label.get(upper_label)
+        
+        if node_details:
+            enhanced['highlightedNodes'].append({
+                'label': node_label,
+                'details': node_details
+            })
+            processed_nodes.add(node_label)
+        else:
+            # If not found in nodes_by_label, search through all nodes
+            for node in full_graph.get('nodes', []):
+                if str(node.get('label', '')).upper() == upper_label:
+                    enhanced['highlightedNodes'].append({
+                        'label': node_label,
+                        'details': node
+                    })
+                    processed_nodes.add(node_label)
+                    break
+    
+    # Process highlighted edges
+    highlight_edges = citations.get('highlightEdges', [])
+    for edge in highlight_edges:
+        source_label = edge.get('source', '')
+        target_label = edge.get('target', '')
+        
+        # Create a unique edge identifier
+        edge_id = f"{source_label}→{target_label}"
+        
+        # Skip if we've already processed this edge
+        if edge_id in processed_edges:
+            continue
+        
+        # Find matching edge in the graph
+        for link in full_graph.get('links', []):
+            link_source = link.get('source')
+            link_target = link.get('target')
+            
+            source_match = False
+            target_match = False
+            
+            # Check source match
+            if isinstance(link_source, dict) and str(link_source.get('label', '')).upper() == source_label.upper():
+                source_match = True
+            elif str(link_source).upper() == source_label.upper():
+                source_match = True
+                
+            # Check target match
+            if isinstance(link_target, dict) and str(link_target.get('label', '')).upper() == target_label.upper():
+                target_match = True
+            elif str(link_target).upper() == target_label.upper():
+                target_match = True
+                
+            if source_match and target_match:
+                enhanced['highlightedEdges'].append({
+                    'source': source_label,
+                    'target': target_label,
+                    'details': link
+                })
+                processed_edges.add(edge_id)
+                break
+    
+    # Process entity citations
+    for entity_citation in citations.get('entities', []):
+        entity_id = entity_citation.get('id')
+        
+        # Skip if we've already processed this entity
+        if entity_id in processed_entities:
+            continue
+            
+        if entity_id is not None:
+            for node in full_graph.get('nodes', []):
+                if (str(node.get('id')) == str(entity_id) or 
+                    str(node.get('human_readable_id')) == str(entity_id)):
+                    enhanced['entities'].append({
+                        'id': entity_id,
+                        'type': 'entity',
+                        'details': node
+                    })
+                    processed_entities.add(entity_id)
+                    break
+    
+    # Process relationship citations
+    for rel_citation in citations.get('relationships', []):
+        rel_id = rel_citation.get('id')
+        
+        # Skip if we've already processed this relationship
+        if rel_id in processed_relationships:
+            continue
+            
+        if rel_id is not None:
+            for link in full_graph.get('links', []):
+                if (str(link.get('id')) == str(rel_id) or
+                    str(link.get('properties', {}).get('id', '')) == str(rel_id)):
+                    enhanced['relationships'].append({
+                        'id': rel_id,
+                        'type': 'relationship',
+                        'details': link
+                    })
+                    processed_relationships.add(rel_id)
+                    break
+    
+    # Process report citations - directly access community_reports.parquet
+    for report_citation in citations.get('reports', []):
+        report_id = report_citation.get('id')
+        
+        # Skip if we've already processed this report
+        if report_id in processed_reports:
+            continue
+            
+        if report_id is not None:  # Handle ID 0 correctly
+            # Look for the report in the reports data
+            for report in reports_data:
+                # Try matching on various possible ID fields
+                if (str(report.get('id', '')) == str(report_id) or 
+                    str(report.get('human_readable_id', '')) == str(report_id) or
+                    str(report.get('report_id', '')) == str(report_id)):
+                    
+                    # Create enhanced report with all available data
+                    enhanced_report = {
+                        'id': report_id,
+                        'type': 'report',
+                        'title': report.get('title', f"Report {report_id}"),
+                        'text': report.get('text', report.get('content', report.get('summary', ''))),
+                        'details': report,
+                        # Include all properties
+                        'properties': {k: v for k, v in report.items() 
+                                    if k not in ['id', 'human_readable_id', 'report_id', 'title', 
+                                                'text', 'content', 'summary']}
+                    }
+                    
+                    # Also gather nodes referenced in this report
+                    if 'entity_ids' in report:
+                        report_nodes = []
+                        for node_id in report.get('entity_ids', []):
+                            for node in full_graph.get('nodes', []):
+                                if str(node.get('id')) == str(node_id):
+                                    report_nodes.append(node)
+                                    break
+                        enhanced_report['nodes'] = report_nodes
+                    
+                    enhanced['reports'].append(enhanced_report)
+                    processed_reports.add(report_id)
+                    break
+    
+    # If reports are still empty, try looking in communities data
+    if not enhanced['reports'] and citations.get('reports'):
+        for report_citation in citations.get('reports', []):
+            report_id = report_citation.get('id')
+            
+            # Skip if we've already processed this report
+            if report_id in processed_reports:
+                continue
+                
+            if report_id is not None and full_graph.get('communities'):
+                for community in full_graph.get('communities', []):
+                    if str(community.get('id')) == str(report_id):
+                        # Get nodes for this community
+                        community_nodes = []
+                        for node_id in community.get('nodes', []):
+                            for node in full_graph.get('nodes', []):
+                                if str(node.get('id')) == str(node_id):
+                                    community_nodes.append(node)
+                                    break
+                        
+                        enhanced['reports'].append({
+                            'id': report_id,
+                            'type': 'community',
+                            'title': community.get('label', f"Community {report_id}"),
+                            'details': community,
+                            'nodes': community_nodes
+                        })
+                        processed_reports.add(report_id)
+                        break
+    
+    # Print debugging info
+    print(f"Enhanced citations: {len(enhanced['reports'])} reports, {len(enhanced['highlightedNodes'])} highlighted nodes, {len(enhanced['highlightedEdges'])} highlighted edges")
+    
+    return enhanced

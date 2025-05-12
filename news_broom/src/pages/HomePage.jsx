@@ -25,7 +25,7 @@ const getNodeColor = (group, colorScale) => {
 
 const HomePage = () => {
   // Add this debugging log
-  console.log("API URL:", import.meta.env.VITE_API_URL || "Not found, using fallback");
+  //console.log("API URL:", import.meta.env.VITE_API_URL || "Not found, using fallback");
 
   const [userInput, setUserInput] = useState("");
   const [followUpInput, setFollowUpInput] = useState("");
@@ -47,6 +47,7 @@ const HomePage = () => {
   const [followUpLoading, setFollowUpLoading] = useState(false);
   const [submittedFollowUp, setSubmittedFollowUp] = useState(""); // Store the follow-up question
   const [expandedScenarios, setExpandedScenarios] = useState([false, false, false]);
+  const [enhancedCitations, setEnhancedCitations] = useState(null);
 
   // Graph refs and state
   const graphRef = useRef();
@@ -161,8 +162,8 @@ const HomePage = () => {
   const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5001";
 
   // Add this debugging log to help verify the URL being used
-  console.log("Current API URL:", API_URL);
-  console.log("Current environment:", import.meta.env.MODE);
+  //console.log("Current API URL:", API_URL);
+  //console.log("Current environment:", import.meta.env.MODE);
 
   // Then update createKnowledgeGraphWithQuery function
   const createKnowledgeGraphWithQuery = async (query) => {
@@ -280,12 +281,12 @@ const HomePage = () => {
     setHighlightedNodes(new Set());
     setHighlightedLinks(new Set());
     setExpandedScenarios([false, false, false]);
+    setEnhancedCitations(null); // Reset enhanced citations
     
     try {
       const response = await axios.post(`${API_URL}/api/query_global_knowledge_graph`, {
         query: followUpInput,
         topic: submittedQuery,
-        //num_sources: 5
       });
       
       if (response.data.status === "success") {
@@ -325,6 +326,14 @@ const HomePage = () => {
           setHighlightedNodes(nodeSet);
           setHighlightedLinks(linkSet);
         }
+
+        // Store enhanced citations in state
+        if (response.data.data.enhanced_citations) {
+          setEnhancedCitations(response.data.data.enhanced_citations);
+          
+          // Log for debugging (you can keep or remove this)
+          console.log("Enhanced citations:", response.data.data.enhanced_citations);
+        }
       } else {
         throw new Error(response.data.message || "Failed to process follow-up question");
       }
@@ -353,9 +362,15 @@ const HomePage = () => {
   
   if (hoverNode) {
     highlightNodes.add(hoverNode);
+    // Find all direct neighbors of the hovered node
     graphData.links.forEach((l) => {
-      if (l.source === hoverNode || l.target === hoverNode) {
+      const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+      const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+      const hoveredId = typeof hoverNode === 'object' ? hoverNode.id : hoverNode;
+      
+      if (sourceId === hoveredId || targetId === hoveredId) {
         highlightLinks.add(l);
+        // Add both source and target to highlight nodes
         highlightNodes.add(l.source);
         highlightNodes.add(l.target);
       }
@@ -368,13 +383,9 @@ const HomePage = () => {
     highlightNodes.add(hoverLink.target);
   }
 
-  // Add this new Legend component or replace the existing one
+  // Update the GraphLegend component
   const GraphLegend = () => {
     if (nodeGroups.length === 0) return null;
-    
-    // Use selection state or hover state for display
-    const displayNode = selectedNode || hoverNode;
-    const displayLink = selectedLink || hoverLink;
     
     return (
       <div className="absolute right-4 top-4 bg-white bg-opacity-90 p-4 rounded-lg shadow-md border border-gray-200 max-w-xs z-10 overflow-auto" style={{ maxHeight: '90%' }}>
@@ -400,38 +411,35 @@ const HomePage = () => {
           )}
         </div>
         
-        {/* Show selected or hovered item details */}
-        {displayNode ? (
+        {selectedNode ? (
           <div className="mt-4 pt-3 border-t border-gray-200">
             <div className="flex justify-between items-center">
               <h4 className="text-sm font-bold text-left mb-2">Node Details</h4>
-              {selectedNode && (
-                <button 
-                  onClick={() => setSelectedNode(null)} 
-                  className="text-xs text-gray-500 hover:text-gray-700"
-                >
-                  ✕
-                </button>
-              )}
+              <button 
+                onClick={() => setSelectedNode(null)} 
+                className="text-xs text-gray-500 hover:text-gray-700"
+              >
+                ✕
+              </button>
             </div>
             <div className="text-left">
               <div className="mb-1">
                 <span className="font-semibold text-gray-700 mr-1">ID:</span>
-                <span className="text-gray-600">{displayNode.id}</span>
+                <span className="text-gray-600">{selectedNode.id}</span>
               </div>
-              {displayNode.label && (
+              {selectedNode.label && (
                 <div className="mb-1">
                   <span className="font-semibold text-gray-700 mr-1">Label:</span>
-                  <span className="text-gray-600">{displayNode.label}</span>
+                  <span className="text-gray-600">{selectedNode.label}</span>
                 </div>
               )}
-              {displayNode.group && (
+              {selectedNode.group && (
                 <div className="mb-1">
                   <span className="font-semibold text-gray-700 mr-1">Group:</span>
-                  <span className="text-gray-600">{displayNode.group}</span>
+                  <span className="text-gray-600">{selectedNode.group}</span>
                 </div>
               )}
-              {displayNode.properties && Object.entries(displayNode.properties).map(([key, value]) => {
+              {selectedNode.properties && Object.entries(selectedNode.properties).map(([key, value]) => {
                 if (key.startsWith('_') || typeof value === 'object') return null;
                 return (
                   <div key={key} className="mb-1">
@@ -442,39 +450,37 @@ const HomePage = () => {
               })}
             </div>
           </div>
-        ) : displayLink ? (
+        ) : selectedLink ? (
           <div className="mt-4 pt-3 border-t border-gray-200">
             <div className="flex justify-between items-center">
               <h4 className="text-sm font-bold text-left mb-2">Link Details</h4>
-              {selectedLink && (
-                <button 
-                  onClick={() => setSelectedLink(null)} 
-                  className="text-xs text-gray-500 hover:text-gray-700"
-                >
-                  ✕
-                </button>
-              )}
+              <button 
+                onClick={() => setSelectedLink(null)} 
+                className="text-xs text-gray-500 hover:text-gray-700"
+              >
+                ✕
+              </button>
             </div>
             <div className="text-left">
               <div className="mb-1">
                 <span className="font-semibold text-gray-700 mr-1">Source:</span>
                 <span className="text-gray-600">
-                  {typeof displayLink.source === 'object' ? displayLink.source.id : displayLink.source}
+                  {typeof selectedLink.source === 'object' ? selectedLink.source.id : selectedLink.source}
                 </span>
               </div>
               <div className="mb-1">
                 <span className="font-semibold text-gray-700 mr-1">Target:</span>
                 <span className="text-gray-600">
-                  {typeof displayLink.target === 'object' ? displayLink.target.id : displayLink.target}
+                  {typeof selectedLink.target === 'object' ? selectedLink.target.id : selectedLink.target}
                 </span>
               </div>
-              {displayLink.value && (
+              {selectedLink.value && (
                 <div className="mb-1">
                   <span className="font-semibold text-gray-700 mr-1">Value:</span>
-                  <span className="text-gray-600">{displayLink.value}</span>
+                  <span className="text-gray-600">{selectedLink.value}</span>
                 </div>
               )}
-              {displayLink.properties && Object.entries(displayLink.properties).map(([key, value]) => {
+              {selectedLink.properties && Object.entries(selectedLink.properties).map(([key, value]) => {
                 if (key.startsWith('_') || typeof value === 'object') return null;
                 return (
                   <div key={key} className="mb-1">
@@ -488,6 +494,147 @@ const HomePage = () => {
         ) : (
           <div className="mt-4 pt-3 border-t border-gray-200 text-gray-500 text-xs italic text-left">
             Click on a node or link to see details
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // Add this new component to display citation details
+  const CitationDetails = ({ enhancedCitations }) => {
+    if (!enhancedCitations) return null;
+    
+    const { reports, highlightedNodes, highlightedEdges } = enhancedCitations;
+    
+    // Check if we have data to display
+    if (
+      (!reports || reports.length === 0) &&
+      (!highlightedNodes || highlightedNodes.length === 0) &&
+      (!highlightedEdges || highlightedEdges.length === 0)
+    ) {
+      return null;
+    }
+    
+    return (
+      <div className="mt-6 text-left">
+        <h3 className="text-lg font-semibold mb-2">Citation Details</h3>
+        
+        {/* Display highlighted entities */}
+        {highlightedNodes && highlightedNodes.length > 0 && (
+          <div className="mb-4">
+            <h4 className="font-medium text-gray-800 mb-1">Key Entities</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {highlightedNodes.map((node, index) => (
+                <div key={index} className="border border-gray-200 rounded-md p-3 bg-gray-50">
+                  <div className="font-medium">{node.label}</div>
+                  {node.details && (
+                    <div className="text-sm text-gray-600 mt-1">
+                      <div><span className="font-medium">Type:</span> {node.details.group || 'Entity'}</div>
+                      {node.details.properties && Object.entries(node.details.properties)
+                        .filter(([key, val]) => !key.startsWith('_') && val && typeof val !== 'object')
+                        .map(([key, val]) => (
+                          <div key={key}><span className="font-medium">{key}:</span> {val.toString()}</div>
+                        ))
+                      }
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Display highlighted relationships */}
+        {highlightedEdges && highlightedEdges.length > 0 && (
+          <div className="mb-4">
+            <h4 className="font-medium text-gray-800 mb-1">Key Relationships</h4>
+            <div className="space-y-2">
+              {highlightedEdges.map((edge, index) => (
+                <div key={index} className="border border-gray-200 rounded-md p-3 bg-gray-50">
+                  <div className="font-medium">{edge.source} → {edge.target}</div>
+                  {edge.details && (
+                    <div className="text-sm text-gray-600 mt-1">
+                      <div><span className="font-medium">Type:</span> {edge.details.label || 'related to'}</div>
+                      {edge.details.properties && Object.entries(edge.details.properties)
+                        .filter(([key, val]) => !key.startsWith('_') && val && typeof val !== 'object')
+                        .map(([key, val]) => (
+                          <div key={key}><span className="font-medium">{key}:</span> {val.toString()}</div>
+                        ))
+                      }
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Display reports */}
+        {reports && reports.length > 0 && (
+          <div className="mb-4">
+            <h4 className="font-medium text-gray-800 mb-1">Reports</h4>
+            <div className="space-y-3">
+              {reports.map((report, index) => (
+                <div key={index} className="border border-gray-200 rounded-md p-3 bg-gray-50">
+                  <div className="font-medium">Report {report.id}</div>
+                  {report.details && (
+                    <div className="text-sm text-gray-600">
+                      {report.title && <div className="mt-1"><span className="font-medium">Title:</span> {report.title}</div>}
+                      <div className="mt-1"><span className="font-medium">Contains:</span> {report.nodes?.length || 0} entities</div>
+                      
+                      {/* Display report content in a cleaner way */}
+                      {report.text && (
+                        <div className="mt-2 border-t border-gray-200 pt-2">
+                          <div className="font-medium mb-1">Report Content:</div>
+                          <div className="bg-white p-2 rounded border border-gray-300 max-h-60 overflow-y-auto">
+                            {/* Display only the summary section, not the full raw content */}
+                            {report.text.includes('##') 
+                              ? report.text.split('##')[0].trim() // Just show the introduction if markdown
+                              : report.text.length > 300 
+                                ? report.text.substring(0, 300) + '...' // Truncate long text
+                                : report.text
+                            }
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Selective display of relevant properties */}
+                      {report.properties && (
+                        <div className="mt-2 border-t border-gray-200 pt-2">
+                          <div className="font-medium mb-1 flex justify-between items-center">
+                            <span>Additional Information:</span>
+                            <button className="text-xs text-blue-500 hover:underline">
+                              {/* Add a show/hide toggle for details */}
+                              Show More Details
+                            </button>
+                          </div>
+                          
+                          {/* Only show key properties, not full_content or other large fields */}
+                          <div className="space-y-1">
+                            {Object.entries(report.properties)
+                              .filter(([key, val]) => 
+                                !['full_content', 'full_content_json', 'entity_ids'].includes(key) && 
+                                val && 
+                                typeof val !== 'object'
+                              )
+                              .map(([key, val]) => (
+                                <div key={key}>
+                                  <span className="font-medium">{key}:</span> {
+                                    typeof val === 'string' && val.length > 100 
+                                      ? val.substring(0, 100) + '...' 
+                                      : val.toString()
+                                  }
+                                </div>
+                              ))
+                            }
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
@@ -640,13 +787,20 @@ const HomePage = () => {
                           backgroundColor="#000"
                           nodeAutoColorBy="group"
                           nodeOpacity={0.85}
-                          nodeLabel={(n) => n.label || n.id}
-                          linkLabel={(l) => {
-                            const src = typeof l.source === 'object' ? l.source.id : l.source;
-                            const tgt = typeof l.target === 'object' ? l.target.id : l.target;
-                            const w = l.properties?.weight ?? l.properties?.Weight ?? "n/a";
-                            return `${src} → ${tgt}\nweight: ${w}`;
-                          }}
+                          
+                          // Keep labels but simplify them
+                          nodeLabel={(n) => n.label || n.id || ''}
+                          linkLabel={(l) => l.type || ''}
+                          
+                          // Add performance optimizations
+                          d3AlphaDecay={0.02} // Faster stabilization
+                          d3VelocityDecay={0.3} // Less node movement
+                          cooldownTime={1000} // Reduced from 2000
+                          warmupTicks={50} // Initial ticks in background
+                          
+                          // Add physics optimization
+                          d3Force={'charge', d3.forceManyBody().strength(-50).distanceMax(200)}
+                          
                           onNodeHover={(n) => {
                             setHoverNode(n || null);
                             setHoverLink(null);
@@ -668,23 +822,41 @@ const HomePage = () => {
                             setSelectedLink(null);
                           }}
                           nodeVal={(n) => {
+                            const nodeId = typeof n === 'object' ? n.id : n;
+                            
                             // Check if node is highlighted from backend
-                            if (n.highlighted || highlightedNodes.has(n.id)) {
-                              return 15; // Largest size for highlighted nodes
+                            if (n.highlighted || highlightedNodes.has(nodeId)) {
+                              return 18; // Largest size for highlighted nodes from search
                             }
-                            // Interactive nodes (hovered or selected)
-                            if (highlightNodes.has(n.id) || n === selectedNode) {
-                              return 12; // Medium size
+                            
+                            // Node being hovered on directly
+                            if (n === hoverNode) {
+                              return 20; // Biggest size for the exact hovered node
                             }
+                            
+                            // Interactive nodes (neighbors of hovered or selected)
+                            if (highlightNodes.has(n) || n === selectedNode) {
+                              return 15; // Larger size for neighbors
+                            }
+                            
                             // Default size
                             return 6;
                           }}
                           nodeColor={(n) => {
-                            // Check if node is highlighted from backend
-                            if (n.highlighted || highlightedNodes.has(n.id)) {
-                              return '#ff5500'; // Orange for highlighted nodes
+                            const nodeId = typeof n === 'object' ? n.id : n;
+                            
+                            // Check if node is highlighted from backend search results
+                            if (n.highlighted || highlightedNodes.has(nodeId)) {
+                              return '#ff5500'; // Keep orange for highlighted nodes from search results
                             }
-                            // Default coloring based on group
+                            
+                            // Selected node
+                            if (n === selectedNode) {
+                              return '#ff00ff'; // Keep purple for selected node
+                            }
+                            
+                            // For all other nodes (including hovered nodes and their neighbors)
+                            // Always use the original group color
                             return getNodeColor(n.group, colorScale.current);
                           }}
                           linkWidth={(l) => {
@@ -723,13 +895,21 @@ const HomePage = () => {
                               ? `${l.source.id}-${l.target.id}` 
                               : `${l.source}-${l.target}`;
                             
-                            return (l.highlighted || highlightedLinks.has(linkId) || l === selectedLink) ? 4 : 0;
+                            // Show particles for:
+                            // 1. Links highlighted from search results
+                            // 2. Links connected to hovered nodes
+                            // 3. The currently hovered link
+                            // 4. The selected link
+                            return (l.highlighted || 
+                                    highlightedLinks.has(linkId) || 
+                                    highlightLinks.has(l) || 
+                                    l === hoverLink || 
+                                    l === selectedLink) ? 4 : 0;
                           }}
                           linkDirectionalParticleWidth={2}
                           linkDirectionalArrowLength={3.5}
                           linkDirectionalArrowRelPos={1}
                           linkCurvature={0.25}
-                          cooldownTime={2000}
                         />
                         <GraphLegend />
                       </>
@@ -770,6 +950,11 @@ const HomePage = () => {
                       {followUpResponse}
                     </ReactMarkdown>
                   </div>
+                  
+                  {/* Add the citation details component - using state variable now */}
+                  {enhancedCitations && (
+                    <CitationDetails enhancedCitations={enhancedCitations} />
+                  )}
                 </div>
               </div>
             )}
