@@ -933,8 +933,8 @@ def query_global_knowledge_graph():
         command = [
             "graphrag", "query",
             "--root", "./ragtest",
-            "--method", "global",  # Using global search method
-            "--query", query
+            "--method", "global", 
+            "--query", f"Give me 3 scenarios from most likely to least likely about what would happen if {query}. Make each scenario different from the others. For each scenario, explain the reasoning and cite relevant reports and entities and relationships from the graph."
         ]
         
         # Execute the command

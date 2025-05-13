@@ -48,6 +48,8 @@ const HomePage = () => {
   const [submittedFollowUp, setSubmittedFollowUp] = useState(""); // Store the follow-up question
   const [expandedScenarios, setExpandedScenarios] = useState([false, false, false]);
   const [enhancedCitations, setEnhancedCitations] = useState(null);
+  const [scenarios, setScenarios] = useState([]);
+  const [selectedScenario, setSelectedScenario] = useState(null);
 
   // Graph refs and state
   const graphRef = useRef();
@@ -270,18 +272,46 @@ const HomePage = () => {
     }
   };
 
+  // Add a function to parse scenarios from the response
+  const parseScenarios = (text) => {
+    // Simple regex to identify scenario blocks
+    // Assuming scenarios are separated by headers like "Scenario 1", "Scenario 2", etc.
+    const scenarioBlocks = text.split(/Scenario \d+:|Most Likely Scenario:|Moderately Likely Scenario:|Least Likely Scenario:/g).filter(Boolean);
+    
+    // If we have fewer than 2 blocks, it likely isn't formatted as scenarios
+    if (scenarioBlocks.length < 2) {
+      // Return a single scenario with the whole text
+      return [{ title: "Response", content: text, likelihood: "Response" }];
+    }
+    
+    // Extract 3 scenarios (or fewer if not enough content)
+    const scenarioTitles = ["Most Likely", "Moderately Likely", "Least Likely"];
+    const scenarioColors = ["bg-green-50 border-green-200", "bg-blue-50 border-blue-200", "bg-purple-50 border-purple-200"];
+    
+    return scenarioBlocks.slice(0, 3).map((content, index) => ({
+      id: index,
+      title: `Scenario ${index + 1}`,
+      likelihood: scenarioTitles[index] || `Scenario ${index + 1}`,
+      content: content.trim(),
+      colorClass: scenarioColors[index] || "bg-gray-50 border-gray-200"
+    }));
+  };
+
+  // Update the handleFollowUpSubmit function to parse scenarios
   const handleFollowUpSubmit = async () => {
     if (!followUpInput.trim()) return;
     
     // Reset states
     setFollowUpResponse(null);
+    setScenarios([]);
+    setSelectedScenario(null);
     setShowFollowUpResponse(false);
     setSubmittedFollowUp(followUpInput);
     setFollowUpLoading(true);
     setHighlightedNodes(new Set());
     setHighlightedLinks(new Set());
     setExpandedScenarios([false, false, false]);
-    setEnhancedCitations(null); // Reset enhanced citations
+    setEnhancedCitations(null);
     
     try {
       const response = await axios.post(`${API_URL}/api/query_global_knowledge_graph`, {
@@ -293,13 +323,17 @@ const HomePage = () => {
         // Process the response to remove unwanted prefixes
         let cleanedResponse = response.data.data.result;
         
-        // Remove the technical headers with a more comprehensive regex
+        // Remove the technical headers
         cleanedResponse = cleanedResponse.replace(/INFO:[\s\S]*?REDACTED ====\}\s*\n/g, '');
         cleanedResponse = cleanedResponse.replace(/SUCCESS:\s*(?:Global|Local)\s*Search\s*Response:?\s*/g, '');
         cleanedResponse = cleanedResponse.replace(/Follow-up\s*Response:?\s*/g, '');
         
         // Trim leading and trailing whitespace
         cleanedResponse = cleanedResponse.trim();
+        
+        // Parse scenarios from the response
+        const parsedScenarios = parseScenarios(cleanedResponse);
+        setScenarios(parsedScenarios);
         
         // Store and display the processed follow-up response
         setFollowUpResponse(cleanedResponse);
@@ -716,6 +750,43 @@ const HomePage = () => {
     );
   };
 
+  // Add a new component for displaying scenarios
+  const ScenarioDisplay = ({ scenarios, selectedScenario, setSelectedScenario }) => {
+    if (!scenarios || scenarios.length === 0) return null;
+    
+    return (
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-3">Scenarios</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {scenarios.map((scenario) => (
+            <div 
+              key={scenario.id} 
+              className={`p-4 rounded-lg border cursor-pointer transition-all ${
+                selectedScenario === scenario.id 
+                  ? `${scenario.colorClass} shadow-md border-2` 
+                  : `${scenario.colorClass} hover:shadow-sm`
+              }`}
+              onClick={() => setSelectedScenario(selectedScenario === scenario.id ? null : scenario.id)}
+            >
+              <h4 className="font-medium text-lg mb-2">{scenario.likelihood}</h4>
+              <div className="prose prose-sm max-w-none">
+                <ReactMarkdown 
+                  rehypePlugins={[rehypeRaw, rehypeSanitize]}
+                >
+                  {scenario.content.length > 300 && !selectedScenario === scenario.id
+                    ? scenario.content.substring(0, 300) + '...'
+                    : scenario.content
+                  }
+                </ReactMarkdown>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-white text-center px-6 py-10">
       {/* Logo (Top) */}
@@ -835,8 +906,11 @@ const HomePage = () => {
                   
                   <div 
                     ref={containerRef} 
-                    className="border border-gray-200 rounded-lg overflow-hidden relative w-full" 
-                    style={{ height: '600px' }}
+                    className="border border-gray-200 rounded-lg overflow-hidden relative w-full"
+                    style={{ 
+                      height: '600px',
+                      backgroundColor: '#000' // Add black background to the container itself
+                    }}
                   >
                     {graphData.nodes.length > 0 && (
                       <>
@@ -862,6 +936,17 @@ const HomePage = () => {
                           backgroundColor="#000"
                           nodeAutoColorBy="group"
                           nodeOpacity={0.85}
+                          
+                          // Add this to ensure the graph fills the entire container 
+                          showNavInfo={false}
+                          
+                          // Ensure the canvas fits the container
+                          onEngineStop={() => {
+                            if (graphRef.current) {
+                              // Force a zoom to fit after the graph stabilizes
+                              setTimeout(() => graphRef.current.zoomToFit(400, 20), 500);
+                            }
+                          }}
                           
                           // Keep labels but simplify them
                           nodeLabel={(n) => n.label || n.id || ''}
@@ -1011,26 +1096,17 @@ const HomePage = () => {
                   </div>
                 </div>
                 
-                {/* Simple single-column display for the response */}
-                <div className="p-4 rounded-lg bg-green-50 border border-green-200">
-                  <div className="prose prose-sm max-w-none">
-                    <ReactMarkdown 
-                      rehypePlugins={[rehypeRaw, rehypeSanitize]}
-                      components={{
-                        a: ({node, ...props}) => (
-                          <a target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline" {...props} />
-                        )
-                      }}
-                    >
-                      {followUpResponse}
-                    </ReactMarkdown>
-                  </div>
-                  
-                  {/* Add the citation details component - using state variable now */}
-                  {enhancedCitations && (
-                    <CitationDetails enhancedCitations={enhancedCitations} />
-                  )}
-                </div>
+                {/* Display scenarios in three columns */}
+                <ScenarioDisplay 
+                  scenarios={scenarios} 
+                  selectedScenario={selectedScenario} 
+                  setSelectedScenario={setSelectedScenario} 
+                />
+                
+                {/* Only show citations when a scenario is selected */}
+                {selectedScenario !== null && enhancedCitations && (
+                  <CitationDetails enhancedCitations={enhancedCitations} />
+                )}
               </div>
             )}
 
