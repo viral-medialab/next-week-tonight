@@ -257,20 +257,41 @@ def extract_citations_from_response(stdout, output_dir):
     }
     
     try:
-        # Extract citations using regex patterns
-        # Standard citation pattern in [Data: ...] format
+        # Original citation patterns - keep these
         citation_pattern = r'\[Data:\s*((?:Reports|Entities|Relationships)\s*\(\d+\)(?:,\s*(?:Reports|Entities|Relationships)\s*\(\d+\))*)\]'
-        # More flexible pattern that can catch citations even without the [Data:] wrapper
         loose_citation_pattern = r'(Reports|Entities|Relationships)\s*\((\d+)\)'
         
-        # Extract citation blocks from main text
+        # NEW pattern for comma-separated IDs in citations
+        complex_citation_pattern = r'\[Data:\s*((?:Reports|Entities|Relationships)\s*\([\d,\s+more]+\)(?:,\s*(?:Reports|Entities|Relationships)\s*\([\d,\s+more]+\))*)\]'
+        complex_entry_pattern = r'(Reports|Entities|Relationships)\s*\(([\d,\s+more]+)\)'
+        
+        # Extract citation blocks from main text using original patterns
         main_matches = re.findall(citation_pattern, stdout)
         process_citation_matches(main_matches, citations, loose_citation_pattern)
         
-        # Also scan for standalone citations not in [Data:] blocks
+        # Also scan for standalone citations not in [Data:] blocks (original approach)
         standalone_matches = re.findall(loose_citation_pattern, stdout)
         for citation_type, citation_id in standalone_matches:
             add_citation(citations, citation_type, citation_id)
+        
+        # NEW: Also extract complex citation blocks with comma-separated IDs
+        complex_matches = re.findall(complex_citation_pattern, stdout)
+        for match in complex_matches:
+            # Extract each citation type (Reports/Entities/Relationships) with their IDs
+            citation_entries = re.findall(complex_entry_pattern, match)
+            
+            for entry_type, entry_ids in citation_entries:
+                # Clean and extract individual IDs
+                # Remove '+more' and any other non-numeric content
+                clean_ids = re.sub(r'[+more\s]', '', entry_ids)
+                
+                # Split by comma to get individual IDs
+                id_list = [id.strip() for id in clean_ids.split(',') if id.strip()]
+                
+                # Add each ID as a citation
+                for id_str in id_list:
+                    if id_str.isdigit():
+                        add_citation(citations, entry_type, id_str)
         
         # Now get report content to look for nested citations
         reports_path = output_dir / "community_reports.parquet"
@@ -291,14 +312,32 @@ def extract_citations_from_response(stdout, output_dir):
                         # Check various possible content fields
                         for content_field in ['full_content', 'text', 'content', 'summary']:
                             if content_field in report and report[content_field]:
-                                # Extract citations from report content - use both patterns
+                                # Extract citations from report content - use original patterns
                                 report_matches = re.findall(citation_pattern, report[content_field])
                                 process_citation_matches(report_matches, citations, loose_citation_pattern)
                                 
-                                # Also look for standalone citations not in [Data:] blocks
+                                # Also look for standalone citations (original approach)
                                 standalone_matches = re.findall(loose_citation_pattern, report[content_field])
                                 for citation_type, citation_id in standalone_matches:
                                     add_citation(citations, citation_type, citation_id)
+                                
+                                # NEW: Look for complex citations within reports
+                                complex_report_matches = re.findall(complex_citation_pattern, report[content_field])
+                                for rmatch in complex_report_matches:
+                                    # Extract each citation type with their IDs
+                                    citation_entries = re.findall(complex_entry_pattern, rmatch)
+                                    
+                                    for entry_type, entry_ids in citation_entries:
+                                        # Clean and extract individual IDs
+                                        clean_ids = re.sub(r'[+more\s]', '', entry_ids)
+                                        
+                                        # Split by comma to get individual IDs
+                                        id_list = [id.strip() for id in clean_ids.split(',') if id.strip()]
+                                        
+                                        # Add each ID as a citation
+                                        for id_str in id_list:
+                                            if id_str.isdigit():
+                                                add_citation(citations, entry_type, id_str)
         
         # Get the mapping data for nodes and relationships
         report_id_to_node_ids, node_human_id_to_label, edge_human_id_to_nodes = get_report_nodes(output_dir)

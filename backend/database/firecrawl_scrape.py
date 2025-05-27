@@ -223,7 +223,7 @@ def firecrawl_extract_only(url):
         output = app.extract([url], {
             'prompt': prompt,
             'schema': ExtractSchema.model_json_schema(),
-            'max_tokens': 32768
+            'max_tokens': 65000
         })['data']
         
         # Check if extraction was successful

@@ -24252,3 +24252,2656 @@
 03:05:15,235 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
 03:05:15,296 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
 03:05:15,601 graphrag.cli.index INFO All workflows completed successfully.
+10:49:32,77 graphrag.cli.index INFO Logging enabled at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default/indexing-engine.log
+10:49:33,333 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:33,974 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:49:33,978 graphrag.cli.index INFO Starting pipeline run. dry_run=False
+10:49:33,980 graphrag.cli.index INFO Using default configuration: {
+    "root_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest",
+    "models": {
+        "default_chat_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_chat",
+            "model": "gpt-4-turbo-preview",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        },
+        "default_embedding_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_embedding",
+            "model": "text-embedding-3-small",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        }
+    },
+    "reporting": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default",
+        "storage_account_blob_url": null
+    },
+    "output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/Housing_Crisis_in_the_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "outputs": null,
+    "update_index_output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/update_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache_default",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "Housing_Crisis_in_the_input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "text_column": "text",
+        "title_column": null,
+        "metadata": null
+    },
+    "embed_graph": {
+        "enabled": true,
+        "dimensions": 1536,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "use_lcc": true
+    },
+    "embed_text": {
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "names": [],
+        "strategy": null,
+        "model_id": "default_embedding_model",
+        "vector_store_id": "default_vector_store"
+    },
+    "chunks": {
+        "size": 1200,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": "tokens",
+        "encoding_model": "cl100k_base",
+        "prepend_metadata": false,
+        "chunk_size_includes_metadata": false
+    },
+    "snapshots": {
+        "embeddings": false,
+        "graphml": false
+    },
+    "extract_graph": {
+        "prompt": "prompts/extract_graph.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_graph_nlp": {
+        "normalize_edge_weights": true,
+        "text_analyzer": {
+            "extractor_type": "regex_english",
+            "model_name": "en_core_web_md",
+            "max_word_length": 15,
+            "word_delimiter": " ",
+            "include_named_entities": true,
+            "exclude_nouns": null,
+            "exclude_entity_tags": [
+                "DATE"
+            ],
+            "exclude_pos_tags": [
+                "DET",
+                "PRON",
+                "INTJ",
+                "X"
+            ],
+            "noun_phrase_tags": [
+                "PROPN",
+                "NOUNS"
+            ],
+            "noun_phrase_grammars": {
+                "PROPN,PROPN": "PROPN",
+                "NOUN,NOUN": "NOUNS",
+                "NOUNS,NOUN": "NOUNS",
+                "ADJ,ADJ": "ADJ",
+                "ADJ,NOUN": "NOUNS"
+            }
+        },
+        "concurrent_requests": 25
+    },
+    "summarize_descriptions": {
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "community_reports": {
+        "graph_prompt": "prompts/community_report_graph.txt",
+        "text_prompt": "prompts/community_report_text.txt",
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_claims": {
+        "enabled": false,
+        "prompt": "prompts/extract_claims.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "prune_graph": {
+        "min_node_freq": 2,
+        "max_node_freq_std": null,
+        "min_node_degree": 1,
+        "max_node_degree_std": null,
+        "min_edge_weight_pct": 40,
+        "remove_ego_nodes": false,
+        "lcc_only": false
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "use_lcc": true,
+        "seed": 3735928559
+    },
+    "umap": {
+        "enabled": true
+    },
+    "local_search": {
+        "prompt": "prompts/local_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "community_prop": 0.15,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "map_prompt": "prompts/global_search_map_system_prompt.txt",
+        "reduce_prompt": "prompts/global_search_reduce_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "knowledge_prompt": "prompts/global_search_knowledge_system_prompt.txt",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32,
+        "dynamic_search_llm": "gpt-4o-mini",
+        "dynamic_search_threshold": 1,
+        "dynamic_search_keep_parent": false,
+        "dynamic_search_num_repeats": 1,
+        "dynamic_search_use_summary": false,
+        "dynamic_search_concurrent_coroutines": 16,
+        "dynamic_search_max_level": 2
+    },
+    "drift_search": {
+        "prompt": "prompts/drift_search_system_prompt.txt",
+        "reduce_prompt": "prompts/drift_search_reduce_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "reduce_max_tokens": 2000,
+        "reduce_temperature": 0,
+        "concurrency": 32,
+        "drift_k_followups": 20,
+        "primer_folds": 5,
+        "primer_llm_max_tokens": 12000,
+        "n_depth": 3,
+        "local_search_text_unit_prop": 0.9,
+        "local_search_community_prop": 0.1,
+        "local_search_top_k_mapped_entities": 10,
+        "local_search_top_k_relationships": 10,
+        "local_search_max_data_tokens": 12000,
+        "local_search_temperature": 0,
+        "local_search_top_p": 1,
+        "local_search_n": 1,
+        "local_search_llm_max_gen_tokens": 4096
+    },
+    "basic_search": {
+        "prompt": "prompts/basic_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "conversation_history_max_turns": 5,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "vector_store": {
+        "default_vector_store": {
+            "type": "lancedb",
+            "db_uri": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/output/lancedb",
+            "url": null,
+            "audience": null,
+            "container_name": "==== REDACTED ====",
+            "database_name": null,
+            "overwrite": true
+        }
+    },
+    "workflows": null
+}
+10:49:33,982 graphrag.storage.file_pipeline_storage INFO Creating file storage at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Housing_Crisis_in_the_output
+10:49:33,982 graphrag.index.input.factory INFO loading input from root_dir=Housing_Crisis_in_the_input
+10:49:33,982 graphrag.index.input.factory INFO using file storage for input
+10:49:33,982 graphrag.storage.file_pipeline_storage INFO search /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Housing_Crisis_in_the_input for files matching .*\.txt$
+10:49:33,983 graphrag.index.input.text INFO found text files from Housing_Crisis_in_the_input, found [('Housing_Crisis_in_the_US_9294.txt', {}), ('Housing_Crisis_in_the_US_6388.txt', {}), ('Housing_Crisis_in_the_US_3262.txt', {}), ('Housing_Crisis_in_the_US_perplexity_response.txt', {}), ('Housing_Crisis_in_the_US_6849.txt', {}), ('Housing_Crisis_in_the_US_9707.txt', {})]
+10:49:33,990 graphrag.index.input.text INFO Found 6 files, loading 6
+10:49:33,993 graphrag.index.run.run_pipeline INFO Final # of rows loaded: 6
+10:49:34,15 graphrag.utils.storage INFO reading table from storage: documents.parquet
+10:49:34,64 graphrag.utils.storage INFO reading table from storage: documents.parquet
+10:49:34,65 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+10:49:34,75 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+10:49:38,3 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:43,453 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:45,933 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:47,95 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:47,660 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:48,937 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:49,247 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:50,650 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:51,498 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:51,943 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:54,533 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:55,174 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:56,18 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:58,181 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:58,516 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:49:58,717 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:00,477 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:00,716 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:00,804 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:01,761 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:03,467 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:03,827 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:04,471 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:04,983 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:07,4 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:08,185 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:09,108 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:10,775 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:11,713 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:14,295 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:14,639 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:15,876 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:15,904 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:17,518 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:19,431 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:19,919 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:24,589 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:27,773 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:30,492 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:42,926 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,57 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,292 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,390 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,474 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,568 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,587 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,895 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,939 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,986 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:46,994 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,14 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,222 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,314 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,393 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,441 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,449 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,521 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,604 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,664 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,754 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,766 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:47,999 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:49,288 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:49,444 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:50,20 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:50,149 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:50,416 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:50,835 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:51,129 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:50:51,166 graphrag.utils.storage INFO reading table from storage: entities.parquet
+10:50:51,169 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+10:50:51,176 root INFO Starting preprocessing of transition probabilities on graph with 46 nodes and 51 edges
+10:50:51,176 root INFO Starting at time 1747147851.176466
+10:50:51,176 root INFO Beginning preprocessing of transition probabilities for 46 vertices
+10:50:51,176 root INFO Completed 1 / 46 vertices
+10:50:51,176 root INFO Completed 5 / 46 vertices
+10:50:51,176 root INFO Completed 9 / 46 vertices
+10:50:51,176 root INFO Completed 13 / 46 vertices
+10:50:51,176 root INFO Completed 17 / 46 vertices
+10:50:51,176 root INFO Completed 21 / 46 vertices
+10:50:51,176 root INFO Completed 25 / 46 vertices
+10:50:51,176 root INFO Completed 29 / 46 vertices
+10:50:51,176 root INFO Completed 33 / 46 vertices
+10:50:51,176 root INFO Completed 37 / 46 vertices
+10:50:51,176 root INFO Completed 41 / 46 vertices
+10:50:51,177 root INFO Completed 45 / 46 vertices
+10:50:51,177 root INFO Completed preprocessing of transition probabilities for vertices
+10:50:51,177 root INFO Beginning preprocessing of transition probabilities for 51 edges
+10:50:51,177 root INFO Completed 1 / 51 edges
+10:50:51,177 root INFO Completed 6 / 51 edges
+10:50:51,177 root INFO Completed 11 / 51 edges
+10:50:51,177 root INFO Completed 16 / 51 edges
+10:50:51,177 root INFO Completed 21 / 51 edges
+10:50:51,177 root INFO Completed 26 / 51 edges
+10:50:51,177 root INFO Completed 31 / 51 edges
+10:50:51,177 root INFO Completed 36 / 51 edges
+10:50:51,177 root INFO Completed 41 / 51 edges
+10:50:51,177 root INFO Completed 46 / 51 edges
+10:50:51,178 root INFO Completed 51 / 51 edges
+10:50:51,178 root INFO Completed preprocessing of transition probabilities for edges
+10:50:51,178 root INFO Simulating walks on graph at time 1747147851.178077
+10:50:51,178 root INFO Walk iteration: 1/10
+10:50:51,181 root INFO Walk iteration: 2/10
+10:50:51,183 root INFO Walk iteration: 3/10
+10:50:51,185 root INFO Walk iteration: 4/10
+10:50:51,186 root INFO Walk iteration: 5/10
+10:50:51,188 root INFO Walk iteration: 6/10
+10:50:51,190 root INFO Walk iteration: 7/10
+10:50:51,192 root INFO Walk iteration: 8/10
+10:50:51,194 root INFO Walk iteration: 9/10
+10:50:51,195 root INFO Walk iteration: 10/10
+10:50:51,197 root INFO Learning embeddings at time 1747147851.197519
+10:50:51,198 gensim.models.word2vec INFO collecting all words and their counts
+10:50:51,198 gensim.models.word2vec INFO PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+10:50:51,198 gensim.models.word2vec INFO collected 46 word types from a corpus of 8720 raw words and 460 sentences
+10:50:51,198 gensim.models.word2vec INFO Creating a fresh vocabulary
+10:50:51,198 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 retains 46 unique words (100.00% of original 46, drops 0)', 'datetime': '2025-05-13T10:50:51.198876', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+10:50:51,198 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 leaves 8720 word corpus (100.00% of original 8720, drops 0)', 'datetime': '2025-05-13T10:50:51.198923', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+10:50:51,199 gensim.models.word2vec INFO deleting the raw counts dictionary of 46 items
+10:50:51,199 gensim.models.word2vec INFO sample=0.001 downsamples 46 most-common words
+10:50:51,199 gensim.utils INFO Word2Vec lifecycle event {'msg': 'downsampling leaves estimated 2173.316155011783 word corpus (24.9%% of prior 8720)', 'datetime': '2025-05-13T10:50:51.199126', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+10:50:51,199 gensim.models.word2vec INFO estimated required memory for 46 words and 1536 dimensions: 588248 bytes
+10:50:51,199 gensim.models.word2vec INFO resetting layer weights
+10:50:51,200 gensim.utils INFO Word2Vec lifecycle event {'update': False, 'trim_rule': 'None', 'datetime': '2025-05-13T10:50:51.200164', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'build_vocab'}
+10:50:51,200 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training model with 8 workers on 46 vocabulary and 1536 features, using sg=1 hs=0 sample=0.001 negative=5 window=2 shrink_windows=True', 'datetime': '2025-05-13T10:50:51.200243', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+10:50:51,218 gensim.models.word2vec INFO EPOCH 0: training on 8720 raw words (2223 effective words) took 0.0s, 144349 effective words/s
+10:50:51,233 gensim.models.word2vec INFO EPOCH 1: training on 8720 raw words (2184 effective words) took 0.0s, 158946 effective words/s
+10:50:51,247 gensim.models.word2vec INFO EPOCH 2: training on 8720 raw words (2146 effective words) took 0.0s, 161005 effective words/s
+10:50:51,247 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training on 26160 raw words (6553 effective words) took 0.0s, 138927 effective words/s', 'datetime': '2025-05-13T10:50:51.247441', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+10:50:51,247 gensim.utils INFO Word2Vec lifecycle event {'params': 'Word2Vec<vocab=46, vector_size=1536, alpha=0.025>', 'datetime': '2025-05-13T10:50:51.247480', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'created'}
+10:50:51,247 root INFO Completed. Ending time is 1747147851.247518 Elapsed time is -0.07105207443237305
+10:50:55,363 graphrag.utils.storage INFO reading table from storage: entities.parquet
+10:50:55,365 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+10:50:55,391 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+10:50:55,393 graphrag.utils.storage INFO reading table from storage: entities.parquet
+10:50:55,395 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+10:50:55,413 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+10:50:55,415 graphrag.utils.storage INFO reading table from storage: entities.parquet
+10:50:55,416 graphrag.utils.storage INFO reading table from storage: communities.parquet
+10:50:55,422 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=1 => 10
+10:50:55,436 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=0 => 46
+10:51:12,268 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:13,519 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:14,97 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:34,759 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:35,298 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:36,271 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:36,345 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:36,424 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:37,417 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:42,604 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+10:51:42,644 graphrag.utils.storage INFO reading table from storage: documents.parquet
+10:51:42,648 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+10:51:42,651 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+10:51:42,653 graphrag.utils.storage INFO reading table from storage: entities.parquet
+10:51:42,656 graphrag.utils.storage INFO reading table from storage: community_reports.parquet
+10:51:42,661 graphrag.index.workflows.generate_text_embeddings INFO Creating embeddings
+10:51:42,661 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding entity.description: default-entity-description
+10:51:42,920 graphrag.index.operations.embed_text.strategies.openai INFO embedding 256 inputs via 256 snippets using 16 batches. max_batch_size=16, max_tokens=8191
+10:51:43,495 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,583 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,603 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,718 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,756 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,757 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,759 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,763 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,907 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,939 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:43,989 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:44,43 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:44,393 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:44,706 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:44,799 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:45,163 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:45,352 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding text_unit.text: default-text_unit-text
+10:51:45,376 graphrag.index.operations.embed_text.strategies.openai INFO embedding 20 inputs via 20 snippets using 3 batches. max_batch_size=16, max_tokens=8191
+10:51:45,641 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:45,933 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:46,382 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:46,442 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding community.full_content: default-community-full_content
+10:51:46,448 graphrag.index.operations.embed_text.strategies.openai INFO embedding 10 inputs via 10 snippets using 1 batches. max_batch_size=16, max_tokens=8191
+10:51:46,716 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+10:51:46,833 graphrag.cli.index INFO All workflows completed successfully.
+11:32:50,720 graphrag.cli.index INFO Logging enabled at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default/indexing-engine.log
+11:32:51,547 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:32:52,365 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:32:52,370 graphrag.cli.index INFO Starting pipeline run. dry_run=False
+11:32:52,372 graphrag.cli.index INFO Using default configuration: {
+    "root_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest",
+    "models": {
+        "default_chat_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_chat",
+            "model": "gpt-4-turbo-preview",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        },
+        "default_embedding_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_embedding",
+            "model": "text-embedding-3-small",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        }
+    },
+    "reporting": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default",
+        "storage_account_blob_url": null
+    },
+    "output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/Meta_Antitrust_Lawsuit_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "outputs": null,
+    "update_index_output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/update_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache_default",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "Meta_Antitrust_Lawsuit_input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "text_column": "text",
+        "title_column": null,
+        "metadata": null
+    },
+    "embed_graph": {
+        "enabled": true,
+        "dimensions": 1536,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "use_lcc": true
+    },
+    "embed_text": {
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "names": [],
+        "strategy": null,
+        "model_id": "default_embedding_model",
+        "vector_store_id": "default_vector_store"
+    },
+    "chunks": {
+        "size": 1200,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": "tokens",
+        "encoding_model": "cl100k_base",
+        "prepend_metadata": false,
+        "chunk_size_includes_metadata": false
+    },
+    "snapshots": {
+        "embeddings": false,
+        "graphml": false
+    },
+    "extract_graph": {
+        "prompt": "prompts/extract_graph.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_graph_nlp": {
+        "normalize_edge_weights": true,
+        "text_analyzer": {
+            "extractor_type": "regex_english",
+            "model_name": "en_core_web_md",
+            "max_word_length": 15,
+            "word_delimiter": " ",
+            "include_named_entities": true,
+            "exclude_nouns": null,
+            "exclude_entity_tags": [
+                "DATE"
+            ],
+            "exclude_pos_tags": [
+                "DET",
+                "PRON",
+                "INTJ",
+                "X"
+            ],
+            "noun_phrase_tags": [
+                "PROPN",
+                "NOUNS"
+            ],
+            "noun_phrase_grammars": {
+                "PROPN,PROPN": "PROPN",
+                "NOUN,NOUN": "NOUNS",
+                "NOUNS,NOUN": "NOUNS",
+                "ADJ,ADJ": "ADJ",
+                "ADJ,NOUN": "NOUNS"
+            }
+        },
+        "concurrent_requests": 25
+    },
+    "summarize_descriptions": {
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "community_reports": {
+        "graph_prompt": "prompts/community_report_graph.txt",
+        "text_prompt": "prompts/community_report_text.txt",
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_claims": {
+        "enabled": false,
+        "prompt": "prompts/extract_claims.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "prune_graph": {
+        "min_node_freq": 2,
+        "max_node_freq_std": null,
+        "min_node_degree": 1,
+        "max_node_degree_std": null,
+        "min_edge_weight_pct": 40,
+        "remove_ego_nodes": false,
+        "lcc_only": false
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "use_lcc": true,
+        "seed": 3735928559
+    },
+    "umap": {
+        "enabled": true
+    },
+    "local_search": {
+        "prompt": "prompts/local_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "community_prop": 0.15,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "map_prompt": "prompts/global_search_map_system_prompt.txt",
+        "reduce_prompt": "prompts/global_search_reduce_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "knowledge_prompt": "prompts/global_search_knowledge_system_prompt.txt",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32,
+        "dynamic_search_llm": "gpt-4o-mini",
+        "dynamic_search_threshold": 1,
+        "dynamic_search_keep_parent": false,
+        "dynamic_search_num_repeats": 1,
+        "dynamic_search_use_summary": false,
+        "dynamic_search_concurrent_coroutines": 16,
+        "dynamic_search_max_level": 2
+    },
+    "drift_search": {
+        "prompt": "prompts/drift_search_system_prompt.txt",
+        "reduce_prompt": "prompts/drift_search_reduce_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "reduce_max_tokens": 2000,
+        "reduce_temperature": 0,
+        "concurrency": 32,
+        "drift_k_followups": 20,
+        "primer_folds": 5,
+        "primer_llm_max_tokens": 12000,
+        "n_depth": 3,
+        "local_search_text_unit_prop": 0.9,
+        "local_search_community_prop": 0.1,
+        "local_search_top_k_mapped_entities": 10,
+        "local_search_top_k_relationships": 10,
+        "local_search_max_data_tokens": 12000,
+        "local_search_temperature": 0,
+        "local_search_top_p": 1,
+        "local_search_n": 1,
+        "local_search_llm_max_gen_tokens": 4096
+    },
+    "basic_search": {
+        "prompt": "prompts/basic_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "conversation_history_max_turns": 5,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "vector_store": {
+        "default_vector_store": {
+            "type": "lancedb",
+            "db_uri": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/output/lancedb",
+            "url": null,
+            "audience": null,
+            "container_name": "==== REDACTED ====",
+            "database_name": null,
+            "overwrite": true
+        }
+    },
+    "workflows": null
+}
+11:32:52,373 graphrag.storage.file_pipeline_storage INFO Creating file storage at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Meta_Antitrust_Lawsuit_output
+11:32:52,373 graphrag.index.input.factory INFO loading input from root_dir=Meta_Antitrust_Lawsuit_input
+11:32:52,373 graphrag.index.input.factory INFO using file storage for input
+11:32:52,373 graphrag.storage.file_pipeline_storage INFO search /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Meta_Antitrust_Lawsuit_input for files matching .*\.txt$
+11:32:52,374 graphrag.index.input.text INFO found text files from Meta_Antitrust_Lawsuit_input, found [('Meta_Antitrust_Lawsuit_6028.txt', {}), ('Meta_Antitrust_Lawsuit_7243.txt', {}), ('Meta_Antitrust_Lawsuit_2822.txt', {}), ('Meta_Antitrust_Lawsuit_perplexity_response.txt', {}), ('Meta_Antitrust_Lawsuit_7717.txt', {}), ('Meta_Antitrust_Lawsuit_1835.txt', {})]
+11:32:52,380 graphrag.index.input.text INFO Found 6 files, loading 6
+11:32:52,381 graphrag.index.run.run_pipeline INFO Final # of rows loaded: 6
+11:32:52,388 graphrag.utils.storage INFO reading table from storage: documents.parquet
+11:32:52,417 graphrag.utils.storage INFO reading table from storage: documents.parquet
+11:32:52,419 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:32:52,430 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:32:57,996 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:01,360 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:01,995 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:02,708 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:05,22 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:11,90 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:12,22 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:13,319 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:14,395 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:14,788 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:15,911 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:16,240 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:18,946 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:21,787 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:25,389 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:28,304 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:29,840 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:38,612 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:39,225 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:43,254 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:46,269 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:46,294 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:46,444 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:46,909 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:46,987 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:47,67 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:47,78 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:47,683 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:47,701 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:48,275 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:48,371 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:48,543 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:49,18 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:49,398 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:49,476 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:51,461 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:51,856 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:52,7 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:52,368 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:52,371 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:52,525 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:52,880 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:33:52,910 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:33:52,913 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:33:52,920 root INFO Starting preprocessing of transition probabilities on graph with 76 nodes and 94 edges
+11:33:52,920 root INFO Starting at time 1747150432.920398
+11:33:52,920 root INFO Beginning preprocessing of transition probabilities for 76 vertices
+11:33:52,920 root INFO Completed 1 / 76 vertices
+11:33:52,920 root INFO Completed 8 / 76 vertices
+11:33:52,920 root INFO Completed 15 / 76 vertices
+11:33:52,920 root INFO Completed 22 / 76 vertices
+11:33:52,920 root INFO Completed 29 / 76 vertices
+11:33:52,920 root INFO Completed 36 / 76 vertices
+11:33:52,920 root INFO Completed 43 / 76 vertices
+11:33:52,920 root INFO Completed 50 / 76 vertices
+11:33:52,920 root INFO Completed 57 / 76 vertices
+11:33:52,921 root INFO Completed 64 / 76 vertices
+11:33:52,921 root INFO Completed 71 / 76 vertices
+11:33:52,921 root INFO Completed preprocessing of transition probabilities for vertices
+11:33:52,921 root INFO Beginning preprocessing of transition probabilities for 94 edges
+11:33:52,921 root INFO Completed 1 / 94 edges
+11:33:52,921 root INFO Completed 10 / 94 edges
+11:33:52,921 root INFO Completed 19 / 94 edges
+11:33:52,921 root INFO Completed 28 / 94 edges
+11:33:52,922 root INFO Completed 37 / 94 edges
+11:33:52,922 root INFO Completed 46 / 94 edges
+11:33:52,922 root INFO Completed 55 / 94 edges
+11:33:52,923 root INFO Completed 64 / 94 edges
+11:33:52,923 root INFO Completed 73 / 94 edges
+11:33:52,923 root INFO Completed 82 / 94 edges
+11:33:52,923 root INFO Completed 91 / 94 edges
+11:33:52,923 root INFO Completed preprocessing of transition probabilities for edges
+11:33:52,923 root INFO Simulating walks on graph at time 1747150432.923757
+11:33:52,923 root INFO Walk iteration: 1/10
+11:33:52,927 root INFO Walk iteration: 2/10
+11:33:52,930 root INFO Walk iteration: 3/10
+11:33:52,933 root INFO Walk iteration: 4/10
+11:33:52,936 root INFO Walk iteration: 5/10
+11:33:52,938 root INFO Walk iteration: 6/10
+11:33:52,941 root INFO Walk iteration: 7/10
+11:33:52,943 root INFO Walk iteration: 8/10
+11:33:52,946 root INFO Walk iteration: 9/10
+11:33:52,948 root INFO Walk iteration: 10/10
+11:33:52,951 root INFO Learning embeddings at time 1747150432.951351
+11:33:52,952 gensim.models.word2vec INFO collecting all words and their counts
+11:33:52,952 gensim.models.word2vec INFO PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+11:33:52,952 gensim.models.word2vec INFO collected 76 word types from a corpus of 12480 raw words and 760 sentences
+11:33:52,952 gensim.models.word2vec INFO Creating a fresh vocabulary
+11:33:52,953 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 retains 76 unique words (100.00% of original 76, drops 0)', 'datetime': '2025-05-13T11:33:52.953040', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+11:33:52,953 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 leaves 12480 word corpus (100.00% of original 12480, drops 0)', 'datetime': '2025-05-13T11:33:52.953080', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+11:33:52,953 gensim.models.word2vec INFO deleting the raw counts dictionary of 76 items
+11:33:52,953 gensim.models.word2vec INFO sample=0.001 downsamples 76 most-common words
+11:33:52,953 gensim.utils INFO Word2Vec lifecycle event {'msg': 'downsampling leaves estimated 3945.451059693491 word corpus (31.6%% of prior 12480)', 'datetime': '2025-05-13T11:33:52.953346', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+11:33:52,953 gensim.models.word2vec INFO estimated required memory for 76 words and 1536 dimensions: 971888 bytes
+11:33:52,953 gensim.models.word2vec INFO resetting layer weights
+11:33:52,954 gensim.utils INFO Word2Vec lifecycle event {'update': False, 'trim_rule': 'None', 'datetime': '2025-05-13T11:33:52.954155', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'build_vocab'}
+11:33:52,954 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training model with 8 workers on 76 vocabulary and 1536 features, using sg=1 hs=0 sample=0.001 negative=5 window=2 shrink_windows=True', 'datetime': '2025-05-13T11:33:52.954190', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+11:33:52,978 gensim.models.word2vec INFO EPOCH 0: training on 12480 raw words (3953 effective words) took 0.0s, 170570 effective words/s
+11:33:53,0 gensim.models.word2vec INFO EPOCH 1: training on 12480 raw words (3950 effective words) took 0.0s, 186223 effective words/s
+11:33:53,23 gensim.models.word2vec INFO EPOCH 2: training on 12480 raw words (3928 effective words) took 0.0s, 175946 effective words/s
+11:33:53,23 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training on 37440 raw words (11831 effective words) took 0.1s, 171055 effective words/s', 'datetime': '2025-05-13T11:33:53.023377', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+11:33:53,23 gensim.utils INFO Word2Vec lifecycle event {'params': 'Word2Vec<vocab=76, vector_size=1536, alpha=0.025>', 'datetime': '2025-05-13T11:33:53.023427', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'created'}
+11:33:53,23 root INFO Completed. Ending time is 1747150433.023471 Elapsed time is -0.1030731201171875
+11:33:56,854 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:33:56,856 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:33:56,882 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:33:56,883 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:33:56,885 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:33:56,898 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:33:56,900 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:33:56,901 graphrag.utils.storage INFO reading table from storage: communities.parquet
+11:33:56,907 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=1 => 44
+11:33:56,940 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=0 => 76
+11:34:09,577 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:14,364 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:14,519 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:15,300 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:17,809 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:20,735 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:22,887 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:27,391 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:28,471 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:45,442 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:48,672 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:50,939 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:52,275 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:52,278 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:52,468 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:58,827 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:34:58,868 graphrag.utils.storage INFO reading table from storage: documents.parquet
+11:34:58,871 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:34:58,873 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:34:58,875 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:34:58,877 graphrag.utils.storage INFO reading table from storage: community_reports.parquet
+11:34:58,881 graphrag.index.workflows.generate_text_embeddings INFO Creating embeddings
+11:34:58,882 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding community.full_content: default-community-full_content
+11:34:59,123 graphrag.index.operations.embed_text.strategies.openai INFO embedding 16 inputs via 16 snippets using 2 batches. max_batch_size=16, max_tokens=8191
+11:34:59,749 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:34:59,751 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:34:59,889 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding text_unit.text: default-text_unit-text
+11:34:59,899 graphrag.index.operations.embed_text.strategies.openai INFO embedding 10 inputs via 10 snippets using 2 batches. max_batch_size=16, max_tokens=8191
+11:35:00,361 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:35:00,733 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:35:00,794 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding entity.description: default-entity-description
+11:35:00,801 graphrag.index.operations.embed_text.strategies.openai INFO embedding 77 inputs via 77 snippets using 5 batches. max_batch_size=16, max_tokens=8191
+11:35:01,138 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:35:01,314 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:35:01,352 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:35:01,372 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:35:01,603 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:35:01,716 graphrag.cli.index INFO All workflows completed successfully.
+11:48:53,563 graphrag.cli.index INFO Logging enabled at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default/indexing-engine.log
+11:48:54,894 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:48:55,227 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:48:55,233 graphrag.cli.index INFO Starting pipeline run. dry_run=False
+11:48:55,234 graphrag.cli.index INFO Using default configuration: {
+    "root_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest",
+    "models": {
+        "default_chat_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_chat",
+            "model": "gpt-4-turbo-preview",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        },
+        "default_embedding_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_embedding",
+            "model": "text-embedding-3-small",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        }
+    },
+    "reporting": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default",
+        "storage_account_blob_url": null
+    },
+    "output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tariff_Wars_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "outputs": null,
+    "update_index_output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/update_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache_default",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "Trump_Tariff_Wars_input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "text_column": "text",
+        "title_column": null,
+        "metadata": null
+    },
+    "embed_graph": {
+        "enabled": true,
+        "dimensions": 1536,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "use_lcc": true
+    },
+    "embed_text": {
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "names": [],
+        "strategy": null,
+        "model_id": "default_embedding_model",
+        "vector_store_id": "default_vector_store"
+    },
+    "chunks": {
+        "size": 1200,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": "tokens",
+        "encoding_model": "cl100k_base",
+        "prepend_metadata": false,
+        "chunk_size_includes_metadata": false
+    },
+    "snapshots": {
+        "embeddings": false,
+        "graphml": false
+    },
+    "extract_graph": {
+        "prompt": "prompts/extract_graph.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_graph_nlp": {
+        "normalize_edge_weights": true,
+        "text_analyzer": {
+            "extractor_type": "regex_english",
+            "model_name": "en_core_web_md",
+            "max_word_length": 15,
+            "word_delimiter": " ",
+            "include_named_entities": true,
+            "exclude_nouns": null,
+            "exclude_entity_tags": [
+                "DATE"
+            ],
+            "exclude_pos_tags": [
+                "DET",
+                "PRON",
+                "INTJ",
+                "X"
+            ],
+            "noun_phrase_tags": [
+                "PROPN",
+                "NOUNS"
+            ],
+            "noun_phrase_grammars": {
+                "PROPN,PROPN": "PROPN",
+                "NOUN,NOUN": "NOUNS",
+                "NOUNS,NOUN": "NOUNS",
+                "ADJ,ADJ": "ADJ",
+                "ADJ,NOUN": "NOUNS"
+            }
+        },
+        "concurrent_requests": 25
+    },
+    "summarize_descriptions": {
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "community_reports": {
+        "graph_prompt": "prompts/community_report_graph.txt",
+        "text_prompt": "prompts/community_report_text.txt",
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_claims": {
+        "enabled": false,
+        "prompt": "prompts/extract_claims.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "prune_graph": {
+        "min_node_freq": 2,
+        "max_node_freq_std": null,
+        "min_node_degree": 1,
+        "max_node_degree_std": null,
+        "min_edge_weight_pct": 40,
+        "remove_ego_nodes": false,
+        "lcc_only": false
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "use_lcc": true,
+        "seed": 3735928559
+    },
+    "umap": {
+        "enabled": true
+    },
+    "local_search": {
+        "prompt": "prompts/local_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "community_prop": 0.15,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "map_prompt": "prompts/global_search_map_system_prompt.txt",
+        "reduce_prompt": "prompts/global_search_reduce_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "knowledge_prompt": "prompts/global_search_knowledge_system_prompt.txt",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32,
+        "dynamic_search_llm": "gpt-4o-mini",
+        "dynamic_search_threshold": 1,
+        "dynamic_search_keep_parent": false,
+        "dynamic_search_num_repeats": 1,
+        "dynamic_search_use_summary": false,
+        "dynamic_search_concurrent_coroutines": 16,
+        "dynamic_search_max_level": 2
+    },
+    "drift_search": {
+        "prompt": "prompts/drift_search_system_prompt.txt",
+        "reduce_prompt": "prompts/drift_search_reduce_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "reduce_max_tokens": 2000,
+        "reduce_temperature": 0,
+        "concurrency": 32,
+        "drift_k_followups": 20,
+        "primer_folds": 5,
+        "primer_llm_max_tokens": 12000,
+        "n_depth": 3,
+        "local_search_text_unit_prop": 0.9,
+        "local_search_community_prop": 0.1,
+        "local_search_top_k_mapped_entities": 10,
+        "local_search_top_k_relationships": 10,
+        "local_search_max_data_tokens": 12000,
+        "local_search_temperature": 0,
+        "local_search_top_p": 1,
+        "local_search_n": 1,
+        "local_search_llm_max_gen_tokens": 4096
+    },
+    "basic_search": {
+        "prompt": "prompts/basic_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "conversation_history_max_turns": 5,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "vector_store": {
+        "default_vector_store": {
+            "type": "lancedb",
+            "db_uri": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/output/lancedb",
+            "url": null,
+            "audience": null,
+            "container_name": "==== REDACTED ====",
+            "database_name": null,
+            "overwrite": true
+        }
+    },
+    "workflows": null
+}
+11:48:55,235 graphrag.storage.file_pipeline_storage INFO Creating file storage at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tariff_Wars_output
+11:48:55,236 graphrag.index.input.factory INFO loading input from root_dir=Trump_Tariff_Wars_input
+11:48:55,236 graphrag.index.input.factory INFO using file storage for input
+11:48:55,236 graphrag.storage.file_pipeline_storage INFO search /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tariff_Wars_input for files matching .*\.txt$
+11:48:55,237 graphrag.index.input.text INFO found text files from Trump_Tariff_Wars_input, found [('Trump_Tariff_Wars_perplexity_response.txt', {}), ('Trump_Tariff_Wars_8049.txt', {}), ('Trump_Tariff_Wars_4937.txt', {}), ('Trump_Tariff_Wars_9870.txt', {}), ('Trump_Tariff_Wars_577.txt', {})]
+11:48:55,242 graphrag.index.input.text INFO Found 5 files, loading 5
+11:48:55,243 graphrag.index.run.run_pipeline INFO Final # of rows loaded: 5
+11:48:55,251 graphrag.utils.storage INFO reading table from storage: documents.parquet
+11:48:55,288 graphrag.utils.storage INFO reading table from storage: documents.parquet
+11:48:55,290 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:48:55,300 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:49:06,381 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:08,641 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:09,677 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:09,852 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:10,6 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:10,235 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:10,921 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:11,480 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:11,804 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:11,898 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:11,942 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:13,747 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:14,302 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:15,562 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:15,637 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:15,964 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:16,532 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:17,26 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:17,99 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:18,663 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:18,896 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:19,692 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:20,813 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:20,890 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:21,733 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:22,19 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:22,51 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:22,108 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:22,556 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:22,750 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:25,423 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:26,138 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:27,276 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:32,347 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:33,925 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:34,1 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:34,737 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:36,361 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:38,247 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:41,559 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:44,776 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:44,918 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,42 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,120 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,124 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,126 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,157 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,166 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,201 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,237 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,249 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,286 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,597 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,684 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,711 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:45,717 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:46,106 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:46,415 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:46,836 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:47,746 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:48,122 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:49,359 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:49,603 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:49,726 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:49,736 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:49,863 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:49,882 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:50,202 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:50,280 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:50,712 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:51,21 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:52,492 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:54,962 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:57,473 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:57,512 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:57,700 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:57,817 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:57,976 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,253 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,599 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,630 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,709 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,739 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,745 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,839 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,879 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:58,963 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:59,164 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:49:59,210 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:49:59,213 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:49:59,221 root INFO Starting preprocessing of transition probabilities on graph with 99 nodes and 140 edges
+11:49:59,221 root INFO Starting at time 1747151399.2212749
+11:49:59,221 root INFO Beginning preprocessing of transition probabilities for 99 vertices
+11:49:59,221 root INFO Completed 1 / 99 vertices
+11:49:59,221 root INFO Completed 10 / 99 vertices
+11:49:59,221 root INFO Completed 19 / 99 vertices
+11:49:59,221 root INFO Completed 28 / 99 vertices
+11:49:59,221 root INFO Completed 37 / 99 vertices
+11:49:59,221 root INFO Completed 46 / 99 vertices
+11:49:59,221 root INFO Completed 55 / 99 vertices
+11:49:59,221 root INFO Completed 64 / 99 vertices
+11:49:59,221 root INFO Completed 73 / 99 vertices
+11:49:59,221 root INFO Completed 82 / 99 vertices
+11:49:59,222 root INFO Completed 91 / 99 vertices
+11:49:59,222 root INFO Completed preprocessing of transition probabilities for vertices
+11:49:59,222 root INFO Beginning preprocessing of transition probabilities for 140 edges
+11:49:59,222 root INFO Completed 1 / 140 edges
+11:49:59,222 root INFO Completed 15 / 140 edges
+11:49:59,223 root INFO Completed 29 / 140 edges
+11:49:59,223 root INFO Completed 43 / 140 edges
+11:49:59,224 root INFO Completed 57 / 140 edges
+11:49:59,224 root INFO Completed 71 / 140 edges
+11:49:59,225 root INFO Completed 85 / 140 edges
+11:49:59,225 root INFO Completed 99 / 140 edges
+11:49:59,225 root INFO Completed 113 / 140 edges
+11:49:59,226 root INFO Completed 127 / 140 edges
+11:49:59,226 root INFO Completed preprocessing of transition probabilities for edges
+11:49:59,226 root INFO Simulating walks on graph at time 1747151399.22621
+11:49:59,226 root INFO Walk iteration: 1/10
+11:49:59,230 root INFO Walk iteration: 2/10
+11:49:59,235 root INFO Walk iteration: 3/10
+11:49:59,239 root INFO Walk iteration: 4/10
+11:49:59,242 root INFO Walk iteration: 5/10
+11:49:59,246 root INFO Walk iteration: 6/10
+11:49:59,250 root INFO Walk iteration: 7/10
+11:49:59,253 root INFO Walk iteration: 8/10
+11:49:59,257 root INFO Walk iteration: 9/10
+11:49:59,260 root INFO Walk iteration: 10/10
+11:49:59,264 root INFO Learning embeddings at time 1747151399.264093
+11:49:59,265 gensim.models.word2vec INFO collecting all words and their counts
+11:49:59,265 gensim.models.word2vec INFO PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+11:49:59,265 gensim.models.word2vec INFO collected 99 word types from a corpus of 18000 raw words and 990 sentences
+11:49:59,266 gensim.models.word2vec INFO Creating a fresh vocabulary
+11:49:59,266 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 retains 99 unique words (100.00% of original 99, drops 0)', 'datetime': '2025-05-13T11:49:59.266206', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+11:49:59,266 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 leaves 18000 word corpus (100.00% of original 18000, drops 0)', 'datetime': '2025-05-13T11:49:59.266242', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+11:49:59,266 gensim.models.word2vec INFO deleting the raw counts dictionary of 99 items
+11:49:59,266 gensim.models.word2vec INFO sample=0.001 downsamples 99 most-common words
+11:49:59,266 gensim.utils INFO Word2Vec lifecycle event {'msg': 'downsampling leaves estimated 6758.378823141252 word corpus (37.5%% of prior 18000)', 'datetime': '2025-05-13T11:49:59.266533', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+11:49:59,266 gensim.models.word2vec INFO estimated required memory for 99 words and 1536 dimensions: 1266012 bytes
+11:49:59,266 gensim.models.word2vec INFO resetting layer weights
+11:49:59,267 gensim.utils INFO Word2Vec lifecycle event {'update': False, 'trim_rule': 'None', 'datetime': '2025-05-13T11:49:59.267413', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'build_vocab'}
+11:49:59,267 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training model with 8 workers on 99 vocabulary and 1536 features, using sg=1 hs=0 sample=0.001 negative=5 window=2 shrink_windows=True', 'datetime': '2025-05-13T11:49:59.267443', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+11:49:59,298 gensim.models.word2vec INFO EPOCH 0: training on 18000 raw words (6873 effective words) took 0.0s, 231155 effective words/s
+11:49:59,328 gensim.models.word2vec INFO EPOCH 1: training on 18000 raw words (6771 effective words) took 0.0s, 229243 effective words/s
+11:49:59,359 gensim.models.word2vec INFO EPOCH 2: training on 18000 raw words (6813 effective words) took 0.0s, 227115 effective words/s
+11:49:59,359 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training on 54000 raw words (20457 effective words) took 0.1s, 223006 effective words/s', 'datetime': '2025-05-13T11:49:59.359190', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+11:49:59,359 gensim.utils INFO Word2Vec lifecycle event {'params': 'Word2Vec<vocab=99, vector_size=1536, alpha=0.025>', 'datetime': '2025-05-13T11:49:59.359220', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'created'}
+11:49:59,359 root INFO Completed. Ending time is 1747151399.359267 Elapsed time is -0.13799214363098145
+11:50:03,23 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:50:03,25 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:50:03,53 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:50:03,55 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:50:03,56 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:50:03,74 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:50:03,75 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:50:03,77 graphrag.utils.storage INFO reading table from storage: communities.parquet
+11:50:03,82 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=1 => 87
+11:50:03,150 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=0 => 99
+11:50:17,470 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:17,559 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:20,779 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:23,177 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:25,20 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:26,44 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:26,453 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:27,169 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:27,173 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:27,870 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:28,315 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:28,409 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:28,883 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:28,968 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:47,31 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:48,900 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:52,19 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:52,96 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:53,726 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:55,224 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+11:50:55,253 graphrag.utils.storage INFO reading table from storage: documents.parquet
+11:50:55,256 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+11:50:55,258 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+11:50:55,260 graphrag.utils.storage INFO reading table from storage: entities.parquet
+11:50:55,262 graphrag.utils.storage INFO reading table from storage: community_reports.parquet
+11:50:55,267 graphrag.index.workflows.generate_text_embeddings INFO Creating embeddings
+11:50:55,267 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding community.full_content: default-community-full_content
+11:50:55,513 graphrag.index.operations.embed_text.strategies.openai INFO embedding 20 inputs via 20 snippets using 2 batches. max_batch_size=16, max_tokens=8191
+11:50:56,352 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:56,757 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,77 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding entity.description: default-entity-description
+11:50:57,86 graphrag.index.operations.embed_text.strategies.openai INFO embedding 163 inputs via 163 snippets using 11 batches. max_batch_size=16, max_tokens=8191
+11:50:57,551 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,653 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,683 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,693 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,799 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,800 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,871 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,883 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:57,942 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:50:58,809 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:51:00,753 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:51:00,790 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding text_unit.text: default-text_unit-text
+11:51:00,809 graphrag.index.operations.embed_text.strategies.openai INFO embedding 20 inputs via 20 snippets using 3 batches. max_batch_size=16, max_tokens=8191
+11:51:01,189 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:51:01,352 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:51:01,408 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+11:51:01,504 graphrag.cli.index INFO All workflows completed successfully.
+13:26:47,918 graphrag.cli.index INFO Logging enabled at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default/indexing-engine.log
+13:26:49,395 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:26:49,832 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:26:49,836 graphrag.cli.index INFO Starting pipeline run. dry_run=False
+13:26:49,838 graphrag.cli.index INFO Using default configuration: {
+    "root_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest",
+    "models": {
+        "default_chat_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_chat",
+            "model": "gpt-4-turbo-preview",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        },
+        "default_embedding_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_embedding",
+            "model": "text-embedding-3-small",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        }
+    },
+    "reporting": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default",
+        "storage_account_blob_url": null
+    },
+    "output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tarrif_Wars_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "outputs": null,
+    "update_index_output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/update_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache_default",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "Trump_Tarrif_Wars_input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "text_column": "text",
+        "title_column": null,
+        "metadata": null
+    },
+    "embed_graph": {
+        "enabled": true,
+        "dimensions": 1536,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "use_lcc": true
+    },
+    "embed_text": {
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "names": [],
+        "strategy": null,
+        "model_id": "default_embedding_model",
+        "vector_store_id": "default_vector_store"
+    },
+    "chunks": {
+        "size": 1200,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": "tokens",
+        "encoding_model": "cl100k_base",
+        "prepend_metadata": false,
+        "chunk_size_includes_metadata": false
+    },
+    "snapshots": {
+        "embeddings": false,
+        "graphml": false
+    },
+    "extract_graph": {
+        "prompt": "prompts/extract_graph.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_graph_nlp": {
+        "normalize_edge_weights": true,
+        "text_analyzer": {
+            "extractor_type": "regex_english",
+            "model_name": "en_core_web_md",
+            "max_word_length": 15,
+            "word_delimiter": " ",
+            "include_named_entities": true,
+            "exclude_nouns": null,
+            "exclude_entity_tags": [
+                "DATE"
+            ],
+            "exclude_pos_tags": [
+                "DET",
+                "PRON",
+                "INTJ",
+                "X"
+            ],
+            "noun_phrase_tags": [
+                "PROPN",
+                "NOUNS"
+            ],
+            "noun_phrase_grammars": {
+                "PROPN,PROPN": "PROPN",
+                "NOUN,NOUN": "NOUNS",
+                "NOUNS,NOUN": "NOUNS",
+                "ADJ,ADJ": "ADJ",
+                "ADJ,NOUN": "NOUNS"
+            }
+        },
+        "concurrent_requests": 25
+    },
+    "summarize_descriptions": {
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "community_reports": {
+        "graph_prompt": "prompts/community_report_graph.txt",
+        "text_prompt": "prompts/community_report_text.txt",
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_claims": {
+        "enabled": false,
+        "prompt": "prompts/extract_claims.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "prune_graph": {
+        "min_node_freq": 2,
+        "max_node_freq_std": null,
+        "min_node_degree": 1,
+        "max_node_degree_std": null,
+        "min_edge_weight_pct": 40,
+        "remove_ego_nodes": false,
+        "lcc_only": false
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "use_lcc": true,
+        "seed": 3735928559
+    },
+    "umap": {
+        "enabled": true
+    },
+    "local_search": {
+        "prompt": "prompts/local_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "community_prop": 0.15,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "map_prompt": "prompts/global_search_map_system_prompt.txt",
+        "reduce_prompt": "prompts/global_search_reduce_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "knowledge_prompt": "prompts/global_search_knowledge_system_prompt.txt",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32,
+        "dynamic_search_llm": "gpt-4o-mini",
+        "dynamic_search_threshold": 1,
+        "dynamic_search_keep_parent": false,
+        "dynamic_search_num_repeats": 1,
+        "dynamic_search_use_summary": false,
+        "dynamic_search_concurrent_coroutines": 16,
+        "dynamic_search_max_level": 2
+    },
+    "drift_search": {
+        "prompt": "prompts/drift_search_system_prompt.txt",
+        "reduce_prompt": "prompts/drift_search_reduce_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "reduce_max_tokens": 2000,
+        "reduce_temperature": 0,
+        "concurrency": 32,
+        "drift_k_followups": 20,
+        "primer_folds": 5,
+        "primer_llm_max_tokens": 12000,
+        "n_depth": 3,
+        "local_search_text_unit_prop": 0.9,
+        "local_search_community_prop": 0.1,
+        "local_search_top_k_mapped_entities": 10,
+        "local_search_top_k_relationships": 10,
+        "local_search_max_data_tokens": 12000,
+        "local_search_temperature": 0,
+        "local_search_top_p": 1,
+        "local_search_n": 1,
+        "local_search_llm_max_gen_tokens": 4096
+    },
+    "basic_search": {
+        "prompt": "prompts/basic_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "conversation_history_max_turns": 5,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "vector_store": {
+        "default_vector_store": {
+            "type": "lancedb",
+            "db_uri": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/output/lancedb",
+            "url": null,
+            "audience": null,
+            "container_name": "==== REDACTED ====",
+            "database_name": null,
+            "overwrite": true
+        }
+    },
+    "workflows": null
+}
+13:26:49,840 graphrag.storage.file_pipeline_storage INFO Creating file storage at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tarrif_Wars_output
+13:26:49,840 graphrag.index.input.factory INFO loading input from root_dir=Trump_Tarrif_Wars_input
+13:26:49,840 graphrag.index.input.factory INFO using file storage for input
+13:26:49,840 graphrag.storage.file_pipeline_storage INFO search /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tarrif_Wars_input for files matching .*\.txt$
+13:26:49,841 graphrag.index.input.text INFO found text files from Trump_Tarrif_Wars_input, found [('Trump_Tarrif_Wars_5006.txt', {}), ('Trump_Tarrif_Wars_5676.txt', {}), ('Trump_Tarrif_Wars_5066.txt', {}), ('Trump_Tarrif_Wars_2047.txt', {}), ('Trump_Tarrif_Wars_7255.txt', {}), ('Trump_Tarrif_Wars_perplexity_response.txt', {})]
+13:26:49,848 graphrag.index.input.text INFO Found 6 files, loading 6
+13:26:49,849 graphrag.index.run.run_pipeline INFO Final # of rows loaded: 6
+13:26:49,860 graphrag.utils.storage INFO reading table from storage: documents.parquet
+13:26:49,913 graphrag.utils.storage INFO reading table from storage: documents.parquet
+13:26:49,915 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:26:49,924 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:27:07,621 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:10,343 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:11,353 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:11,572 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:12,311 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:12,638 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:13,865 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:15,13 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:16,122 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:17,655 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:19,213 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:19,416 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:19,761 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:20,111 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:20,296 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:20,699 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:20,726 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:22,612 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:23,800 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:25,611 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:26,157 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:27,280 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:27,689 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:27,996 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:28,34 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:28,153 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:29,574 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:29,945 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:30,970 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:32,300 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:32,457 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:32,572 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:33,839 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:33,850 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:36,982 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:38,513 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:38,581 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:38,633 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:38,779 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:39,873 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:40,557 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:40,819 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:40,975 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:43,50 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:44,476 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:44,573 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:45,484 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:46,326 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:48,16 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:48,988 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:49,692 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:50,21 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:50,662 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:50,844 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:51,917 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:52,896 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:53,493 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:54,311 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:55,232 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:56,560 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:57,204 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:57,314 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:58,717 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:58,872 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:27:58,991 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:00,509 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:01,329 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:01,887 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:04,456 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:05,590 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:05,770 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:06,397 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:07,494 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:10,393 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:11,315 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:17,252 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:18,564 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:23,189 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:23,192 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:23,703 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:23,841 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:28,62 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:34,465 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:36,315 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:37,426 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:39,370 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:43,57 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:43,61 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:43,978 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:44,55 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:44,388 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:45,618 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:45,803 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:45,865 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:46,231 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:46,453 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:46,763 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:46,764 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:47,152 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:47,341 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:47,375 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:47,484 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:48,278 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:48,406 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:48,462 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:48,791 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:49,134 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:49,303 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:49,484 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:50,320 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:50,467 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:50,516 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:50,617 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:50,939 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:50,981 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:50,992 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:51,658 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:51,673 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:52,85 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:52,401 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:52,935 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:52,938 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:53,604 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:53,607 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:53,609 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:53,827 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:53,973 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:54,628 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:54,660 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:54,696 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:54,848 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:54,881 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:54,980 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:55,211 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:55,340 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:55,430 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:55,494 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:55,742 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:55,839 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:55,954 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:56,36 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:56,47 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:56,93 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:56,235 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:56,507 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:56,634 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:57,226 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:57,233 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:57,326 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:57,466 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:57,564 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:57,662 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,14 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,17 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,45 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,251 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,256 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,312 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,345 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:58,464 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:28:59,627 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:02,379 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:02,523 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:02,715 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:02,717 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,125 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,130 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,132 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,133 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,190 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,374 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,379 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,558 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,563 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,638 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,640 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,880 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:03,932 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:04,41 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:04,100 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:04,766 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,243 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,325 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,343 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,486 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,598 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,636 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,837 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,841 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,845 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,895 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:05,976 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:06,251 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:06,795 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:07,454 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:07,508 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:07,939 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:09,146 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:09,187 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:29:09,190 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:29:09,202 root INFO Starting preprocessing of transition probabilities on graph with 305 nodes and 416 edges
+13:29:09,203 root INFO Starting at time 1747243749.2030232
+13:29:09,203 root INFO Beginning preprocessing of transition probabilities for 305 vertices
+13:29:09,203 root INFO Completed 1 / 305 vertices
+13:29:09,203 root INFO Completed 31 / 305 vertices
+13:29:09,203 root INFO Completed 61 / 305 vertices
+13:29:09,203 root INFO Completed 91 / 305 vertices
+13:29:09,203 root INFO Completed 121 / 305 vertices
+13:29:09,203 root INFO Completed 151 / 305 vertices
+13:29:09,204 root INFO Completed 181 / 305 vertices
+13:29:09,204 root INFO Completed 211 / 305 vertices
+13:29:09,204 root INFO Completed 241 / 305 vertices
+13:29:09,204 root INFO Completed 271 / 305 vertices
+13:29:09,204 root INFO Completed 301 / 305 vertices
+13:29:09,204 root INFO Completed preprocessing of transition probabilities for vertices
+13:29:09,204 root INFO Beginning preprocessing of transition probabilities for 416 edges
+13:29:09,204 root INFO Completed 1 / 416 edges
+13:29:09,206 root INFO Completed 42 / 416 edges
+13:29:09,209 root INFO Completed 83 / 416 edges
+13:29:09,211 root INFO Completed 124 / 416 edges
+13:29:09,213 root INFO Completed 165 / 416 edges
+13:29:09,213 root INFO Completed 206 / 416 edges
+13:29:09,214 root INFO Completed 247 / 416 edges
+13:29:09,216 root INFO Completed 288 / 416 edges
+13:29:09,217 root INFO Completed 329 / 416 edges
+13:29:09,217 root INFO Completed 370 / 416 edges
+13:29:09,218 root INFO Completed 411 / 416 edges
+13:29:09,218 root INFO Completed preprocessing of transition probabilities for edges
+13:29:09,218 root INFO Simulating walks on graph at time 1747243749.2181
+13:29:09,218 root INFO Walk iteration: 1/10
+13:29:09,231 root INFO Walk iteration: 2/10
+13:29:09,241 root INFO Walk iteration: 3/10
+13:29:09,252 root INFO Walk iteration: 4/10
+13:29:09,261 root INFO Walk iteration: 5/10
+13:29:09,271 root INFO Walk iteration: 6/10
+13:29:09,280 root INFO Walk iteration: 7/10
+13:29:09,290 root INFO Walk iteration: 8/10
+13:29:09,300 root INFO Walk iteration: 9/10
+13:29:09,309 root INFO Walk iteration: 10/10
+13:29:09,318 root INFO Learning embeddings at time 1747243749.3189561
+13:29:09,321 gensim.models.word2vec INFO collecting all words and their counts
+13:29:09,321 gensim.models.word2vec INFO PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+13:29:09,324 gensim.models.word2vec INFO collected 305 word types from a corpus of 52160 raw words and 3050 sentences
+13:29:09,324 gensim.models.word2vec INFO Creating a fresh vocabulary
+13:29:09,324 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 retains 305 unique words (100.00% of original 305, drops 0)', 'datetime': '2025-05-14T13:29:09.324670', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+13:29:09,324 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 leaves 52160 word corpus (100.00% of original 52160, drops 0)', 'datetime': '2025-05-14T13:29:09.324723', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+13:29:09,325 gensim.models.word2vec INFO deleting the raw counts dictionary of 305 items
+13:29:09,325 gensim.models.word2vec INFO sample=0.001 downsamples 77 most-common words
+13:29:09,325 gensim.utils INFO Word2Vec lifecycle event {'msg': 'downsampling leaves estimated 31274.385088492614 word corpus (60.0%% of prior 52160)', 'datetime': '2025-05-14T13:29:09.325383', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+13:29:09,326 gensim.models.word2vec INFO estimated required memory for 305 words and 1536 dimensions: 3900340 bytes
+13:29:09,326 gensim.models.word2vec INFO resetting layer weights
+13:29:09,328 gensim.utils INFO Word2Vec lifecycle event {'update': False, 'trim_rule': 'None', 'datetime': '2025-05-14T13:29:09.328469', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'build_vocab'}
+13:29:09,328 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training model with 8 workers on 305 vocabulary and 1536 features, using sg=1 hs=0 sample=0.001 negative=5 window=2 shrink_windows=True', 'datetime': '2025-05-14T13:29:09.328506', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+13:29:09,416 gensim.models.word2vec INFO EPOCH 0: training on 52160 raw words (31225 effective words) took 0.1s, 362804 effective words/s
+13:29:09,502 gensim.models.word2vec INFO EPOCH 1: training on 52160 raw words (31293 effective words) took 0.1s, 368984 effective words/s
+13:29:09,598 gensim.models.word2vec INFO EPOCH 2: training on 52160 raw words (31260 effective words) took 0.1s, 330987 effective words/s
+13:29:09,598 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training on 156480 raw words (93778 effective words) took 0.3s, 347267 effective words/s', 'datetime': '2025-05-14T13:29:09.598566', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+13:29:09,598 gensim.utils INFO Word2Vec lifecycle event {'params': 'Word2Vec<vocab=305, vector_size=1536, alpha=0.025>', 'datetime': '2025-05-14T13:29:09.598596', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'created'}
+13:29:09,598 root INFO Completed. Ending time is 1747243749.598712 Elapsed time is -0.3956887722015381
+13:29:13,601 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:29:13,603 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:29:13,647 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:29:13,649 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:29:13,651 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:29:13,677 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:29:13,679 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:29:13,681 graphrag.utils.storage INFO reading table from storage: communities.parquet
+13:29:13,687 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=1 => 277
+13:29:13,897 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=0 => 305
+13:29:23,813 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 502 Bad Gateway"
+13:29:23,817 openai._base_client INFO Retrying request to /chat/completions in 0.394054 seconds
+13:29:24,132 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 502 Bad Gateway"
+13:29:24,134 openai._base_client INFO Retrying request to /chat/completions in 0.449241 seconds
+13:29:26,476 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:28,966 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:30,676 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:31,19 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:31,58 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:31,391 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:32,823 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:35,178 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:37,21 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:39,375 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:39,453 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:40,914 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:41,223 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:41,347 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:41,520 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:42,44 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:43,576 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:45,357 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:45,764 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:46,73 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:46,720 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:48,84 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:48,92 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:48,584 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:48,587 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:50,861 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:51,722 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:57,295 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:57,309 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:58,12 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:59,83 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:59,274 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:29:59,322 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:01,396 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:02,665 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:03,139 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:03,565 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:03,953 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:04,558 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:06,1 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:06,651 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:06,922 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:07,107 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:07,319 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:07,584 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:12,122 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:33,858 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:34,4 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:34,263 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:35,286 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:36,499 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:37,28 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:38,171 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:38,360 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:39,897 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:40,612 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:41,195 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:41,427 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:43,377 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:49,467 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:30:49,552 graphrag.utils.storage INFO reading table from storage: documents.parquet
+13:30:49,555 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:30:49,558 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:30:49,560 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:30:49,562 graphrag.utils.storage INFO reading table from storage: community_reports.parquet
+13:30:49,570 graphrag.index.workflows.generate_text_embeddings INFO Creating embeddings
+13:30:49,570 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding text_unit.text: default-text_unit-text
+13:30:49,859 graphrag.index.operations.embed_text.strategies.openai INFO embedding 43 inputs via 43 snippets using 7 batches. max_batch_size=16, max_tokens=8191
+13:30:50,449 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:50,782 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:50,802 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:50,832 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:50,903 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:51,30 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:51,199 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:51,303 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding community.full_content: default-community-full_content
+13:30:51,334 graphrag.index.operations.embed_text.strategies.openai INFO embedding 60 inputs via 60 snippets using 5 batches. max_batch_size=16, max_tokens=8191
+13:30:52,97 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:52,375 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:52,451 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:53,310 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:53,911 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,89 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding entity.description: default-entity-description
+13:30:54,116 graphrag.index.operations.embed_text.strategies.openai INFO embedding 425 inputs via 425 snippets using 27 batches. max_batch_size=16, max_tokens=8191
+13:30:54,435 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,591 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,598 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,631 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,633 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,667 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,668 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,670 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,700 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,700 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,809 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,901 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:54,902 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,5 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,7 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,24 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,77 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,103 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,145 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,179 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,235 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,293 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,400 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,427 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,534 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,645 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:55,990 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:30:56,275 graphrag.cli.index INFO All workflows completed successfully.
+13:42:48,337 graphrag.cli.index INFO Logging enabled at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default/indexing-engine.log
+13:42:49,949 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:42:50,938 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:42:50,942 graphrag.cli.index INFO Starting pipeline run. dry_run=False
+13:42:50,945 graphrag.cli.index INFO Using default configuration: {
+    "root_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest",
+    "models": {
+        "default_chat_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_chat",
+            "model": "gpt-4-turbo-preview",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        },
+        "default_embedding_model": {
+            "api_key": "==== REDACTED ====",
+            "auth_type": "api_key",
+            "type": "openai_embedding",
+            "model": "text-embedding-3-small",
+            "encoding_model": "cl100k_base",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0,
+            "request_timeout": 180.0,
+            "api_base": null,
+            "api_version": null,
+            "deployment_name": null,
+            "proxy": null,
+            "audience": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "retry_strategy": "native",
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "concurrent_requests": 25,
+            "responses": null,
+            "async_mode": "threaded"
+        }
+    },
+    "reporting": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/logs_default",
+        "storage_account_blob_url": null
+    },
+    "output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tarrif_Wras_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "outputs": null,
+    "update_index_output": {
+        "type": "file",
+        "base_dir": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/update_output",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache_default",
+        "storage_account_blob_url": null,
+        "cosmosdb_account_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "Trump_Tarrif_Wras_input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "text_column": "text",
+        "title_column": null,
+        "metadata": null
+    },
+    "embed_graph": {
+        "enabled": true,
+        "dimensions": 1536,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "use_lcc": true
+    },
+    "embed_text": {
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "names": [],
+        "strategy": null,
+        "model_id": "default_embedding_model",
+        "vector_store_id": "default_vector_store"
+    },
+    "chunks": {
+        "size": 1200,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": "tokens",
+        "encoding_model": "cl100k_base",
+        "prepend_metadata": false,
+        "chunk_size_includes_metadata": false
+    },
+    "snapshots": {
+        "embeddings": false,
+        "graphml": false
+    },
+    "extract_graph": {
+        "prompt": "prompts/extract_graph.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_graph_nlp": {
+        "normalize_edge_weights": true,
+        "text_analyzer": {
+            "extractor_type": "regex_english",
+            "model_name": "en_core_web_md",
+            "max_word_length": 15,
+            "word_delimiter": " ",
+            "include_named_entities": true,
+            "exclude_nouns": null,
+            "exclude_entity_tags": [
+                "DATE"
+            ],
+            "exclude_pos_tags": [
+                "DET",
+                "PRON",
+                "INTJ",
+                "X"
+            ],
+            "noun_phrase_tags": [
+                "PROPN",
+                "NOUNS"
+            ],
+            "noun_phrase_grammars": {
+                "PROPN,PROPN": "PROPN",
+                "NOUN,NOUN": "NOUNS",
+                "NOUNS,NOUN": "NOUNS",
+                "ADJ,ADJ": "ADJ",
+                "ADJ,NOUN": "NOUNS"
+            }
+        },
+        "concurrent_requests": 25
+    },
+    "summarize_descriptions": {
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "community_reports": {
+        "graph_prompt": "prompts/community_report_graph.txt",
+        "text_prompt": "prompts/community_report_text.txt",
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null,
+        "model_id": "default_chat_model"
+    },
+    "extract_claims": {
+        "enabled": false,
+        "prompt": "prompts/extract_claims.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 1,
+        "strategy": null,
+        "encoding_model": null,
+        "model_id": "default_chat_model"
+    },
+    "prune_graph": {
+        "min_node_freq": 2,
+        "max_node_freq_std": null,
+        "min_node_degree": 1,
+        "max_node_degree_std": null,
+        "min_edge_weight_pct": 40,
+        "remove_ego_nodes": false,
+        "lcc_only": false
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "use_lcc": true,
+        "seed": 3735928559
+    },
+    "umap": {
+        "enabled": true
+    },
+    "local_search": {
+        "prompt": "prompts/local_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "community_prop": 0.15,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "map_prompt": "prompts/global_search_map_system_prompt.txt",
+        "reduce_prompt": "prompts/global_search_reduce_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "knowledge_prompt": "prompts/global_search_knowledge_system_prompt.txt",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32,
+        "dynamic_search_llm": "gpt-4o-mini",
+        "dynamic_search_threshold": 1,
+        "dynamic_search_keep_parent": false,
+        "dynamic_search_num_repeats": 1,
+        "dynamic_search_use_summary": false,
+        "dynamic_search_concurrent_coroutines": 16,
+        "dynamic_search_max_level": 2
+    },
+    "drift_search": {
+        "prompt": "prompts/drift_search_system_prompt.txt",
+        "reduce_prompt": "prompts/drift_search_reduce_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "reduce_max_tokens": 2000,
+        "reduce_temperature": 0,
+        "concurrency": 32,
+        "drift_k_followups": 20,
+        "primer_folds": 5,
+        "primer_llm_max_tokens": 12000,
+        "n_depth": 3,
+        "local_search_text_unit_prop": 0.9,
+        "local_search_community_prop": 0.1,
+        "local_search_top_k_mapped_entities": 10,
+        "local_search_top_k_relationships": 10,
+        "local_search_max_data_tokens": 12000,
+        "local_search_temperature": 0,
+        "local_search_top_p": 1,
+        "local_search_n": 1,
+        "local_search_llm_max_gen_tokens": 4096
+    },
+    "basic_search": {
+        "prompt": "prompts/basic_search_system_prompt.txt",
+        "chat_model_id": "default_chat_model",
+        "embedding_model_id": "default_embedding_model",
+        "text_unit_prop": 0.5,
+        "conversation_history_max_turns": 5,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "vector_store": {
+        "default_vector_store": {
+            "type": "lancedb",
+            "db_uri": "/Users/gauri/next-week-tonight/backend/graphrag/ragtest/output/lancedb",
+            "url": null,
+            "audience": null,
+            "container_name": "==== REDACTED ====",
+            "database_name": null,
+            "overwrite": true
+        }
+    },
+    "workflows": null
+}
+13:42:50,946 graphrag.storage.file_pipeline_storage INFO Creating file storage at /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tarrif_Wras_output
+13:42:50,946 graphrag.index.input.factory INFO loading input from root_dir=Trump_Tarrif_Wras_input
+13:42:50,947 graphrag.index.input.factory INFO using file storage for input
+13:42:50,947 graphrag.storage.file_pipeline_storage INFO search /Users/gauri/next-week-tonight/backend/graphrag/ragtest/Trump_Tarrif_Wras_input for files matching .*\.txt$
+13:42:50,947 graphrag.index.input.text INFO found text files from Trump_Tarrif_Wras_input, found [('Trump_Tarrif_Wras_perplexity_response.txt', {}), ('Trump_Tarrif_Wras_2252.txt', {}), ('Trump_Tarrif_Wras_8605.txt', {}), ('Trump_Tarrif_Wras_1938.txt', {})]
+13:42:50,951 graphrag.index.input.text INFO Found 4 files, loading 4
+13:42:50,954 graphrag.index.run.run_pipeline INFO Final # of rows loaded: 4
+13:42:50,968 graphrag.utils.storage INFO reading table from storage: documents.parquet
+13:42:50,999 graphrag.utils.storage INFO reading table from storage: documents.parquet
+13:42:51,0 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:42:51,10 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:43:08,514 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:08,542 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:09,878 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:11,989 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:12,42 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:13,718 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:14,9 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:19,539 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:21,37 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:21,259 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:22,68 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:23,202 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:26,65 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:27,644 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:30,663 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:35,505 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:38,213 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:38,247 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:38,655 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:38,713 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:39,191 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:39,600 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:40,502 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:41,321 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:41,378 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:41,913 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:43,726 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:45,274 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:47,882 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:48,780 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:48,897 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:48,975 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:43:49,20 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:43:49,23 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:43:49,29 root INFO Starting preprocessing of transition probabilities on graph with 52 nodes and 70 edges
+13:43:49,29 root INFO Starting at time 1747331029.029693
+13:43:49,29 root INFO Beginning preprocessing of transition probabilities for 52 vertices
+13:43:49,29 root INFO Completed 1 / 52 vertices
+13:43:49,30 root INFO Completed 6 / 52 vertices
+13:43:49,30 root INFO Completed 11 / 52 vertices
+13:43:49,30 root INFO Completed 16 / 52 vertices
+13:43:49,30 root INFO Completed 21 / 52 vertices
+13:43:49,30 root INFO Completed 26 / 52 vertices
+13:43:49,30 root INFO Completed 31 / 52 vertices
+13:43:49,30 root INFO Completed 36 / 52 vertices
+13:43:49,30 root INFO Completed 41 / 52 vertices
+13:43:49,30 root INFO Completed 46 / 52 vertices
+13:43:49,30 root INFO Completed 51 / 52 vertices
+13:43:49,30 root INFO Completed preprocessing of transition probabilities for vertices
+13:43:49,30 root INFO Beginning preprocessing of transition probabilities for 70 edges
+13:43:49,30 root INFO Completed 1 / 70 edges
+13:43:49,30 root INFO Completed 8 / 70 edges
+13:43:49,30 root INFO Completed 15 / 70 edges
+13:43:49,30 root INFO Completed 22 / 70 edges
+13:43:49,30 root INFO Completed 29 / 70 edges
+13:43:49,31 root INFO Completed 36 / 70 edges
+13:43:49,31 root INFO Completed 43 / 70 edges
+13:43:49,31 root INFO Completed 50 / 70 edges
+13:43:49,31 root INFO Completed 57 / 70 edges
+13:43:49,32 root INFO Completed 64 / 70 edges
+13:43:49,32 root INFO Completed preprocessing of transition probabilities for edges
+13:43:49,32 root INFO Simulating walks on graph at time 1747331029.032293
+13:43:49,32 root INFO Walk iteration: 1/10
+13:43:49,38 root INFO Walk iteration: 2/10
+13:43:49,41 root INFO Walk iteration: 3/10
+13:43:49,46 root INFO Walk iteration: 4/10
+13:43:49,47 root INFO Walk iteration: 5/10
+13:43:49,51 root INFO Walk iteration: 6/10
+13:43:49,55 root INFO Walk iteration: 7/10
+13:43:49,58 root INFO Walk iteration: 8/10
+13:43:49,62 root INFO Walk iteration: 9/10
+13:43:49,65 root INFO Walk iteration: 10/10
+13:43:49,67 root INFO Learning embeddings at time 1747331029.067041
+13:43:49,67 gensim.models.word2vec INFO collecting all words and their counts
+13:43:49,67 gensim.models.word2vec INFO PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+13:43:49,68 gensim.models.word2vec INFO collected 52 word types from a corpus of 9920 raw words and 520 sentences
+13:43:49,68 gensim.models.word2vec INFO Creating a fresh vocabulary
+13:43:49,68 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 retains 52 unique words (100.00% of original 52, drops 0)', 'datetime': '2025-05-15T13:43:49.068889', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+13:43:49,69 gensim.utils INFO Word2Vec lifecycle event {'msg': 'effective_min_count=0 leaves 9920 word corpus (100.00% of original 9920, drops 0)', 'datetime': '2025-05-15T13:43:49.069003', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+13:43:49,69 gensim.models.word2vec INFO deleting the raw counts dictionary of 52 items
+13:43:49,69 gensim.models.word2vec INFO sample=0.001 downsamples 52 most-common words
+13:43:49,69 gensim.utils INFO Word2Vec lifecycle event {'msg': 'downsampling leaves estimated 2592.4743166156736 word corpus (26.1%% of prior 9920)', 'datetime': '2025-05-15T13:43:49.069587', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'prepare_vocab'}
+13:43:49,70 gensim.models.word2vec INFO estimated required memory for 52 words and 1536 dimensions: 664976 bytes
+13:43:49,70 gensim.models.word2vec INFO resetting layer weights
+13:43:49,71 gensim.utils INFO Word2Vec lifecycle event {'update': False, 'trim_rule': 'None', 'datetime': '2025-05-15T13:43:49.071579', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'build_vocab'}
+13:43:49,71 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training model with 8 workers on 52 vocabulary and 1536 features, using sg=1 hs=0 sample=0.001 negative=5 window=2 shrink_windows=True', 'datetime': '2025-05-15T13:43:49.071643', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+13:43:49,92 gensim.models.word2vec INFO EPOCH 0: training on 9920 raw words (2570 effective words) took 0.0s, 129556 effective words/s
+13:43:49,109 gensim.models.word2vec INFO EPOCH 1: training on 9920 raw words (2564 effective words) took 0.0s, 162663 effective words/s
+13:43:49,126 gensim.models.word2vec INFO EPOCH 2: training on 9920 raw words (2600 effective words) took 0.0s, 155336 effective words/s
+13:43:49,126 gensim.utils INFO Word2Vec lifecycle event {'msg': 'training on 29760 raw words (7734 effective words) took 0.1s, 140072 effective words/s', 'datetime': '2025-05-15T13:43:49.126885', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'train'}
+13:43:49,126 gensim.utils INFO Word2Vec lifecycle event {'params': 'Word2Vec<vocab=52, vector_size=1536, alpha=0.025>', 'datetime': '2025-05-15T13:43:49.126925', 'gensim': '4.3.3', 'python': '3.10.13 (main, Jan 26 2024, 18:29:17) [Clang 15.0.0 (clang-1500.1.0.2.5)]', 'platform': 'macOS-15.3.1-arm64-arm-64bit', 'event': 'created'}
+13:43:49,126 root INFO Completed. Ending time is 1747331029.1269639 Elapsed time is -0.09727096557617188
+13:43:53,207 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:43:53,210 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:43:53,237 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:43:53,238 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:43:53,240 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:43:53,254 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:43:53,255 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:43:53,257 graphrag.utils.storage INFO reading table from storage: communities.parquet
+13:43:53,263 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=1 => 26
+13:43:53,286 graphrag.index.operations.summarize_communities.graph_context.context_builder INFO Number of nodes at level=0 => 52
+13:44:06,64 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:09,804 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:12,373 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:12,637 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:16,29 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:19,250 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:20,641 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:39,473 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:42,143 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:42,176 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:42,759 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:43,887 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:47,570 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+13:44:47,605 graphrag.utils.storage INFO reading table from storage: documents.parquet
+13:44:47,608 graphrag.utils.storage INFO reading table from storage: relationships.parquet
+13:44:47,611 graphrag.utils.storage INFO reading table from storage: text_units.parquet
+13:44:47,613 graphrag.utils.storage INFO reading table from storage: entities.parquet
+13:44:47,615 graphrag.utils.storage INFO reading table from storage: community_reports.parquet
+13:44:47,620 graphrag.index.workflows.generate_text_embeddings INFO Creating embeddings
+13:44:47,620 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding text_unit.text: default-text_unit-text
+13:44:47,867 graphrag.index.operations.embed_text.strategies.openai INFO embedding 8 inputs via 8 snippets using 1 batches. max_batch_size=16, max_tokens=8191
+13:44:48,289 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:48,464 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding community.full_content: default-community-full_content
+13:44:48,471 graphrag.index.operations.embed_text.strategies.openai INFO embedding 13 inputs via 13 snippets using 1 batches. max_batch_size=16, max_tokens=8191
+13:44:49,279 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:49,367 graphrag.index.operations.embed_text.embed_text INFO using vector store lancedb with container_name default for embedding entity.description: default-entity-description
+13:44:49,374 graphrag.index.operations.embed_text.strategies.openai INFO embedding 81 inputs via 81 snippets using 6 batches. max_batch_size=16, max_tokens=8191
+13:44:49,845 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:49,954 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:50,10 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:50,118 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:50,202 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:50,479 httpx INFO HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+13:44:50,718 graphrag.cli.index INFO All workflows completed successfully.
