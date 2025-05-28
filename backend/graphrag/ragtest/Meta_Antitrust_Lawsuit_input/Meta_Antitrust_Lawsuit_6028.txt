@@ -1,0 +1,46 @@
+Title: FTC v. Meta
+Source: https://en.wikipedia.org/wiki/Federal_Trade_Commission_v._Meta_Platforms,_Inc
+
+# FTC v. Meta
+
+Federal Trade Commission v. Meta Platforms, Inc. (formerly Federal Trade Commission v. Facebook, Inc.) is an ongoing antitrust court case brought by the Federal Trade Commission (FTC) against Facebook parent company Meta Platforms. The lawsuit alleges that Meta has accumulated monopoly power via anti-competitive mergers, with the suit centering on the acquisitions of Instagram and WhatsApp.
+The suit was filed on December 8, 2020, in conjunction with 46 states. The lawsuit was initially dismissed in June 2021, but was refiled with an amended complaint in August 2021. The case survived Meta's motion to dismiss the lawsuit in January 2022 and April 2024. The trial began on April 14, 2025, with Meta CEO Mark Zuckerberg testifying during the first day of the proceedings.
+
+## Background and initial filing
+
+The case centers on Meta acquisition of Facebook's two former competitors—Instagram and WhatsApp. The FTC alleges that Meta holds monopolistic power in the US social networking market and seeks to force the company to divest from Instagram and WhatsApp to break up the conglomerate. The Federal Trade Commission said that Meta's actions prevent consumers from enjoying the benefits of competition.
+On December 8, 2020, the Federal Trade Commission, along with 46 US states (all excluding Alabama, Georgia, South Carolina, and South Dakota), the District of Columbia and the territory of Guam, launched the antitrust lawsuit against Meta.
+
+## Proceedings
+
+On June 28, 2021, the U.S. District Court for the District of Columbia dismissed the FTC's complaint, as legally insufficient.  A December 2021 New Yorker profile of Lina Khan, the Biden-appointed chair of the FTC, describes the court's decision as "a harsh criticism of how Khan's predecessors [the Trump-appointed FTC Commissioners] had written their complaint." According to the article, the decision argued that the FTC "had provided no proof for its assertion that Facebook held a monopoly position in social networking, but, instead, seemed to assume that everyone simply saw it that way."
+However, following a new amended complaint from the FTC on August 19, 2021, presiding judge James E. Boasberg, denied Meta's motion to dismiss the case on January 11, 2022. Meta had sought dismissal on grounds including that Khan should have recused herself from the vote of FTC commissioners to file the case, on the basis of her previous writing as a scholar and an analyst, which allegedly showed bias against Meta. 
+Since the dismissal effort was denied, both the FTC and Meta have engaged in a discovery process. This has encompassed requests for information from Snap Inc.'s Snapchat as well as ByteDance's TikTok.
+
+### Trial date
+
+On February 23, 2022, Reuters reported that the FTC proposed a trial date of December 11, 2023 to allow for sufficient discovery. However, attorneys for Meta urged the court to delay the trial date to February 13, 2024. On February 22, 2024, the FTC told the district court that the lawsuit could be ready for trial before the end of the year. Attorneys for Meta pushed back on this, and cast doubts that a "case of this size and complexity" could go to trial before the end of 2024. 
+In April 2024, Meta filed a motion to again dismiss the case, with Judge Boasberg ruling on November 13 that the company must face a trial regarding antitrust allegations by the FTC through its acquisitions of Instagram and WhatsApp. On November 25, the judge ruled that the case against Meta will go to trial on April 14, 2025.
+
+## Analysis
+
+William Kovacic, a former FTC chair, argued the case will be difficult to win as it would require the government to create a counter factual argument of an internet where Meta did not exist, and prove that it harmed competition or consumers. Legal scholars have suggested that the case's outcome could be dependent upon the relevant market in which Meta Platforms is held to operate by the court, which the FTC alleges is the personal social networking application market.
+
+## Related cases
+
+In July 2022, the FTC filed a separate antitrust case against Meta over the company's planned acquisition of VR company Within. Meta ultimately acquired Within in February 2023.
+
+## See also
+
+Big Tech
+Lawsuits involving Meta Platforms
+
+## References
+
+## External links
+
+Case docket for Federal Trade Commission v. Meta Platforms, Inc., 1:20-cv-03590, (D.D.C.) at CourtListener
+Record of case at Federal Trade Commission
+Judge Boasberg's Memorandum Opinion dismissing the complaint (June 28, 2021)
+Judge Boasberg's Memorandum Opinion denying Facebook's motion to dismiss the amended complaint (January 11, 2022)
+

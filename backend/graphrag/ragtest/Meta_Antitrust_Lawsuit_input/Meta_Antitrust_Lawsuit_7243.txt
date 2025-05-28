@@ -1,0 +1,42 @@
+Title: Meta Antitrust Trial Starts: Timeline, Key Witnesses, and What’s at Stake
+Source: https://www.ccn.com/news/technology/meta-ftc-antitrust-timeline-witnesses/
+
+Meta vs. the Federal Trade Commission kicked off on Monday, April 14. In the coming weeks, several Meta executives will take the witness stand. If it wins, the FTC will likely seek Meta’s breakup.
+
+With the start of a historic trial on Monday, April 14, Meta faces its biggest legal challenge yet as the Federal Trade Commission (FTC) mounts its argument that the firm’s acquisition of WhatsApp and Instagram breached antitrust laws.
+
+In a trial that could last months, CEO Mark Zuckerberg faced three days of interrogation. His and other current and former executives’ testimony could determine whether the company can remain in its current form or is forced to break up.
+
+## Timeline of Meta Antitrust Trial
+
+The FTC, alongside 48 U.S. states and territories, initially filed an antitrust lawsuit against Facebook (now Meta) in 2020.
+
+The suit alleged that the firm’s acquisitions of Instagram in 2012 and WhatsApp in 2014 were part of a concerted strategy to eliminate competition and maintain a social media monopoly.
+
+Although a federal judge dismissed the original complaint in 2021, an amended lawsuit was allowed to proceed.
+
+In recent months, Meta maneuvered to strike a deal, reportedly offering to settle the case for $450 million. The FTC, however, would not settle for less than $30 billion and declined a second higher offer of $1 billion.
+
+The trial is expected to last around eight weeks, during which time several current and former Meta executives are expected to testify.
+
+## Meta Key Witnesses
+
+The most high-profile witness in Meta vs FTC is Mark Zuckerberg, who delivered testimony during the first three days of the antitrust trial.
+
+On Monday, April 14, Zuckerberg was grilled about emails the FTC presents as evidence that Meta acquired Instagram to shut down an emerging competitor. Defending his position in court, Zuckerberg stated: “It’s not accurate to say that the only reason we were interested was the scale or growth rate.”
+
+On Wednesday, Meta’s former Chief Operating Officer, Sheryl Sandberg, also took the stand, where FTC lawyers questioned her about a 2011 email exchange discussing whether to let Google advertise on Facebook.
+
+The FTC also intends to call around 20 non-party witnesses from firms including Google, X and TikTok.
+
+## Other Witnesses
+
+To prove the existence of a monopoly, the FTC must define a single market that includes Facebook and Instagram, but not TikTok, YouTube and X.
+
+To that end, on Thursday, the regulator called Google’s Aaron Filner, a senior director at YouTube, as a witness. Meanwhile, to demonstrate that WhatsApp had the necessary resources to survive without Meta, Sequoia Capital’s Jim Goetz, an investor in WhatsApp, also delivered testimony.
+
+Other witnesses expected to appear in the coming days include TikTok’s head of operations, Adam Presser; X’s vice president of product, Keith Coleman; and the former Google executive, Bradley Horowitz.
+
+## FTC Seeks Meta Breakup
+
+If Meta loses its antitrust case, the FTC is likely to seek remedies that include spinning off Instagram, WhatsApp or both into separate entities. FTC versus Meta mirrors the Department of Justice’s landmark monopoly lawsuit against Google. In that case, DoJ prosecutors have asked the presiding judge to force Google to spin off Chrome.

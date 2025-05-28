@@ -1,0 +1,56 @@
+I'll provide a comprehensive overview of Trump's tariff wars, drawing from both historical context and recent developments.
+
+## Trump Tariff Wars: A Timeline of Events
+
+The Trump administration's approach to trade policy has been characterized by aggressive tariff implementation, initially during his first term and continuing into his second administration in 2025.
+
+### First Term (2017-2021)
+
+The tariff conflicts began in August 2017 when the United States Trade Representative launched an investigation into China's trade practices. This culminated in a March 2018 report finding that China was conducting unfair trade practices[1]. President Trump subsequently announced tariffs on up to $60 billion of Chinese imports, publishing a list of approximately $50 billion worth of Chinese products to face a new 25 percent tariff[1].
+
+The implementation followed a phased approach:
+- July 6, 2018: First round of tariffs on $34 billion worth of Chinese imports
+- August 23, 2018: Additional tariffs on $16 billion worth of Chinese imports
+- September 2018: 10 percent tariffs on $200 billion worth of goods from China
+- May 2019: Increase of the September 2018 tariffs from 10 percent to 25 percent[1]
+
+Beyond China, Trump's first term also saw trade disputes with the European Union. In October 2019, after winning a 15-year-long World Trade Organization dispute against the EU, the administration imposed tariffs of 10 percent on aircraft and 25 percent on agricultural and other products[1].
+
+### Second Administration (2025)
+
+Trump's second administration has dramatically escalated tariff policies, creating what many analysts describe as a full-scale trade war:
+
+- February 11, 2025: Reinstated the full 25% tariff on steel imports and increased tariffs on aluminum imports to 25%[3]
+- February 13, 2025: Signed a Presidential Memorandum entitled "Reciprocal Trade and Tariffs" directing review of trading practices[4]
+- February-April 2025: The average effective US tariff rate rose from 2.5% to an estimated 27%—the highest level in over a century[2]
+
+A significant escalation occurred on March 4, 2025, when Trump implemented tariffs against Canada and Mexico, claiming that "drugs are still pouring into our Country from Mexico and Canada." Canada retaliated with 25% tariffs on $20 billion (CA$30 billion) in US goods, with plans to expand to $85 billion (CA$125 billion), while Mexico prepared its own response[2].
+
+Following market declines and economic concerns, particularly for retailers and automotive manufacturers, some attempts at moderation occurred:
+- March 5, 2025: Commerce Secretary Lutnick indicated possible tariff reductions
+- March 6, 2025: Trump extended tariff delays to all USMCA-compliant goods until April 2[2]
+
+## Economic Impact Assessment
+
+The economic consequences of these tariff policies have been substantial. The Penn Wharton Budget Model (PWBM) projects that Trump's tariffs (as of April 8, 2025) will:
+
+- Reduce long-run GDP by approximately 6%
+- Reduce wages by 5%
+- Cost a middle-income household approximately $22,000 in lifetime losses[5]
+
+The tariffs are projected to raise $5.2 trillion in new revenue over the next 10 years, even accounting for reduced import demand due to higher prices. Over 30 years, tariffs are expected to generate $16.4 trillion in revenue (reduced to $4.5 trillion and $11.8 trillion respectively when calculated on a dynamic basis)[5].
+
+However, these revenue gains come with significant trade reductions:
+- $6.9 trillion reduction in total imports over the next decade
+- $37.2 trillion reduction in imports through 2054[5]
+
+For American households, the Tax Foundation estimates that the Trump tariffs amount to an average tax increase of nearly $1,200 per US household in 2025[1].
+
+The implementation of the minimum 10 percent tariff on all U.S. imports on April 2, 2025, with higher tariffs (ranging from 11 to 50 percent) on imports from 57 specific countries, represents one of the most dramatic shifts in U.S. trade policy in recent history[5].
+
+Sources:
+1. https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/
+2. https://en.wikipedia.org/wiki/Tariffs_in_the_second_Trump_administration
+3. https://www.whitehouse.gov/fact-sheets/2025/02/fact-sheet-president-donald-j-trump-restores-section-232-tariffs/
+4. https://www.whitehouse.gov/presidential-actions/2025/04/regulating-imports-with-a-reciprocal-tariff-to-rectify-trade-practices-that-contribute-to-large-and-persistent-annual-united-states-goods-trade-deficits/
+5. https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs

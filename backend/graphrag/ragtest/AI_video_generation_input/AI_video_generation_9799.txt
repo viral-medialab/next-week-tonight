@@ -1,0 +1,24 @@
+Title: Google's AI Video Generation to Land on Honor 400 Before Pixels
+Source: https://www.androidheadlines.com/2025/05/google-veo-2-ai-video-generation-honor-400.html
+
+Google's AI Video Generation to Land on Honor 400 Before Pixels
+
+Honor has announced an image-to-video AI generator, powered by Google’s Veo 2, aimed at its upcoming 400 series phones before it’s widely available on Google’s own Gemini. The in-gallery tool creates five-second videos from still images but lacks text prompt options, yielding sometimes amusing results. It will be free initially with limitations, hinting at a future subscription.
+
+We could say that Google is one of the leading developers and providers of AI services for mobile devices. However, in some cases, the company doesn’t release its developments on its own devices. Circle to Search, released on the Galaxy S24 series, is a clear example of this. Now, Google will release a powerful Veo 2-powered video generation tool on the upcoming Honor 400 or 400 Pro.
+
+Honor will announce its next-gen flagship devices at an event on May 22. Before then, the company had been teasing some of the Honor 400 series’ features to generate excitement. The latest one may be one of the most powerful and interesting features any smartphone can offer. Generating videos with AI from the palm of your hand? Google makes it possible, but not on Pixels—for now.
+
+Google’s Veo 2 to power the Honor 400 series’ AI video generator
+
+If you’re not aware, Veo 2 is the latest version of Google’s AI video-generation model. It promises much better results than the first generation of the tool. It also brings the ability to generate animated clips from an image.
+
+The feature is baked right into the Gallery app on these new Honor phones. That means you won’t have to resort to Gemini to use it. It’s also incredibly easy to use, though you might wish it were less “simple.” Why? Because there’s no option to add a text prompt alongside your image. So you’re really putting all your faith in the AI’s “creativity” instead of detailing exactly what you want.
+
+The above means the results can be a bit of a mixed bag, as reported by The Verge. Give it a straightforward shot of a person or a pet, and it can whip up surprisingly realistic movement. Though, one tester did note their cat’s tongue appeared unnaturally large in the output. Things get a little more unpredictable with other subjects. A women’s soccer game somehow ended up with a chaotic 27 players across three teams, plus two referees trying to maintain order.
+
+Available to more people later, but not for free
+
+It’s noteworthy that Google previously announced such video generation capabilities. However, they were not free. In the case of the Honor 400 series, they will be free for two months. That said, you will have a usage limit of 10 video generations per day. Honor’s UK marketing director mentioned that eventually, this will likely require some sort of subscription from Google.
+
+Currently, Google’s paid Gemini Advanced subscription already includes video generation using Veo 2. However, it’s currently limited to text prompts. Image-to-video generation is listed as a feature of Veo 2 on Google Cloud, where it costs a hefty 50 cents per second of output and has limited availability.

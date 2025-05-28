@@ -1,0 +1,55 @@
+Title: The Outlook for the U.S. Housing Market in 2025
+Source: https://www.jpmorgan.com/insights/global-research/real-estate/us-housing-market-outlook
+
+The outlook for the US housing market in 2025
+
+February 10, 2025
+
+With several variables impacting the U.S. housing market — from soaring home prices to rock-bottom demand — where’s the sector headed in 2025? Explore the outlook with J.P. Morgan Research, factoring in the potential for a new set of policy priorities under the Trump administration.
+
+Key takeaways
+- J.P. Morgan Research expects house prices to rise by 3% overall in 2025.
+- The higher-for-longer interest rate backdrop is here to stay, with mortgage rates expected to ease only slightly to 6.7% by the year end.
+- President Trump’s policies could have complex implications for the housing market, particularly on the issue of affordability.
+
+Home price outlook for 2025
+The U.S. housing market is likely to remain largely frozen through 2025. Some growth is still expected, but at a very subdued pace of 3% or less. Demand — often understood through existing home sales (EHS) — remains exceptionally low. And though housing inventory is creeping back up, it still remains below the historical averages.
+
+Existing home sales and inventory remain low
+EHS and inventory remain low, though inventory rose 0.7% month-over-month to 1.37 million and existing home sales rose 3.4% month-over-month to 3.96 million in October 2024.
+
+Housing market supply remains tight nationally
+“Supply should be less of a support for the housing market in 2025.”
+Michael Rehaut, Head of U.S. Homebuilding and Building Products Research, J.P. Morgan
+“Existing homes for sale have reverted to more normalized levels across several key Metropolitan Statistical Areas (MSAs), and new homes have become fairly plentiful,” said Michael Rehaut. “New homes for sale are at 481K, the highest level since 2007, and speculative homes for sale are at 385K, the highest since 2008. These metrics are roughly 50%/40% respectively above long-term averages. Supply should be less of a support for the housing market in 2025.” Nationally, single-family existing homes for sale are up roughly 20% year-over-year, but the number remains near record lows, around 20-30% below prior troughs.
+
+A housing shortage is often attributed to supply tightness. In this instance, underbuilding has been evident over the past decade, but a longer-term housing shortage is less clear. Looking back over the past 30 years, new household formations and housing completions net out to nearly zero. Other factors could help account for a shortage:
+- It’s estimated that there are 11.2 million undocumented immigrants in the U.S., and that number may be higher. This could be ramping up housing demand more than figures suggest, resulting in a shortage of stock.
+- Since rates have backed up and rental economics have declined, builders of multi-family units have put on the brakes. On the whole, building is normalizing, but higher rates will slow down new building activity.
+
+Multi-family construction, starts and completions
+Starts for multi-family units were surging, but builders have put on the brakes. Higher rates are slowing down new builds — completions have risen, but starts have fallen sharply.
+
+But another key issue is at play, which is restraining supply more than any potential underbuilding. People are staying put for longer due to high interest rates, so housing stock is not being freed up. “The lack of supply is primarily a lock-in issue,” said John Sim, head of Securitized Products Research at J.P. Morgan. “More than 80% of borrowers are 100 basis points (bps) or more out-of-the-money. These are borrowers who have a significant disincentive to sell their home, and this is creating the dearth in supply.”
+
+Housing market demand is seriously suppressed by interest rates
+The current housing market stagnation is more closely tied to interest rates than anything else. “The situation is not going to change until we get mortgage rates back down toward 5%, or even lower,” Sim said. “And we aren’t forecasting mortgage rates to breach 6% in 2025 — they should ease only slightly to 6.7% by the year end.” Based on this, demand looks set to remain at exceptionally low levels.
+
+The presence of vacancies is also suggestive of a demand issue, as lower vacancy rates point to potential supply constraints. Vacancies indicate that there are enough homes available, but these may not be the right type, in the ideal location, or at an affordable price point.
+
+With such low levels of supply and demand, how can the housing market keep growing in 2025? “The wealth effect from borrowers with significant home equity and/or equity market growth should maintain positive home price growth, though at a very subdued pace,” Sim said. While income has not kept pace with home price growth, existing borrowers are in good shape. And for those who own equities — particularly renters — there’s likely more money available toward down payments to effectively buy down the mortgage rate. Despite affordability challenges, this wealth effect helps to explain why home price growth is expected to continue.
+
+How could housing policy evolve during Trump’s second term?
+“By reducing immigration and lessening demand, Trump argues that housing costs can be reduced. It’s not that simple, though… cutting immigration would mean cutting labor supply in the construction industry, which could end up exacerbating the lack of affordable housing.”
+John Sim, Head of Securitized Products Research, J.P. Morgan
+President Trump is yet to unveil specific housing policy proposals, but potential direction can be inferred. Limited housing supply has been a key factor driving significant home price growth over the past few years. Trump has recognized the shortage of affordable housing as a significant challenge for many Americans — to address it, he’s proposed two primary solutions:
+1. Streamlining zoning approval processes to shorten construction timelines, though this would need to be addressed at a local level except on federal land.
+2. Making federal land available for new housing construction projects.
+
+Other potential solutions, such as multifamily construction in areas zoned for single family homes, look unlikely under a Trump administration. Trump has generally opposed multifamily developments in predominantly single-family neighborhoods. In addition, a major campaign promise was to prevent low-income housing developments in suburban areas.
+
+On the demand side, Trump has been less vocal about solutions. However, he has consistently emphasized the effects of immigration on housing market demand. “By reducing immigration and lessening demand, Trump argues that housing costs can be reduced,” Sim said. “It’s not that simple, though — approximately 30% of construction workers are immigrants, so there could be complex implications. Cutting immigration would mean cutting labor supply in the construction industry, which could end up exacerbating the lack of affordable housing.”
+
+Beyond housing, several of Trump’s proposals could, if implemented, lead to rising inflation, which is likely to result in higher mortgage rates that would further dampen housing demand. In particular, government-sponsored enterprise (GSE) privatization — which includes the Federal Home Loan Mortgage Corporation (Freddie Mac) and the Federal National Mortgage Association (Fannie Mae) — is expected to come into focus. If executed hastily, this could widen mortgage-backed security (MBS) spreads and lead to even higher rates for borrowers.
+
+“It’s evident that numerous aspects of Trump's policy will impact the housing market,” Sim said. “For now, though, all we can do is wait.”

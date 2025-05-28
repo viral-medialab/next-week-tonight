@@ -1,0 +1,41 @@
+## Overview of Trump Tariff Wars: Historical and Recent News Coverage
+
+The Trump administration's tariff wars, often termed as "trade wars," have been significant and contentious elements of U.S. trade policy since 2018. The imposition, expansion, and evolution of tariffs under both the first and second Trump administrations have triggered considerable economic, political, and diplomatic repercussions worldwide, affecting relations with China, the European Union, Canada, Mexico, and other major trading partners. Below is an extensive review of high-quality news and academic sources that chronicle the trajectory of these tariff actions, their global impact, economic consequences, and the most recent developments.
+
+## Historical Coverage and Key Events
+
+**First Trump Administration (2017–2021):**
+- In January 2018, the Trump administration imposed tariffs on solar panels and washing machines, followed by tariffs on steel (25%) and aluminum (10%) in March 2018[5].
+- The U.S. also launched a trade conflict with China, placing tariffs on hundreds of billions of dollars’ worth of goods, prompting retaliation from Beijing and escalating into a broad economic dispute[1][5].
+- The trade war also affected U.S. trading relations with close allies, including the European Union, Canada, and Mexico[1].
+- Key moments and policy turns are documented in detailed timelines and analyses by PBS and Wikipedia, highlighting the phases of escalation, negotiation, and periodic pauses[1][5].
+
+**Economic Impact Analyses:**
+- The Tax Foundation provides detailed research on the magnitude of U.S. tariffs implemented during the Trump years. For example, tariffs affected approximately $380 billion in U.S. imports in 2018–2019, with extensive impacts on global supply chains and domestic prices[3].
+- These tariffs amounted to tax increases of nearly $80 billion, with notable effects on consumer prices, import volumes, and U.S. business operations[3].
+
+## Second Trump Administration and Recent Developments
+
+**Recent Tariff Actions (2025):**
+- In February and April 2025, President Trump announced new rounds of tariffs, including a baseline 10% tariff on all U.S. imports effective April 5 and the removal of earlier exemptions on steel and aluminum imports[1][2][4].
+- On "Liberation Day" (April 2), reciprocal tariffs were announced for all trading partners not subject to sanctions, causing U.S. average tariff rates to reach the highest level in over a century[2][4].
+- There was significant market volatility and concerns from business leaders about rising costs and product shortages as a result of escalating tariffs, especially with China[2].
+- Negotiations with the United Kingdom resulted in limited tariff reductions while maintaining a 10% baseline tariff across most goods[2].
+- The U.S. and China agreed in May 2025 to temporarily lower tariffs for 90 days, following a steep escalation in tariff rates during the preceding months[2].
+
+**Ongoing and Economic Effects:**
+- Trade war policies currently in place tally up to approximately $79 billion in tariffs, with actual revenues impacted by changes in import volumes and economic activity[3].
+- The Biden administration (between Trump administrations) maintained most Trump-era tariffs but adjusted and suspended certain categories, especially with the European Union and United Kingdom[3].
+- The business community, analysts, and economists continue to warn of risks to global economic growth, supply chain disruptions, and increased costs to consumers stemming from the tariff policies[1][2][3].
+
+## Timeline and Policy Documents
+
+- PBS offers a comprehensive timeline of tariff actions, outlining each significant policy shift, retaliatory move, and negotiation pause from 2018 through the latest developments in 2025[1].
+- Official White House fact sheets detail the national security and sovereignty rationale for the major rounds of tariffs, reflecting both economic and strategic arguments from the Trump administration[4].
+
+## Sources:
+1. https://www.pbs.org/newshour/economy/a-timeline-of-trumps-tariff-actions-so-far
+2. https://en.wikipedia.org/wiki/Tariffs_in_the_second_Trump_administration
+3. https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/
+4. https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-declares-national-emergency-to-increase-our-competitive-edge-protect-our-sovereignty-and-strengthen-our-national-and-economic-security/
+5. https://en.wikipedia.org/wiki/Tariffs_in_the_first_Trump_administration

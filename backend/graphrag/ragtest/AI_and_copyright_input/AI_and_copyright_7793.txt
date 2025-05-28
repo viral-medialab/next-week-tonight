@@ -1,0 +1,86 @@
+Title: Five Takeaways from the Copyright Office’s Controversial New AI Report
+Source: https://copyrightlately.com/copyright-office-ai-report/
+
+The Copyright Office released a “pre-publication version” of its long-awaited AI and fair use report just a day before the Register of Copyrights was dismissed. Inside the timing, the fallout, and what it all means.
+
+Late Friday afternoon—a time traditionally reserved for burying news and slipping out of the office—the U.S. Copyright Office quietly dropped a “pre-publication” version of Part 3 of its highly anticipated artificial intelligence study. The 108-page report provides the Office’s detailed take on how U.S. copyright law, particularly the fair use doctrine, should apply to the use of copyrighted works to train generative AI models.
+
+To be clear, “pre-publication versions” of Copyright Office reports aren’t standard practice. And the timing of this one was no accident.
+
+The report’s release was sandwiched between two extraordinary firings. The day before it was posted on the Copyright Office’s website, the Trump administration abruptly dismissed Dr. Carla Hayden, the longtime Librarian of Congress who had appointed Register of Copyrights Shira Perlmutter. Then, on Saturday—less than 24 hours after the report went live—Perlmutter was fired by the administration as well. While some have speculated that the report itself triggered Perlmutter’s dismissal, it’s more likely that the Office raced to release the report before a wave of leadership changes could delay—or derail—its conclusions.
+
+Whether this report survives as “official” policy is uncertain. It may even be rescinded by the time you read this post. But its 50,000-plus words remain very much alive—alongside more than 40 generative AI copyright cases now pending in federal courts across the country. Judges, law clerks, and policymakers will read them. And on several hotly contested issues, the report speaks with unusual clarity—often siding with creators over the tech platforms whose tools are backed by an increasingly aggressive executive branch. Several of those platforms are now lobbying the Trump administration to declare it categorically lawful to use copyrighted works for AI training.
+
+I don’t typically veer into political commentary in this space. That said, the Register of Copyrights isn’t supposed to be a political position. It’s not a presidential appointment, and the Copyright Office sits within the Library of Congress—not the executive branch—raising serious questions about the legality of the Register’s dismissal. What really can’t be questioned is that Shira Perlmutter served the Copyright Office with honor and distinction, guiding it into the modern age—and into the uncharted territory of AI. Her removal underscores just how much was at stake in getting this report out the door—and how much it may come to define her legacy.
+
+Though lengthy, the report is worth reading in full, especially in light of the broader context surrounding its release. In the meantime, here are my five biggest takeaways.
+
+1. Copying Starts Early—and May Linger in the Weights
+
+Unsurprisingly, the Copyright Office acknowledges that building a training dataset using copyrighted works “clearly implicate[s] the right of reproduction”—making it presumptively infringing unless a defense like fair use applies. Developers typically create multiple copies of protected works throughout the training process: downloading, reformatting, transferring between systems, and incorporating them into training datasets. And when a trained model later generates outputs that reproduce or closely resemble copyrighted content, several of the copyright owner’s exclusive rights may be implicated then as well.
+
+The more interesting and controversial question is what happens inside the model itself. Specifically, can the model’s “weights”—the numerical parameters that encode what it has learned—constitute a copy? According to the report, the answer is yes, in some cases. If a model can output verbatim or nearly identical content from the training data—even without being prompted—that expression “must exist in some form in the model’s weights.” In such cases, the Office concludes, “there is a strong argument that copying the model’s weights implicates the right of reproduction for the memorized examples.”
+
+The implications are significant. If protectable expression is embedded in the weights, then “subsequent copying of the model weights, even by parties not involved in the training process, could also constitute prima facie infringement.” That means distributing, fine-tuning, or deploying a model could expose not just the original developers but also downstream users to liability under both reproduction and derivative work rights. Liability would ultimately turn on whether the model retains substantial protectable expression—but the Office’s analysis clearly opens a path for claims beyond the training stage.
+
+Key Quote: “Whether a model’s weights implicate the reproduction or derivative work rights turns on whether the model has retained or memorized substantial protectable expression from the work(s) at issue. . . [T]he use of those works in preparing a training dataset and training a model implicates the reproduction right, but copying the resulting weights will only infringe where there is substantial similarity.” (p. 30)
+
+2. Training May Be Transformative—But It Depends on How the Model Is Used
+
+Where a model engages in copying that constitutes prima facie infringement, the next key question is whether a defense like fair use applies. The Office’s first-factor analysis—the purpose and character of the use—closely tracks the Supreme Court’s reasoning in Warhol v. Goldsmith: whether a use is transformative depends not just on the training process, but on how the resulting model is ultimately used.
+
+At one end of the spectrum are research-driven or closed-system applications, where the model performs tasks unrelated to the expressive goals of the source material. For instance, training on books to support a content moderation tool—a system used to detect and filter harmful or inappropriate content—is “highly transformative,” in the Office’s view. At the other end are use cases where the model produces outputs “substantially similar to copyrighted works in the dataset.” Fine-tuning an image model on screenshots from an animated series to generate lookalike character art isn’t transformative—it’s a substitute for the original.
+
+Most uses fall in between. A model trained on sound recordings to generate new music might not copy any one track outright but still serves the same audience and purpose—entertainment—which the Office views as only “modestly transformative.” But if the same model were used to restore archival audio, the altered purpose would tip more strongly toward fair use.
+
+The Office also highlights the role of technical guardrails. Developers who implement safeguards to limit a model’s ability to reproduce copyrighted material may reduce the risk of market substitution—making a finding of fair use more likely. Although, per Warhol, if those safeguards are lifted or fail, the fair use analysis may need to be reevaluated.
+
+Key Quote: “[W]hile it is important to identify the specific act of copying during development, compiling a dataset or training alone is rarely the ultimate purpose. Fair use must also be evaluated in the context of the overall use.” (pp. 36–37)
+
+3. Training Isn’t “Non-Expressive”—and It’s Not Human Learning, Either
+
+As part of its first-factor analysis, the Office directly confronts two common defenses: that AI training is “non-expressive,” and that it mimics human learning. Given how frequently these arguments appear in litigation and commentary, they’re worth calling out on their own.
+
+First, the report rejects the idea that training is merely statistical. Language models, it explains, don’t just process word frequencies—they learn “how [words] are selected and arranged at the sentence, paragraph, and document level,” which it calls “the essence of linguistic expression.” Similarly, image models trained on aesthetic works absorb creative patterns specifically to generate expressive outputs. When a model is designed to replicate or reassemble expressive content, the training process can’t be dismissed as non-expressive.
+
+Second, the Office pushes back on the human learning analogy. Fair use doesn’t automatically cover every act done in the name of learning. As the report puts it, a student “could not rely on fair use to copy all the books at the library to facilitate personal education.” Humans also absorb information imperfectly and idiosyncratically. AI systems, by contrast, ingest exact digital copies and process them at “superhuman speed and scale”—a difference the Office considers fundamental to the fair use analysis.
+
+Key Quote: “Humans retain only imperfect impressions of the works they have experienced . . . Generative AI training involves the creation of perfect copies with the ability to analyze works nearly instantaneously.” (p. 48)
+
+4. Copying Everything Usually Hurts—But Context Can Tip the Scale
+
+The third fair use factor examines how much of a copyrighted work was used—and whether that amount was reasonable given the use’s purpose. That presents a challenge for AI developers, whose models often ingest millions of works in full. Wholesale reproduction typically weighs against fair use.
+
+But as the Copyright Office emphasizes, context matters. Courts have allowed full-work copying where it enabled transformative tools—like search engines or plagiarism detectors—that provide information about the underlying works. In those cases, the Office explains, full reproduction was “definitionally necessary” to achieve their functionality.
+
+Generative AI, by contrast, isn’t limited to providing information about the training data. As the Office puts it, “the use of entire copyrighted works is less clearly justified” here than it was in the Google Books or image thumbnail cases.
+
+Even so, the Office acknowledges the technical realities of modern AI development. It cites research suggesting that “internet-scale pre-training data, including large amounts of entire works, may be necessary to achieve the performance of current-generation models.” So while full copying “ordinarily weighs against fair use,” that presumption may be mitigated if developers can show the copying was functionally necessary to a transformative purpose—and if the resulting model includes effective guardrails to prevent the output of protected expression.
+
+Key Quote: “[T]he third factor may weigh less heavily against generative AI training where there are effective limits on the trained model’s ability to output protected material from works in the training data.” (p. 59)
+
+5. Market Dilution May Be the Most Important—and Novel—Harm
+
+Perhaps the report’s most consequential—and controversial—takeaway is its expansive reading of the fourth fair use factor: the effect of the use on the potential market for the copyrighted work. The Office identifies three categories of potential market harm caused by generative AI training:
+
+- Lost licensing opportunities: Where rights holders could have been paid to include their works in training datasets.
+- Lost sales: When a model generates outputs substantially similar to a protected work in the training set.
+- Market dilution: When AI-generated content floods the market with new works that, even if not directly infringing, compete with or diminish the value of the original training materials through sheer volume or stylistic imitation.
+
+It’s this third theory—market dilution—that’s likely to generate the most debate. The Office warns that “the speed and scale at which AI systems generate content pose a serious risk of diluting markets for works of the same kind as in their training data.” Even when outputs aren’t substantially similar to any particular work, “stylistic imitation made possible by [the original work’s] use in training may impact the creator’s market.”
+
+But this theory is legally untested. As the Office acknowledges, it’s “uncharted territory,” and no court has yet embraced it as a reason to deny fair use.
+
+Whether they will remains to be seen. The Copyright Office doesn’t make law—it offers guidance that courts may consider under Skidmore deference, which depends entirely on the strength and persuasiveness of the Office’s reasoning. And while the Office draws from deep subject-matter expertise, courts will likely demand more than policy concerns or anecdotal examples—especially when asked to extend fair use doctrine into new territory. Of all the positions advanced in the report, this one may prove the most vulnerable to revision—or rejection—depending on the ultimate fate of the Office’s report.
+
+Key Quote: “The speed and scale at which AI systems generate content pose a serious risk of diluting markets for works of the same kind as in their training data.” (p. 65)
+
+The Bottom Line
+
+The Copyright Office isn’t picking winners or losers in the 40-plus AI copyright cases now pending in court, and its report repeatedly emphasizes that fair use turns on the specific facts of each case. But taken as a whole, the analysis reads as broadly favorable to copyright owners—most notably in its endorsement of a novel market dilution theory that no court has yet adopted. That position arrives amid a politically charged shake-up of the Office’s own leadership.
+
+Beyond fair use, the 108-page report explores licensing infrastructure, collective bargaining proposals, and broader policy reforms. For creators and rights holders pushing back against unauthorized AI training, it offers a detailed—and often forceful—rebuttal to sweeping fair use defenses.
+
+But whether courts will adopt the Office’s reasoning—or whether the report will even remain official policy under new leadership—is very much an open question.
+
+As always, I’d love to hear what you think. Drop me a comment below or @copyrightlately on social media. In the meantime, I’m holding onto the full report below for safekeeping… because you never know how long it’ll stay up on the Copyright Office’s website.

@@ -1,0 +1,354 @@
+Title: Who’s suing AI and who’s signing: Ziff Davis sues OpenAI after Washington Post signs deal
+Source: https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/
+
+A small number of news publishers have followed in the footsteps of The New York Times to sue OpenAI and other AI companies over the unauthorised use of their content.
+
+However many more now have signed deals with the AI companies which commonly include the use of their content as reference points for user queries in tools like ChatGPT (with citation back to their websites currently promised) as well as giving them the use of the tech to build their own products.
+
+**The news publishers _suing_ AI platforms are (scroll down or click to see more information about each):**
+
+- [Ziff Davis vs OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-ziff-davis)
+- [News/Media Alliance members vs Cohere](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-news-media-alliance-members)
+- [Indian news publishers vs OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-indian-news-publishers)
+- [Coalition of Canadian news outlets vs OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-canadian-outlets)
+- [News Corp vs Perplexity](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-news-corp-versus-perplexity)
+- [Mumsnet vs OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-mumsnet)
+- [The Center for Investigative Reporting vs OpenAI and Microsoft](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-the-center-for-investigative-reporting)
+- [Eight Alden Global Capital newspapers vs OpenAI and Microsoft](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-eight-alden-global-capital-daily-newspapers)
+- [The Intercept, Raw Story and AlterNet vs OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-the-intercept-raw-story-and-alter-net)
+- [The New York Times vs OpenAI and Microsoft](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-the-new-york-times)
+- [Getty Images vs Stability AI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-getty-images)
+
+**The news publishers/organisations that have _signed_ deals with AI companies (scroll down or click for full information):**
+
+- [The Washington Post – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-the-washington-post)
+- [Shutterstock – Synthesia](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-shutterstock-1)
+- [News/Media Alliance – Prorata.ai](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-news-media-alliance-members-0)
+- [Guardian – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-the-guardian)
+- [Schibsted – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-schibsted)
+- [Agence France-Press – Mistral](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-agence-france-press)
+- [Associated Press – Google](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-associated-press)
+- [Axios – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-axios)
+- [Future – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-future)
+- [The Independent, LA Times, Lee Enterprises and more – Perplexity](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-the-independent-la-times-lee-enterprises-and-more)
+- [DMG Media, Guardian, Sky News and Prospect – Prorata.ai](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-dmg-media-guardian-sky-news-and-prospect)
+- [Reuters – Meta](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-reuters)
+- [Hearst – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-hearst)
+- [FT, Reuters, Axel Springer, Hearst Mags, USA Today Network – Microsoft](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-ft-reuters-axel-springer-hearst-mags-usa-today-network)
+- [Conde Nast – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-conde-nast)
+- [FT, Axel Springer, The Atlantic, Fortune – Prorata.ai](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-financial-times-axel-springer-the-atlantic-fortune)
+- [Time, Der Spiegel, Fortune, Texas Tribune and more – Perplexity](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-time-der-spiegel-nbsp-fortune-entrepreneur-the-texas-tribune-and-wordpress-owner-automattic)
+- [Time – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-time)
+- [Vox Media – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-vox-media)
+- [The Atlantic – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-the-atlantic)
+- [News Corp – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-news-corp)
+- [Dotdash Meredith – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-dotdash-meredith)
+- [Informa – Microsoft](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-b2b-giant-informa)
+- [Axel Springer – Microsoft](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-axel-springer)
+- [Financial Times – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-financial-times)
+- [Le Monde and Prisa Media – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-le-monde-and-prisa-media)
+- [Axel Springer – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-axel-springer)
+- [Associated Press – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-associated-press-0)
+- [Shutterstock – OpenAI](https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/#h-shutterstock)
+
+_This page will be updated when new deals are struck or legal actions are launched relating to news publishers and AI companies (scroll down for the latest: Google first with AP, AFP signs with French AI company Mistral, and Axios expands local newsrooms as part of OpenAI deal)._ 
+
+OpenAI has reportedly [offered news organisations between $1m and $5m per year](https://www.theverge.com/2024/1/4/24025409/openai-training-data-lowball-nyt-ai-copyright) to license their copyrighted content to train its models – although News Corp’s deal is reportedly worth more than $250m over five years.
+
+Meanwhile Apple has [reportedly been exploring AI deals with the likes of](https://www.nytimes.com/2023/12/22/technology/apple-ai-news-publishers.html) Conde Nast, NBC News and People and Daily Beast owner IAC to license their content archives, but nothing has yet been made public.
+
+Plenty of other news organisations are understood to be in negotiations with OpenAI while [some, including the publisher of Mail Online, have suggested they are seriously considering their options legally.](https://pressgazette.co.uk/media_law/openai-new-york-times-copyright-lawsuit/)
+
+But not all publishers want deals: [Reach chief executive Jim Mullen told investors](https://www.reachplc.com/content/dam/reach/corporate/documents/results-and-reports/2023/2023-fy-script.pdf.downloadasset.pdf) on 5 March last year that the UK’s largest commercial publisher is not in any “active discussions” with AI companies and suggested other publishers should hold off on deals to allow the industry to come at the issue with a position of solidarity.
+
+He said: “We would prefer that we don’t get into a situation where we did with the referrers ten years ago and gave them access and we became hooked on this referral traffic and we would like it to be more structured. We produce content, which is really valuable, and we would like to license or agree how they use our base intelligence to actually inform the AI and the open markets. The challenge we have as an industry is that we need to be unified.
+
+“I used to be the chairman of the NMA and if we stay together and work with it, then that’s a really strong position that we have, particularly with the Government to help us get to there. So I’m using this as a bit of a campaign, [it] only takes one publisher to break away and start doing deals and then it sort of disintegrates.”
+
+Press Gazette analysis in February last year found that [more than four in ten of the 100 biggest English-language news websites have decided not to block AI bots from the likes of OpenAI and Google](https://pressgazette.co.uk/platforms/news-sites-block-ai-web-crawlers-chatgpt-google/).
+
+_If you feel there is something missing that should be included, or you want to alert us to a new development, please contact charlotte.tobitt@pressgazette.co.uk._
+
+## Suing
+
+### Ziff Davis
+
+_25 April 2025:_ US-based online publisher Ziff Davis is suing OpenAI for “intentionally and relentlessly” using its copyrighted content.
+
+The lawsuit says: “OpenAI seeks to move fast and break things on the assumption that the federal courts will not be able to effectively redress content owners’ sometimes existential concerns before it is too late.”
+
+Ziff Davis publishes tech brands like CNET, PCMag and ZDNet, gaming and entertainment titles like IGN and Eurogamer, and health/lifestyle brands like The Skimm and Everyday Health.
+
+OpenAI said in response that its models “empower innovation, and are trained on publicly available data and grounded in fair use”.
+
+### News/Media Alliance members
+
+_13 February 2025:_ A collection of news and magazine publishers who are members of the US News/Media Alliance have [filed a copyright suit](https://www.newsmediaalliance.org/wp-content/uploads/2025/02/2025.02.13-Doc-1-Complaint.pdf) against Canadian AI start-up Cohere Inc.
+
+The publishers involved are: Advance Local Media, Conde Nast, The Atlantic, Forbes, The Guardian, Business Insider, LA Times, McClatchy Media Company, Newsday, Plain Dealer Publishing Company, Politico, The Republican Company, Toronto Star Newspapers, and Vox Media.
+
+[They say](https://www.newsmediaalliance.org/lawsuit-against-ai-content-theft/) Cohere “engaged in widespread unauthorised use of publisher content in developing and running its generative AI systems” in a complaint that lists 4,000 articles allegedly used for training and to surface real-time content.
+
+They claim Cohere copies publisher content even when it is behind a paywall or when a website has blocked its bot from scraping. They also say Cohere’s products provide users with “verbatim regurgitations and substitutional summaries” of publishers’ original news content.
+
+When publisher content is not copied, they say, the chatbot produces “damaging hallucinations” and even fake pieces under publishers’ names.
+
+News/Media Alliance president and chief executive Danielle Coffey said: “As news, magazine, and media publishers, we serve an important role in keeping society informed and supporting the free flow of information and ideas, but we cannot continue to do so if AI companies like Cohere are able to undercut our businesses while using our own content to compete with us.”
+
+Conde Nast chief executive Roger Lynch, who last year [called for “immediate action” on AI and copyright from US Congress and warned that many media companies could go out of business in the time it takes for lengthy litigation to go through the courts](https://pressgazette.co.uk/north-america/conde-nast-ceo-roger-lynch-ai-senate/), said: “The New Yorker, Vogue, GQ, Wired, Vanity Fair and our many other iconic brands cannot live up to their exceptional standards if we allow their content to be stolen, distorted and trafficked. We will defend our rights fiercely and wherever they are infringed.”
+
+And Anna Bateson, chief executive of Guardian Media Group, said, “As part of a considered approach to generative AI, the Guardian has explored and signed agreements with numerous partners to ensure fair compensation and attribution for the Guardian’s award-winning investigative journalism.
+
+“Unfortunately, Cohere has demonstrated an egregious pattern of scraping and copying news articles to produce full verbatim copies of original content without compensation – or even worse, complete hallucinations. The Guardian is proud to stand with some of the world’s top publishers in an attempt to stop Cohere’s brazen theft and distortion of original journalism.”
+
+### Indian news publishers
+
+_28 January 2025:_ Several Indian news publishers are joining together in a copyright battle against OpenAI.
+
+The Indian Express, Hindustan Times, NDTV and the Digital News Publishers Association, which represents about 20 news companies, have told a court in New Delhi they want to join a lawsuit against OpenAI first launched by local news agency ANI last year.
+
+[Reuters, which said it has seen the court filing, reported](https://www.reuters.com/technology/openai-face-indian-digital-news-firms-ambani-adani-copyright-battle-2025-01-27/) that the publishers argued OpenAI presented “a clear and present danger to the valuable copyrights” of DNPA members and other news titles through its “wilful scraping … and adaptation of content”. They also noted that OpenAI has entered into partnership deals with news publishers elsewhere but none in India.
+
+Not all DNPA members want to take part, with The Times of India specifically cited.
+
+OpenAI has previously argued in the ANI case that Indian judges have no jurisdiction to hear the case as its servers are located elsewhere, and that an order to delete training data would be in violation of its obligations in the US.
+
+### Canadian outlets
+
+_29 November 2024:_ A coalition of major Canadian news publishers, including CBC/Radio-Canada, Postmedia, Metroland, the Toronto Star, the Globe and Mail, Postmedia and the Canadian Press, have [joined together to sue](https://litigate.com/assets/uploads/Canadian-News-Media-Companies-v-OpenAI.pdf) OpenAI for copyright infringement.
+
+The publishers said in a statement: “News media companies invest hundreds of millions of dollars into reporting Canadians’ critical stories, undertaking investigations and original reporting, and distributing media in both official languages in every province and territory across this country. The content that Canadian news media companies produce is fact-checked, sourced and reliable, producing trusted news and information by, for, and about Canadians. This requires significant investment, and the content produced by news media companies is protected by copyright.
+
+“News media companies welcome technological innovations. However, all participants must follow the law, and any use of intellectual property must be on fair terms.
+
+“OpenAI regularly breaches copyright and online terms of use by scraping large swaths of content from Canadian media to help develop its products, such as ChatGPT. OpenAI is capitalizing and profiting from the use of this content, without getting permission or compensating content owners.
+
+“OpenAI’s public statements that it is somehow fair or in the public interest for them to use other companies’ intellectual property for their own commercial gain is wrong. Journalism is in the public interest. OpenAI using other companies’ journalism for their own commercial gain is not. It’s illegal.
+
+“This claim seeks to address this inappropriate and illegal use of Canadian content, and enforce Canadian laws.”
+
+OpenAI told the BBC in response [that its models are](https://www.bbc.co.uk/news/articles/cm27247j6gno) “trained on publicly available data” and “grounded in fair use and related international copyright principles that are fair for creators and support innovation”.
+
+### News Corp (versus Perplexity)
+
+_21 October 2024:_ The News Corp subsidiaries that publish the Wall Street Journal and New York Post have [filed a copyright and trademark infringement lawsuit against AI upstart Perplexity](https://pressgazette.co.uk/platforms/news-corp-sues-perplexity/), which they accuse of “massive freeriding”.
+
+The publisher is seeking massive damages and the removal of its content from Perplexity’s web index and wants its case heard at a jury trial.
+
+News Corp has separately signed a deal with OpenAI (see below for more information). It is the first to sue Perplexity though other publishers including The New York Times have sent the AI company cease and desist letters.
+
+[Read the full story here.](https://pressgazette.co.uk/platforms/news-corp-sues-perplexity/)
+
+### Mumsnet
+
+_19 July 2024:_ UK parenting forum and publisher Mumsnet has launched legal action via an initial letter against OpenAI over the scraping of its site and its more than six billion words – “presumably” for the training of large language model ChatGPT.
+
+[Mumsnet founder Justine Roberts told users](https://www.mumsnet.com/talk/site_stuff/5122770-why-were-taking-legal-action-against-open-ai-and-other-scrapers): “Such scraping without permission is an explicit breach of our terms of use, which clearly state that no part of the site may be distributed, scraped or copied for any purpose without our express approval. So we approached Open AI and suggested they might like to licence our content.”
+
+In particular, she said, Mumsnet’s content would be valuable because it could help to counter the misogyny “baked in” to many AI models.
+
+But, she continued: “Their response was that they were more interested in datasets that are not easily accessible online.”
+
+Roberts said what OpenAI differs from Google’s scraping of the web for search purposes because there is a “clear value exchange in allowing Google to access that data, namely the resulting search traffic… The LLMs are building models like ChatGPT to provide the answers to any and all prospective questions that will mean we’ll no longer need to go elsewhere for solutions. And they’re building those models with scraped content from the websites they are poised to replace.”
+
+Roberts continued: “At Mumsnet we’re in a stronger position than most because much of our traffic comes to us direct and though it’s a piece of cake for an LLM to spit out a Mumsnet-style answer to a parenting question I doubt they’ll ever be as funny about parking wars or as honest about relationships and they’ll certainly never provide the emotional support that sees around a thousand women a year helped to leave abusive partners by other Mumsnet users.
+
+“But if these trillion-dollar giants are simply allowed to pillage content from online publishers – and get away with it – they will destroy many of them.”
+
+Roberts acknowledged it is “not an easy task” to go up against a big tech company like OpenAI but said “this is too important an issue to simply roll over”.
+
+### The Center for Investigative Reporting
+
+_28 June 2024:_ Non-profit news organisation The Center for Investigative Reporting, [which produces Mother Jones (after a merger this year) and Reveal](https://pressgazette.co.uk/the-wire/media-mergers-news-tracker/mother-jones-merges-with-center-for-investigative-reporting/), is [suing OpenAI](https://revealnews.org/press/cir-sues-openai/) and its largest shareholder Microsoft.
+
+It said the companies had used its content “without permission or offering compensation” and accused them of “exploitative practices” in a lawsuit filed in New York.
+
+Chief executive Monika Bauerlein said: “OpenAI and Microsoft started vacuuming up our stories to make their product more powerful, but they never asked for permission or offered compensation, unlike other organizations that license our material.
+
+“This free rider behavior is not only unfair, it is a violation of copyright. The work of journalists, at CIR and everywhere, is valuable, and OpenAI and Microsoft know it.”
+
+She added: “For-profit corporations like OpenAI and Microsoft can’t simply treat the work of nonprofit and independent publishers as free raw material for their products.
+
+“If this practice isn’t stopped, the public’s access to truthful information will be limited to AI-generated summaries of a disappearing news landscape.”
+
+### Eight Alden Global Capital daily newspapers
+
+_30 April 2024:_ Eight daily newspapers in the US owned by Alden Global Capital are suing OpenAI and Microsoft.
+
+The newspapers involved in the lawsuit are: the New York Daily News, the Chicago Tribune, the Orlando Sentinel, the Sun-Sentinel in Florida, the Mercury News in San Jose, the Denver Post, the Orange County Register and the St. Paul Pioneer Press.
+
+The lawsuit says the newspapers want recognition that they have a legal right over their content and compensation for the use of it in the training of AI tools so far.
+
+Frank Pine, executive editor of Media News Group and Tribune Publishing Newspapers, the Alden subsidiaries that own the newspapers concerned, said: “We’ve spent billions of dollars gathering information and reporting news at our publications, and we can’t allow OpenAI and Microsoft to expand the Big Tech playbook of stealing our work to build their own businesses at our expense.
+
+“They pay their engineers and programmers, they pay for servers and processors, they pay for electricity, and they definitely get paid from their astronomical valuations, but they don’t want to pay for the content without which they would have no product at all. That’s not fair use, and it’s not fair. It needs to stop.
+
+“The misappropriation of news content by OpenAI and Microsoft undermines the business model for news. These companies are building AI products clearly intended to supplant news publishers by repurposing purloined content and delivering it to their users.
+
+“Even worse, when they’re not delivering the actual verbatim reporting of our hard-working journalists, they misattribute bogus information to our news publications, damaging our credibility. We employ professional journalists who adhere to the highest standards of accuracy and fairness. They are real people who go out into the world to conduct first-hand interviews and engage in actual investigations to produce our journalism.
+
+“Their work is vetted and checked by professional editors. The Mercury News has never recommended injecting disinfectants to treat COVID, and the Denver Post did not publish research that shows smoking cures asthma. These and other ChatGPT hallucinations are documented in our legal filings.”
+
+### The Intercept, Raw Story and Alter Net
+
+_28 February 2024:_ Three US progressive news and politics digital outlets filed lawsuits against OpenAI.
+
+The Intercept, Raw Story and Alter Net objected to the use of their articles to train ChatGPT. The Intercept also sued Microsoft, which has partnered with OpenAI to create a Bing chatbot.
+
+[Raw Story](https://www.rawstory.com/raw-story-sues-openai/) publisher Roxanne Cooper said: “Raw Story’s copyright-protected journalism is the result of significant efforts of human journalists who report the news. Rather than license that work, OpenAI taught ChatGPT to ignore journalists’ copyrights and hide its use of copyright-protected material.”
+
+CEO and founder John Byrne added: “It is time that news organisations fight back against Big Tech’s continued attempts to monetise other people’s work.”
+
+### The New York Times
+
+_27 December 2023:_ The most high-profile case against OpenAI and Microsoft from a news publisher so far, [The New York Times](https://pressgazette.co.uk/subject/the-new-york-times/) [made a surprise announcement in the days after Christmas](https://pressgazette.co.uk/media_law/new-york-times-open-ai-microsoft-lawsuit/) that it would seek damages, restitution and costs as well as the destruction of all large language models (LLMs) trained on its content.
+
+OpenAI and NYT had been in negotiations for nine months but the news organisation felt no resolution was forthcoming and decided instead to share its concerns over the use of its intellectual property publicly. The success of the lawsuit will [depend on the US court’s interpretation of “fair use” in copyright law](https://pressgazette.co.uk/media_law/new-york-times-openai-microsoft-ip-experts/) – assuming the companies don’t find their way to a settlement first.
+
+OpenAI previously said a “high-value partnership around real-time display with attribution in ChatGPT” was on the cards with the NYT before the news organisation surprised it by launching the lawsuit.
+
+The NYT said the two tech companies, which have a partnership centred around ChatGPT and Bing, have “reaped substantial savings by taking and using – at no cost” its content to create their models without paying for a licence. It added that the use of its content in chatbots “threatens to divert readers, including current and potential subscribers, away from The Times, thereby reducing the subscription, advertising, licensing, and affiliate revenues that fund The Times’s ability to continue producing its current level of groundbreaking journalism”.
+
+[In its response](https://static01.nyt.com/newsgraphics/documenttools/82a013b9ba852548/9d4b1790-full.pdf), filed on Monday 26 February, OpenAI argued: “In the real world, people do not use ChatGPT or any other OpenAI product” to substitute for a NYT subscription. “Nor could they. In the ordinary course, one cannot use ChatGPT to serve up Times articles at will.”
+
+OpenAI accused the NYT of paying someone to hack its products and taking “tens of thousands of attempts to generate the highly anomalous results” in which verbatim paragraphs from articles were spat out by ChatGPT. “They were able to do so only by targeting and exploiting a bug (which OpenAI has committed to addressing) by using deceptive prompts that blatantly violate OpenAI’s terms of use,” it said.
+
+“And even then, they had to feed the tool portions of the very articles they sought to elicit verbatim passages of, virtually all of which already appear on multiple public websites. Normal people do not use OpenAI’s products in this way.”
+
+### Getty Images
+
+_17 January 2023:_ [Getty Images began legal proceedings](https://newsroom.gettyimages.com/en/getty-images/getty-images-statement) against Stability AI in the UK in January 2023, claiming that the AI image company “unlawfully copied and processed” millions of its copyrighted images without a licence through its text-to-image model Stable Diffusion.
+
+In December, the High Court in London ruled that Getty’s case [could go to trial](https://www.pinsentmasons.com/out-law/news/getty-images-v-stability-ai) after Stability AI failed to persuade a judge that two aspects of the claim – relating to training and development as well as copyright – should be struck out.
+
+Mrs Justice Joanna Smith said [Getty’s claim has a “real prospect of success”](https://www.bailii.org/ew/cases/EWHC/Ch/2023/3090.html) in relation to Stable Diffusion’s “image-to-image feature” which the photo agency claimed allows users to make “essentially identical copies of copyright works”.
+
+## Who’s signed news AI deals?
+
+### The Washington Post
+
+_22 April 2025:_ The Washington Post is the latest to [sign a “strategic partnership” with OpenAI](https://www.washingtonpost.com/pr/2025/04/22/washington-post-partners-with-openai-search-content/), giving the tech company permission to display summaries, quotes and links to its journalism in response to ChatGPT search queries with “clear attribution”.
+
+Peter Elkins-Williams, head of global partnerships at The Washington Post, said: “We’re all in on meeting our audiences where they are.
+
+“Ensuring ChatGPT users have our impactful reporting at their fingertips builds on our commitment to provide access where, how and when our audiences want it.”
+
+The title said it is still building its own AI tools for which it is “LLM-agnostic”.
+
+### Shutterstock
+
+_8 April 2025:_ Shutterstock is allowing AI video platform Synthesia to research ways of training on its content library.
+
+Synthesia said it is [“pre-training” for its upcoming EXPRESS-2 model](https://www.synthesia.io/post/partnering-shutterstock-accelerate-ai-research) which will create AI avatars.
+
+Its R&D team has access to Shutterstock’s video library through a research licence, which may later be extended into a commercial licence.
+
+Synthesia said: “Building a large AI model involves a lot of research-focused experimentation before it can be put into production. Since last year, we’ve been testing various approaches and architectures for pre-training EXPRESS-2, our second foray into building a large video and audio model for our platform.
+
+“During the pre-training phase, models require access to a wide variety of data so that they learn general aspects about the world. In our case, we need to show EXPRESS-2 enough human performances so it can reproduce natural and realistic behaviors, movements and expressions, such as delivering a script in the appropriate tone and with the correct facial expressions and body language movements.”
+
+### News/Media Alliance members
+
+_26 March 2025:_ US news publisher trade association News/Media Alliance has announced [an agreement](https://www.newsmediaalliance.org/prorata-licensing-partnership/) through which its members can opt into a content licence with revenue-sharing AI tech solution Prorata.
+
+Some News/Media Alliance members have already signed up as content partners with Prorata, including McClatchy, The Atlantic and the MIT Technology Review, and the trade body said it expected more to take advantage and follow suit.
+
+Prorata identifies when publisher content is used in generative AI answers in its Gist.AI product and will pay those publishers 50% of revenues driven by those responses.
+
+The News/Media Alliance said: “By offering technology companies the opportunity to reach multiple publishers at once, the Alliance hopes to make it easier for AI companies to reduce transaction costs and responsibly source their content.”
+
+### The Guardian
+
+_14 February 2025:_ The Guardian has signed a deal with OpenAI giving it compensation for the use of its journalism on ChatGPT in short summaries and article extracts, with proper credit.
+
+The Guardian will also be able to use OpenAI technology in-house to develop new products and features.
+
+Guardian chief financial and operating officer Keith Underwood said: “This new partnership with OpenAI reflects the intellectual property rights and value associated with our award-winning journalism, expanding our reach and impact to new audiences and innovative platform services.”
+
+### Schibsted
+
+_12 February 2025:_ Nordic news publisher Schibsted Media has signed a deal with OpenAI allowing the tech giant to integrate real-time news articles from some of its newsbrands into products like ChatGPT.
+
+The articles, from newsbrands including VG and Aftenposten in Norway and Aftonbladet and Svenska Dagbladet in Sweden, will be used to provide up-to-date news summaries and be clearly attributed in the responses.
+
+[Schibsted Media chief executive Siv Juvik Tveitnes](https://schibstedmedia.com/news/schibsted-media-partners-with-openai/) said: “This partnership is part of Schibsted Media’s broader efforts to integrate AI in ways that support and strengthen journalism.
+
+“By combining our editorial expertise with OpenAI’s technology and insights, we continue adapting to ensure that journalism evolves alongside technological advancements.”
+
+She added: “As AI-powered platforms increasingly influence how people search for and interact with information, this partnership allows us to explore new commercial opportunities in the evolving digital ecosystem.
+
+“By engaging early, we position ourselves to better understand and help shape how high-quality journalism can be distributed, monetised, and sustained in AI-driven environments.”
+
+She said the OpenAI agreement will lead to additional resources earmarked for innovation and AI development, as well as the ability to “gather insights on productivity gains and audience engagement based upon real-time data”, so Schibsted newsrooms can optimise their use of AI.
+
+Schibsted has already used AI to boost audience engagement by developing [AI-generated audio articles](https://pressgazette.co.uk/podcasts/aftenposten-ai-voice-new-audiences/), [article summaries](https://pressgazette.co.uk/publishers/digital-journalism/aftonbladet-sweden-biggest-daily-use-chatgpt-in-the-newsroom/) and a chatbot for Aftonbladet which answered more than 600,000 reader questions about the US presidential election.
+
+### **Agence France-Press**
+
+_16 January 2025:_ French AI company Mistral has done a multi-year global deal with AFP, giving its AI assistant Le Chat access to the news agency’s full output of text stories in six languages.
+
+The companies said the partnership “aims to strengthen the accuracy and relevance of Le Chat’s answers” by making them “more detailed, accurate, and properly sourced”.
+
+AFP’s chairman and chief executive Fabrice Fries said the partnership means AFP “is further diversifying its revenue sources, reaching a clientele beyond the media sector and exploring new uses for its content in the daily operations of businesses.
+
+“AFP is delighted with this first collaboration with an AI player that proudly embraces its European identity, recognising, especially in these challenging times, the value of verified, contextualised, and prioritised information.”
+
+AFP-sourced information will be available to all Le Chat users within a few weeks.
+
+Mistral chief executive and co-founder Arthur Mensch said: “Partnering with a globally trusted news agency like AFP allows Le Chat to offer reliable, factual, and up-to-date responses, verified by professional journalists. We believe improving the accuracy of these responses is a key step in the deployment of our technology, particularly for businesses.
+
+### **Associated Press**
+
+_16 January 2025:_ Google has done its first deal with a news publisher relating to showing up-to-date information in its Gemini chatbot.
+
+The deal means the Associated Press will “deliver a feed of real-time information to help further enhance the usefulness of results displayed in the Gemini app”.
+
+AP senior vice president and chief revenue officer Kristin Heitmann said it was a [continuation of the agency’s “longstanding relationship” with Google.](https://blog.google/products/news/associated-press-gemini-app/)
+
+“We are pleased Google recognises the value of AP’s journalism as well as our commitment to nonpartisan reporting, in the development of its generative AI products.”
+
+### **Axios**
+
+_15 January 2025:_ Axios will open four more local newsrooms using funding from OpenAI.
+
+The new three-year deal will allow Axios to use OpenAI technology to build its own products, including helping to speed its local expansion further, with all Axios staff given use of the enterprise version of OpenAI.
+
+It also means Axios journalism will appear in ChatGPT results with attribution and links.
+
+Axios chief executive Jim VandeHei wrote: “Axios and OpenAI entered into the three-year agreement after deep, months-long discussions about how artificial intelligence can assist with bringing local news to more locations… We see AI as a vital part of our long-term plans — not to report stories, but to help build a system for creation, distribution and monetisation of our journalism.”
+
+The new [Axios Local newsrooms](https://pressgazette.co.uk/news/new-model-for-local-news-axios-local-6am-city-roll-out-100-us-cities/) will open in Pittsburgh in Pennsylvania, Kansas City in Missouri, Boulder in Colorado and Huntsville, Alabama.
+
+VandeHei said this will take Axios to 34 cities and the goal is to expand to 100 or more.
+
+Axios will also double its Axios Local sales staff “immediately”.
+
+OpenAI head of media partnerships Varun Shetty said: “Our partnership with Axios will help establish new operations in four cities. We’re excited to see how Axios uses our technology to support quality reporting and tackle opportunities that they, and other local news organisations, face.”
+
+### **Future**
+
+_5 December 2024:_ [Future plc has signed a deal with OpenAI](https://pressgazette.co.uk/media_business/future-results-2024/), which does involve payment but is “not financially material” to the publishing company.
+
+Future said the strategic partnership would “bring our content to Open AI’s users, creating new ways for users to engage with our content”.
+
+### **The Independent, LA Times, Lee Enterprises and more**
+
+_5 December 2024:_ More than a dozen more publishers in the UK, US, Spain, Japan and Latin America have signed up to Perplexity’s revenue-sharing programme.
+
+The publishers include Adweek, The Independent, US local publishing owner Lee Enterprises, Los Angeles Times and World History Encyclopedia.
+
+Also involved are Newspicks and Minkabu Infonoid, the first two Japanese news publishers to sign agreements with an AI company, Spanish-language publisher Prisa Media, Mexico News Daily, RTL Germany brands Stern and NTV, as well as independent brands Blavity, DPReview, Gear Patrol and Medialab.
+
+Perplexity said the publishers will share in revenue generated from advertising when their content is referenced in AI-generated results.
+
+They will also have access to its APIs and developer support to build features using its proprietary search technology, access to data and analytics to track trends and content performance, and receive free Perplexity Enterprise Pro for their staff for a year.
+
+Perplexity also said it has appointed a head of publisher partnerships, Jessica Chan who previously built Linkedin’s content partner programmes, due to the level of interest it has received from news organisations.
+
+### **DMG Media, Guardian, Sky News and Prospect**
+
+_21 November 2024:_ Mail, Metro and i publisher DMG Media has invested in Prorata.ai in a deal that gives the AI start-up access to its content, including its archives.
+
+The Guardian, Sky News and Prospect magazine have also done content deals with Prorata.
+
+[Read the full Press Gazette story here.](https://pressgazette.co.uk/platforms/prorata-ai-dmg-media-guardian-sky-news/)

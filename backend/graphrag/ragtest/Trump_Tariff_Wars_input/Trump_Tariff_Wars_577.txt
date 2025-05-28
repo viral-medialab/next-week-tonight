@@ -1,0 +1,182 @@
+Title: Tariffs and Politics: Evidence from Trump’s Trade Wars
+Source: https://academic.oup.com/ej/article/131/636/1717/6029124
+
+We use the recent trade escalation between the USA and its trade partners to study whether retaliatory tariffs are politically targeted. We find comprehensive evidence using individual and aggregate voting data suggesting that retaliation is carefully targeted to hurt Trump. We develop a simulation approach to construct counterfactual retaliation responses allowing us to quantify the extent of political targeting while also studying potential trade-offs. China appears to place great emphasis on achieving maximal political targeting. The EU seems to have been successful in maximising political targeting while at the same time minimising the potential damage to its economy.
+
+JEL
+
+D72 - Political Processes: Rent-seeking, Lobbying, Elections, Legislatures, and Voting Behavior
+F13 - Trade Policy; International Trade Organizations
+F14 - Empirical Studies of Trade
+F16 - Trade and Labor Market Interactions
+F55 - International Institutional Arrangements
+
+Issue Section:
+
+Article
+
+‘Trade wars are good, and easy to win.’ Based on this assertion, President Donald Trump announced on 1 March 2018 that the USA would impose a 25% tariff on steel and a 10% tariff on aluminium imports. Initially exempt, Canada, Mexico and the EU became subject to the steel and aluminium tariffs from 31 May 2018. Additionally, the Trump administration set a tariff of 25% on 818 categories of goods imported from China worth $50 billion on 6 July. Despite Trump’s claims, the dispute involving China, the European Union (EU), Canada and Mexico escalated, with reciprocal tariffs being imposed on imports from the USA. Anecdotal evidence suggests that these retaliatory tariffs were chosen in a way to maximise political pressure on the USA (Chan and Smale, 2018). The EU, for example, imposed tariffs on iconic American brands like Harley-Davidson motorbikes, which are produced in Wisconsin, the home state of then Speaker of the House Paul Ryan. While this is suggestive, so far we know little about how countries design their retaliatory tariffs, as few trade disputes reach a stage of escalation in which threatened tariffs are actually imposed or retaliation measures are triggered. This paper fills this gap by investigating the degree to which retaliation by the USA's trade partners was politically targeted. Furthermore, we evaluate the extent to which countries and trading blocks optimise trade-offs when designing a retaliation response.
+
+In the first part of the paper, we ask whether the retaliatory tariffs are designed to target Trump’s voter base. We document that retaliatory tariffs are distinctly targeted towards areas that supported Trump in the 2016 election. To assess the degree of political targeting, we construct a county-specific retaliation exposure measure similar to Autor et al. (2013) using data on US exports. Based on this exposure measure, we find that retaliatory tariffs target areas that swung to Trump in the 2016 presidential election. In contrast, areas that swung behind other Republican candidates in the House or Senate elections held on the same day were not the targets of retaliatory tariffs. Our estimates suggest that those areas most exposed to retaliatory tariffs from China exhibited an up to 5% greater swing to Trump relative to the performance of the 2012 Republican candidate. Using individual-level opinion polling data, we show that even among self-identifying Republicans, retaliation appears to be distinctly targeted towards areas in which Republicans favoured Donald Trump over other Republican contestants for the 2016 presidential nomination. Furthermore, we document that the degree of political targeting appears to pick up a distinct shift in geographic patterns of Republican party affiliation—but only after Donald Trump entered the 2016 presidential race in 2015. Last, we also draw on data from an individual-level panel dataset, which further corroborate these findings.
+
+In the second part, we investigate both the feasibility of political targeting and the extent to which countries face trade-offs in their retaliation design: in particular, the harm retaliation may cause to their own economy. To do so, we propose a novel simulation approach. This simulation approach aims to approximate the choice set that each retaliating country faces. The approach works by drawing alternative feasible retaliation baskets that could have been chosen and that would produce a similar-sized retaliation response. For each of the simulated alternative baskets, we then construct our implied county-level retaliation exposure measure. Furthermore, we use the revealed comparative advantage index introduced by Balassa (1965) along with estimated trade elasticities to measure the likely effectiveness and also proxy for the likely economic pressure that a specific retaliation response implies for a retaliating trading bloc’s own economy. In a similar vein, we construct a measure capturing the extent to which the USA is a dominant supplier of specific goods in a retaliation response. These measures allow us to evaluate whether there exist tangible trade-offs between higher degrees of political targeting and likely domestic economic harm due to retaliation.
+
+In our analysis, we compare the actually chosen retaliation response to the counterfactual baskets. We observe that while both China and the EU are able to achieve a high degree of political targeting, only the EU appears to be specifically aiming to mitigate the harm to its own economy. In contrast, China seems unconcerned about retaliating against goods for which the USA has a high revealed comparative advantage or of which it is the main supplier. It is particularly remarkable that it would have been possible for China to retaliate with an alternative bundle, producing the same degree of political targeting, while likely producing less domestic economic damage.
+
+Our results contribute to the literature on the political economy of protectionist trade policies. Economists have long studied the political economy underlying trade conflicts. Given the large literature on the welfare-enhancing effects of trade (e.g., Ricardo, 1891; Hecksher and Ohlin, 1933; Frankel and Romer, 1999; Baldwin, 2004, to name just a few), it is widely accepted that erecting tariff barriers, while able to help certain individual industries, is not only harmful to trading partners but also constitutes an act of self-harm (Bown, 2004; Breuss, 2004). To offer an explanation of why politicians nonetheless often favour tariffs, the imposition of domestic tariffs has been attributed to the influence of interest groups (Grossman and Helpman, 1994), people's inequity aversion (Lü et al., 2012), the importance of tariffs as a source of revenue (Hansen, 1990) or the structure of consumer tastes (Baker, 2005), along with the relative factor endowments (Scheve and Slaughter, 2001). Existing research further suggests that democracies are more likely to lower tariff barriers, but are also more likely to protect their agricultural sectors and make use of non-tariff barriers (NTBs; e.g., Kono, 2006; Barari et al., 2019). Cameron and Schuyler (2007) investigate the determinant of protectionism in the agricultural sector. In a closely related work, Gawande and Hansen (1999) investigate the deterrence effect of NTBs and how retaliatory NTBs can be used to reduce foreign trade barriers. Our findings shed light on how other countries react to protectionism and the USA’s aggressive trade policy. To the best of our knowledge, we are the first to empirically document the trade-offs underlying retaliation design.
+
+Recent work by Amiti et al. (2019) and Fajgelbaum et al. (2020) investigates the economic impact of Trump’s trade war on US consumers. This paper is different in at least two dimensions. First, rather than focusing on the economic impact of tariffs, we aim to shed light on how trade partners respond to the USA’s unilateral imposition of protectionist measures. Second, using a novel simulation approach, we can trace out the underlying trade-offs that countries or trading blocs navigate when designing a retaliation response. In this way, our paper provides new insights into the political economy of retaliatory tariffs.
+
+Our paper also speaks to the political effects of trade integration. Building on the seminal work by Autor et al. (2013), a significant literature is emerging on the political implications of these economic shocks. Dippel et al. (2015), Autor et al. (2016), Che et al. (2017) and Colantone and Stanig (2018a, b) each document, in the context of the USA, the UK, Germany and Western Europe more broadly, that those areas most exposed to import competition saw a rise in populism or political polarisation. Feigenbaum and Hall (2015) use roll call data to show an impact on US trade policy: politicians from districts most exposed to the ‘China-shock’ shifted to vote in a more protectionist direction on trade-related bills. Autor et al. (2016) and Che et al. (2017) suggest that the election of Donald Trump, on a nativist ‘America First' platform, was significantly influenced by votes coming from areas that suffered most acutely from import competition with low-income countries. This paper studies the flip-side of the story and looks at whether retaliatory tariffs are aimed at counties or parts of the USA with tradable-goods-producing sectors that have survived the ‘China shock’.
+
+In other related research, economists have analysed the economic and political targeting of sanctions (e.g., Eaton and Engers, 1992; Elliott and Hufbauer, 1999; Ahn and Ludema, 2017). Kavaklí et al. (2020) find that comparative advantage in exports and domestic production capabilities determines a country’s ability to minimise costs while maximising its power to hurt in the context of economic sanctions. While tariffs have been studied mainly as an economic tool, sanctions have been understood as a political tool to induce compliance. In this literature, Marinov (2005) and Allen (2008) provide evidence that sanctions increase the probability of leadership change. In other work, Draca et al. (2018) show that US sanctions against Iran have been effective in targeting politically connected firms and actors. Despite the fact that compared to sanctions, retaliatory tariffs are far more limited in scope and intensity, our findings suggest that retaliatory tariffs are also used as a political tool.
+
+The rest of the paper proceeds as follows. Section 1 describes the political context and the data used in the empirical analysis. Section 2 shows the extent of political targeting of tariffs. Section 3 introduces our simulation approach and provides evidence for the trade-off between political targeting and domestic harm. Section 4 concludes.
+
+1. Context and Data
+
+The international trading system after the Second World War was first institutionalised through the General Agreement on Tariffs and Trade (GATT) in 1948. This was a direct result of the failings of the international trade system during the Great Depression. In 1930 the Smoot-Hawley Act had increased tariffs on more than 20,000 products imported by the USA. This had set off a tit-for-tat retaliation. Irwin (1998) estimates that nearly a quarter of the observed 40% decline in imports can be attributed to the rise in US tariffs in this period, and that these tariffs thereby contributed to the lengthening of the Great Depression.
+
+Through multiple GATT rounds from 1948 onwards, average tariff rates were reduced significantly. One of the most important features of the international trading system, which is now regulated by the WTO—the successor organisation to the GATT, established in 1995—is a formal Dispute Resolution System. In principle, governments are still able to restrict trade to foster non-economic social policy objectives, to ensure ‘fair competition’, or to support the preferential treatment of developing countries, regional free-trade areas and customs unions. But measures of this kind are subject to scrutiny, are expected to adhere to the broad principles of the WTO and can be contested by WTO member countries by invoking the WTO’s Dispute Resolution mechanism. Rosendorff (2005) and Sattler et al. (2014) provide evidence that the WTO’s Dispute Resolution mechanism helps to enforce stable trade relationships. The Dispute Resolution mechanism also regulates the imposition of retaliation measures.
+
+1.1. Retaliatory Tariffs as a Political Tool
+
+The most recent occasion on which the international trading system came close to a similar escalation was the imposition of steel tariffs by President George W. Bush, which took effect on 30 March 2003. The USA justified these tariffs as an anti-dumping response, and in contrast to the current situation, NAFTA partners were exempted from the tariffs. The EU and other trading blocs immediately filed a dispute with the WTO. On 11 November 2003, this resulted in a verdict against the USA, and the tariffs were abolished on 4 December 2003. The WTO ruling implied that the anti-dumping justification for the tariffs was void, as the USA had in fact been importing less steel compared to 2001 and 2002. The ruling authorised more than $2 billion in sanctions against the USA. President Bush initially wanted to preserve the tariffs. Following threats of retaliation by the European Union, however, the USA backed down and withdrew the tariffs.
+
+While this does not prove that the threat of retaliation was the reason why tariffs were abandoned, it does suggest that this may have played a role. The European Commission stands out in terms of transparency regarding the objectives it aims to achieve in the context of trade disputes (see Stasavage, 2004; Baccini, 2010 on the role of transparency). Specifically, EU Regulation 654, published in 2014, outlines three objectives for commercial policy measures in the context of a trade dispute:
+
+‘Commercial policy measures . . . shall be determined on the basis of the following criteria, in light of available information and of the Union’s general interest:
+
+- effectiveness of the measures in inducing compliance of third countries with international trade rules;
+- potential of the measures to provide relief to economic operators within the Union affected by third country measures;
+- availability of alternative sources of supply for the goods or services concerned, in order to avoid or minimise any negative impact on downstream industries, contracting authorities or entities, or final consumers within the Union.’
+
+In other words, trade policy should aim to change the trade policy of the opposing country, while minimising harm to the bloc's own economy.
+
+To design the retaliation response, the European Commission is known to use an algorithm to select products against which retaliatory tariffs are targeted. This algorithm is naturally a closely guarded secret. The Chinese government does not publish its policy objectives in the trade dispute, but there is evidence that it is also attempting to target its tariffs against the electoral base of Donald Trump and the Republican Party. For example, the Chinese as well as the EU’s retaliation targeted bourbon whiskey produced in Kentucky, the home state of Senate majority leader Mitch McConnell. Also, the Wisconsin congressional district of former Speaker of the House Paul Ryan was targeted with retaliatory tariffs on cranberries and cranberry products. Moreover, China and Mexico targeted pork and soybeans, which disproportionately affected Iowa, the home state of influential Republican Senate Agriculture Committee member Senator Charles E. Grassley. These examples suggest that the design of retaliatory tariffs shares some similarities with that of political sanctions. The growing literature on sanctions understands sanctions as a political tool to induce compliance (see, for example, Eaton and Engers, 1992; Elliott and Hufbauer, 1999; Ahn and Ludema, 2017). In contrast, the political dimensions of tariffs have so far been widely ignored. In our analysis, we investigate to what degree the retaliating countries have indeed systematically politically targeted their retaliation. For our analysis, we construct a measure of exposure to retaliatory tariffs for each US county, which we discuss next.
+
+1.2. Descriptives of the Retaliation Measures
+
+The retaliation measures against the US tariffs take the form of a list of products with descriptions and (typically) the Harmonized System (HS) code along with an (additional) tariff rate to be imposed on imports of these goods from the USA. These lists are prepared through a consultative process in the case of the EU and Canada. They are lodged and registered with the WTO, and there is typically a delay prior to the tariffs being implemented. For our analysis, we have obtained retaliatory tariff lists from the EU, China, Mexico and Canada. We are not analysing the retaliation of other countries, such as India and Turkey, as the overall trade volume and therefore the retaliation is far smaller.
+
+1.3. Measuring Exposure to Retaliation
+
+We use two data sources to construct a county-level measure of exposure to retaliation measures. First, we use data from the Brookings (2017) Export Monitor. These data contain a measure of county-level exports across a set of 131 NAICS industries. We denote as Xc,i the export of industry i for each county c⁠. The data also provide an estimate of the total exports at the county level and the number of export-dependent jobs.
+
+Second, we use the individual retaliation lists Lr for r∈{EU,MX,CA,CN}. These are matched at the eight-digit HS level to the US trade data using export volume. We validate our mapping by comparing the resulting value of trade flows affected by tariffs with the official WTO submissions. For this exercise, we make use of HS-level US import and export data from the US Census Bureau. In the case of the EU, the retaliation measures officially target trade worth $7.2 billion. Matching the EU list to the US trade data for 2017, we find that US exports worth $7.6 billion are affected by retaliation, suggesting that the overall magnitude is similar.
+
+To link the targeted exports to the different six-digit NAICS sectors that produce the goods (HS10 codes), we use the concordances between HS codes and NAICS/SIC codes from Schott (2008). These concordances provide up to ten-digit commodity codes, which map onto the Harmonized System codes used, together with SIC and NAICS codes. This allows us to merge the tariffs lists with the employment data. In case multiple sectors are linked to an HS10 code, we retain the NAICS sector listed first in the concordance. As an illustration, consider the example of the EU’s rebalancing measures, which include the item ‘10059000 Maize (excluding seeds for growing)’. This HS code is mapped to the NAICS industry code 111150, which stands for ‘Corn Farming’. This procedure results in a list of tariff-exposed industries.
+
+Next, we collapse the total volume of affected trade to the four-digit industry level. This gives us a measure of total exports Ti,r⁠, from four-digit industry i⁠, which was affected by the retaliatory tariffs of country r⁠. We break this measure down to the county level based on the share that the exports from county c makes up of all exports for goods attributed to industry i⁠. Let Xc,i denote the exports from county c in industry i⁠. The share is then given as Xc,iXi⁠, where Xi=∑cXc,i⁠. The product Xc,iXi×Ti,r provides the volume of exports stemming from county c and industry i that is subject to retaliation. We aggregate this measure up across all industries i to arrive at the total value of exports from county c subject to retaliation from retaliation list r⁠. In the last step, this measure is normalised by the total value of exports from county c as Xc=∑iXc,i⁠. The final exposure measure τc,r for county c and list of retaliatory tariffs r is given as:
+
+τc,r=∑iXc,iXi×Ti,rXc.
+
+These measures approximate the exposure of counties to retaliation measures of each retaliating country r⁠. The measure is bounded between 0 and 1. If industries in a county are unaffected by tariffs, the measure is 0. If the entire production of a good subject to retaliation were to take place in a single county and if that county were to export only this good, the exposure measure would be 1.
+
+Our approach is similar to the Autor et al. (2013)-type labour market shocks. The main difference is that rather than constructing this measure based on sector-level employment figures, our measure is based on sector-level output figures. This should come closer to capturing the economic impact more broadly. As a robustness check, we consider an alternative exposure measure based on Autor et al. (2013) and Kovak (2013), which uses the County Business Patterns (CBP) employment data to construct a county-level retaliation exposure based on sector-level employment shares. In the Online Appendix Table A1 we show that results are similar when using this alternative measure.
+
+Since the added tariff rate was set at 25% for 85% of the products, our retaliation exposure measure ignores the actual added tariff rate. This also implies that the variation in our county-level exposure measure τc,r is driven by the choice of products and not the choice of tariff rates. While this is only a small deviation from the actual data, it greatly simplifies the simulation of counterfactual retaliation baskets in Section 3. In the Online Appendix Figure A2 we compare our exposure measure with the exposure measure that would result if we incorporated the actual added tariff rate. The two measures are statistically virtually identical.
+
+1.4. Main Political Outcome Measures
+
+In the following, we describe the aggregate and individual-level data sources used to measure the extent of political targeting.
+
+**Aggregate election results:** We leverage election results data collated by Dave Leip. These data provide us with county-level election outcomes, specifically for the recent 2008, 2012 and 2016 presidential elections, the House and Senate elections, and the 2018 midterm elections. While the natural resolution for House election is the congressional district level, unfortunately, our retaliatory tariff exposure measure is not available at the congressional district level.
+
+**Gallup Daily Tracker:** We make use of the Gallup Daily Tracker data from 2012 covering the period up to mid 2018. The data are a repeated cross section containing the county of residence of individual respondents. Our primary focus is on three types of measures: the individual-level party affiliation, the presidential approval rating and the expressed support for the candidates in the 2016 election. These data are particularly useful, as the underlying samples are large enough to study how the correlation between an individual’s Republican Party identity and the county-level exposure to retaliation evolved over time. As the underlying microdata do not provide information on actual voting or voting intention, we use an additional individual-level data set with a quasi-panel structure.
+
+**Cooperative Congressional Election Study:** The Cooperative Congressional Election Study (CCES) is a large survey that consists of two waves in election years comprising a pre- and a post-election wave (see Ansolabehere and Rivers, 2013 for more detail). The survey around the 2016 presidential election also asked how individuals voted in the preceding 2012 presidential election. This allows us to study the data in first-difference to shed some light on whether retaliation appears targeted towards areas that saw swings in political support. Furthermore, the CCES makes it possible to narrow down the set of respondents who voted based on the national voter file of over 180 million records (see Enamorado and Imai, 2018 for a description of the method).
+
+While the primary focus of this paper is to show that retaliation is carefully politically calibrated, the trade war and retaliation also do have pure economic effects. In related work, Amiti et al. (2019) and Fajgelbaum et al. (2020) study the implication of the trade war on consumer welfare and prices. In Section 2 of the Online Appendix we provide some auxiliary evidence that complements their work, suggesting that retaliation has indeed been effective in reducing US exports and has led to a drop in export prices, suggesting that exposure to retaliation has produced an economic shock.
+
+2. Was the Retaliation Politically Targeted?
+
+2.1. Descriptive Evidence
+
+We first provide descriptive evidence that counties with stronger support for the Republican Party were more heavily targeted by tariffs. Figure 1 plots the retaliation exposure from the different trading partners for each US county. The figure highlights that the retaliatory tariffs from China, the EU, Canada and Mexico affected different counties. Furthermore, Panels (a) and (b) of Figure 2 suggest a clear pattern whereby counties with a stronger leaning towards the Republican Party were more heavily targeted by tariffs. The same holds true for counties that saw a bigger swing to Trump in the 2016 presidential election. We explore this further in a regression framework.
+
+Fig. 1.
+
+Distribution of Share of County-Level Export Trade Volumes Affected by Retaliation Measures by the EU, China, Canada and Mexico.
+
+Notes: The map plots the quintiles of the measure of county-level exposure to retaliation from the respective countries. The construction of the exposure measure is described in more detail in Subsection 1.3.
+
+Fig. 2.
+
+County-Level Export Share Exposed to Tariffs and Republican Vote Share. Panel (a): Republican vote share in 2016. Panel (b): Change in Republican vote share, 2016–2012.
+
+Notes: The figure plots the Republican Party vote share in the 2016 presidential election on the horizontal axis in Panel (a) and the change in the Republican Party vote shares between the 2016 and 2012 presidential elections at the county level in Panel (b) against the overall share of each county’s exports that are exposed to retaliation by all countries.
+
+2.2. County-Level Data
+
+**Empirical specification:** To determine to what extend retaliatory measures disproportionately targeted Republican counties within the USA, we estimate the following regression equation:
+
+yc,s=αs+βr×τc,r+ϵc.
+
+(1)
+
+In this specification yc,s measures the vote share of the Republican Party in county c in state s in 2016. As an alternative outcome we use Δyc,s⁠, the change in the Republication Party vote share between the 2012 presidential election and the 2016 presidential election at the county level. τc,r is the county-level exposure measure for retaliatory tariffs list r (for more details see Subsection 1.3). All regressions include state fixed effects, hence we exploit within-state variation in retaliation exposure. Standard errors are clustered at the county level.
+
+**Results:** The results from the estimation of model (1) are presented in Table 1. The results suggest that counties that are more exposed to retaliatory tariff had higher levels of support for Trump in the 2016 presidential election. Furthermore, as indicated in Panel (b), counties exposed to retaliation also saw larger swings in support from the 2012 presidential election to the 2016 presidential election. The point estimate in column (2) suggests that the counties most exposed to EU retaliation saw an average swing in the Republican candidates’ vote share of 22% vis-à-vis counties not exposed to EU retaliation.
+
+Table 1.
+
+Measuring Degree of Political Targeting of Retaliation Measures Studying Republican Electoral Performance in 2016.
+
+| . | (1)<br> . | (2)<br> . | (3)<br> . | (4)<br> . | (5)<br> . |
+| --- | --- | --- | --- | --- | --- |
+| . | . | Retaliatory tariffs imposed by . . .<br> . |
+| --- | --- | --- |
+| . | Combined<br> . | CN<br> . | EU<br> . | CA<br> . | MX<br> . |
+| --- | --- | --- | --- | --- | --- |
+| _Panel (a): 2016 GOP vote share_ |
+| Retaliation exposure | 2.459 ∗∗∗ | 3.083∗∗∗ | 7.773∗∗∗ | 2.314∗∗ | 7.869∗∗ |
+|  | (0.233) | (0.209) | (1.508) | (1.120) | (3.815) |
+| Observations | 3,104 | 3,104 | 3,104 | 3,104 | 3,104 |
+| Clusters | 3,104 | 3,104 | 3,104 | 3,104 | 3,104 |
+| Mean of DV | 0.458 | 0.458 | 0.458 | 0.458 | 0.458 |
+| _Panel (b)_: Δ _GOP vote share, 2016–2012_ |
+| Retaliation exposure | 0.750∗∗∗ | 0.891∗∗∗ | 2.598∗∗∗ | 0.880∗∗∗ | 2.885∗∗∗ |
+|  | (0.054) | (0.057) | (0.368) | (0.239) | (0.833) |
+| Observations | 3,063 | 3,063 | 3,063 | 3,063 | 3,063 |
+| Clusters | 3,063 | 3,063 | 3,063 | 3,063 | 3,063 |
+| Mean of DV | −0.0137 | −0.0137 | −0.0137 | −0.0137 | −0.0137 |
+| State FE | Yes | Yes | Yes | Yes | Yes |
+
+Table 1.
+
+Measuring Degree of Political Targeting of Retaliation Measures Studying Republican Electoral Performance in 2016.
+
+The dependent variable is either the Republican vote share in 2016 in Panel (a) or the change in Republican vote share between 2016 and 2012 in Panel (b). All regressions include state fixed effects. Counties are weighted by county-level population. Standard errors are clustered at the county level and are presented in parentheses. ∗∗∗p<0.01⁠, ∗∗p<0.05⁠, ∗p<0.1⁠.
+
+2.3. Cross-Sectional Individual-Level Data
+
+We use repeated individual-level cross-sectional data from the Gallup Daily Tracker. This allows us to study the extent of support for Donald Trump using individual-level microdata allowing us to control for a set of potential confounders. Furthermore, we can exploit variation over time and draw comparisons with other Republican candidates.
+
+**Empirical specification:** To leverage individual-level data, we modify our above regression specification in the following way:
+
+yi,c,t=αs+ν′Xi+βr×τc,r+ϵc.
+
+(2)
+
+In this regression yi,c,t measures whether an individual i in county c in year t has a favourable view of Donald Trump as candidate. In our analysis we focus on the period from June 2015 to March 2016, prior to the election and prior to Donald Trump becoming the presumptive nominee. This allows us to compare the degree of targeting for other Republican candidates who were (still) in the race at the same time. The specification controls for state fixed effects αs as well as a set of individual controls Xi⁠. In particular, we control for the respondent's race across 5 categories, income across 12 categories, gender and the year of the survey. In specifications where the dependent variable is not party affiliation, we also control for an indicator whether a respondent describes themselves as Republican or leaning Republican.
+
+Since the Republican Party affiliation is observed consistently from 2012 onwards, we can further estimate a flexible difference-in-difference specification:
+
+yi,c,t=αc+γt+ν′Xi+∑t=20122018βr,t×τc,r+ϵc.
+
+(3)
+
+Since the regression contains county fixed effects αc and time fixed effects γt⁠, the coefficient βr,t captures the differential changes in individuals’ leaning towards the Republican Party and our county-level measure of retaliation exposure. In other words, βr,t picks up whether areas more exposed to retaliatory tariffs exhibited shifts in the support for the Republican Party relative to previous years. If retaliation was indeed targeted against counties with a Republican voter base that identifies with Donald Trump, we would expect the correlation between individual respondents' self-reported affinity for the Republican Party and the county-level retaliation exposure measure to increase with Trump’s presidential run. Furthermore, this analysis will also show whether there were changes in Republican support before Trump’s campaign started. In this way, we can disentangle general shifts in political preferences or party affiliation from support for Trump as a candidate.
+
+**Results:** In Table 2 we show that retaliation is again highly correlated with measures of approval for Donald Trump both as candidate—Panel (a)—and as president—Panel (b). Retaliation is also much more likely to affect parts of the USA where respondents have an affinity towards the Republican Party, as shown in Panel (c). Consistent with the previous observation, the results suggest that the retaliations by the EU and Mexico appear more distinctly targeted.
+
+Table 2.
+
+Measuring Degree of Political Targeting Using Individual-Level Data from 2016 and 2017.
+
+The dependent variable is a dummy variable indicating whether a respondent is a Republican or leaning Republican in Panel (a); whether the respondent holds a favourable view of Donald Trump as a presidential candidate, asked from July 2015 until October 2016, in Panel (b); or whether they approve of Donald Trump’s performance as president, asked from January 2017 until mid 2018, in Panel (c). The independent variable measures the county-level retaliation exposure to retaliation from the countries or trading blocks indicated in the column heads. Observations are weighted by the provided survey weights. Standard errors are clustered at the county level and are presented in parentheses. ∗∗∗p<0.01⁠, ∗∗p<0.05⁠, ∗p<0.1⁠.
+
+4. Conclusion
+
+Based on the recent trade escalation provoked by the administration of Donald Trump, this paper provides empirical evidence for the political targeting of retaliatory tariffs. Using a novel simulation approach, we show that retaliatory tariffs have indeed disproportionately targeted more Republican areas. This suggests that retaliatory tariffs appear to have a clear political dimension. We further illustrate that countries face a trade-off between the degree of political targeting and the potential harm done to their own economies. Our findings suggest that countries appear to place different emphases on these two policy objectives. To the best of our knowledge, this paper is the first to empirically document this trade-off.

@@ -1,0 +1,66 @@
+Title: How Trump’s trade war could end by June
+Source: https://www.politico.com/news/2025/05/12/trumps-reciprocal-tariffs-go-to-trial-00342965
+
+President Donald Trump’s trade war could come to an abrupt halt this month — even without concessions from dozens of trading partners.
+
+It’s up to the U.S. Court of International Trade, an obscure, New York-based federal court that decides cases related to trade and customs law. The court is hearing oral arguments Tuesday in a lawsuit challenging Trump’s use of the 1977 International Emergency Economic Powers Act to impose sweeping new tariffs last month, before suspending the highest ones on about 60 trading partners for 90 days. If the court grants the plaintiffs’ request for an emergency injunction it could upend the trade negotiations the Trump administration is now racing to complete with dozens of countries.
+
+Trump’s new measures include a 10 percent baseline tariff on imports from around the world, additional tariffs ranging up to 50 percent on a long list of trading partners (which he has since paused) and a sky-high tariff of 145 percent on China, which the administration just announced plans to lower to a still-substantial 30 percent.
+
+The president and his top economic officials have justified those duties by arguing the country’s soaring trade deficit with the rest of the world amounts to “a national emergency that threatens our security and our very way of life.” The Office of the U.S. Trade Representative declined Monday to comment on the litigation.
+
+The tariffs’ challengers say Trump is violating the Constitution and hope the Court of International Trade will grant their request for a preliminary injunction before the end of the month.
+
+That’s vital because many businesses may not survive if the tariffs remain in place while the case is litigated potentially all the way to the Supreme Court, said Jeffrey Schwab, senior counsel at the Liberty Justice Center, a conservative constitutional rights group representing VOS Selections, a New York-based wine and spirits company, and other small businesses suing over Trump’s tariffs.
+
+An injunction would also threaten Trump’s efforts to use the threat of further country-specific “reciprocal” tariffs to negotiate new trade deals with dozens of countries. He announced the first of those agreements Thursday with the U.K., although many details remain to be worked out. His team also negotiated an agreement with China to deescalate tariffs and established a bilateral mechanism to try to tackle long-standing trade irritants.
+
+Trump also cited a national emergency over migrants and fentanyl crossing the borders to justify a previous round of tariffs on China as well as 25 percent tariffs on Canada and Mexico, which have largely been suspended. The VOS case, however, only challenges the reciprocal tariffs that Trump announced on April 2.
+
+The Coalition for a Prosperous America, a group representing manufacturers who favor import protection, has praised Trump’s decision to use the emergency law to enact his trade agenda, which it called “a bold and long-overdue reset of the global trade system.”
+
+But critics such as former Sen. John Danforth (R-Mo.) contend Trump is using a flimsy excuse to usurp tax and trade powers that the Founding Fathers gave to Congress.
+
+“It really is the biggest issue that’s been before our country ever since its founding,” Danforth said in an interview. “It has to do with the concentration of power and the idea that James Madison had of trying to spread power out in various parts of government.”
+
+Danforth, along with fellow former GOP Sens. George Allen of Virginia and Chuck Hagel of Nebraska and others including former Attorney General Michael Mukasey, have filed an amicus brief in the case arguing against Trump’s action and urging the CIT to grant a preliminary injunction that would bar the administration from collecting the duties while the cases proceed.
+
+“From the founding of the Republic, the power to impose tariffs — like the power to levy taxes — has belonged exclusively to Congress,” the brief reads. “This is no formality. This nation was born of the slogan ‘No taxation without representation,’ which means that the authority to tax, raise revenue and shape the public’s economic obligations must rest with the people’s elected representatives.”
+
+“The argument in our brief … just gets right to the heart of the matter,” Danforth elaborated. “It has nothing to do with the advisability of tariffs or some statutory issue. It’s constitutional. It’s ‘Can the president expropriate [from Congress] the power to tax?,’ but I’d also say the power to control foreign commerce.”
+
+Allen, who also was governor of Virginia from 1994 to 1998, emphasized he wholeheartedly supports Trump’s energy, border security and deregulatory efforts but draws the line at allowing the president to unilaterally impose “import taxes.”
+
+“This is a case to preserve and honor the clear, well-reasoned constitutional principle that taxation should be determined by Congress,” Allen said. “My position is based on the conscience of a conservative. I’m taking a stand for this significant constitutional protection for free people and free enterprise, rather than personalities or hypocritical situational principles.”
+
+Schwab, the lead lawyer in the VOS case at the CIT on Tuesday, said they are making a number of arguments they think the court will find convincing.
+
+Fundamentally, “we don’t think IEEPA authorizes the president to issue tariffs or impose tariffs at all,” Schwab said, a point many opponents make since no previous president has used the legislation that way.
+
+“But even if the statute did allow tariffs, it’s not clear that it would allow the tariffs that he is imposing since they are so broad-based and not in response to a specific event or international development,” Schwab added.
+
+Plaintiffs also challenge Trump’s assertion that the “large and persistent annual trade deficit in goods” constitutes a national emergency that justifies imposing tariffs since the United States has run a trade deficit for 50 years. That gave Congress ample time to take action if lawmakers felt it was necessary, Schwab said.
+
+They also raise a couple of more technical legal arguments, one known as the “major questions doctrine,” which requires a clear statutory delegation of power from Congress when an executive action exceeds an undefined threshold of “economic and political significance,” as plaintiffs contend that Trump’s tariffs clearly do.
+
+A somewhat related argument involves the “nondelegation doctrine,” which says Congress can’t delegate authority to the executive branch without imposing some sort of restriction on it.
+
+“Here, essentially what the Trump administration is saying is they have the power to tariff without any kind of oversight at all and he can do it at whatever rate he wants, whenever he wants,” Schwab said. “We think if that’s how the court would interpret [IEEPA, they would decide] that’s unconstitutional.”
+
+In its own brief, the Justice Department relies heavily on a 50-year-old decision from an appeals court that permitted then-President Richard Nixon to impose a broad tariff under analogous language in the Trading With the Enemy Act, a predecessor to IEEPA.
+
+Since then, courts have been more reluctant to read broad grants of authority in arguably ambiguous language. But Thomas Beline, a partner at Cassidy Levy Kent, said he believed the CIT might accept many of the government’s arguments.
+
+“One of the things that I come back to with IEEPA is that there’s no prohibition in the law that says the president cannot use this authority for this purpose. Rather, it’s a fairly lengthy list of things that the president can do and it’s fairly broad,” Beline said.
+
+In addition, Congress retains the power to end a national emergency declared by the president if it thinks that’s appropriate. That gives the court the opportunity to say “that’s what Congress has determined to be the right balance of powers,” Beline said.
+
+Schwab said he thought the most “shocking” element of the Justice Department’s argument was its assertion that Trump’s actions fall under the “political question doctrine,” meaning they are not even subject to judicial review.
+
+“Obviously, if the president can just declare a national emergency whenever he wants, without any court oversight, then the president effectively has authoritarian control,” Schwab said, even if the Justice Department did not intend to go that far with its argument.
+
+Both former senators expressed disappointment that only a few Republicans have joined Democrats in efforts to reassert congressional authority over trade.
+
+“I would like to see members of Congress get off their haunches and stand up for their prerogatives. Because this is clear in the Constitution. This is [Article I, Section 8],” Allen said.
+
+If Congress gives up a key power like controlling taxation, “why be in Congress?,” Danforth said. “What could they really do other than get themselves on the evening news?

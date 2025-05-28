@@ -1,0 +1,26 @@
+Title: The First Smartphone to Get Google's AI Video Generator Isn't a Pixel | Lifehacker
+Source: https://lifehacker.com/tech/the-first-smartphone-to-get-googles-ai-video-generator-isnt-a-pixel
+
+And you can't buy it in the U.S.
+
+Last month, Google announced Veo 2, the company's latest AI video generation model. This model is currently capable of generating eight-second videos, as long as you pay for Gemini. If you pay for Google One AI Premium, you also have access to Whisk, an image generator that, via Veo 2, now lets you animate those images, too. (Free users are left out for now.)
+
+I wouldn't blame you if you assumed that whenever Google inevitably made Veo 2 free, Pixel users would get it first. After all, that's sort of Google's M.O.: Release new features first for the company's own smartphone line, before rolling them out to other devices and platforms. But with Veo 2, the company isn't doing that. The first smartphone users who will get to experience the video model for free aren't Pixel owners, but Honor owners—a phone you can't even buy in the United States.
+
+## Veo 2 on Honor phones
+
+As reported by The Verge, anyone who buys an Honor 400 or 400 Pro will be able to access Veo 2 for free via the Gallery app—for the first two months, anyway. What's more, unlike Whisk, which only lets you animate images you generated with Whisk, Honor users will be able to use Veo 2 to animate pictures they took themselves.
+
+The Verge's Dominic Preston has access to a compatible Honor phone and shows off some examples of the feature in action. The highlight is an image Preston took of Grant Nicholas, musician for the band Feeder. The image shows Nicholas mid-lyric, strumming on his guitar. But after Veo 2 processes the image, it generates a short clip that, if you didn't know any better, you'd assume was a low-res clip of the singer playing the show. (The Verge says that the clips had to be converted to GIFs in order to include with the article, which does reduce the quality somewhat.)
+
+Preston was complimentary of the feature's abilities when presented with clear and simple subjects, like their pet cat. But Veo 2 struggled with more complicated images: For a photo of a vintage car, Veo 2 decided to rotate the car without turning the wheels, which looks quite odd. For a photo of a bunch of tomatoes, Veo 2 decided to animate a hand picking up some tomatoes, but the first time it comes into frame, the hand is translucent.
+
+What do you think so far? Be the first to post a comment.
+
+Honor (or, perhaps Google) is limiting generations to 20 outputs per day. The Verge reports that Honor said Google will offer a subscription to the feature "eventually," but the company doesn't have specifics yet.
+
+## Who is this for?
+
+But even if those limitations weren't present, I'm caught wondering who exactly is going to use this feature for any reason beyond a "party trick." Sure, new Honor users might enjoy playing around with the AI-generated videos on their favorite photos for a bit, but the results aren't necessarily useful. Who needs to regularly process their photos through a hit-or-miss video generator, especially if the feature will eventually require payment?
+
+It's a bit weird that Google is releasing this on a non-Pixel phone first, but, truth be told, I don't think Pixel users are missing out on much.

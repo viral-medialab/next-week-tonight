@@ -1,0 +1,545 @@
+Title: The 11 best AI video generators in 2025
+Source: https://zapier.com/blog/best-ai-video-generator/
+
+The 11 best AI video generators in 2025
+
+Use these tools to create, edit, and enhance videos with AI.
+
+By Miguel Rebelo · January 30, 2025
+
+![Hero image with the logos of the best AI video generators](https://images.ctfassets.net/lzny33ho1g45/1S2b2IzWORxviPHYEi4s38/b10aee913756b894d536bae44760f58f/best-ai-video-generators.jpg?w=1520&fm=jpg&q=31&fit=thumb&h=760)
+
+Consuming video is easy. Producing good video is not. Putting together a script, getting all the footage, and editing everything to perfection—or as close as possible—can eat up enormous chunks of your time.
+
+As it does for everything right now, AI has a few solutions to slash the time it takes to go from idea to MP4. I went in search of the best AI tools for creating videos, and as it turns out, there are already a ton of amazing options.
+
+Meet your new AI teammates
+
+[Try Zapier Agents](https://zapier.com/blog/zapier-central-guide/)
+
+From smart video editing software to generative text-to-video apps, there are tools that will help you do whatever you want: be that running your own YouTube channel, creating more engaging content for social media, or repurposing content to keep all your business's online channels fresh. After almost a month of testing, here are my picks this year for the best AI video generators.
+
+## The best AI video editing software
+
+- [Sora](https://zapier.com/blog/best-ai-video-generator/#sora) for amazing results from simple prompts
+
+- [Runway](https://zapier.com/blog/best-ai-video-generator/#runway) for generative AI video with advanced tools
+
+- [Descript](https://zapier.com/blog/best-ai-video-generator/#descript) for editing video by editing the script
+
+- [Wondershare Filmora](https://zapier.com/blog/best-ai-video-generator/#wondershare-filmora) for polishing video with AI tools
+
+- [Capsule](https://zapier.com/blog/best-ai-video-generator/#capsule) for simplifying video production workflows with AI
+
+- [invideo AI](https://zapier.com/blog/best-ai-video-generator/#invideo) for social media videos
+
+- [Peech](https://zapier.com/blog/best-ai-video-generator/#peech) for content marketing teams
+
+- [Synthesia](https://zapier.com/blog/best-ai-video-generator/#synthesia) for using digital avatars
+
+- [Vyond](https://zapier.com/blog/best-ai-video-generator/#vyond) for animated character videos from a prompt
+
+- [revid.ai](https://zapier.com/blog/best-ai-video-generator/#revid) for AI-powered templates
+
+- [LTX Studio](https://zapier.com/blog/best-ai-video-generator/#ltx-studio) for extreme creative control
+
+## What makes the best AI video generator?
+
+##### How we evaluate and test apps
+
+Our best apps roundups are written by humans who've spent much of their careers using, testing, and writing about software. Unless explicitly stated, we spend dozens of hours researching and testing apps, using each app as it's intended to be used and evaluating it against the criteria we set for the category. We're never paid for placement in our articles from any app or for links to any site—we value the trust readers put in us to offer authentic evaluations of the categories and apps we review. For more details on our process, read the full rundown of [how we select apps to feature on the Zapier blog](https://zapier.com/blog/selecting-apps/).
+
+The best AI tools for video creation help you increase your production quantity and value without increasing the time spent working on it. They cut the time it takes from script to final result by providing templates, tools to speed up editing, and shortcuts to polish audio and video.
+
+There are three broad categories in this list.
+
+- **Video editors with AI editing tools**, meant for speeding up the editing process.
+
+- **Generative apps** that take your prompts and generate a video output on the spot using a generative AI text, audio, image, or video.
+
+- **Video productivity apps** that use AI to help you create content faster for multiple marketing channels or platforms.
+
+Regardless of these sub-categories, here's what I looked for as I searched for the best AI video generator:
+
+- **AI.** All these apps use artificial intelligence to power their features.
+
+- **High-quality video output.** These apps should let you export video that can run beautifully on small or large screens. All the apps on this list export to 720p at worst and 4k at best, in a variety of aspect ratios.
+
+- **Customization.** Can you add your own content? How much can you customize? Is it easy to make changes?
+
+- **Support and ease of use.** Since AI video editing is a new-ish thing, I was looking for apps that beginners could use; that includes offering content to help you take advantage of all the possibilities.
+
+- **Unique features.** Some apps bring their unique spin to video creation or offer something that's useful to improve productivity, production value, or both.
+
+This year's update brought dozens of new possibilities to the table across all sub-categories. I considered all new ones while retesting the apps already present on the list, as there were major changes across the board. I started from templates where available or uploaded my own content and kept building while following platform guides and documentation. To wrap up the tests, I exported the videos to see how good everything looked.
+
+You may be surprised not to find on this list apps like Adobe Premiere Pro, After Effects, or Final Cut. While these apps include native AI features or AI plug-ins and extensions, they require a deeper understanding of video editing, which doesn't make them as accessible as the tools in this list. But if you're a pro, here's a list of the [best video editing software](https://zapier.com/blog/best-video-editing-software/) to check out.
+
+## The best AI video generators at a glance
+
+|  | **Best for** | **Platforms** | **Free plan** |
+| --- | --- | --- | --- |
+| [**Sora**](https://zapier.com/blog/best-ai-video-generator/#sora) | Amazing videos with simple prompts | Web | No (but it's part of ChatGPT Plus) |
+| [**Runway**](https://zapier.com/blog/best-ai-video-generator/#runway) | Generative AI video | Web, iOS | Yes, with 125 video credits (used for AI features) |
+| [**Descript**](https://zapier.com/blog/best-ai-video-generator/#descript) | Editing video by editing the script | Web, Windows, Mac | Yes, with 1 hour of transcription and watermark |
+| [**Wondershare Filmora**](https://zapier.com/blog/best-ai-video-generator/#wondershare-filmora) | Polishing video with AI tools | Windows, Mac, iOS, Android | Yes, with watermark |
+| [**Capsule**](https://zapier.com/blog/best-ai-video-generator/#capsule) | Simplifying video production workflows with AI | Web (prefers Chrome) | Yes, for standard visual components and basic editing features |
+| [**invideo AI**](https://zapier.com/blog/best-ai-video-generator/#invideo) | Social media videos | Web | Yes, for 10 minutes of generated video per week and 4 exports with watermark |
+| [**Peech**](https://zapier.com/blog/best-ai-video-generator/#peech) | Content marketing teams | Web (prefers Chrome) | Yes, for 1 user, 2 videos per month, with watermark |
+| [**Synthesia**](https://zapier.com/blog/best-ai-video-generator/#synthesia) | Using digital avatars | Web | Yes, for 9 avatars and 3 minutes per month |
+| [**Vyond**](https://zapier.com/blog/best-ai-video-generator/#vyond) | Creating animated characters from a prompt | Web | No |
+| [**revid.ai**](https://zapier.com/blog/best-ai-video-generator/#revid) | AI-powered templates | Web | Yes, a suite of free AI video tools available |
+| [**LTX Studio**](https://zapier.com/blog/best-ai-video-generator/#ltx-studio) | Extreme creative control | Web | Yes, for personal use, 5 collaborators per project, and up to 1,000 computing seconds |
+
+* * *
+
+## Best AI video generator for amazing videos with simple prompts
+
+### [Sora](https://sora.com/) (Web)
+
+![Sora, our pick for the best AI video generator for amazing videos with simple prompts](https://images.ctfassets.net/lzny33ho1g45/6KziLoJ41ciQNcmbiPsBCj/9011579ae6e6b98174ba525b975662bd/Screen_Shot_2025-01-30_at_9.19.06_AM.jpg?w=1400)
+
+**Sora pros:**
+
+- Unique toolbox of AI video generation features
+
+- Easy to control the AI model
+
+**Sora cons:**
+
+- Watermark in the lowest paid plan
+
+After a lot of hype, OpenAI's [Sora](https://zapier.com/blog/sora-ai/) video model is available, and it's capable of imagining incredible scenes from simple text prompts—unlike some of the competition that requires a decent amount of engineering and trial-and-error. It's only available in the US for now: I live in the UK, so I look over the ocean with envy and expectation. As soon as I get my hands on it, I'll come back to this write-up to update it with my first-hand experience—for now, my take is based on a roundup of the videos, guides, and online reviews bubbling around the web. (And the screenshot above was taken by my editor in the US who was able to play around with it—here's [her favorite video she made](https://cdn.zappy.app/vc8df71fb4e8a89d62496110141c0eedb.mp4).)
+
+Accessible via [ChatGPT](https://zapier.com/blog/how-to-use-chatgpt/), there are two ways to start from scratch. The first one is the now-traditional text-to-video experience: simply type what you want to see, hit enter, and wait until it renders. The other is more unique when compared with the competition: Storyboard lets you add scenes one after the other, writing a prompt for each. When you finally hit render, Sora will generate the video in sequence, maintaining visual consistency across every cut.
+
+Beyond starting from your words, you can also remix other people's creations. Click your favorite imagination from the dashboard, and it'll reveal the original prompt. You can add your own to change or edit this generation, choosing how much power it should have over the final result. If you'd like to start from an image—either as inspiration or as a way to animate it—you can upload your content onto the app and make it move with your instructions.
+
+While Sora is a state-of-the-art video model, it still struggles with object permanence, interactions, and dynamic movements. The look of humans and animals while moving and interacting will be weird, but landscapes look absolutely stunning. The uncanny movements don't affect cartoony aesthetics at all, though.
+
+If you're lucky to be in the US and are a [ChatGPT Plus](https://zapier.com/blog/chatgpt-plus/) subscriber, open a new browser tab and go to town. For the rest of us around the world, let's just try not to hit that refresh button too hard: [take a look at Marques Brownlee's video](https://www.youtube.com/watch?v=OY2x0TyKzIQ&ab_channel=MarquesBrownlee) for the best take on the tool.
+
+**Sora price:** Part of the ChatGPT Plus subscription at $20/month, offering 50 priority video generations, 720p quality, and up to 5 seconds each. Pro at $200 removes the watermark, increases limits to 500 priority generations, upgrades to 1080p, and extends to 20 seconds each.
+
+## Best AI video generator for generative AI with advanced tools
+
+### [**Runway**](https://runwayml.com/) (Web, iOS)
+
+![Runway, our pick for the best AI video enhancer for experimenting with generative AI](https://images.ctfassets.net/lzny33ho1g45/1MbfHPPHvljFhxaAwMXW83/89543db8bc02e43f6a08aa704624c8a6/image2.jpeg?w=1400)
+
+**Runway pros:**
+
+- Advanced AI tools for unique results
+
+- Great help content
+
+**Runway cons:**
+
+- Steep learning curve—it's hard to control the AI model
+
+Runway feels like a magic wand, ready to turn your imagination into pixels with just words and a starting image. It requires a bit more prompt engineering when compared with Sora, but there's a high-quality [Academy](https://academy.runwayml.com/) to help you sharpen your skills.
+
+The main dish on the menu is Gen-3 Alpha, a high-fidelity video generation model. Start writing your prompt by describing the camera movement and aesthetics, move to the scene's content, and top it off with additional details ( [here's a prompting guide to help you predict the results](https://help.runwayml.com/hc/en-us/articles/30586818553107-Gen-3-Alpha-Prompting-Guide)). It's only accessible once you hop on a paid plan, and it will burn through your credits quickly, but it's immensely fun to brainstorm ways to control the output.
+
+One of its most interesting features is Act One. Grab a good actor from the real world, give them a script, and roll the camera. Then direct them on the emotion, facial movements, and voice inflections. Finally, upload the recording into Runway and paste that performance into any character, breathing life into AI-generated content.
+
+But text-to-video isn't the only trick in the book. Runway has a large collection of AI-powered tools to remove backgrounds, create super-slow motion video, and generate subtitles—among many others that work with sound and static images. The platform has a serious video-editing vibe, but all the tools are surprisingly easy to use, even if it's hard to understand what's really going on behind the scenes.
+
+Can Runway completely replace real-world footage? Not yet. Maybe not ever. But if you have dreamy, abstract projects that could use mind-bending visuals, this is definitely the best match for you. Be sure to click the _Runway Watch_ tab to see AI film festival submissions to get an idea of the narrative and visual possibilities.
+
+**Runway price:** Free plan available for 125 one-time credits. Standard plan at $15/month unlocks Gen-3 Alpha, adds 625 monthly credits (with the option to buy more), no watermark, and higher export quality.
+
+## Best AI video generator for editing video by editing the script
+
+### [**Descript**](https://www.descript.com/) (Web, Windows, Mac)
+
+![Descript, our pick for the best AI video generator for editing video by editing the script](https://images.ctfassets.net/lzny33ho1g45/6HZuxy7QCcz7sSf3l9yMNH/998784d5f3535df8aa1f41ae91a6f5ee/image10.jpeg?w=1400)
+
+**Descript pros:**
+
+- Intuitive controls
+
+- Edit video by editing the transcription
+
+**Descript cons:**
+
+- Transcription is inaccurate from time to time
+
+When I record video, I usually say much more than I'm actually going to use in the final version—far too much. Like, in the region of 10 to 20 times more. That turns into late-night, never-ending trim fests that I wish I could avoid. If you're like me, [Descript](https://zapier.com/blog/descript-review/) is a huge time saver that can potentially give back a few hours of well-deserved rest.
+
+To begin with, it generates a transcript of everything you say along with a set of scenes, organizing the video track automatically. Instead of scrolling through the timeline to split or trim, simply highlight the parts of the transcript you want gone, and Descript edits it out for you. No more going back and forth to see if the cut is well done: you can edit video just as you would a text document.
+
+Once you've got the script under control, you can divide your video into scenes. To do so, type a forward slash in the script to separate each one. You'll notice this will split the video on the vertical timeline on the left. That allows you to add, for instance, some B-roll: click on the scene's image, and then on the media library on the top. You can search for high-quality stock video and add it to the project without leaving the editor window.
+
+Now that you have these editing powers, you can speak freely while recording, knowing you won't have to watch everything from top to bottom to extract all the gold nuggets. That's not the end of it: Descript offers more cool AI goods with its Underlord toolkit, helping you refine the audio to studio quality, run auto multicam to cut to whoever's speaking, and even generate highlights and clips for you to post on short-form socials.
+
+**Descript price:** Free plan available for up to 1 transcription hour. Hobbyist plan at $19/user/month increases transcription to 10 hours, removes the watermark, and improves export quality to 1080p.
+
+## Best AI video editor for polishing your video with AI tools
+
+### [**Wondershare Filmora**](https://filmora.wondershare.com/) (Windows, Mac, iOS, Android)
+
+![Wondershare Filmora, our pick for the best AI video editor for polishing your video with AI tools](https://images.ctfassets.net/lzny33ho1g45/10rJ5HtosZqaQCQb7SKDLH/6e3d129121bc08d541cdae17976a5197/image8.jpeg?w=1400)
+
+**Wondershare Filmora pros:**
+
+- Traditional video editing tool with AI features
+
+- Lots of learning resources
+
+**Wondershare Filmora cons:**
+
+- Runs slow on low-end computers
+
+Wondershare Filmora has been around for a really, really long time. I remember using it over 15 years ago for the first time. Despite the age, it's not stuck in time—quite the opposite. It has a package of AI features that improve video quality without having to enroll in a pro course or dump dozens of hours into little tweaks.
+
+So, what are these AI features? Here's the shortlist:
+
+- **AI smart cutout** lets you cut objects out of scenes by painting their area on the screen.
+
+- **AI audio denoise** helps you keep background noise under control.
+
+- **AI audio stretch** helps you stretch music for eight seconds longer to match a cut to another scene.
+
+- **AI motion tracking** lets you identify and blur faces to maintain privacy (or paste funny faces to make meme videos—your choice).
+
+- **AI remove background** lets you paste an image of a runner jogging on the moon without the billions in space program investment (or risk of death).
+
+- **AI silence detection** lets you remove hesitations and make snappy jump cuts without hassle.
+
+- **Audio-to-video** turns your podcast talks into videos that look good on social media.
+
+All these features are easy to use, coming together into a fully-fledged video editing app. If you have trouble using them, Wondershare has landing pages on their website to explain each one in depth. There are plenty of other creativity and productivity features, from a template library that quickly puts together a video based on your footage, to auto beat sync, which helps you keep your cuts aligned with the music blasting on your audio track.
+
+And if you want to try out Wondershare's take on AI avatar media, be sure to check out [Virbo](https://virbo.wondershare.com/), their platform for creating synthetic talking head videos.
+
+**Wondershare Filmora price**: Free plan available with video watermark. Basic plan goes for $59.99/year, and you can choose to buy Filmora for $79.99 in a one-time payment.
+
+**Want another flexible video editor with an easy-to-use interface?**
+
+- Canva offers a built-in editor, the [Canva video editor](https://www.canva.com/video-editor/), better suited to turning raw content into social media-ready videos. It integrates with Runway's generative AI models too, so you can easily mix this kind of content into the final product.
+
+- Or you can use [Kapwing](https://www.kapwing.com/), which offers a wide range of features and equivalent flexibility to Filmora, adding editing video by editing the script (like Descript) and a video generator that brings together stock footage based on your script.
+
+## Best AI video editor for simplifying video production workflows with AI
+
+### [Capsule](https://capsule.video/) (Web, prefers Google Chrome)
+
+![Capsule, our pick for the best AI video editor for simplifying video production workflows with AI](https://images.ctfassets.net/lzny33ho1g45/23ZQc4DO7NmFS24ZQEuhAG/222022d9ed54b6a34079fed568addadf/image9.jpeg?w=1400)
+
+**Capsule pros:**
+
+- Easy to create and apply design systems
+
+- Apply dynamic visual elements with a few clicks
+
+**Capsule cons:**
+
+- Requires tweaking before exporting to different channels
+
+Creating videos with tight editing, crisp visuals, and consistent branding is hard enough, especially if you don't have an in-house media pro for the final touches. With Capsule, you won't have to accept a publishing slowdown to maintain quality, nor splurge on expensive talent to make everything look great.
+
+All the features in the platform—both AI and non-AI—are tuned to help businesses with their video challenges as they scale. Once you upload your clips, you'll get a transcript, and you can edit the video by hitting backspace on the words you want to remove. Adding effects is mysterious at the beginning but becomes intuitive once you understand how to do it: highlight the part of the transcript and select whether to add a Capsule design or your own media as B-roll.
+
+Capsule designs are a big part of the platform's value. You don't have to add text and then format it depending on the info you want to display. Instead, these elements are pre-made based on how you want to use them. This makes it easy to add speaker identification, dynamic captions, and stylish calls to action to your videos.
+
+All of these are animated, fading in and out, sometimes expanding or contracting to attract attention in a minimalistic way. The aesthetic looks good and doesn't interfere with the content, adding that extra shine that would've taken hours for you to nail in a traditional video editor. While there's AI in the background, you can click _CoProducer_ at the top of the screen to autocut gaps, suggest a soundtrack, and bring your original audio up to studio level.
+
+**Capsule pricing:** Free plan offers standard visual components and basic editing features. No pricing information available for the Enterprise plan.
+
+## Best AI stock assembler for producing social media videos
+
+### [invideo AI](https://invideo.io/) (Web)
+
+![invideo AI, our pick for the best AI stock assembler for producing social media videos](https://images.ctfassets.net/lzny33ho1g45/mWMKhkcwoJAFb8XhN7x2L/39514025da15e855089058b794055cfb/image12.jpg?w=1400)
+
+**invideo AI pros:**
+
+- AI tool extras available, such as text-to-clip
+
+- Editing with text prompts is accurate
+
+**invideo AI cons:**
+
+- Interface is a bit confusing
+
+invideo AI takes the concept of prompt-to-finished-video seriously, creating something very close to being ready to publish from a single prompt.
+
+Version 3.0 is ages ahead of its predecessor. Add your prompt, adjust controls to define style or target audience, and click _Generate_. It takes a while to build the video, so you can tab out and work on other stuff as you wait. Behind the scenes, invideo AI is hard at work:
+
+- It's turning your prompt into a video script.
+
+- Based on that script, it searches stock media libraries for the best-matching content based on the topics—or generates video with AI, if you chose that setting at the start.
+
+- It assembles all the clips into a single video, adding an AI voiceover, text overlays, music, and transitions.
+
+If you want to polish this first draft, there are two ways to do so. One is by hitting the _Edit_ button, opening a pop-up with basic controls. You can swap suggested footage with your own, edit the script, or change the music. But the best and most impressive way to edit is using prompts: write "add subtitles" into the editing input field, and boom, subtitles pop in your video. This is true for almost everything else, making it easy to make quick adjustments on the fly.
+
+This makes invideo AI a great pick if you're running a social media channel where you rely on faceless videos or need lots of B-roll footage, simplifying the production process and adding scale. If you want more stock media variety, upgrade to one of the higher paid plans, as the lower ones don't give you full access to all the goods.
+
+**invideo AI price:** Free plan available for 10 minutes of generated video per week and 4 exports with watermark. The Plus plan at $35/month upgrades to 50 minutes/month, iStock footage, and unlimited exports.
+
+## Best AI video generator for content marketing teams
+
+### [**Peech**](https://www.peech-ai.com/) (Web, prefers Google Chrome)
+
+![Peech, our pick for the best AI video generator for content marketing teams](https://images.ctfassets.net/lzny33ho1g45/Y06Mfyv5sbNLmdhBd4SDx/6a3cfad8cf7113581cc6abd93bce459f/image3.jpeg?w=1400)
+
+**Peech pros:**
+
+- Intuitive workflow
+
+- Customizable design for video visual elements
+
+**Peech cons:**
+
+- Steep pricing
+
+Does repurposing content make you feel tired before you even start? I feel your pain. Looking at the same assets and pumping out content to obey every channel's target audience and technical specs is no one's idea of fun. Peech will speed up that process.
+
+Add your brand kit to begin. Enter your logo and color scheme, and Peech will use these assets to brand all your videos automatically. It will also detect faces and prompt you to enter their name and role in your company as you upload content.
+
+Every time you add a new video, Peech will add these elements along with customizable subtitles—I like how you can highlight a few words and apply your brand colors to make them stand out. The first draft that Peech offers is already pretty good, so you won't spend a lot of time making adjustments—but if you'd like to, the app offers a transcript and timeline so you can select more sections. In this editor screen, you'll also be able to remove awkward silences and snip filler words to keep your content snappy and engaging.
+
+Since Peech is all about scale, it packs in shortcuts to help you increase content quality without blocking more time on your schedule. Adding a background will make your video pop out, making it easier to stack text and other visual elements with real-world footage. Or click the _Intro & Outro_ tab on the editor to quickly add these two moments to each video, tightening up the branding and introducing a call to action. You can also add a song directly from within the platform, wrapping up the editing experience.
+
+After that, cut straight to choosing aspect ratios and video length, and get to exporting. Rinse and repeat—but finally with time to look at the data, do content strategy, and pepper the calendar with more planned posts.
+
+**Peech pricing:** Free plan available for 1 user and 2 videos/month with watermark. Creator plan starts at $99/month, raising the cap to 10 videos/month, 60-minute upload limit, and no watermark.
+
+**Want to repurpose long videos into memorable clips?** [Munch](https://www.getmunch.com/) combines a highlight-finding engine with a topic research tool, helping you extract the best parts of your long videos and matching them to what people are looking for.
+
+## Best AI video generator for using digital avatars
+
+### [**Synthesia**](https://www.synthesia.io/)(Web)
+
+![Synthesia, our pick for the best AI video generator for using digital avatars](https://images.ctfassets.net/lzny33ho1g45/1HDhrwsQgGQ1heMiv8Km1I/ea43b47b7b8c927c7ecfeb70a8276c91/image1.jpeg?w=1400)
+
+**Synthesia pros:**
+
+- High-quality AI avatars
+
+- Multi-language support
+
+**Synthesia cons:**
+
+- Not entirely believable when seen on large screens
+
+What do you do when you have to record training videos but everyone at the office is camera shy? If hiring a crew and an actor isn't an option, [Synthesia](https://zapier.com/blog/synthesia-ai-video/) is surely the second best: you can browse a library of dozens of digital real-looking avatars from all points of the world. Then, choose the voice that best matches the body, and you're ready to input your script.
+
+The user interface is simple and focuses a lot on this core feature. Once you add the script, Synthesia will start working its magic to make the avatar move the lips and body in a convincing way. You can quickly translate the entire text into another language by clicking on a dropdown menu. The avatar will zip from English to French faster than you can say _quoi_.
+
+You may be thinking: how good are these avatars? They're good, but they still can't replace humans. If you're watching full-screen, you can catch a few unnatural movements. But get this: I was testing CRM software a while back, and there was an onboarding video. At that time, I went through the whole thing blissfully unaware that the person on that video was an AI avatar. I only recognized the avatar when testing Synthesia for this list. Fooled me.
+
+I tested five other AI avatar apps for this piece, but Synthesia is far-and-away the best one. The text-to-speech video generation is the best, and the avatars' movements are the most natural. It's at the bleeding edge as far as avatar-based AI video goes—not only in technology but also in being the first ISO 42001 AI video company to get certified, showing its commitment to security and governance.
+
+And while you get AI avatar sidekicks to do your work on camera for you, you can also get Synthesia to work with your other apps without effort. [Connect Synthesia to Zapier](https://zapier.com/apps/synthesia/integrations) and start automating across your entire tech stack. Learn more about [how to automate Synthesia](https://zapier.com/blog/automate-synthesia/), or get started with one of these pre-made workflows.
+
+### Generate Synthesia videos from new or updated Google Sheets rows
+
+[Try it](https://zapier.com/webintent/create-zap?template=705854)
+
+- ![Google Sheets logo](https://zapier-images.imgix.net/storage/services/8913a06feb7556d01285c052e4ad59d0.png?auto=format&ixlib=react-9.8.1&fit=crop&q=50&w=30&h=30&dpr=5)
+- ![Synthesia logo](https://zapier-images.imgix.net/storage/services/e2bebbf59017e51011777b31ca4d166a.png?auto=format&ixlib=react-9.8.1&fit=crop&q=50&w=30&h=30&dpr=5)
+
+Google Sheets, Synthesia
+
+Google Sheets + Synthesia
+
+More details
+
+Want to generate personalized videos based on data in a Google Sheet? Now you can connect Google Sheets with Zapier and request a personalized video in Synthesia for each new or updated row in the sheet.
+
+[Details](https://zapier.com/apps/google-sheets/integrations/synthesia/705854/generate-synthesia-videos-from-new-or-updated-google-sheets-rows) [Try it](https://zapier.com/webintent/create-zap?template=705854)
+
+### Upload new Synthesia videos to YouTube when ready
+
+[Try it](https://zapier.com/webintent/create-zap?template=1211601)
+
+- ![Synthesia logo](https://zapier-images.imgix.net/storage/services/e2bebbf59017e51011777b31ca4d166a.png?auto=format&ixlib=react-9.8.1&fit=crop&q=50&w=30&h=30&dpr=5)
+- ![YouTube logo](https://zapier-images.imgix.net/storage/services/7633e61620664fb3a71911729ebce5ea.png?auto=format&ixlib=react-9.8.1&fit=crop&q=50&w=30&h=30&dpr=5)
+
+Synthesia, YouTube
+
+Synthesia + YouTube
+
+More details
+
+Effortlessly share your new Synthesia videos on YouTube with this seamless workflow. Once a video is ready in Synthesia, it will be uploaded directly to your YouTube channel, saving you time and ensuring your content is consistently available to viewers. Stay focused on creating amazing videos while this integration handles the distribution for you.
+
+[Details](https://zapier.com/apps/synthesia/integrations/youtube/1211601/upload-new-synthesia-videos-to-youtube-when-ready) [Try it](https://zapier.com/webintent/create-zap?template=1211601)
+
+### Request new videos (from templates) in Synthesia with new Google Sheets rows
+
+[Try it](https://zapier.com/webintent/create-zap?template=255584367)
+
+- ![Google Sheets logo](https://zapier-images.imgix.net/storage/services/8913a06feb7556d01285c052e4ad59d0.png?auto=format&ixlib=react-9.8.1&fit=crop&q=50&w=30&h=30&dpr=5)
+- ![Synthesia logo](https://zapier-images.imgix.net/storage/services/e2bebbf59017e51011777b31ca4d166a.png?auto=format&ixlib=react-9.8.1&fit=crop&q=50&w=30&h=30&dpr=5)
+
+Google Sheets, Synthesia
+
+Google Sheets + Synthesia
+
+More details
+
+Looking to streamline your video creation workflows? Activate this integration to automate video creation in Synthesia when new rows are added to a Google Sheet. Parameters from Google Sheets can be passed into the template data where variables have been placed in order to personalize videos.
+
+[Details](https://zapier.com/apps/google-sheets/integrations/synthesia/255584367/request-new-videos-from-templates-in-synthesia-with-new-google-sheets-rows) [Try it](https://zapier.com/webintent/create-zap?template=255584367)
+
+**Synthesia price:** Free plan available with 9 avatars and 3 minutes per month. Starter plan starts at $29/month for accessing 125+ avatars and up to 120 minutes of video per year.
+
+**Looking for an alternative to Synthesia?** [HeyGen](https://www.heygen.com/) comes close in avatar quality, offering a Canva-style editor that focuses more on visual elements. It packs extras such as AI faceswap, text-to-image, screen recording, and URL to video.
+
+## Best AI video generator for creating animated characters from a prompt
+
+### [Vyond](https://www.vyond.com/) (Web)
+
+![Vyond, our pick for the best AI video generator for animated characters from a prompt](https://images.ctfassets.net/lzny33ho1g45/7HJDxovEQCwxQioENk0vmo/2962632d0dbbc415e04117e82cd091f7/image11.jpeg?w=1400)
+
+**Vyond pros:**
+
+- Versatile: video editor, AI avatars, character videos, and more
+
+- Plenty of help content
+
+**Vyond cons:**
+
+- You can't customize the cartoon's overall visual aesthetics
+
+When you're struggling to find good stock footage for a training video—or can't find anyone in the company with good camera presence—you have to get creative. Animated character videos can help convey actions and circumstances without hiring a creative team to act them out. Instead, you can build them with a prompt with Vyond.
+
+The tool that specializes in this is called Vyond Go: on the dashboard, click the _Create_ button and then select the _Text to video_ option. Enter your prompt, choose the setting, and hit _Generate_. It'll take care of everything, from the script, objects on the scene, movements, and voiceover, building a first draft that's actually very close to the final thing.
+
+If you want to tweak the video, click the dropdown button on the top right of the screen, and go to Vyond Studio. Like other options on this list, Vyond offers lots of tools in a thorough timeline-based interface, where you can change soundtracks, add and remove scenes, and mix stock media into the project. If you can't get a character to move or behave the way you want, you can film yourself doing the action and the platform will translate that into the character movement using AI.
+
+While the animated character video use case is a bit niche, Vyond offers general video-editing tools for other needs as well. If you bring your own real-world footage in for a trim, you can use all the tools to create good video in the browser-based editor. It also has an AI avatar generator, making it a well-rounded AI video editing tool.
+
+**Vyond price:** Essential plan at $49/month for a single user offers 720p video export, Vyond Go, and access to Vyond Studio.
+
+## Best AI text-to-video generator for tool variety
+
+### [revid.ai](http://revid.ai/) (Web)
+
+![revid.ai, our pick for the best AI text-to-video generator for tool variety](https://images.ctfassets.net/lzny33ho1g45/wPCmdgsCWU4wicy16iYx1/79ce71f17e5a33ffce01943eb40ececa/image21.jpg?w=1400)
+
+**revid.ai pros:**
+
+- Lots of templates
+
+- Plenty of settings when generating content
+
+**revid.ai cons:**
+
+- Inconsistent results
+
+Creativity is unpredictable. If trusting the process isn't cutting it for you, you need to experiment with a more varied toolbox, and revid.ai has plenty of starting points to refresh your work.
+
+Created originally as a viral TikTok generator, it's since incorporated Typeframes into a flexibile platform. The creative process starts with inspiration: you can browse what's trending on TikTok for your keywords, and as you load your brain with what's hot, save hooks and stories in the app so you never stop creating.
+
+Once you hit creativity gold, revid.ai can create something from scratch from any of these prompts and ideas. The shortlist:
+
+- YouTube Long to Short repurposes a long video into short shareable snippets.
+
+- Other repurposing templates can turn audio, music, Reddit posts, X posts, and articles into video.
+
+- Cinematic style can visualize storytelling moments in a narrative setting.
+
+- AI talking avatars work like a mini-Synthesia—you can create a set of fixed avatars and reuse them across videos for consistency.
+
+Social media needs you to hit that post button frequently, so it's good to see that you can keep track of scheduled posts within the platform, so you can create a production workflow out of your ideas. If you need help creating content, you can subscribe to one of the paid plans to enable Auto Mode: this will create a new video every day based on your specifications, so you can push new content out faster.
+
+This is great, but there's a lot more: revid.ai also offers a long list of [free AI video tools](https://www.revid.ai/tools), including Product Video from Website, YouTube Caption Generator, and Harry Potter Videos—yep.
+
+**revid.ai price:** Free AI video tools available. Hobby plan for $39/month unlocks all video editor features and lets you access TikTok for inspiration videos.
+
+**Looking for another AI-powered toolset?** [Visla](https://www.visla.us/) offers versatility, with text-to-video stock image assembly, text-based video editing, and AI filler-word removal—and it tops it off with a meeting assistant.
+
+## Best AI video generator for extreme creative control
+
+### [LTX Studio](https://ltx.studio/) (Web)
+
+![LTX Studio, our pick for the best AI video generator for extreme creative control](https://images.ctfassets.net/lzny33ho1g45/5NHHdnn5Uui7TivwmZDEhf/ba3225752743cd248825c1f228319da0/image15.jpg?w=1400)
+
+**LTX Studio pros:**
+
+- Generates cool posters for every project
+
+- Innovative character control tools
+
+**LTX Studio cons:**
+
+- Slow to get results
+
+LTX Studio targets short and narrative film over other content types. Powered by [Lightricks' AI technology](https://www.lightricks.com/), it can generate good visuals from prompts, even if it falls slightly short of Sora or Runway. The production process is detailed and control-friendly, the best I've seen so far for AI video.
+
+When you start a new project, you can upload a script or workshop an idea. The flow will guide you through screens to provide context to the model. Fill every input for maximum control: this includes choosing a genre, uploading an image for visual style grounding, or determining the "essence" of each character with a one-line instruction. At the end of this planning stage, you'll have a scene breakdown, which you can reorder, edit, or add to.
+
+The surprises come in the next step: every scene gets broken down shot by shot, each with its prompt and instructions. You can click to generate previews for each and edit the text to change its content. From the characters you added, you can change their actions and looks: they can wear a tuxedo for one scene and swimming trunks for the next. Every change will regenerate the video, so be ready to make lots of edits as you look for the best results—it'll take you quite some time to get them.
+
+LTX Studio's export options include a pitch deck, an editing package you can take to your professional video editing software of choice, or an MP4 file. While I can see the potential for exporting a short film ready-to-go, this app can be much more powerful if you're looking for funding for your work. It also can help you visualize how the final product might look as you brainstorm locations and cast, acting as a filmmaking first draft.
+
+**LTX Studio price:** Free plan for personal use, 5 collaborators per project, and up to 1,000 computing seconds. Community plan at $15/month raises available computing seconds to 8,640.
+
+## More generative AI video tools
+
+The generative AI video market is expanding, with lots of new companies and models arriving at the scene. I think Sora and Runway are the best generative AI video creators at the moment, but I came across a few other fun ones that can be worth a try.
+
+- [Stable Video](https://www.stablevideo.com/) is on par with Runway models on some evaluations, but the online app, while versatile, doesn't offer many controls. The video model delivers impressive images but still struggles in some simple camera movements.
+
+- [Pika](https://pika.art/) is a cute tool that produces shiny, beautiful images with simple controls. It only generates camera movements and very simple movement for the subject, so there's a ways to go here.
+
+- [Luma Dream Machine](https://www.lumalabs.ai/dream-machine) shows promise. With cool camerawork and whimsical lighting—even if you don't engineer your prompt too much—it lives up to its dream machine tag. It has one of the best guides out there, offering advice on creative process, starting from Midjourney image generations to translating that into dynamic video shots.
+
+- [PixVerse](https://pixverse.ai/) produces cool results too. It does good subject movement, even if the interactions between objects are still a major issue—which is true for all AI video models currently on the market, to be fair. Definitely one to try out.
+
+- [Hailuo](https://hailuoai.video/) is more proof that AI in China is having a field day. While not quite at the same level as Sora or Runway, it has decent quality and specialized tools for subject reference (using the same character in different videos) and advanced camera movement control.
+
+- [Genmo](https://www.genmo.ai/) lets you try the open-source Mochi1, a model that's not afraid of camera movement. It included smooth movements in all the prompts I sent, maintaining good object consistency throughout.
+
+You can try all of these for free, so I'd say give them a whirl to see how different they all are.
+
+## Full list of AI video alternatives
+
+AI video is getting very competitive as a category. If you'd like to explore all the alternatives to the main apps that I showcased in this list, here's a quick list for easy reference:
+
+- [Canva](https://www.canva.com/video-editor/)'s video editor has a browser-based media editing experience, including generative AI powered by Runway.
+
+- [Kapwing](https://www.kapwing.com/) is a Filmora alternative offering equivalent AI-powered tools as well as an AI stock media video tool.
+
+- [Virbo](https://virbo.wondershare.com/) is Wondershare's solution for creating AI avatar content.
+
+- [Munch](https://www.getmunch.com/) is a Peech alternative for long-to-short repurposing while exploring trending topics.
+
+- [HeyGen](https://www.heygen.com/) is a Synthesia alternative for unique AI tools.
+
+- [Visla](https://www.visla.us/) for a revid.ai alternative with a different AI-powered toolset.
+
+## What's the best AI video maker?
+
+AI-generated videos are here—it's time to embrace them. The AI video generators on this list will save you time, smooth out your content creation schedule, and increase the final production value. Most have free plans or at least a free trial, so you can take a look before committing. Make sure to carve out some time on your schedule to see which one fits your and your team's needs. And then start creating.
+
+**Related reading:**
+
+- [The best AI productivity tools](https://zapier.com/blog/best-ai-productivity-tools/)
+
+- [The best AI photo editors](https://zapier.com/blog/best-ai-photo-editor)
+
+- [The best AI marketing tools](https://zapier.com/blog/best-ai-marketing-tools/)
+
+- [The best AI voice generators](https://zapier.com/blog/best-ai-voice-generator/)
+
+- [What is Google Vids?](https://zapier.com/blog/google-vids/)
+
+_This article was originally published in March 2023. The most recent update was in January 2025._
+
+Get productivity tips delivered straight to your inbox
+
+Subscribe
+
+We’ll email you 1-3 times per week—and never share your information.
+
+![Miguel Rebelo picture](https://www.gravatar.com/avatar/79c6b695c9cf796f480c4d53a591eca4?d=https://res.cloudinary.com/zapier-media/image/upload/f_auto/q_auto/Zapier%20logos/120px_2x_dt6fwm.png)
+
+Miguel Rebelo
+
+Miguel Rebelo is a freelance writer based in London, UK. He loves technology, video games, and huge forests. Track him down at mirebelo.com.

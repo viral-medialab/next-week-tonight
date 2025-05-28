@@ -1,0 +1,36 @@
+Title: Alden newspapers slam OpenAI's, Google's proposals for looser AI copyright rules
+Source: https://www.axios.com/2025/03/17/alden-newspapers-openai-google-copyright
+
+Dozens of newspapers owned by Alden Global Capital on Monday ran online editorials slamming OpenAI and Google for requesting looser AI copyright restrictions in an effort to grow the U.S.' position as a global leader in AI.
+
+**Why it matters:** While many media companies have opted to strike deals with AI companies, Alden has instead opted to sue OpenAI and its minority backer Microsoft for copyright infringement.
+
+**Catch up quick:** Last week, OpenAI and Google submitted letters to the White House in response to calls for AI "action plans." Both plans broadly called for the government to allow Big Tech firms to legally train their models on publicly available data, even if it's copyrighted.
+
+- **OpenAI's** **plan** to the White House explicitly advocated for looser copyright regulations to help protect national security and get ahead of China's AI investments.
+- **Google's** **plan** said that winning the AI race was important to U.S. national security, but it didn't go as far as explicitly connecting national security benefits with looser copyright regulations.
+
+**Zoom in:** In response to both proposals, the Alden editorials called on the government to reject OpenAI's and Google's "self-serving proposals" and said it should "protect the work of artists, authors, photographers, journalists and all other creators and copyright holders who have been the victims of these companies."
+
+- "Gutting generations of copyright protections for the benefit of AI bots would have a chilling effect not just on news organizations but on all creative content creators, from novelists to playwrights to poets," the editorial reads.
+- "That iron-clad commitment to protecting the rights of owners of work they themselves created is precisely what distinguishes the United States from communist China, not the reverse."
+- "Securing permission from, and fairly compensating, those publishers who created this great foundation of knowledge is the right, just and _American_ thing to do," the editorial reads.
+
+**Reality check:** While Alden's perspective is shared by much of the news media industry, it's unclear whether the Trump administration — which has proven skeptical of supporting traditional news outlets — would consider its position when evaluating how to regulate AI companies.
+
+**The big picture:** AI firms argue that using public data to "teach" AI models is a fair use of the information under existing copyright law, similar to the use case search engines make in cataloging online information.
+
+- Until U.S. courts rule on the issue and/or new legislation updates copyright rules, both media companies and AI makers are operating on unsettled ground.
+
+- Alden, alongside the New York Times, is one of the few news media companies that has opted to sue AI firms to fight for a legal precedent that favors content owners.
+
+**Flashback:** Alden is known to run these types of editorials across its newspapers around issues related to news ethics and business.
+
+- Last year, its newspapers published editorials arguing that Google's threat to cut off news in California "is a bully tactic."
+- In 2023, they ran editorials urging the news industry to describe Hamas as a terrorist organization and its Oct. 7 attack on Israel as a terrorist attack.
+
+**The decision to run** these editorials typically stems from the leadership of the two newspaper groups owned by Alden, which are MediaNews Group and Tribune Publishing, not the editorial boards of each newspaper.
+
+- In the past, ownership has been involved in the decision to run these types of opinion pieces.
+
+**What to watch:** The editorial will be published in print Tuesday by more than 60 daily newspapers owned by MediaNews Group and Tribune Publishing, an Alden spokesperson confirmed.

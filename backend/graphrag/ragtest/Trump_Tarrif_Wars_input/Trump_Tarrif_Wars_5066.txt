@@ -1,0 +1,229 @@
+Title: The Economic Effects of President Trump’s Tariffs
+Source: https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs
+
+**Summary:** Many trade models fail to capture the full harm of tariffs. PWBM projects Trump’s tariffs (April 8, 2025) will reduce long-run GDP by about 6% and wages by 5%. A middle-income household faces a $22K lifetime loss. These losses are twice as large as a revenue-equivalent corporate tax increase from 21% to 36%, an otherwise highly distorting tax.
+
+**Key Points**
+
+- **Revenue Impact:** President Trump’s tariff plan (as of April 8, 2025) is projected to raise significant revenue—over $5.2 trillion over 10 years on a conventional basis (with micro-elastic responses) and $4.5 trillion on a dynamic basis (with economic effects). This revenue could be used to reduce federal debt, thereby encouraging private investment.
+
+- **Comparison with a Corporate Tax Increase:** Tariffs are estimated to raise about the same amount of revenue as increasing the corporate income tax from 21 to 36 percent, in the absence of these recent tariffs. While raising the corporate tax rate is generally seen as highly economically distorting, tariffs would reduce GDP and wages by more than twice as much. All future households are worse off. The estimated economic declines are likely lower bounds, with actual declines potentially even larger.
+
+- **Broader Economic Impact:** Many existing trade and macroeconomic models fail to capture the full harm caused by tariffs. Larger tariffs reduce the openness of the economy, including international capital flows. This is especially costly under the nation’s current baseline debt path, which is increasing faster than GDP, that is generally excluded from trade models or treated as neutral (Ricardian). U.S. households would need to purchase more bonds, requiring bond prices to fall (yields increase), domestic capital investment prices to fall (the marginal product of capital increases), or both. Even conservatively assuming only domestic capital investment prices fall, the reduction in economic activity is more than twice as large as a tax increase on capital returns that raises the same amount of revenue.
+
+_**Note:** Updated on April 16, 2025, to correct an error that compared policy changes relative to an incorrect baseline. Some parts of the text have been updated for clarity. The brief continues to model tariffs under the “as if” scoring convention for tariff policy as of April 8, 2025, rather than speculate on potential carveouts or reversals. While recent financial market movements may reflect speculation about carveouts or reversals, this analysis models tariffs in effect on April 8, 2025, “as if” they remain unchanged to avoid circularity._
+
+* * *
+
+# The Economic Effects of President Trump’s Tariffs
+
+Introduction
+
+On April 2, 2025, President Trump signed an executive order imposing a minimum 10 percent tariff on all U.S. imports, with higher tariffs on imports from 57 specific countries. The general tariff rate became effective on April 5, while tariffs on imports from the 57 targeted nations, ranging from 11 to 50 percent, took effect on April 9. See the [PWBM tariff simulator](https://budgetmodel.wharton.upenn.edu/issues/2025/2/26/tariff-revenue-simulator) posted separately, which may have been updated after the publication date of this brief. This resource provides revenue estimates and projected price increases across thousands of different spending categories.
+
+Conventional Effects on Revenues and Imports
+
+As shown in Table 1, we project that tariffs will raise $5.2 trillion in new revenue over the next 10 years, even after accounting for reduced import demand due to higher prices. Over the next 30 years, tariffs are expected to raise revenues of $16.4 trillion. (These revenues fall to $4.5 trillion and $11.8 trillion, respectively, on a dynamic basis.) This revenue can be used to reduce federal debt relative to the baseline path. Table 1 also shows that President Trump's tariffs will reduce total imports by $6.9 trillion over the next decade and by $37.2 trillion through 2054. These reductions in imports will also reduce capital flow.
+
+Table 1: The Effects of President Trump's Tariffs on Revenues and Imports
+
+
+Billions of dollars
+
+|  | 2025 | 2026 | 2027 | 2028 | 2029 | 2030 | 2031 | 2032 | 2033 | 2034 | 2025-2034 | 2025-2054 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Revenues | 419 | 570 | 566 | 561 | 554 | 544 | 532 | 518 | 501 | 481 | 5,246 | 16,390 |
+| Value of imports | -319 | -434 | -492 | -555 | -627 | -706 | -794 | -892 | -1,000 | -1,118 | -6,937 | -37,236 |
+|  |  |  |  |  |  |  |  |  |  |  |  |
+| Memorandum: |  |  |  |  |  |  |  |  |  |  |  |  |
+| Dynamic revenues | 388 | 516 | 504 | 492 | 477 | 462 | 444 | 425 | 405 | 383 | 4,496 | 11,829 |
+
+Source: Penn Wharton Budget Model.
+
+Notes: Revenues include an estimate of how demand will respond to higher prices.
+
+Dynamic revenues reflect the tariff revenues after households adjust their consumption in response to the higher import prices, thus capturing the broader behavioral and economic feedback effects.
+
+Economic Impact: Modeling Approach
+
+President Trump's tariffs will impact the U.S. economy through at least three main channels:
+
+1. _**Direct Tax on Imported Goods:**_ Tariffs impose a direct tax on imported goods. The economic burden of these tariffs can fall on either domestic consumers or businesses, depending on factors such as the elasticity of supply and demand for each product and businesses' ability to pass on costs to customers. We consider several tax incidence scenarios, ranging from one in which consumers bear the entire burden to one in which the tariff costs are shared equally between consumers and businesses. In the short run, consumers and businesses are likely to share the burden, with more of it falling on consumers over time. Nonetheless, the macroeconomic performance does not differ significantly between these scenarios.
+
+2. _**Reduction in Imported Goods and Capital Flows:**_ A reduction in imported goods means foreign businesses and governments will purchase fewer U.S. assets, including U.S. federal government bonds. The decrease in the value of imports directly corresponds to reduced foreign purchases of U.S. assets through standard accounting relationships. U.S. households will need to increase their future take-up of government bonds and will subsequently decrease their savings into productive capital.
+
+3. _**Increased Economic Policy Uncertainty:**_ President Trump’s tariff announcements have increased economic policy uncertainty, which generally depresses economic activity by prompting firms and households to postpone investment, hiring, and consumption decisions. Economic policy uncertainty can be quantified using the Economic Policy Uncertainty (EPU) Index, a measure designed to capture uncertainty surrounding economic policy decisions.
+
+    [1](https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs#fn:1) By the end of March, the EPU reached its highest point since the beginning of the COVID-19 pandemic, doubling in value from the start of January. We apply the methodology of Baker, Bloom, and Davis (2016) to determine that the rise in economic uncertainty will reduce investment by about 4.4 percent in 2025.
+
+    [2](https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs#fn:2) However, we assume that EPU returns to pre-tariff average by start of 2027.
+
+Economic Effects: Results
+
+**Table 2** presents the economic effects of President Trump’s tariffs under different assumptions about how the burden (“incidence”) is distributed between consumers and businesses. Because tariffs are applied to imported intermediate and final goods across different industries, future work will be needed to understand the actual incidence in more detail.
+
+- **Table 2.A:** When **consumers bear 100 percent of the burden**, consumption falls by 3.5 percent in 2030 and by over 3 percent in 2054. The decline in imports reduces foreign purchases of U.S. government debt, requiring U.S. households to absorb more of this debt and divert savings away from investment in private productive capital. This shift, coupled with reduced short-term investment due to increased economic uncertainty, leads to a decline in the capital stock of 0.6 percent in 2030 and nearly 10 percent in 2054. Less capital reduces worker productivity, translating into lower wages and causing households to work slightly less. By 2054, wages will decline by 3.9 percent, and hours worked will fall by 1.3 percent. The combination of reduced private capital and fewer hours worked leads to a 5.1 percent decline in output by 2054. However, the additional revenue from tariffs helps reduce federal debt, which is 7.3 percent lower in 2030 and 11.6 percent lower in 2054.
+
+- **Table 2.B:** When **75 percent of the tariff burden falls on consumers** and 25 percent on businesses, the initial decline in consumption is slightly smaller. However, the decline in capital and wages in 2030 is larger. By 2054, the capital stock is 11 percent lower than under current law, and wages are 4.8 percent lower—both worse than when consumers bear the entire cost of the tariffs. Consumption declines slightly more by 2054 due to lower wages. Lower wages also lead to lost tax revenues on labor income, resulting in a smaller reduction in federal debt, which is only 10.7 percent lower by 2054.
+
+- **Table 2.C:** When **businesses and consumers equally split the cost of the tariffs**, the economic effects follow a similar pattern to the differences between Tables 2.A and 2.B, but the impacts are more pronounced. Capital, wages, and output fall even further, while the reduction in debt is slightly smaller.
+
+Table 2: Economic Effects of President Trump's Tariffs under Various Assumptions of Tax Incidence
+
+
+Percent Change from Baseline
+
+A: 100 percent on consumersB: 75 percent on consumersC: 50 percent on consumers
+
+Click on the tabs above to switch between scenarios.
+
+A) Tax burden falls 100 percent on consumers
+
+|  | 2030 | 2034 | 2039 | 2044 | 2049 | 2054 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Gross domestic product | -0.4 | -0.7 | -1.3 | -2.1 | -3.2 | -5.1 |
+| Capital stock | -0.6 | -1.3 | -2.5 | -4.0 | -6.1 | -9.6 |
+| Hours worked | -0.2 | -0.2 | -0.3 | -0.5 | -0.8 | -1.3 |
+| Average wage | -0.2 | -0.5 | -1.0 | -1.6 | -2.5 | -3.9 |
+| Consumption | -3.5 | -3.1 | -3.0 | -3.0 | -3.1 | -3.3 |
+| Debt held by the public | -7.3 | -9.9 | -11.3 | -12.0 | -12.1 | -11.6 |
+
+B) Tax burden falls 75 percent on consumers and 25 percent on businesses
+
+|  | 2030 | 2034 | 2039 | 2044 | 2049 | 2054 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Gross domestic product | -0.5 | -0.9 | -1.5 | -2.4 | -3.7 | -5.7 |
+| Capital stock | -0.9 | -1.7 | -3.1 | -4.8 | -7.1 | -10.9 |
+| Hours worked | -0.2 | -0.1 | -0.2 | -0.4 | -0.8 | -1.3 |
+| Average wage | -0.8 | -1.1 | -1.6 | -2.3 | -3.3 | -4.8 |
+| Consumption | -3.2 | -2.9 | -2.9 | -3.0 | -3.2 | -3.4 |
+| Debt held by the public | -7.2 | -9.6 | -10.9 | -11.4 | -11.3 | -10.7 |
+
+C) Tax burden falls 50 percent on consumers and 50 percent on businesses
+
+|  | 2030 | 2034 | 2039 | 2044 | 2049 | 2054 |
+| --- | --- | --- | --- | --- | --- |
+| Gross domestic product | -0.6 | -1.0 | -1.8 | -2.8 | -4.1 | -6.3 |
+| Capital stock | -1.2 | -2.2 | -3.7 | -5.5 | -8.1 | -12.2 |
+| Hours worked | -0.1 | -0.1 | -0.2 | -0.4 | -0.7 | -1.4 |
+| Average wage | -1.4 | -1.6 | -2.2 | -3.0 | -4.1 | -5.8 |
+| Consumption | -2.8 | -2.7 | -2.8 | -3.0 | -3.2 | -3.6 |
+| Debt held by the public | -7.0 | -9.3 | -10.5 | -10.8 | -10.6 | -9.8 |
+
+Source: Penn Wharton Budget Model.
+
+Dynamic Distributional Effects
+
+Dynamic distributional analysis considers how a policy affects households across the income and age distribution, including the unborn (represented by a negative age index at the time of the reform). It evaluates how much, on average, households in each (income, age) bucket value the proposed policy change over their entire lifetime, represented as a one-time transfer at the time of the policy change. Dynamic distributional analysis is the standard in academic research, addressing several key limitations that [dynamic analysis addresses](https://budgetmodel.wharton.upenn.edu/issues/2019/8/21/dynamic-distributional-analysis).
+
+**Table 3** reports policy “equivalent variations” for the same cases and versions reported in Table 2. A positive equivalent variation means that the person would be better off under the policy reform, while a negative equivalent variation means that the person would be worse off. For example, as shown in Table 3.A, a household aged 30 in the bottom 20th percentile of income loses the equivalent of $15,800, as indicated by the negative value. This household would be indifferent between this policy bundle and a one-time payment of $15,800 to avoid the tariff increase.
+
+As Table 3 shows, almost every household is worse off. Older households experience the largest variation of losses across the three tax incidence scenarios because they are more directly impacted by the tax incidence assumption than by the longer-term macroeconomic effects. For example, losses for a 60-year-old household in the top income quantile vary from $31,900 when consumers bear the entire incidence (Table 3.A) to $12,300 when consumers and firms share the incidence (Table 3.C). The return to a blended portfolio of stocks and government bonds is negative 10 percent in the first year, which also impacts older peak savers more. Differences in losses narrow somewhat for future households where macroeconomic effects dominate. For example, losses for a newborn in the top income quantile at the time of the policy change range from $12,800 (Table 3.A) to $22,200 (Table 3.C).
+
+Table 3: Dynamic Distributional Effects of President Trump's Tariffs under Various Assumptions of Tax Incidence
+
+
+Amount of one-time payment that makes somebody indifferent between adopting and not adopting the proposed policy.
+
+A: 100 percent on consumersB: 75 percent on consumersC: 50 percent on consumers
+
+Click on the tabs above to switch between scenarios.
+
+A) Tax burden falls 100 percent on consumers
+
+## Chart
+
+Chart with 50 data points.
+
+Table 3a
+
+The chart has 1 X axis displaying Gross Income (Percentile).
+
+The chart has 1 Y axis displaying Age at time of policy change.
+
+Created with Highcharts 10.3.3Gross Income (Percentile)Age at time of policy change-$15,600​-$15,600-$20,500​-$20,500-$22,600​-$22,600-$14,500​-$14,500-$12,800​-$12,800-$15,500​-$15,500-$21,600​-$21,600-$23,300​-$23,300-$14,900​-$14,900-$13,400​-$13,400-$16,700​-$16,700-$18,500​-$18,500-$23,300​-$23,300-$14,000​-$14,000-$11,400​-$11,400-$14,700​-$14,700-$15,900​-$15,900-$14,800​-$14,800-$10,900​-$10,900-$5,500​-$5,500-$13,400​-$13,400-$14,500​-$14,500-$12,400​-$12,400-$10,400​-$10,400-$4,600​-$4,600-$15,800​-$15,800-$24,400​-$24,400-$31,900​-$31,900-$37,100​-$37,100-$31,100​-$31,100-$15,300​-$15,300-$22,100​-$22,100-$23,600​-$23,600-$24,100​-$24,100-$14,100​-$14,100-$12,300​-$12,300-$16,800​-$16,800-$18,700​-$18,700-$19,500​-$19,500-$15,900​-$15,900-$12,900​-$12,900-$17,900​-$17,900-$20,200​-$20,200-$23,700​-$23,700-$31,900​-$31,900-$13,600​-$13,600-$32,700​-$32,700-$52,000​-$52,000-$63,900​-$63,900-$102,600​-$102,600-102,6002,9000 to 2020 to 4040 to 6060 to 8080 to 100-20-10010203040506070
+
+End of interactive chart.
+
+B) Tax burden falls 75 percent on consumers and 25 percent on businesses
+
+## Chart
+
+Chart with 50 data points.
+
+Table 3b
+
+The chart has 1 X axis displaying Gross Income (Percentile).
+
+The chart has 1 Y axis displaying Age at time of policy change.
+
+Created with Highcharts 10.3.3Gross Income (Percentile)Age at time of policy change-$19,600​-$19,600-$26,200​-$26,200-$28,900​-$28,900-$18,900​-$18,900-$17,400​-$17,400-$19,200​-$19,200-$27,100​-$27,100-$29,200​-$29,200-$19,000​-$19,000-$17,700​-$17,700-$19,500​-$19,500-$21,800​-$21,800-$27,700​-$27,700-$17,000​-$17,000-$14,300​-$14,300-$16,500​-$16,500-$18,100​-$18,100-$16,900​-$16,900-$12,600​-$12,600-$6,600​-$6,600-$13,900​-$13,900-$15,200​-$15,200-$13,100​-$13,100-$11,000​-$11,000-$4,900​-$4,900-$16,300​-$16,300-$25,300​-$25,300-$32,900​-$32,900-$37,900​-$37,900-$30,300​-$30,300-$15,000​-$15,000-$21,900​-$21,900-$22,800​-$22,800-$22,500​-$22,500-$8,400​-$8,400-$11,400​-$11,400-$15,200​-$15,200-$16,100​-$16,100-$15,400​-$15,400-$6,600​-$6,600-$10,200​-$10,200-$14,100​-$14,100-$15,300​-$15,300-$17,600​-$17,600-$22,100​-$22,100-$10,100​-$10,100-$24,500​-$24,500-$39,000​-$39,000-$48,100​-$48,100-$81,300​-$81,300-102,6002,9000 to 2020 to 4040 to 6060 to 8080 to 100-20-10010203040506070
+
+End of interactive chart.
+
+C) Tax burden falls 50 percent on consumers and 50 percent on businesses
+
+## Chart
+
+Chart with 50 data points.
+
+Table 3c
+
+The chart has 1 X axis displaying Gross Income (Percentile).
+
+The chart has 1 Y axis displaying Age at time of policy change.
+
+Created with Highcharts 10.3.3Gross Income (Percentile)Age at time of policy change-$23,800​-$23,800-$32,000​-$32,000-$35,400​-$35,400-$23,600​-$23,600-$22,200​-$22,200-$22,900​-$22,900-$32,700​-$32,700-$35,300​-$35,300-$23,400​-$23,400-$22,200​-$22,200-$22,300​-$22,300-$25,300​-$25,300-$32,200​-$32,200-$20,000​-$20,000-$17,300​-$17,300-$18,400​-$18,400-$20,400​-$20,400-$19,100​-$19,100-$14,400​-$14,400-$7,800​-$7,800-$14,500​-$14,500-$15,900​-$15,900-$13,800​-$13,800-$11,600​-$11,600-$5,200​-$5,200-$17,000​-$17,000-$26,100​-$26,100-$33,700​-$33,700-$38,800​-$38,800-$29,900​-$29,900-$15,000​-$15,000-$21,700​-$21,700-$22,200​-$22,200-$21,300​-$21,300-$3,600​-$3,600-$10,500​-$10,500-$13,700​-$13,700-$13,700​-$13,700-$11,300​-$11,300$2,900​$2,900-$7,500​-$7,500-$10,400​-$10,400-$10,600​-$10,600-$11,700​-$11,700-$12,300​-$12,300-$6,500​-$6,500-$16,400​-$16,400-$27,100​-$27,100-$33,000​-$33,000-$59,200​-$59,200-102,6002,9000 to 2020 to 4040 to 6060 to 8080 to 100-20-10010203040506070
+
+End of interactive chart.
+
+Source: Penn Wharton Budget Model.
+
+Note: "Gross Income" refers to each household's income in the year of the policy change. We categorize households not yet in the labor force (ages 20 and younger) by their gross income in the year they enter the labor force. We calculate the gross income distribution across all groups of workers. Empty cells in panel A indicate that no low-skilled workers have incomes at that level.
+
+Conclusions
+
+As a comparison, **Table 4** presents an alternative policy where the corporate tax rate is increased to match tariff revenue in each future year on a dynamic basis. In the first year, the corporate tax rate increased from 21 percent to 36 percent. Despite being one of the most economically distorting ways to raise revenue to pay down debt, the tariff policy reduces GDP and wages by more than twice as much, regardless of the burden assumed to be borne by consumers.
+
+Table 4: Economic Effects of President Trump's Tariffs Assuming Tax Incidence is on Corporations
+
+
+Percent Change from Baseline
+
+|  | 2030 | 2034 | 2039 | 2044 | 2049 | 2054 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Gross domestic product | -0.4 | -0.7 | -0.8 | -0.9 | -1.0 | -1.0 |
+| Capital stock | -1.2 | -1.9 | -2.3 | -2.4 | -2.5 | -2.5 |
+| Hours worked | 0.3 | 0.3 | 0.4 | 0.4 | 0.4 | 0.4 |
+| Average wage | -0.5 | -0.9 | -1.1 | -1.1 | -1.2 | -1.2 |
+| Consumption | -1.1 | -1.6 | -1.9 | -2.1 | -2.2 | -2.2 |
+| Debt held by the public | -6.4 | -8.3 | -9.2 | -9.6 | -9.7 | -9.7 |
+
+Source: Penn Wharton Budget Model.
+
+Despite the complexities of our modeling, we have abstracted away from several real-world features that could cause even larger economic losses:
+
+1. **Model Calibration:** Before running dynamic analysis, we first calibrated our dynamic OLG model in “static mode” to target revenue projections consistent with our conventional revenue estimates from our tariff calculator as of April 8, 2025. (For this purpose, the Income/Payroll Offset Assumption was set to a Fixed Offset of zero, as our OLG model captures those dynamics. The tariff calculator has since been updated with newer tariff announcements.) The conventional revenue estimates include time-varying micro-elasticities for short-run and long-run responses to tariffs, following the recent analysis by Boehm, Levchenko, and Pandalai-Nayar (2023).
+
+    [3](https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs#fn:3) These estimates are well-identified. Some previous studies have found larger elasticities but considered tariffs that are less broad-based and easier to avoid. Larger elasticities would produce even less tariff revenue to pay down debt while further reducing capital flows.
+
+2. **Intermediate Goods:** Current manufacturing is highly interdependent across international boundaries in ways that economists cannot directly observe with major public and proprietary datasets. Our modeling minimizes short-run disruptions by assuming that processes can be reshored to the United States without any reduction in total factor productivity. Instead, all growth effects are concentrated in the future supply of labor and capital.
+
+3. **Equity Premium Assumption:** We assume that the “equity premium” fully adjusts to increase the marginal product of capital without any change in the government borrowing rate. Given the context of exploding debt along the baseline, this assumption is conservative; debt stabilization must occur much sooner if the borrowing rate is also adjusted.
+
+_This analysis was produced by [Lysle Boller](http://budgetmodel.wharton.upenn.edu/experts/lysle-boller), [Kody Carmody](http://budgetmodel.wharton.upenn.edu/experts/kody-carmody), [Jon Huntley](http://budgetmodel.wharton.upenn.edu/experts/jon-huntley), and [Felix Reichling](http://budgetmodel.wharton.upenn.edu/experts/felix-reichling) under the guidance of [Felix Reichling](http://budgetmodel.wharton.upenn.edu/experts/felix-reichling) and [Kent Smetters](http://budgetmodel.wharton.upenn.edu/faculty-director). [Felix Reichling](http://budgetmodel.wharton.upenn.edu/experts/felix-reichling) wrote the report. [Mariko Paulson](http://budgetmodel.wharton.upenn.edu/experts/mariko-paulson) prepared the brief for the website.
+
+* * *
+
+1. “Measuring Economic Policy Uncertainty” by Scott Baker, Nicholas Bloom and Steven J. Davis at [https://www.policyuncertainty.com/](https://www.policyuncertainty.com/).
+    [↩](https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs#fnref:1 "return to article")
+
+2. Scott R. Baker, Nicholas Bloom, Steven J. Davis, "Measuring Economic Policy Uncertainty", Quarterly Journal of Economics, November 2016, 131(4), pp. 1593-1636.
+    [↩](https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs#fnref:2 "return to article")
+
+3. Christoph E. Boehm, Andrei A. Levchenko, Nitya Pandalai-Nayar, “The long and short (run) of trade elasticities.” American Economic Review, April 2023, 113(2), 389–438.
+    [↩](https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs#fnref:3 "return to article")
+
+**Media (only):** For the fastest response, email us at [inquiries-pwbm@wharton.upenn.edu](mailto:inquiries-pwbm@wharton.upenn.edu).
+
+**All other responses:** Please use our [Contact Us](https://budgetmodel.wharton.upenn.edu/contact).

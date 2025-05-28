@@ -1,0 +1,96 @@
+Title: How AI is reshaping copyright law and what it means for the news industry | Reuters Institute for the Study of Journalism
+Source: https://reutersinstitute.politics.ox.ac.uk/news/how-ai-reshaping-copyright-law-and-what-it-means-news-industry
+
+Illustration created by Alfredo Casasola.
+
+At the 2024 Trust Conference in London, several speakers expressed their discomfort with their intellectual property being scrapped by AI companies without any compensation, permission or credit.
+
+“We don't want to create a situation where all the [journalistic] risk is on the content producers and all the profit is on Big Tech,” said Roman Anin, founder of the Russian independent outlet iStories. Panellist Jane Barrett, Head of AI Strategy at Reuters, pointed out that existing laws could help solve this conundrum. “What I come back to is that we already have laws around copyright and IP,” she said. “Let's implement those properly first before getting into regulations.”
+
+With several media organisations either engaged in legal battles with AI companies or striking deals with them, can existing copyright laws protect the intellectual property of news companies? What clarity do the current laws provide? To answer these questions and more, I spoke to two experts on copyright law: Alina Trapova, Lecturer of IP law at University College London and a specialist in the EU and UK context, and Christian Mammen, an IP lawyer based in the United States.
+
+News organisations have filed several lawsuits accusing AI companies of infringing on their copyright to train their own models. Is the argument so cut and dry?
+
+“We haven't had any court ruling to say that they are violating the law,” says Alina Trapova. “The general feeling in all of these discussions is that there is a violation of copyright. But it has to really go down again to how each individual system works, what kind of copies are retained, for how long, what is actually there in these AI models and in the training data they use. So it’s a bit of a legal copyright exercise.”
+
+Similarly, and at the time of this writing, Mammen says that there is still not a direct legal answer to the question of whether or not these companies are violating copyright law. For him, there are two main questions that need to be accounted for under US law.
+
+The first one revolves around the basic concept of what constitutes copying. Analogically, copyright infringement is straightforward. For example, copying a news article to put on your website or using photographs that you did not take. However, in the digital realm and with AI, there are different kinds of data and representations of copyrighted material. One of the arguments, for example, is that the way that training materials are ingested, structured and encoded by AI models is different from maintaining digital copies of them. The question then goes back to if that constitutes copying or not.
+
+The second question is related to the fact that the US has a legal doctrine that does allow for the use of copyrighted material: fair use. There are four criteria set for fair use in the statutes. But the doctrine essentially allows the use of copyrighted work without the owner's permission for purposes such as criticism, comment, news reporting, teaching, scholarship, or research. If the answer to the first question of what these companies are doing constitutes copying is yes, then the second question is whether that is fair use. It is likely that technology companies will argue that they have adhered to the doctrine of fair use to train their models on the basis of research. However, several experts have questioned if these entities are still engaged in ‘research’ given the products they are building.
+
+“These two questions may well vary from copyright holder to copyright holder as we move forward,” Mammen says. “Those are really the two big questions that we are waiting for some of the courts to rule on and I fully expect that we may get different answers from some of those courts. Then these cases will have to go to the courts of appeals before these questions get resolved.”
+
+Mammen tells me that these cases could reach the Supreme Court, but the chances are low since the Court only takes very few cases each year. Supreme Court’s Justices usually agree to hear a case for one of two reasons: either it involves a major constitutional question, or different appeals courts across the country have made conflicting decisions about the same legal issue.
+
+Perhaps the most prominent legal battle between an AI company and a media company is The New York Times v. OpenAI and Microsoft. In the suit, the Times claims that OpenAI is infringing on their copyright by feeding the paper’s articles into its training models (input) and by outputting portions of its articles verbatim or sharing key parts of its content on ChatGPT (output). OpenAI has claimed that it took The Times “tens of thousands of attempts to generate the highly anomalous results”.
+
+It is worth noting that under both US and EU law copying content verbatim is not a requirement for a copyright violation. Paraphrasing may also constitute copyright infringement if there is substantial similarity. For fair use to apply, there needs to be a substantial transformation from the original work so that the new work is an original creation.
+
+The Times’ lawsuit was filed in December 2023. Over a year later, the case is currently in discovery, which means both sides are turning over requested documents that could be used as evidence in the case. Just in November 2024, The Times’ lawyers accused OpenAI of erasing data organised by the paper’s team when sifting through the AI company’s training data.
+
+“We can’t allow a world in which the right of a news organisation to be paid for the work that spends money, and takes time and care and often risks to create, disappears,” The Times’ publisher AG Sulzberger said in an interview with us last year referring on his thinking on generative AI.
+
+While some publishers have decided to take AI companies to court, a few big media groups have struck licensing deals with companies such as Perplexity or OpenAI. These companies pay to use the publishers’ content to train their own models or to create their own outputs.
+
+However, since the deals are confidential, there is no expectation for the industry to converge on common licensing agreements. It is up to individual news organisations to negotiate with each AI company. Moreover, the companies that have struck these deals are big media groups. Independent and smaller publishers have less leveraging power, and they are – so far – not offered deals.
+
+Experts conclude it will take years for the numerous lawsuits to bring any clarity to the legal rules governing copyright in the age of AI. So one of the reasons deals are struck is that they create some semblance of clarity in this space as well as saving thousands in legal fees. This is a common tactic within Silicon Valley: push the boundaries in a given area to reach critical mass and worry about the consequences and legality later.
+
+Big Tech companies aim to reach disruption with the full knowledge that the mills of justice grind so slowly that by the point governance catches up to them, they can point to the fact that they are already well-established and have created economic opportunities. Furthermore, they can use their legal lobbying muscle to water down any attempt at regulation. Two prominent examples of this are AirBnB and Uber.
+
+But are licensing agreements a good solution to the current legal uncertainty? Not every news organisation can afford to go to court. But Mammen does think that litigation will bring some clarity into important legal questions about copyright. Having answers to those questions will enable parties to make more informed decisions about what the market is, what the value is and what the points of leverage are, and these answers will help them enter into private agreements that benefit them.
+
+“The outcomes of these lawsuits will provide clarity around the law and what the law requires to help people in deciding whether to cut a deal with AI platforms or not; if they should sign internal licensing agreements and on what terms; and what kind of leverage they may have based on how these other cases that are not specifically binding on them,” says Mammen.
+
+For Trapova, an expert on the UK and EU context, having licensing agreements can give some certainty in the midst of uncertain legal questions.
+
+The existential problem of copyright, she says, is that it arises automatically when the work is created. The downside is that, unlike patents or trademarks, you don’t get a certificate proving that some piece of work is yours. It is a system that is accessible for everyone, but there is a lack of certainty, which is why people very often resort to deals and contracts to avoid being taken to court.
+
+“[Journalism] is a creative industry which thrives on reputation, and it has a very complex business model as well,” explains Trapova. “So regardless of whether copyright is clear or not, and in many cases it is really not a clear legal framework, people prefer to have a document signed and the license established to say ‘Yes, you have allowed me to train or you have not allowed me to train for this and that purpose’. Certainty comes with that agreement, because the laws are not clear.”
+
+The arrival of the Internet and the digital revolution further complicated the applicability of copyright law well before the rise of AI. What happens when a company based in the United States uses content from a news organiwation in Germany, for example? Legally, which jurisdiction should be entrusted with enforcing the law?
+
+“I’ve argued in some publications that IP laws are traditionally justified either as a matter of industrial policy, protecting economic competitiveness and ways to get value out of that within the national economy, or as a way to protect and encourage human flourishing,” says Mammen. “If you say it’s a national economic policy kind of question and some countries want to be more friendly to it, it’s not clear that one country, acting alone, can change the market one way or another, depending on where the content is, where the platform is and where the outputs go.”
+
+While we have not seen these complications play out yet within the news industry, parallels can be drawn from other industries.
+
+For example, in 2023, Getty Images, a US-based company, sued Stability AI in the United Kingdom, where the AI company is based, for scraping without permission millions of images from the stock photo provider to train their model and output images that resemble Getty’s trademark.
+
+One of Stability AI’s key arguments was that the training and development of their image generation system did not take place in the UK, but in the US. Since then, Getty Images has filed an additional lawsuit in the US, but it is worth noting that pursuing litigation in the United States is historically more costly than suing in the UK or the EU.
+
+Trapova points out that this is an issue the EU already took into account when they passed the AI Act in 2024. The EU’s AI Act is the first piece of legislation in the world that seeks to regulate artificial intelligence. While it has a lot of different non-IP related aspects, copyright is touched upon. The provision essentially says that it does not matter where a system is being trained or where the company is based. If the technology is deployed and used in the EU, the company needs to comply with EU copyright laws.
+
+“I think it’s clever. I’m not really sure whether it plays out very well in practice. It is drafted in a complicated way, and it’s one little provision,” says Trapova. “But the EU has learned from its past mistakes in digital lawmaking and it has produced a code of practice that is related to the AI Act. There’s a first draft of it, which was written by independent experts. It’s open now for comments so people can actually amend it, and that code of practice will give some details to how this aspect will play out.”
+
+But what if the result of a lawsuit in one country is at odds with the result of a lawsuit in another?
+
+In general, each country has its own copyright laws that only work within its borders. For example, if you register a copyright in the United States, it only protects your work in the US, not in other countries. This means something could be protected by copyright in one country but not in another. Or an action might break copyright law in one country but be perfectly legal in another country. If two lawsuits in two different countries are at odds with each other, it just means that the law will continue to operate as it usually does.
+
+It is worth pointing out that this fragmented legal landscape could disproportionately impact news organisations from countries with weaker legal muscle. While news organisations in powerful economies like the US or UK can more effectively protect their intellectual property, those from developing nations often lack the legal resources and international mechanisms to defend their work, creating a systemic inequality in intellectual property protection.
+
+“A divergence in the laws of different countries could result in something being protectable in one place but not protectable elsewhere, or some kind of action being considered infringement if conducted in one place but perfectly legal if conducted elsewhere,” explains Mammen.
+
+So when can we expect to get some concrete regulations when it comes to copyright in the domain of AI? Both experts I spoke to said we should be patient. It might take years for these copyright lawsuits to be settled and even longer for there to be industry-wide standards and procedures.
+
+In addition, as these technologies develop rapidly, the industry might also have to reckon with new questions. For example, Mammen points out that AI-generated content is not copyrightable under US law as it specifies that inventors have to be humans. This might change as more content is being created with the assistance of AI.
+
+As copyright law has adapted to new technologies before, though, there is some confidence that it will be able to ride the current wave. “We’ve consistently had to grapple with new technologies,” says Mammen. “In one sense, it’s uncharted territory, but we’ve had to deal with the same kind of questions in the past. For example, in the early age of photography there were cases about whether or not a photo could be copyrightable.”
+
+Do we need new legislation to address copyright claims arising from AI or will our current laws be able to get the answers we need? While the industry waits for these lawsuits to be settled, Trapova suspects that, at least here in the UK, there will be some legislation coming soon as a number of copyright holders are voicing their complaints.
+
+It takes a few years for a legislative proposal to become law, but Trapova believes that once the involved parties see policy-makers going in a certain direction, they will start getting a little bit more confidence that the legal framework is moving somewhere.
+
+“Government policy-makers are trying to make sense of it before the cases come out,” says Trapova. “There is a lot of work being done and it’s a very delicate work because it has to accommodate the interests of so many different parties and stakeholders. But there are many discussions that are taking place here in the UK and at the EU level. Policy-makers are really trying to find the best possible way to target this and not to wait for the cases to emerge.”
+
+On the other hand, Mammen believes that the lawsuits will be able to give the parties involved the answers that they seek and that the implementation of completely new legislation should be one that should be looked at with a grain of salt.
+
+“The fact that we have three dozen lawsuits pending on these copying and fair use questions is a suggestion that maybe the law is going to be able to provide a satisfactory answer to those questions,” says Mammen. “Maybe it’s not and we are going to have to look at some additional legislation on that. But that’s a question we need to think about carefully rather than just rushing out and saying we need to rewrite all of these laws, because that can quite often lead to unintended consequences.”
+
+Mammen says the unintended consequences of a poorly written law about AI could also end up restricting creative endeavours like cover bands or caricature artists. Historically, an artist's unique style hasn’t been legally protected on its own—only their actual works are.
+
+“There is some discussion about whether AI should be restricted from creating works ‘in the style of’ established human authors or artists. What might happen if ‘style’ was protected, with AI in mind? Would humans who write or look or sound too much like someone else be potentially liable as well?” he elaborates.
+
+In every email we send you'll find original reporting, evidence-based insights, online seminars and readings curated from 100s of sources - all in 5 minutes.
+
+In every email we send you'll find original reporting, evidence-based insights, online seminars and readings curated from 100s of sources - all in 5 minutes.

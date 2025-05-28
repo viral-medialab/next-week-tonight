@@ -1,0 +1,57 @@
+# The U.S. Housing Crisis: A Comprehensive Overview
+
+The housing crisis in the United States represents one of the most persistent economic and social challenges facing the country. Current data and expert analyses paint a concerning picture of housing affordability and availability that spans decades and affects millions of Americans.
+
+## Current State of the Housing Crisis
+
+As of 2025, the U.S. faces a severe shortage of affordable homes. The National Low Income Housing Coalition (NLIHC) recently released "The Gap 2025" report, revealing a national shortage of 7.1 million homes affordable and available for extremely low-income renters, with only 35 affordable and available homes for every 100 extremely low-income renter households[2]. This shortage has resulted in three-quarters of extremely low-income renters being severely cost-burdened, spending more than half of their income on rent[2].
+
+The housing market remains largely frozen, with J.P. Morgan projecting subdued growth of 3% or less through 2025[4]. While housing inventory is slowly increasing, it remains below historical averages nationally[4]. According to Michael Rehaut, head of U.S. Homebuilding and Building Products Research at J.P. Morgan, "Supply should be less of a support for the housing market in 2025"[4].
+
+## Key Factors Contributing to the Crisis
+
+### High Mortgage Rates
+Experts predict mortgage rates will likely remain high in 2025, "bouncing around" 7 percent for the year according to forecasts from early 2025[1]. These persistently high rates have contributed to a significant decline in home sales, with sales of previously occupied homes hitting a nearly 30-year low in 2024[1].
+
+### Affordability Gap
+The affordability gap continues to widen, with a CNN poll last year finding that 86 percent of Americans who were renting said they would like to buy their own home but could not afford to do so[1]. This gap between desire for homeownership and financial ability represents a growing crisis for middle and working-class Americans.
+
+### Supply Shortage
+Economists estimated that the U.S. had a housing shortfall of as many as 5 million homes in 2023[1]. This shortage has been exacerbated by various factors, including construction limitations, zoning restrictions, and demographic shifts.
+
+## Impact on Vulnerable Populations
+
+The housing crisis disproportionately affects vulnerable populations:
+
+- Seniors, people with disabilities, and low-wage workers are most severely impacted by the shortage of affordable housing options[2].
+- The Biden administration connected a rise in homelessness in 2024 partly to the high cost of housing, with HUD reporting an 18% year-over-year increase in people experiencing at least a single night without a home[1].
+- NLIHC Interim President and CEO Renee Willis has emphasized that "proposals to cut funding for the housing programs that serve our neighbors most in need or dismantle the institutions that serve them are nothing short of attacks on our communities"[2].
+
+## Historical Context
+
+The current housing crisis has deep historical roots:
+
+- Urban renewal programs of the mid-20th century resulted in the destruction of more housing units than were created to replace those that displaced families lost[5].
+- Public housing subsequently built was often highly segregated by race and class[5].
+- These historical policies have shaped contemporary patterns of housing inequality, particularly affecting Black Americans, though Latino communities and Native Americans have also experienced structural impacts to housing access[5].
+
+## Market Outlook for 2025
+
+The outlook for 2025 remains challenging. Berkshire Hathaway has warned that home buyers may need to adjust their market expectations[3]. The market conditions that characterized 2020 and 2021 have fundamentally changed[3], and experts suggest we're entering a period of adjustment.
+
+While single-family existing homes for sale are up roughly 20% year-over-year, the number remains near record lows, around 20-30% below prior troughs[4]. New homes for sale have reached 481,000 units, the highest level since 2007, and speculative homes for sale have hit 385,000, the highest since 2008—both metrics running roughly 50% and 40% respectively above long-term averages[4].
+
+## Political Dimensions
+
+Housing has become a key political issue. During the 2024 presidential campaign, President Trump connected the housing crunch to immigration, claiming it was "driving housing costs through the roof," though experts note the effects of immigration on housing costs are more moderate than claimed[1].
+
+The NLIHC has called for "bipartisan leadership to address the housing crisis – a crisis spanning both Republican and Democratic administrations – not ideologically driven assaults on seniors, people with disabilities, and low-wage workers struggling with housing instability"[2].
+
+The ongoing housing crisis requires comprehensive policy approaches that address both immediate affordability concerns and long-term structural issues that have contributed to persistent housing inequality in the United States.
+
+Sources:
+1. https://www.pbs.org/newshour/economy/will-2025-be-a-better-year-to-buy-a-house-heres-what-experts-predict
+2. https://nlihc.org/news/nlihc-releases-gap-2025-shortage-affordable-homes
+3. https://www.thestreet.com/real-estate/warren-buffetts-berkshire-hathaway-sounds-the-alarm-on-2025-housing-market
+4. https://www.jpmorgan.com/insights/global-research/real-estate/us-housing-market-outlook
+5. https://pmc.ncbi.nlm.nih.gov/articles/PMC7146083/
