@@ -1,0 +1,4 @@
+Procfile
+.slugignore
+app.py 
+__pycache__/
